@@ -1,0 +1,85 @@
+#container-login{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background-color:rgba(23, 24, 26, 0.914);
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-top: 5%;  
+}
+
+#container-login #user-login{
+    display: flex;
+    margin: 0 auto;
+    background-color: #45b692;
+    position: relative;
+    bottom: 50px;
+    border-radius: 50%;
+    width: 90px;
+    
+}
+
+#container-login form{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 8%;
+}
+
+#container-login h1{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+#container-login input {
+    display: flex;
+    font-size: medium;
+    flex-direction: column;
+    width: 100%;
+    padding: 2%;
+    border-radius: 8px;
+}
+
+#container-login #login-entrar {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    font-size: larger; 
+    margin-top: 9%;
+    width: 95%;
+    padding: 15px;
+    border-radius: 8px;
+    color: aliceblue;
+    background-color: #45b692;
+}
+
+#container-login #login-criar {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    font-size: larger; 
+    margin-top: 9%;
+    width: 95%;
+    padding: 15px;
+    color: aliceblue;
+    border-radius: 8px;
+    background-color: rgba(23, 24, 26, 0.914);
+    border: 3px solid #45b692;
+}
+
+#container-login a{
+    display: flex;
+    justify-content: end;
+    color: gray;
+}
+
+#container-login p{
+    color: rgb(220, 212, 212);
+    display: flex;
+    margin-top: 7%;
+    margin-bottom: 5px;
+}
