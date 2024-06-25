@@ -5,6 +5,7 @@ import visa from "../../assets/visa.png"
 import mastercard from "../../assets/master.png"
 import boleto from "../../assets/boleto.png"
 import pix from "../../assets/pix.png"
+import mp from "../../assets/mercadoPago.png"
 
 export default function Footer() {
     return (
@@ -23,7 +24,7 @@ export default function Footer() {
                     </div>
 
                     <div className="box">
-                        <h5>SOBRE O XHOPII</h5>
+                        <h5>INSTITUCIONAL</h5>
                         <ul>
                             <li>Sobre nós</li>
                             <li>Localização</li>
@@ -35,10 +36,11 @@ export default function Footer() {
                     <div className="box">
                         <h5>PAGAMENTO</h5>
                         <div className="pagamentos">
-                            <img className="imagem-pagamento" src={visa} alt="p" />
-                            <img className="imagem-pagamento" src={mastercard} alt="p" />
-                            <img className="imagem-pagamento" src={boleto} alt="p" />
-                            <img className="imagem-pagamento" src={pix} alt="p" />
+                            <img className="imagem-pagamento" src={visa} alt="visa" />
+                            <img className="imagem-pagamento" src={mastercard} alt="master" />
+                            <img className="imagem-pagamento" src={boleto} alt="boleto" />
+                            <img className="imagem-pagamento" src={pix} alt="pix" />
+                            <img className="imagem-pagamento" src={mp} alt="mp" />
                         </div>
                     </div>
                     <div className="box">
