@@ -31,7 +31,7 @@
 
 .containerHeaderItens .containerPesquisa input {
     padding: 11px;
-    border: 2px solid rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.6);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     width: 100%;
@@ -40,7 +40,7 @@
 }
 
 .containerHeaderItens .containerPesquisa input:focus {
-    border: 3px solid #179edd;
+    border: 2px solid #179edd;
 }
 
 .containerHeaderItens .containerPesquisa button {

@@ -1,0 +1,96 @@
+.footer {
+    width: 100%;
+    /* height: 100rem; */
+    background-color: rgb(156, 156, 156);
+}
+
+/*ABAIXO CONFIGURAÇÕES PADRÃO LINKS E RODAPÉ*/
+
+ansid {
+    display: block;
+    height: auto;
+    background-color: #eaeaea;
+}
+
+ansid section.caixas-informacoes {
+    width: 85%;
+    background-color: #eaeaea;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
+}
+
+ansid div.box {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+ansid div.box h5 {
+    margin-bottom: 1rem;
+}
+
+ansid div.box ul {
+    padding: 0;
+}
+
+ansid div.box ul li {
+    list-style: none;
+    margin-bottom: 7px;
+}
+
+ansid div.pagamentos {
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    column-gap: 20px;
+}
+
+ansid div.pagamentos img {
+    width: 2.3rem;
+    height: auto;
+}
+
+ansid div.redes-sociais {
+    display: flex;
+}
+
+ansid div.redes-sociais img {
+    width: 1rem;
+    height: auto;
+}
+
+ansid div.redes-sociais p {
+    margin-left: 5px;
+}
+
+ansid div.redes-sociais:not(:last-child) {
+    margin-bottom: 7px;
+}
+
+ansid div.box img.loja-aplicativo {
+    width: 4rem;
+    height: auto;
+}
+
+ansid div.box img.loja-aplicativo:last-child {
+    margin-left: 3px;
+}
+
+footer hr {
+    display: block;
+    width: 85%;
+    margin-bottom: 1rem;
+}
+
+.rodape {
+    width: 100%;
+    height: 5rem;
+    background-color: #eaeaea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
