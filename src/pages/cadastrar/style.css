@@ -1,0 +1,82 @@
+#container-criar {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: #082c44;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    min-width: 600px;
+}
+
+#container-criar form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+#container-criar h1 {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: center;
+    color: white;
+}
+
+#container-criar label {
+    color: rgb(220, 212, 212);
+    margin-top: 1rem;
+    margin-bottom: 4px;
+}
+
+#container-criar .container-LInput input {
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    width: 100%;
+    border-radius: 8px;
+    outline: 0;
+}
+
+#container-criar .container-LInput input:focus {
+    border: 2px solid #45b692;
+}
+
+#container-criar #container-information{
+    display: grid;
+    margin-top: 3rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#container-criar button {
+    margin: 0 auto;
+    font-size: 1.2rem;
+    margin-top: 8%;
+    width: 95%;
+    padding: 12px;
+    border-radius: 8px;
+    color: aliceblue;
+    background-color: #45b692;
+    border: none;
+}
+
+#container-criar p{
+    color: rgb(255, 255, 255);
+    
+}
+
+#container-criar #voltar-login{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 10px;
+}
+#container-criar a {
+    color: #45b692;
+    font-weight: bold;
+}
+
