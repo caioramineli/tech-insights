@@ -3,8 +3,11 @@ import './style.css';
 
 import pesquisar from "../../assets/lupa.png"
 import user from "../../assets/user.png"
+import { PiUserCircleLight } from "react-icons/pi";
 import carrinho from "../../assets/carrinho.png"
+import { MdShoppingCart } from "react-icons/md";
 import coracao from "../../assets/coracao.png"
+import { FaRegHeart } from "react-icons/fa";
 import setaPraBaixo from "../../assets/setaPraBaixo.png"
 
 
@@ -22,17 +25,20 @@ const Header = () => {
                 </div>
 
                 <div className="containerLoginReg">
-                    <img src={user} alt="user icon" className="user-icon" />
+                    {/* <img src={user} alt="user icon" className="user-icon" /> */}
+                    <PiUserCircleLight />
                     <span>Olá, <a href="/login">Entre</a> ou <a href="/cadastrar">Cadastre-se</a></span>
                 </div>
 
                 <div className="containerFavCart">
                     <div className="favoritos">
-                        <img src={coracao} alt="coracao" />
+                        {/* <img src={coracao} alt="coracao" /> */}
+                        <FaRegHeart />
                         <span>0</span>
                     </div>
                     <div className="carrinho">
-                        <img src={carrinho} alt="carrinho" />
+                        {/* <img src={carrinho} alt="carrinho" /> */}
+                        <MdShoppingCart />
                         <span>0</span>
                     </div>
                 </div>
