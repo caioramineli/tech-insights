@@ -23,7 +23,7 @@ const Header = () => {
 
                 <div className="containerLoginReg">
                     <img src={user} alt="user icon" className="user-icon" />
-                    <span>Olá, <a href="/login">Entre</a> ou <a href="/register">Cadastre-se</a></span>
+                    <span>Olá, <a href="/login">Entre</a> ou <a href="/cadastrar">Cadastre-se</a></span>
                 </div>
 
                 <div className="containerFavCart">
