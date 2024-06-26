@@ -7,11 +7,12 @@ ansid {
 }
 
 ansid section.caixas-informacoes {
-    width: 85%;
+    width: 80%;
     background-color: #eaeaea;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    justify-content: center;
     margin: 0 auto;
+    column-gap: 2vw;
 }
 
 ansid div.box {
@@ -30,11 +31,14 @@ ansid div.box ul li {
     margin-bottom: 7px;
 }
 
+ansid .box:nth-child(3) {
+    max-width: 200px;
+}
+
 ansid div.pagamentos {
     display: flex;
     flex-wrap: wrap;
     width: 90%;
-    grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 0.8vw;
 }
