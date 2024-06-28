@@ -24,6 +24,10 @@
     margin-left: 10px;
 }
 
+.containerHeaderItens a {
+    text-decoration: none;
+}
+
 .containerHeaderItens .containerPesquisa {
     display: flex;
     align-items: center;

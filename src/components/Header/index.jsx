@@ -2,11 +2,11 @@ import React from 'react';
 import './style.css';
 
 import pesquisar from "../../assets/lupa.png"
-import user from "../../assets/user.png"
+// import user from "../../assets/user.png"
 import { PiUserCircleLight } from "react-icons/pi";
-import carrinho from "../../assets/carrinho.png"
+// import carrinho from "../../assets/carrinho.png"
 import { MdShoppingCart } from "react-icons/md";
-import coracao from "../../assets/coracao.png"
+// import coracao from "../../assets/coracao.png"
 import { FaRegHeart } from "react-icons/fa";
 import setaPraBaixo from "../../assets/setaPraBaixo.png"
 
@@ -15,7 +15,9 @@ const Header = () => {
     return (
         <header className="header">
             <section className="containerHeaderItens">
-                <h1>Tech Insights</h1>
+                <a href="/">
+                    <h1>Tech Insights</h1>
+                </a>
 
                 <div class="containerPesquisa">
                     <input type="text" placeholder="Pesquisar produtos" />
