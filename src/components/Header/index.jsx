@@ -48,13 +48,13 @@ const Header = () => {
 
             <nav className="navBar">
                 <ul>
-                    <li>Departamentos<img id='setaParaBaixo' src={setaPraBaixo} alt="seta para baixo" /></li>
-                    <li className='liPadrao'>Guias Informativos</li>
-                    <li className='liPadrao'>Monte seu PC</li>
-                    <li className='liPadrao'>Cupons</li>
-                    <li className='liPadrao'>Kit Upgrade</li>
-                    <li className='liPadrao'>Notebooks</li>
-                    <li className='liPadrao'>Monitores</li>
+                    <li>DEPARTAMENTOS<img id='setaParaBaixo' src={setaPraBaixo} alt="seta para baixo" /></li>
+                    <li className='liPadrao'>GUIAS INFORMATIVOS</li>
+                    <li className='liPadrao'>MONTE SEU PC</li>
+                    <li className='liPadrao'>CUPONS</li>
+                    <li className='liPadrao'>KIT UPGRADE</li>
+                    <li className='liPadrao'>NOTEBOOKS</li>
+                    <li className='liPadrao'>MONITORES</li>
                 </ul>
             </nav>
         </header>
