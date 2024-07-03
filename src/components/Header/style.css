@@ -1,7 +1,7 @@
 .header {
     display: flex;
     flex-direction: column;
-    background-color: #082c44;
+    background: linear-gradient(180deg, #121C23 53%, #45B692);
     width: 100%;
 }
 
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    height: 5rem;
+    height: 6.5rem;
 }
 
 .containerHeaderItens h1 {
@@ -76,7 +76,6 @@
 .containerHeaderItens .containerLoginReg svg{
     width: 80px;
     height: 80px;
-    /* fill: #45b692; */
 }
 
 .containerHeaderItens .containerLoginReg a {
@@ -132,7 +131,7 @@
 .navBar {
     display: flex;
     justify-content: center;
-    background-color: #d3d3d3;
+    background-color: #121C23;
 }
 
 .navBar ul {
@@ -147,10 +146,11 @@
     align-items: center;
     gap: 10px;
     font-size: 1.1rem;
+    color: white;
 }
 
 .navBar .liPadrao {
-    border-left: 1px solid #b3b3b3c0;
+    border-left: 1px solid #3a7261;
 }
 
 .navBar li:hover {
@@ -158,6 +158,8 @@
 }
 
 .navBar li #setaParaBaixo {
+    background-color:#dadada;
+    /* color: #dadada; */
     width: 15px;
     transition: 0.3s;
 }
