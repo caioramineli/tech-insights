@@ -5,6 +5,12 @@ import rtx30604 from "../../assets/3060MSI4.jpg"
 import rtx30605 from "../../assets/3060MSI5.jpg"
 import msiLogo from "../../assets/logo-msi.jpg"
 
+import { FaBarcode } from "react-icons/fa";
+import { FaRegCreditCard } from "react-icons/fa6";
+import { FaStar } from "react-icons/fa6";
+import { FaRegStarHalfStroke } from "react-icons/fa6";
+import { MdShoppingCart } from "react-icons/md";
+
 import './style.css'
 
 
@@ -28,33 +34,42 @@ export default function Produto() {
                         <img src={msiLogo} alt="" />
                     </div>
 
-                    <div>
-                        <p>Estrelas</p>
-                        <p>codigo</p>
+                    <div className="containerAvaliacaoCod">
+                        <FaStar />
+                        <FaStar />
+                        <FaStar />
+                        <FaStar />
+                        <FaRegStarHalfStroke />
+                        <span>(5)</span>
+                        <p>Cód: 1123</p>
                     </div>
 
-                    <p>Produto Disponivel</p>
+                    <p id="disponi">Produto Disponivel</p>
 
-                    <div>
-                        <img src="" alt="" />
-                        <h3>1000</h3>
-                        <p>a vista com 10% de desconto no boleto ou pix</p>
+                    <div className="containerPagVista">
+                        <FaBarcode />
+                        <div className="valorVista">
+                            <h3>900,00</h3>
+                            <p>a vista com 10% de desconto no boleto ou pix</p>
+                        </div>
                     </div>
 
-                    <div>
-                        <img src="" alt="" />
-                        <h3>1200</h3>
-                        <p>a vista com 10% de desconto no boleto ou pix</p>
+                    <div className="containerPagPrazo">
+                        <FaRegCreditCard />
+                        <div className="valorPrazo">
+                            <h3>1.000,00</h3>
+                            <p>10x de R$ 100,00 sem juros do cartão</p>
+                        </div>
                     </div>
 
-                    <button>Ver mais opções de pagamento</button>
+                    <button id="btnModalPagamento">Ver mais opções de pagamento</button>
 
-                    <button>Comprar</button>
+                    <button id="btnComprar"><MdShoppingCart />Comprar</button>
 
                     <h4>Consultar frete e prazo de entrega</h4>
-                    <div>
+                    <div className="containerFrete">
                         <input type="text" />
-                        <button type="button">pesquisar</button>
+                        <button type="button" id="btnFrete">Calcular</button>
                     </div>
                 </section>
             </section>
