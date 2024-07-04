@@ -5,11 +5,11 @@ import rtx30604 from "../../assets/3060MSI4.jpg"
 import rtx30605 from "../../assets/3060MSI5.jpg"
 import msiLogo from "../../assets/logo-msi.jpg"
 
+import { MdShoppingCart } from "react-icons/md";
 import { FaBarcode } from "react-icons/fa";
 import { FaRegCreditCard } from "react-icons/fa6";
-import { FaStar } from "react-icons/fa6";
-import { FaRegStarHalfStroke } from "react-icons/fa6";
-import { MdShoppingCart } from "react-icons/md";
+
+import StarsCod from "../EstrelasCodigo"
 
 export default function Produto() {
     return (
@@ -32,15 +32,7 @@ export default function Produto() {
                         <img src={msiLogo} alt="" />
                     </div>
 
-                    <div className="containerAvaliacaoCod">
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaRegStarHalfStroke />
-                        <span>(5)</span>
-                        <p>Cód: 1123</p>
-                    </div>
+                    <StarsCod/>
 
                     <p id="disponi">Produto Disponivel</p>
 

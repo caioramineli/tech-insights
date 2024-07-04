@@ -7,11 +7,11 @@ ansid {
 }
 
 ansid section.caixas-informacoes {
-    width: 80%;
+    width: 70%;
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    column-gap: 2vw;
+    column-gap: 5vw;
 }
 
 ansid div.box {
