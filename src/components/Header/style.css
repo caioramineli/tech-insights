@@ -5,10 +5,6 @@
     width: 100%;
 }
 
-.header img {
-    width: 30px;
-}
-
 .containerHeaderItens {
     display: flex;
     align-items: center;
@@ -92,7 +88,7 @@
 
 .containerHeaderItens .containerFavCart {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     gap: 10px;
     /* margin-right: 10px; */
 }
@@ -101,10 +97,6 @@
     width: 25px;
     height: 25px;
     fill: white;
-}
-
-.containerHeaderItens .containerFavCart img {
-    width: 26px;
 }
 
 .containerHeaderItens .containerFavCart .favoritos {

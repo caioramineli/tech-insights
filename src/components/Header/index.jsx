@@ -33,7 +33,7 @@ const Header = () => {
                         <span>0</span>
                     </div>
                     <div className="carrinho">
-                        <MdShoppingCart />
+                        <a href="/carrinho"><MdShoppingCart /></a>
                         <span>0</span>
                     </div>
                 </div>

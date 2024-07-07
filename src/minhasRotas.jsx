@@ -2,6 +2,7 @@ import { BrowserRouter as BR, Route, Routes } from "react-router-dom";
 import Home from "./pages/home/";
 import Login from "./pages/login/"
 import Cadastrar from "./pages/cadastrar";
+import Carrinho from "./pages/carrinho";
 import PaginaProduto from "./pages/product";
 
 import GuiasInformativos from "./pages/guiasInformativos";
@@ -19,6 +20,7 @@ export default function MinhasRotas() {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/cadastrar" element={<Cadastrar />} />
+                    <Route path="/Carrinho" element={<Carrinho />} />
                     <Route path="/produto" element={<PaginaProduto />} />
                     <Route path="/guias" element={<GuiasInformativos />} />
                     <Route path="/monte-seu-pc" element={<MontePC />} />
