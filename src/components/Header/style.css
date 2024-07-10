@@ -18,7 +18,7 @@
 .containerHeaderItens h1 {
     color: white;
     font-size: 24px;
-    min-width: 153px;
+    min-width: 158px;
     /* margin-left: 10px; */
 }
 
@@ -33,7 +33,7 @@
 }
 
 .containerHeaderItens .containerPesquisa input {
-    padding: 11px;
+    padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.6);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;

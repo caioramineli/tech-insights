@@ -1,3 +1,67 @@
+main {
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    gap: 2rem;
+}
+
+main .containerPrincipal {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+main .containerPrincipal .produtosCarrinho .boxImgDescricao {
+    display: flex;
+    align-items: center;
+}
+
+/* main .containerPrincipal .produtosCarrinho {
+    
+} */
+
+/* main .containerPrincipal .boxImgDescricao p {
+    
+} */
+
+main .containerPrincipal .limparCarrinho {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #c9c9c9;
+    margin-left: auto;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+main .containerPrincipal .containerCupomFrete {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
 main table img {
     width: 100px;
+}
+
+main .containerResumo {
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    padding: 10px;
+    border: 1px solid black;
+    gap: 10px;
+}
+
+main .containerResumo h2{
+    margin: 0 auto;
+}
+
+main .containerResumo .resumoCarrinho {
+    display: flex;
+    justify-content: space-between;
 }
