@@ -15,7 +15,7 @@ const Header = () => {
                     <h1>Tech Insights</h1>
                 </a>
 
-                <div class="containerPesquisa">
+                <div className="containerPesquisa">
                     <input type="text" placeholder="Pesquisar produtos" />
                     <button>
                         <img src={pesquisar} alt="pesquisar" />
