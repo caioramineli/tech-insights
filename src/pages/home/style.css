@@ -1,7 +1,20 @@
-.containerProdutos {
+.containerMainPaginaProdutos {
     width: 80%;
     max-width: 1300px;
     margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.containerMainPaginaProdutos .slider {
+    /* max-width: 600px; */
+    /* max-height: 400px; */
+    margin: 0 auto;
+}
+.containerMainPaginaProdutos .slider img{
+    width: 100%;
+}
+
+.containerProdutos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;

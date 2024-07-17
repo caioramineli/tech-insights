@@ -1,5 +1,6 @@
 import "./style.css"
 import Produto from "./Produto"
+import Slider from "./slider";
 
 export default function Home() {
     const produtos = [
@@ -12,10 +13,11 @@ export default function Home() {
     ];
 
     return (
-        <main>
+        <main className="containerMainPaginaProdutos">
+            <Slider />
             <section className="containerProdutos">
                 {produtos.map((produto) => (
-                    <Produto descricao={produto.descricao} precoV={produto.precoV} precoP={produto.precoP}/>
+                    <Produto descricao={produto.descricao} precoV={produto.precoV} precoP={produto.precoP} />
                 ))}
             </section>
         </main>

@@ -5,8 +5,6 @@ import EspecificacaoProduto from '../../components/EspecificacaoProduto'
 import AvaliacoesProduto from '../../components/AvaliacoesProduto'
 
 
-
-
 export default function PaginaProduto() {
     return (
         <main className='containerPaginaProduto'>
