@@ -1,9 +1,9 @@
+import msiLogo from "../../assets/logo-msi.jpg"
 import rtx3060 from "../../assets/3060MSI.jpg"
 import rtx30602 from "../../assets/3060MSI2.jpg"
 import rtx30603 from "../../assets/3060MSI3.jpg"
 import rtx30604 from "../../assets/3060MSI4.jpg"
 import rtx30605 from "../../assets/3060MSI5.jpg"
-import msiLogo from "../../assets/logo-msi.jpg"
 
 import { MdShoppingCart } from "react-icons/md";
 import { FaBarcode } from "react-icons/fa";
@@ -11,20 +11,32 @@ import { FaRegCreditCard } from "react-icons/fa6";
 
 import StarsCod from "../EstrelasCodigo"
 
+import './style.css'
+
+import React, { useState } from 'react';
+
+
 export default function Produto() {
+    const images = [rtx3060, rtx30602, rtx30603, rtx30604, rtx30605]
+    const [mainImage, setMainImage] = useState(images[0]);
+
     return (
         <>
             <h2>Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.</h2>
             <section className="containerProdutoInfo">
                 <div className="containerImgsProduto">
-                    <img src={rtx3060} alt="3060" />
-                    <img src={rtx30602} alt="30602" />
-                    <img src={rtx30603} alt="30603" />
-                    <img src={rtx30604} alt="30604" />
-                    <img src={rtx30605} alt="30605" />
+                    {images.map((image, index) => (
+                        <img
+                            key={index}
+                            src={image}
+                            alt={`Miniatura ${index + 1}`}
+                            onClick={() => setMainImage(image)}
+                            // className={`thumbnail ${mainImage === image ? 'active' : ''}`}
+                        />
+                    ))}
                 </div>
 
-                <img src={rtx3060} alt="3060msi" />
+                <img src={mainImage} alt="Produto principal" />
 
                 <section className="containerDireitaProduto">
                     <div className="marcaProduto">
@@ -32,7 +44,7 @@ export default function Produto() {
                         <img src={msiLogo} alt="" />
                     </div>
 
-                    <StarsCod/>
+                    <StarsCod />
 
                     <p id="disponi">Produto Disponivel</p>
 

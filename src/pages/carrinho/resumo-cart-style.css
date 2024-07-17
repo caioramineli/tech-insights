@@ -1,0 +1,43 @@
+.mainCarrinho .containerResumo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 290px;
+    border: 1px solid black;
+    height: 330px;
+}
+
+.mainCarrinho .containerResumo h2 {
+    margin: 0 auto;
+    background-color: rgb(177, 177, 177);
+    border-bottom: 1px solid black;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.mainCarrinho .containerResumo .resumoCarrinho {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 90%;
+}
+
+.mainCarrinho .containerResumo .resumoCarrinho div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+}
+
+.mainCarrinho .containerResumo button {
+    width: 90%;
+    background-color: green;
+    border: none;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 6px;
+    margin-bottom: 1.2rem;
+}

@@ -6,7 +6,8 @@
 
 .navBar ul {
     display: flex;
-    width: 70%;
+    width: 80%;
+    max-width: 1300px;
     justify-content: space-between;
     align-items: center;
 }

@@ -1,0 +1,57 @@
+.mainCarrinho .containerPrincipal .produtosCarrinho {
+    border-spacing: 0;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.mainCarrinho table img {
+    width: 100px;
+}
+
+.mainCarrinho .containerPrincipal .produtosCarrinho th {
+    padding: 10px;
+    border-bottom: 1px solid rgb(201, 201, 201);
+}
+
+.mainCarrinho .containerPrincipal .produtosCarrinho td {
+    padding: 10px;
+    border-bottom: 1px solid rgb(201, 201, 201);
+}
+
+.mainCarrinho .containerPrincipal .produtosCarrinho .boxImgDescricao {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mainCarrinho .containerPrincipal .produtosCarrinho .boxQuantidade {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mainCarrinho .containerPrincipal .produtosCarrinho .boxQuantidade .qtd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainCarrinho .containerPrincipal .produtosCarrinho .boxQuantidade .qtd span {
+   width: 25px;
+   display: flex;
+   justify-content: center;
+}
+
+
+.mainCarrinho .containerPrincipal .produtosCarrinho .boxQuantidade .remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #be0707;
+}
+
+.mainCarrinho .containerPrincipal .produtosCarrinho .boxPreco {
+
+    text-align: center;
+}

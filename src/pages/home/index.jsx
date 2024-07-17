@@ -13,7 +13,6 @@ export default function Home() {
 
     return (
         <main>
-            <h1>Pagina Inicial</h1>
             <section className="containerProdutos">
                 {produtos.map((produto) => (
                     <Produto descricao={produto.descricao} precoV={produto.precoV} precoP={produto.precoP}/>

@@ -5,10 +5,15 @@ import EspecificacaoProduto from '../../components/EspecificacaoProduto'
 import AvaliacoesProduto from '../../components/AvaliacoesProduto'
 
 
+
+
 export default function PaginaProduto() {
     return (
-        <main className="containerMainProduto">
-            <Produto />
+        <main className='containerPaginaProduto'>
+            <section className="containerMainProduto">
+                <Produto />
+            </section>
+
             <DescricaoProduto />
             <EspecificacaoProduto />
             <AvaliacoesProduto />
