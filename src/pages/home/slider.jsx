@@ -1,12 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination } from "swiper/modules"
 
-import rtx3060 from "../../assets/3060MSI.jpg"
-import rtx30602 from "../../assets/3060MSI2.jpg"
-import rtx30603 from "../../assets/3060MSI3.jpg"
-import rtx30604 from "../../assets/3060MSI4.jpg"
-import rtx30605 from "../../assets/3060MSI5.jpg"
-
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'

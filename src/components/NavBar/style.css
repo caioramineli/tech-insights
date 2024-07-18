@@ -1,7 +1,7 @@
 .navBar {
     display: flex;
     justify-content: center;
-    background-color: #121C23;
+    background-color: var(--cyan-900);
 }
 
 .navBar ul {
@@ -14,7 +14,6 @@
 
 .navBar ul a {
     text-decoration: none;
-    /* margin: 0 auto; */
     display: flex;
     flex: 1 1 auto;
     align-items: center;
@@ -24,12 +23,9 @@
 }
 
 .navBar ul li {
-    /* display: flex; 
-    align-items: center;
-    justify-content: center; */
     list-style: none;
     font-size: 1rem;
-    color: white;
+    color: var(--slate-50);
     font-weight: bold;
     white-space: nowrap;
 }
@@ -42,15 +38,15 @@
 }
 
 .navBar .bordaPadrao {
-    border-left: 1px solid #3a7261;
+    border-left: 1px solid var(--cyan-700);
 }
 
 .navBar a:hover {
-    background-color: #3a7261;
+    background-color: var(--cyan-700);
 }
 
 .navBar li #setaParaBaixo {
-    color: #dadada;
+    color: var(--cyan-50);
     width: 15px;
     transition: 0.3s;
     margin-right: 10px;
@@ -58,11 +54,4 @@
 
 .navBar li:hover #setaParaBaixo {
     transform: rotate(180deg);
-}
-
-.navBar #separador {
-    min-width: 1px;
-    height: 90%;
-    /* border: 1px solid black; */
-    background-color: #ffffff9a;
 }

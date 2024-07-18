@@ -17,6 +17,7 @@ export default function Carrinho() {
                     <h3>Limpar carrinho</h3>
                 </div>
                 <div className="containerCupomFrete">
+
                     <div className="cupomDesconto">
                         <input type="text" placeholder="Cupom de desconto" />
                         <button>
@@ -24,6 +25,7 @@ export default function Carrinho() {
                             <BiSolidCoupon />
                         </button>
                     </div>
+
                     <div className="calculoFrete">
                         <input type="text" placeholder="12345-678" />
                         <button>
@@ -34,7 +36,10 @@ export default function Carrinho() {
                 </div>
             </section>
 
-            <ResumoCart />
+            <section className="containerResumoFinalizar">
+                <ResumoCart />
+                <button type="button">Finalizar Pedido</button>
+            </section>
         </main>
     )
 }

@@ -10,7 +10,7 @@ import mp from "../../assets/mercadoPago.png"
 export default function Footer() {
     return (
         <footer className="footer">
-            <ansid>
+            <section className="containerFooter">
                 <section className="caixas-informacoes">
                     <div className="box">
                         <h5>ATENDIMENTO AO CLIENTE</h5>
@@ -36,11 +36,11 @@ export default function Footer() {
                     <div className="box">
                         <h5>PAGAMENTO</h5>
                         <div className="pagamentos">
-                            <img className="imagem-pagamento" src={visa} alt="visa" />
-                            <img className="imagem-pagamento" src={mastercard} alt="master" />
-                            <img className="imagem-pagamento" src={boleto} alt="boleto" />
-                            <img className="imagem-pagamento" src={pix} alt="pix" />
-                            <img className="imagem-pagamento" src={mp} alt="mp" />
+                            <img src={visa} alt="visa" />
+                            <img src={mastercard} alt="master" />
+                            <img src={boleto} alt="boleto" />
+                            <img src={pix} alt="pix" />
+                            <img src={mp} alt="mp" />
                         </div>
                     </div>
                     <div className="box">
@@ -67,7 +67,7 @@ export default function Footer() {
                         </div>
                     </div>
                 </section>
-            </ansid>
+            </section>
             <section className="rodape">
                 <hr />
                 <p>ⓒ 2024 Tech Insights. Todos os direitos acadêmicos reservados.</p>

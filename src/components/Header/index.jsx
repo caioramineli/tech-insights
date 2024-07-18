@@ -2,10 +2,11 @@ import React from 'react';
 import './style.css';
 import NavBar from '../NavBar';
 
-import pesquisar from "../../assets/lupa.png"
+
 import { PiUserCircleLight } from "react-icons/pi";
 import { MdShoppingCart } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
+import { IoSearch } from 'react-icons/io5';
 
 const Header = () => {
     return (
@@ -17,9 +18,7 @@ const Header = () => {
 
                 <div className="containerPesquisa">
                     <input type="text" placeholder="Pesquisar produtos" />
-                    <button>
-                        <img src={pesquisar} alt="pesquisar" />
-                    </button>
+                    <IoSearch/>
                 </div>
 
                 <div className="containerLoginReg">

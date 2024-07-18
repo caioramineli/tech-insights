@@ -36,7 +36,7 @@ export default function Produto() {
                     ))}
                 </div>
 
-                <img src={mainImage} alt="Produto principal" />
+                <img className="imgPrincipal" src={mainImage} alt="Produto principal" />
 
                 <section className="containerDireitaProduto">
                     <div className="marcaProduto">
@@ -70,7 +70,7 @@ export default function Produto() {
 
                     <h4>Consultar frete e prazo de entrega</h4>
                     <div className="containerFrete">
-                        <input type="text" />
+                        <input type="text" placeholder="12345-678" />
                         <button type="button" id="btnFrete">Calcular</button>
                     </div>
                 </section>

@@ -1,17 +1,21 @@
+.containerResumoFinalizar {
+    display: flex;
+    flex-direction: column;
+}
+
 .mainCarrinho .containerResumo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     min-width: 290px;
-    border: 1px solid black;
-    height: 330px;
+    box-shadow: rgba(40, 41, 61, 0.10) 0px 0px 2px, rgba(96, 97, 112, 0.16) 0px 0.5px 2px;
+    background-color: #fff;
+    border-radius: 8px;
 }
 
 .mainCarrinho .containerResumo h2 {
     margin: 0 auto;
-    background-color: rgb(177, 177, 177);
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     width: 100%;
     display: flex;
     justify-content: center;
@@ -23,6 +27,7 @@
     flex-direction: column;
     gap: 14px;
     width: 90%;
+    padding: 1rem 0px;
 }
 
 .mainCarrinho .containerResumo .resumoCarrinho div {
@@ -31,13 +36,17 @@
     font-size: 1.1rem;
 }
 
-.mainCarrinho .containerResumo button {
-    width: 90%;
+.mainCarrinho .containerResumo .resumoCarrinho p {
+    font-size: 1rem;
+}
+
+.containerResumoFinalizar button{
+    width: 100%;
     background-color: green;
     border: none;
     padding: 10px;
     font-size: 1.2rem;
     font-weight: bold;
     border-radius: 6px;
-    margin-bottom: 1.2rem;
+    margin-top: 1rem;
 }

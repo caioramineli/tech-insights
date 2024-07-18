@@ -5,19 +5,29 @@ import { useState } from "react";
 
 export default function TableCart() {
     const [qtd, setQtd] = useState(1)
-
+    const precoUnitario = 1500
+    const [subtotal, setSubTotal] = useState(precoUnitario)
+    
 
     function aumentarQtd() {
         if (qtd < 10) {
-            setQtd(qtd + 1)
+            const novaQtd = qtd + 1;
+            setQtd(novaQtd);
+            setSubTotal(novaQtd * precoUnitario);
         }
     }
 
     function diminuirQtd() {
         if (qtd > 1) {
-            setQtd(qtd - 1)
+            const novaQtd = qtd - 1;
+            setQtd(novaQtd);
+            setSubTotal(novaQtd * precoUnitario);
         }
     }
+
+    const formatarValor = (valor) => {
+        return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    };
 
     return (
         <table className="produtosCarrinho">
@@ -33,7 +43,7 @@ export default function TableCart() {
                         <p>Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.</p>
                     </div>
                 </td>
-                <td >
+                <td>
                     <div className="boxQuantidade">
                         <div className="qtd">
                             <FaChevronLeft onClick={diminuirQtd} />
@@ -47,7 +57,7 @@ export default function TableCart() {
                         </div>
                     </div>
                 </td>
-                <td className="boxPreco">1.500,00</td>
+                <td className="boxPreco">{formatarValor(subtotal)}</td>
             </tr>
             <tr>
                 <td>
@@ -70,7 +80,7 @@ export default function TableCart() {
                         </div>
                     </div>
                 </td>
-                <td className="boxPreco">3.000,00</td>
+                <td className="boxPreco">{formatarValor(subtotal)}</td>
             </tr>
         </table>
     )

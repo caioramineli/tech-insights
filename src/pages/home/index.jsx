@@ -9,6 +9,8 @@ export default function Home() {
         { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' },
         { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' },
         { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' },
+        { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' },
+        { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' },
         { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' }
     ];
 

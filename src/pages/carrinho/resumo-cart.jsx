@@ -27,12 +27,17 @@ export default function ResumoCart() {
                 <hr />
 
                 <div>
-                    <p>Valor Total:</p>
+                    <p>Valor Total a prazo:</p>
+                    <p>R$ 0,00</p>
+                </div>
+
+                <hr />
+
+                <div>
+                    <p>Valor Total a vista:</p>
                     <p>R$ 0,00</p>
                 </div>
             </div>
-
-            <button type="button">Finalizar Pedido</button>
         </section>
     )
 }

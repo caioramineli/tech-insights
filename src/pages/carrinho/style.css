@@ -3,25 +3,30 @@
     width: 80%;
     max-width: 1300px;
     margin: 0 auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     gap: 2rem;
 }
 
 .mainCarrinho .containerPrincipal {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .mainCarrinho .containerPrincipal .limparCarrinho {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: #c9c9c9;
+    background-color: #fff;
     margin-left: auto;
     padding: 8px;
     border-radius: 6px;
+    box-shadow: rgba(40, 41, 61, 0.10) 0px 0px 2px, rgba(96, 97, 112, 0.16) 0px 0.5px 2px;
+}
+
+.mainCarrinho .containerPrincipal .limparCarrinho svg {
+    color: #be0707;
 }
 
 .mainCarrinho .containerPrincipal .containerCupomFrete {
@@ -32,52 +37,36 @@
     width: 100%;
 }
 
-.mainCarrinho .containerPrincipal .containerCupomFrete .cupomDesconto {
-    background-color: #c9c9c9;
-    padding: 10px;
+.mainCarrinho .containerPrincipal .containerCupomFrete div {
+    background-color: #fff;
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     border-radius: 6px;
     white-space: nowrap;
+    box-shadow: rgba(40, 41, 61, 0.10) 0px 0px 2px, rgba(96, 97, 112, 0.16) 0px 0.5px 2px;
 }
 
-.mainCarrinho .containerPrincipal .containerCupomFrete .cupomDesconto input {
+.mainCarrinho .containerPrincipal .containerCupomFrete input {
     font-size: 1.1rem;
-    padding: 4px;
+    padding: 8px;
     width: 100%;
-}
-
-.mainCarrinho .containerPrincipal .containerCupomFrete .cupomDesconto button {
-    font-size: 1.1rem;
-    padding: 4px 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.mainCarrinho .containerPrincipal .containerCupomFrete .calculoFrete {
-    background-color: #c9c9c9;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
     border-radius: 6px;
-    white-space: nowrap;
+    border: none;
+    background-color: transparent;
+    outline: 0;
 }
 
-.mainCarrinho .containerPrincipal .containerCupomFrete .calculoFrete input {
+.mainCarrinho .containerPrincipal .containerCupomFrete button {
     font-size: 1.1rem;
-    padding: 4px;
-    width: 100%;
-}
-
-.mainCarrinho .containerPrincipal .containerCupomFrete .calculoFrete button {
-    font-size: 1.1rem;
-    padding: 4px 10px;
+    padding: 8px 10px;
     display: flex;
     align-items: center;
     gap: 8px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--cyan-600);
+    color: var(--cyan-50);
 }
