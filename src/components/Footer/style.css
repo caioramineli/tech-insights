@@ -34,18 +34,18 @@
 .containerFooter div.pagamentos {
     display: flex;
     flex-wrap: wrap;
-    width: 92%;
+    /* width: 90%; */
     align-items: center;
     gap: 0.8vw;
-    max-width: 300px;
+    max-width: 250px;
 }
 
 .containerFooter div.pagamentos img {
-    width: 5rem;
-    background-color: var(--cyan-50);
+    width: 4.5rem;
+    background-color: #fff;
     padding: 10px 12px;
     border-radius: 5px;
-    height: 45px;
+    height: 40px;
 }
 
 .containerFooter div.pagamentos img:nth-child(5) {
@@ -80,15 +80,9 @@
     margin-left: 3px;
 }
 
-footer hr {
-    display: block;
-    border-color: var(--cyan-50);
-    width: 85%;
-    margin-bottom: 1rem;
-}
-
 .rodape {
     width: 100%;
+    
     height: 5rem;
     background-color: var(--cyan-950);
     color: var(--cyan-50);
@@ -96,4 +90,12 @@ footer hr {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+footer .rodape hr {
+    display: block;
+    border-color: var(--cyan-50);
+    margin-bottom: 1rem;
+    width: 80%;
+    max-width: 1300px;
 }

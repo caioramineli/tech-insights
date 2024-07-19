@@ -1,79 +1,98 @@
 #container-login {
     display: flex;
     flex-direction: column;
-    width: 40%;
-    background-color: rgba(23, 24, 26, 0.914);
+    width: 80%;
     margin: 0 auto;
-    border-radius: 10px;
-    margin-top: 4.2rem;
+    margin-top: 1.05rem;
     margin-bottom: 2rem;
     max-width: 500px;
-    min-width: 300px;
-}
-
-#container-login #user-login {
-    margin: 0 auto;
-    background-color: #45b692;
-    position: relative;
-    bottom: 40px;
-    border-radius: 50%;
-    width: 80px;
+    min-width: 420px;
 }
 
 #container-login form {
     display: flex;
     flex-direction: column;
-    width: 90%;
-    margin: 0 auto;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
     margin-bottom: 2rem;
+    border-radius: 10px;
+    gap: 1rem;
+    position: relative;
 }
 
 #container-login h1 {
-    display: flex;
-    justify-content: center;
-    color: white;
+    color: var(--cyan-600);
 }
 
-#container-login label {
-    color: rgb(220, 212, 212);
-    margin-top: 1rem;
-    margin-bottom: 4px;
+#container-login div.inputEmail,
+#container-login div.inputSenha {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0px 0px 1px 2px var(--slate-600);
+    border-radius: 6px;
 }
 
 #container-login input {
     font-size: 1rem;
     width: 100%;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px;
+    background-color: transparent;
+    outline: 0;
+    border: none;
+    font-size: 1.2rem;
 }
 
-#container-login a {
-    display: flex;
-    justify-content: end;
-    color: gray;
-    margin-top: 3px;
+#container-login div:focus-within {
+    outline: 1;
+    box-shadow: 0px 0px 1px 2px var(--cyan-600);
+}
+
+#container-login svg {
+    position: relative;
+    left: 7px;
+    font-size: 1.9rem;
+    color: var(--slate-600);
+}
+
+#container-login #esqueceuSenha {
+    margin-left: auto;
+    color: var(--cyan-600);
+    position: relative;
+    bottom: 10px;
+    margin-bottom: 1rem;
+}
+
+#container-login #spanIncorreto {
+    display: none;
+    position: absolute;
+    bottom: 178px;
+    left: 35px;
+    color: brown;
+    font-weight: 500;
 }
 
 #container-login button {
     margin: 0 auto;
     font-size: 1.2rem;
-    margin-top: 8%;
-    width: 95%;
-    padding: 12px;
-    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
     color: aliceblue;
-    background-color: #45b692;
+    background-color: var(--cyan-600);
     border: none;
+    font-weight: 500;
+}
+
+#container-login #a-btn-criar {
+    width: 100%;
 }
 
 #container-login #a-btn-criar button {
-    background-color: rgba(23, 24, 26, 0.914);
-    box-shadow: 0px 0px 1px 3px #45b692;
+    background-color: var(--teal-700);
 }
 
 #container-login #a-btn-criar {
     text-decoration: none;
 }
-
-
-
