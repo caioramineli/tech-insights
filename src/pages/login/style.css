@@ -6,7 +6,8 @@
     margin-top: 2.05rem;
     margin-bottom: 2rem;
     max-width: 500px;
-    min-width: 420px;
+    min-width: 400px;
+
 }
 
 #container-login form {
@@ -14,7 +15,6 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 2rem;
     margin-bottom: 2rem;
     border-radius: 10px;
     gap: 1rem;
@@ -50,7 +50,7 @@
     box-shadow: 0px 0px 1px 2px var(--cyan-600);
 }
 
-#container-login svg {
+#container-login div svg {
     position: relative;
     left: 7px;
     font-size: 1.8rem;
@@ -83,6 +83,10 @@
     background-color: var(--cyan-700);
     border: none;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 #container-login #a-btn-criar {

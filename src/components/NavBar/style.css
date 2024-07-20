@@ -4,7 +4,7 @@
     background-color: var(--cyan-900);
 }
 
-.navBar ul {
+.navBar .lista {
     display: flex;
     width: 80%;
     max-width: 1300px;
@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.navBar ul a {
+.navBar .lista a {
     text-decoration: none;
     display: flex;
     flex: 1 1 auto;
@@ -22,15 +22,16 @@
     transition: 0.3s;
 }
 
-.navBar ul li {
+.navBar .lista li {
     list-style: none;
     font-size: 1rem;
     color: var(--slate-50);
     font-weight: bold;
     white-space: nowrap;
+    position: relative;
 }
 
-.navBar ul #liDPT {
+.navBar .lista #liDPT {
     padding: 12px 2px;
     display: flex;
     gap: 10px;

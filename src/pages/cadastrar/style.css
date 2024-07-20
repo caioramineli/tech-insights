@@ -4,7 +4,7 @@
     width: 60%;
     margin: 0 auto;
     margin-top: 3rem;
-    margin-bottom: 2.4rem;
+    margin-bottom: 3rem;
     max-width: 800px;
     min-width: 600px;
 }
@@ -14,7 +14,6 @@
     flex-direction: column;
     width: 90%;
     margin: 0 auto;
-    margin-bottom: 2rem;
 }
 
 #containerCadastrar h1 {
@@ -23,29 +22,64 @@
     color: var(--teal-600);
 }
 
-#containerCadastrar form input {
+#containerCadastrar #containerInputs {
+    display: grid;
+    margin-top: 1.8rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#containerCadastrar form #containerInputs input {
     width: 100%;
     padding: 10px;
     background-color: transparent;
     outline: 0;
     border: none;
     font-size: 1.1rem;
-    box-shadow: 0px 0px 1px 2px var(--slate-500);
+    box-shadow: 0px 0px 1px 1px var(--slate-600);
     border-radius: 6px;
 }
 
-#containerCadastrar form input:focus {
+#containerCadastrar form #containerInputs input:focus {
     box-shadow: 0px 0px 1px 2px var(--teal-600);
 }
 
-#containerCadastrar #containerInputs{
-    display: grid;
-    margin-top: 2rem;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+#containerCadastrar .termos {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    font-size: 1.1rem;
 }
 
-#containerCadastrar button {
+#containerCadastrar .termos #spanCheckbox {
+    padding: 8px;
+    display: flex;
+    border-radius: 50%;
+    position: relative;
+    right: 5px;
+    transition: 0.6s;
+}
+
+#containerCadastrar .termos #spanCheckbox:hover {
+    background-color: #0379ff63;
+}
+
+#containerCadastrar .termos input[type="checkbox"] {
+    min-width: 20px;
+    min-height: 20px;
+}
+
+#containerCadastrar .termos label {
+    color: var(--slate-800);
+}
+
+#containerCadastrar .termos label span {
+    color: var(--teal-600);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#containerCadastrar form button {
     margin: 0 auto;
     font-size: 1.2rem;
     width: 50%;
@@ -55,21 +89,26 @@
     background-color: var(--teal-700);
     border: none;
     font-weight: 500;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-#containerCadastrar p{
-    color: var(--slate-700);
-}
-
-#containerCadastrar #voltar-login{
+#containerCadastrar #voltar-login {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
     gap: 6px;
+    font-size: 1.1rem;
 }
-#containerCadastrar a {
+
+#containerCadastrar #voltar-login p {
+    color: var(--slate-800);
+}
+
+#containerCadastrar #voltar-login a {
     color: var(--cyan-600);
     font-weight: bold;
 }
-
