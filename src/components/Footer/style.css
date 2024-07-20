@@ -34,7 +34,6 @@
 .containerFooter div.pagamentos {
     display: flex;
     flex-wrap: wrap;
-    /* width: 90%; */
     align-items: center;
     gap: 0.8vw;
     max-width: 250px;

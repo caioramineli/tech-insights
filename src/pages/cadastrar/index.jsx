@@ -2,39 +2,25 @@ import './style.css';
 export default function Cadastrar() {
     return (
         <>
-            <div id="container-criar">
+            <div id="containerCadastrar">
                 <form method="POST">
                     <h1>Cadastrar-se</h1>
-                    <div id='container-information'>
-                        <div className='container-LInput'>
-                            <label htmlFor='nome'>Nome:</label>
-                            <input name="nome" type="text" placeholder="Nome completo" />
-                        </div>
-                        <div className='container-LInput'>
-                            <label htmlFor='cpf'>CPF:</label>
-                            <input name="cpf" type="text" placeholder="___.___.___-__" />
-                        </div>
-                        <div className='container-LInput'>
-                            <label htmlFor='data_nasc'>Data de nascimento:</label>
-                            <input name="data_nasc" type="text" placeholder="00/00/0000" />
-                        </div>
-                        <div className='container-LInput'>
-                            <label htmlFor='tefone'>Tefone:</label>
-                            <input name="tefone" type="text" placeholder="(00) 0000-000" />
-                        </div>
-                        <div className='container-LInput'>
-                            <label htmlFor='email'>Email:</label>
-                            <input name="email" type="text" placeholder="Insira seu email" />
-                        </div>
-                        <div className='container-LInput'>
-                            <label htmlFor='senha'>Senha:</label>
-                            <input name='senha' type="text" placeholder="Insira sua senha" />
-                        </div>
+                    <div id='containerInputs'>
+
+                        <input name="nome" type="text" placeholder="Nome completo" />
+                        <input name="cpf" type="text" placeholder="CPF" />
+                        <input name="data_nasc" type="text" placeholder="Data de nascimento" />
+                        <input name="tefone" type="text" placeholder="Telefone celular" />
+                        <input name="email" type="text" placeholder="E-mail" />
+                        <input name='senha' type="text" placeholder="Senha" />
                     </div>
+
+                    <span>Termos</span>
+                    {/* <input type="o" /> */}
                     <button type='submit'>Criar</button>
                     <div id="voltar-login">
                         <p>Já possui cadastro?</p><span>
-                        <a href="/login">FazerLogin</a></span>
+                            <a href="/login">FazerLogin</a></span>
                     </div>
                 </form>
             </div>

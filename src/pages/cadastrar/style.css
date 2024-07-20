@@ -1,17 +1,15 @@
-#container-criar {
+#containerCadastrar {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    background-color: #082c44;
+    width: 60%;
     margin: 0 auto;
-    border-radius: 10px;
     margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.4rem;
     max-width: 800px;
     min-width: 600px;
 }
 
-#container-criar form {
+#containerCadastrar form {
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -19,64 +17,59 @@
     margin-bottom: 2rem;
 }
 
-#container-criar h1 {
+#containerCadastrar h1 {
     display: flex;
-    margin-top: 2rem;
     justify-content: center;
-    color: white;
+    color: var(--teal-600);
 }
 
-#container-criar label {
-    color: rgb(220, 212, 212);
-    margin-top: 1rem;
-    margin-bottom: 4px;
-}
-
-#container-criar .container-LInput input {
-    font-size: 1rem;
-    padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.6);
+#containerCadastrar form input {
     width: 100%;
-    border-radius: 8px;
+    padding: 10px;
+    background-color: transparent;
     outline: 0;
+    border: none;
+    font-size: 1.1rem;
+    box-shadow: 0px 0px 1px 2px var(--slate-500);
+    border-radius: 6px;
 }
 
-#container-criar .container-LInput input:focus {
-    box-shadow: 0px 0px 1px 2px #45b692;
+#containerCadastrar form input:focus {
+    box-shadow: 0px 0px 1px 2px var(--teal-600);
 }
 
-#container-criar #container-information{
+#containerCadastrar #containerInputs{
     display: grid;
-    margin-top: 3rem;
+    margin-top: 2rem;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-#container-criar button {
+#containerCadastrar button {
     margin: 0 auto;
     font-size: 1.2rem;
-    margin-top: 8%;
-    width: 95%;
-    padding: 12px;
-    border-radius: 8px;
+    width: 50%;
+    padding: 10px;
+    border-radius: 6px;
     color: aliceblue;
-    background-color: #45b692;
+    background-color: var(--teal-700);
     border: none;
+    font-weight: 500;
+    margin-top: 2rem;
 }
 
-#container-criar p{
-    color: rgb(255, 255, 255);
-    
+#containerCadastrar p{
+    color: var(--slate-700);
 }
 
-#container-criar #voltar-login{
+#containerCadastrar #voltar-login{
     display: flex;
     justify-content: center;
     margin-top: 1rem;
-    gap: 10px;
+    gap: 6px;
 }
-#container-criar a {
-    color: #45b692;
+#containerCadastrar a {
+    color: var(--cyan-600);
     font-weight: bold;
 }
 

@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 80%;
     margin: 0 auto;
-    margin-top: 1.05rem;
+    margin-top: 2.05rem;
     margin-bottom: 2rem;
     max-width: 500px;
     min-width: 420px;
@@ -32,6 +32,7 @@
     width: 100%;
     box-shadow: 0px 0px 1px 2px var(--slate-600);
     border-radius: 6px;
+    transition: .2s;
 }
 
 #container-login input {
@@ -52,7 +53,7 @@
 #container-login svg {
     position: relative;
     left: 7px;
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     color: var(--slate-600);
 }
 
@@ -61,13 +62,12 @@
     color: var(--cyan-600);
     position: relative;
     bottom: 10px;
-    margin-bottom: 1rem;
 }
 
 #container-login #spanIncorreto {
     display: none;
     position: absolute;
-    bottom: 178px;
+    bottom: 162px;
     left: 35px;
     color: brown;
     font-weight: 500;
@@ -80,7 +80,7 @@
     padding: 10px;
     border-radius: 6px;
     color: aliceblue;
-    background-color: var(--cyan-600);
+    background-color: var(--cyan-700);
     border: none;
     font-weight: 500;
 }
