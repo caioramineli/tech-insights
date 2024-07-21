@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.navBar .lista a {
+.navBar .lista .bordaPadrao {
     text-decoration: none;
     display: flex;
     flex: 1 1 auto;
@@ -20,6 +20,7 @@
     justify-content: center;
     padding: 12px 5px;
     transition: 0.3s;
+    border-left: 1px solid var(--cyan-700);
 }
 
 .navBar .lista li {
@@ -36,10 +37,6 @@
     display: flex;
     gap: 10px;
     align-items: center;
-}
-
-.navBar .bordaPadrao {
-    border-left: 1px solid var(--cyan-700);
 }
 
 .navBar a:hover {

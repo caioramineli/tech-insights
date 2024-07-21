@@ -73,6 +73,11 @@
     color: var(--cyan-500);
     text-decoration: none;
     font-weight: bold;
+    line-height: 1.4;
+}
+
+.containerHeaderItens .containerLoginReg a:nth-child(2){
+    color: var(--teal-500);
 }
 
 .containerHeaderItens .user-icon {

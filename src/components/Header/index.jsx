@@ -23,7 +23,9 @@ const Header = () => {
 
                 <div className="containerLoginReg">
                     <PiUserCircleLight />
-                    <span>Olá, <a href="/login">Entre</a> ou <a href="/cadastrar">Cadastre-se</a></span>
+                    <span>
+                        Olá, <a href="/login">Entre</a> ou <a href="/cadastrar">Cadastre-se</a>
+                    </span>
                 </div>
 
                 <div className="containerFavCart">

@@ -26,7 +26,6 @@ export default function NavBar() {
                         DEPARTAMENTOS
                         <FaChevronDown id='setaParaBaixo' />
                         <DropDownDepartamentos className={`dropdownMenu ${isDropdownOpen ? 'show' : ''}`} />
-                        {/* <div class="overlay" id="overlay"></div> */}
                     </li>
                     <a href="/guias" className='bordaPadrao'>
                         <li>GUIAS INFORMATIVOS</li>
