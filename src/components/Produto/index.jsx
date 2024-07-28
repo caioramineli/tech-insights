@@ -8,7 +8,6 @@ import rtx30605 from "../../assets/3060MSI5.jpg"
 import { MdShoppingCart } from "react-icons/md";
 import { FaBarcode } from "react-icons/fa";
 import { FaRegCreditCard } from "react-icons/fa6";
-
 import StarsCod from "../EstrelasCodigo"
 
 import './style.css'

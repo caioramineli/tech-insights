@@ -60,13 +60,41 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    min-width: 150px;
-    width: 150px;
+    min-width: 190px;
+    width: 190px;
 }
 
-.containerHeaderItens .containerLoginReg svg{
-    width: 80px;
-    height: 80px;
+.containerHeaderItens .containerLoginReg svg {
+    width: 50px;
+    height: 50px;
+}
+
+.containerHeaderItens .containerLoginReg #olaNome {
+    font-weight: 500;
+}
+
+.containerHeaderItens .containerLoginReg .contaSair {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.containerHeaderItens .containerLoginReg button {
+    background-color: transparent;
+    border: none;
+    color: var(--cyan-50);
+    margin-top: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 0.9rem;
+}
+
+.containerHeaderItens .containerLoginReg button:hover {
+    color: var(--cyan-300);
+}
+
+.containerHeaderItens .containerLoginReg .contaSair span {
+    font-size: 0.9rem;
 }
 
 .containerHeaderItens .containerLoginReg a {
@@ -76,7 +104,7 @@
     line-height: 1.4;
 }
 
-.containerHeaderItens .containerLoginReg a:nth-child(2){
+.containerHeaderItens .containerLoginReg a:nth-child(2) {
     color: var(--teal-500);
 }
 
@@ -89,7 +117,7 @@
     gap: 10px;
 }
 
-.containerHeaderItens .containerFavCart svg{
+.containerHeaderItens .containerFavCart svg {
     width: 25px;
     height: 25px;
     fill: white;
@@ -117,5 +145,3 @@
     width: 20px;
     height: 20px;
 }
-
-
