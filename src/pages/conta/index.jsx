@@ -8,7 +8,7 @@ export default function Conta() {
 
     useEffect(() => {
         if (user && token) {
-            fetch(`https://backend-tech-insights.onrender.com/user/${user.id}`, {
+            fetch(`https://backend-tech-insights.vercel.app/user/${user.id}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from '../../components/Loading';
+
 export default function Cadastrar() {
     const [formData, setFormData] = useState({
         nome: '',
@@ -14,7 +18,10 @@ export default function Cadastrar() {
         senha: ''
     });
 
-    const [message, setMessage] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const notifySuccess = () => toast.success("Cadastro realizado com sucesso!");
+    const notifyError = (text) => toast.success({text});
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,21 +30,33 @@ export default function Cadastrar() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
 
         try {
-            const response = await axios.post('https://backend-tech-insights.onrender.com/register', formData);
-            setMessage(response.data.msg);
+            await axios.post('https://backend-tech-insights.vercel.app/register', formData);
+            setFormData({
+                nome: '',
+                cpf: '',
+                dataNascimento: '',
+                telefone: '',
+                email: '',
+                senha: ''
+            });
+            notifySuccess();
         } catch (error) {
             if (error.response) {
-                setMessage(error.response.data.msg);
+                notifyError(error.response.data.msg);
             } else {
-                setMessage('Erro no servidor!');
+                notifyError('Erro ao se cadastrar!');
             }
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     return (
         <div id="containerCadastrar">
+            <ToastContainer />
             <form method="POST" onSubmit={handleSubmit}>
                 <h1>Cadastrar-se</h1>
                 <div id='containerInputs'>
@@ -47,6 +66,7 @@ export default function Cadastrar() {
                         placeholder="Nome completo"
                         value={formData.nome}
                         onChange={handleChange}
+                        required
                     />
                     <input
                         name="cpf"
@@ -54,13 +74,15 @@ export default function Cadastrar() {
                         placeholder="CPF"
                         value={formData.cpf}
                         onChange={handleChange}
+                        required
                     />
                     <input
                         name="dataNascimento"
                         type="text"
                         placeholder="Data de nascimento"
-                        value={formData.data_nasc}
+                        value={formData.dataNascimento}
                         onChange={handleChange}
+                        required
                     />
                     <input
                         name="telefone"
@@ -68,6 +90,7 @@ export default function Cadastrar() {
                         placeholder="Telefone celular"
                         value={formData.telefone}
                         onChange={handleChange}
+                        required
                     />
                     <input
                         name="email"
@@ -82,6 +105,7 @@ export default function Cadastrar() {
                         placeholder="Senha"
                         value={formData.senha}
                         onChange={handleChange}
+                        required
                     />
                 </div>
 
@@ -97,17 +121,23 @@ export default function Cadastrar() {
                     </label>
                 </div>
 
-                <button type='submit'>
-                    Criar
-                    <IoCreateOutline />
-                </button>
+                <div className='btnCarregamento'>
+                    {isSubmitting ? (
+                        <Loading color='#059669' />
+                    ) : (
+                        <button type='submit'>
+                            Criar
+                            <IoCreateOutline />
+                        </button>
+                    )}
+                </div>
 
                 <div id="voltar-login">
                     <p>Já possui cadastro?</p>
                     <Link to="/login">Fazer Login</Link>
                 </div>
             </form>
-            {message && <p>{message}</p>}
+
         </div>
     );
 }

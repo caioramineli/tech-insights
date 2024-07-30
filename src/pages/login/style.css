@@ -7,7 +7,6 @@
     margin-bottom: 2rem;
     max-width: 500px;
     min-width: 400px;
-
 }
 
 #container-login form {
@@ -65,10 +64,10 @@
 }
 
 #container-login #spanIncorreto {
-    display: none;
+    /* display: none; */
     position: absolute;
-    bottom: 162px;
-    left: 35px;
+    bottom: 130px;
+    left: 5px;
     color: brown;
     font-weight: 500;
 }
