@@ -21,7 +21,7 @@ export default function Cadastrar() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const notifySuccess = () => toast.success("Cadastro realizado com sucesso!");
-    const notifyError = (text) => toast.success({text});
+    const notifyError = (teste) => toast.error(teste);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -44,10 +44,11 @@ export default function Cadastrar() {
             });
             notifySuccess();
         } catch (error) {
+            const erro = error.response.data.msg
             if (error.response) {
-                notifyError(error.response.data.msg);
+                notifyError(erro)
             } else {
-                notifyError('Erro ao se cadastrar!');
+                notifyError(erro)
             }
         } finally {
             setIsSubmitting(false);

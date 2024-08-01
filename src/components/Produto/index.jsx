@@ -1,7 +1,7 @@
 import msiLogo from "../../assets/logo-msi.jpg"
 import rtx3060 from "../../assets/3060MSI.jpg"
 import rtx30602 from "../../assets/3060MSI2.jpg"
-import rtx30603 from "../../assets/3060MSI3.jpg"
+import rtx30603 from "../../assets/3060MSI33.jpg"
 import rtx30604 from "../../assets/3060MSI4.jpg"
 import rtx30605 from "../../assets/3060MSI5.jpg"
 

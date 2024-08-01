@@ -9,9 +9,6 @@ import { useState } from 'react';
 
 import Loading from '../../components/Loading';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import './style.css';
 
 export default function Login() {
@@ -19,8 +16,6 @@ export default function Login() {
     const [senha, setSenha] = useState('');
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
-
-    // const notifyError = (text) => toast.success({text});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,7 +39,6 @@ export default function Login() {
     return (
         <>
             <div id="container-login">
-                <ToastContainer />
                 <form method="POST" onSubmit={handleSubmit}>
                     <h1>Login</h1>
 
@@ -84,7 +78,6 @@ export default function Login() {
                             <LuLogIn />
                         </button>
                     )}
-
 
                     <Link id="a-btn-criar" to="/cadastrar">
                         <button type="button">
