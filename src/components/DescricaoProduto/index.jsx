@@ -1,7 +1,10 @@
-export default function DescricaoProduto() {
+import React from 'react';
+
+export default function DescricaoProduto({ descricao }) {
     return (
-        <>
-            <h1>Descrição</h1>
-        </>
-    )
+        <div className='containerEspecificacaoEDescricao'>
+            <h2>Descrição</h2>
+            <p>{descricao}</p>
+        </div>
+    );
 }

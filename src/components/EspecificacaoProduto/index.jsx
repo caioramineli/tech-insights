@@ -1,7 +1,11 @@
-export default function EspecificacaoProduto() {
+import React from 'react';
+import './style.css'
+
+export default function EspecificacaoProduto({ especificacoes }) {
     return (
-        <>
-            <h1>Especificação</h1>
-        </>
-    )
+        <div className='containerEspecificacaoEDescricao'>
+            <h2>Especificações</h2>
+            <p>{especificacoes}</p>
+        </div>
+    );
 }

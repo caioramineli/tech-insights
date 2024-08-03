@@ -1,0 +1,123 @@
+.cadastroProdutos {
+    width: 80%;
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: rgba(40, 41, 61, 0.10) 0px 0px 2px, rgba(96, 97, 112, 0.16) 0px 0.5px 2px;
+    border-radius: 4px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.cadastroProdutos .formCadastroProdutos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.cadastroProdutos .formCadastroProdutos .boxInputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.cadastroProdutos .formCadastroProdutos .boxTextArea {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.cadastroProdutos .formCadastroProdutos label {
+    font-weight: bold;
+}
+
+.cadastroProdutos .formCadastroProdutos .boxInputs select {
+    width: 100%;
+    padding: 9px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #fff;
+    cursor: pointer;
+    box-shadow: 0px 0px 1px 1px var(--slate-600);
+    margin-top: 3px;
+    transition: 0.2s;
+}
+
+.cadastroProdutos .formCadastroProdutos .boxInputs select:focus {
+    box-shadow: 0px 0px 1px 2px var(--teal-600);
+    outline: none;
+}
+
+
+.cadastroProdutos .containerImgs {
+    display: flex;
+    gap: 10px;
+}
+
+.cadastroProdutos .containerImgs img {
+    width: 200px;
+}
+
+.containerInputImgBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.boxInputImgs {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    position: relative;
+    flex: 1 1 auto;
+}
+
+.boxInputImgs label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.boxInputImgs input[type="file"] {
+    border: none;
+    box-shadow: 0px 0px 1px 1px var(--slate-600);
+    padding: 7px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+.boxInputImgs input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+    position: absolute;
+    left: 20px;
+}
+
+.boxInputImgs input[type="file"]::before {
+    content: 'Selecionar Arquivos';
+    display: inline-block;
+    background: var(--teal-600);
+    padding: 5px 12px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    border-radius: 4px;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.boxInputImgs input[type="file"]:hover::before {
+    background: var(--teal-700);
+}

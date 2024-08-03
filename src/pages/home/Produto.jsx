@@ -1,19 +1,20 @@
-import rtx3060 from "../../assets/3060MSI.jpg"
-import { MdShoppingCart } from "react-icons/md"
+import React from "react";
+import { Link } from "react-router-dom";
+import { MdShoppingCart } from "react-icons/md";
 
-export default function Produto({ descricao, precoV, precoP }) {
+export default function Produto({ product }) {
     return (
-        <a href="/produto">
+        <Link to={`/product/${product._id}`}>
             <div className="boxProduto">
-                <img src={rtx3060} alt="RTX 3060 MSI" />
-                <p>{descricao}</p>
-                <p>R$ {precoV} à vista</p>
-                <p>10x de R$ <span>{precoP}</span> sem juros</p>
+                <img src={"https://backend-tech-insights.vercel.app/" + product.images[0]} alt="RTX 3060 MSI" />
+                <p>{product.nome}</p>
+                <p>R$ {product.preco} à vista</p>
+                <p>ou 10x de R$ <span>{product.precoPrazo / 10}</span> sem juros</p>
                 <button>
                     Comprar
                     <MdShoppingCart />
                 </button>
             </div>
-        </a>
-    )
+        </Link>
+    );
 }

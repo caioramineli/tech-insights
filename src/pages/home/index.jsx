@@ -1,27 +1,44 @@
-import "./style.css"
-import Produto from "./Produto"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Produto from "./Produto";
 import Slider from "./slider";
+import "./style.css";
 
 export default function Home() {
-    const produtos = [
-        { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '200,00' },
-        { descricao: 'SSD 1 TB Kingston NV2, M.2 2280 PCIe, NVMe, Leitura: 3500 MB/s e Gravação: 2100 MB/s - SNV2S/1000G', precoV: '399,00', precoP: '450,00' },
-        { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' },
-        { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' },
-        { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' },
-        { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' },
-        { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' },
-        { descricao: 'Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.', precoV: '1.750,00', precoP: '175,00' }
-    ];
+    const [produtos, setProdutos] = useState([]);
+
+    useEffect(() => {
+        async function fetchProdutos() {
+            try {
+                const response = await axios.get("https://backend-tech-insights.vercel.app/product");
+                setProdutos(response.data.products);
+                console.log(response.data.products);
+
+            } catch (error) {
+                console.error("Erro ao buscar produtos:", error);
+            }
+        }
+        fetchProdutos();
+    }, []);
 
     return (
         <main className="containerMainPaginaProdutos">
             <Slider />
             <section className="containerProdutos">
-                {produtos.map((produto) => (
-                    <Produto descricao={produto.descricao} precoV={produto.precoV} precoP={produto.precoP} />
+                {produtos.map((product) => (
+                    <Produto
+                        key={product._id}
+                        product={product}
+                    />
+                ))}
+
+                {produtos.map((product) => (
+                    <Produto
+                        key={product._id}
+                        product={product}
+                    />
                 ))}
             </section>
         </main>
-    )
+    );
 }

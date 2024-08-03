@@ -1,5 +1,4 @@
 import './style.css';
-import { IoCreateOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
@@ -8,6 +7,7 @@ import InputMask from 'react-input-mask';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../components/Loading';
+import BtnCadastrar from '../../components/BtnCadastrar';
 
 export default function Cadastrar() {
     const [formData, setFormData] = useState({
@@ -90,12 +90,6 @@ export default function Cadastrar() {
             return;
         }
 
-        if (!validateEmail(formData.email)) {
-            notifyError("Informe um E-mail válido.");
-            setIsSubmitting(false);
-            return;
-        }
-
         if (!validateDate(formData.dataNascimento)) {
             notifyError("Data de nascimento inválida. Use o formato DD/MM/AAAA.");
             setIsSubmitting(false);
@@ -103,7 +97,13 @@ export default function Cadastrar() {
         }
 
         if (!validatePhone(formData.telefone)) {
-            notifyError("Telefone inválido. Use o formato DDD+9+número.");
+            notifyError("Telefone inválido. Use o formato DDD+número.");
+            setIsSubmitting(false);
+            return;
+        }
+
+        if (!validateEmail(formData.email)) {
+            notifyError("Informe um E-mail válido.");
             setIsSubmitting(false);
             return;
         }
@@ -204,6 +204,7 @@ export default function Cadastrar() {
                         type="password"
                         placeholder="Senha"
                         value={formData.senha}
+                        onChange={handleChange}
                     />
                 </div>
 
@@ -225,10 +226,7 @@ export default function Cadastrar() {
                     {isSubmitting ? (
                         <Loading color='#059669' />
                     ) : (
-                        <button type='submit'>
-                            Criar
-                            <IoCreateOutline />
-                        </button>
+                        <BtnCadastrar />
                     )}
                 </div>
 
