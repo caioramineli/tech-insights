@@ -1,82 +1,83 @@
 import { FaAngleRight } from 'react-icons/fa'
 import './style.css'
+import { Link } from 'react-router-dom'
 
 export default function DropDownDepartamentos() {
     return (
         <ul className="dropdownMenu">
             <li id='liHardware'>
-                <a href="/">
+                <Link to="/">
                     Hardware
                     <FaAngleRight />
-                </a>
+                </Link>
                 <ul className='listaHardware'>
-                    <li><a href="/">Processadores</a></li>
-                    <li><a href="/">Placas mãe</a></li>
-                    <li><a href="/">Placas de vídeo</a></li>
-                    <li><a href="/">Fontes</a></li>
-                    <li><a href="/">Gabinetes</a></li>
-                    <li><a href="/">Armazenatmento</a></li>
-                    <li><a href="/">Coolers</a></li>
+                    <li><Link to="/">Processadores</Link></li>
+                    <li><Link to="/">Placas mãe</Link></li>
+                    <li><Link to="/">Placas de vídeo</Link></li>
+                    <li><Link to="/">Fontes</Link></li>
+                    <li><Link to="/">Gabinetes</Link></li>
+                    <li><Link to="/">Armazenatmento</Link></li>
+                    <li><Link to="/">Coolers</Link></li>
                 </ul>
             </li>
 
             <li id='liPerife'>
-                <a href="/">
+                <Link to="/">
                     Periféricos
                     <FaAngleRight />
-                </a>
+                </Link>
                 <ul className='listaPerife'>
-                    <li><a href="/">Headset</a></li>
-                    <li><a href="/">Mouse</a></li>
-                    <li><a href="/">Teclado</a></li>
+                    <li><Link to="/">Headset</Link></li>
+                    <li><Link to="/">Mouse</Link></li>
+                    <li><Link to="/">Teclado</Link></li>
                 </ul>
             </li>
 
             <li id='liRedes'>
-                <a href="/">
+                <Link to="/">
                     Redes
                     <FaAngleRight />
-                </a>
+                </Link>
                 <ul className='listaRedes'>
-                    <li><a href="/">Roteadores</a></li>
-                    <li><a href="/">Cabo de Rede</a></li>
+                    <li><Link to="/">Roteadores</Link></li>
+                    <li><Link to="/">Cabo de Rede</Link></li>
                 </ul>
             </li>
 
             <li id='liComputadores'>
-                <a href="/">
+                <Link to="/">
                     Computadores
                     <FaAngleRight />
-                </a>
+                </Link>
                 <ul className='listaComputadores'>
-                    <li><a href="/">Escritório</a></li>
-                    <li><a href="/">Profissional</a></li>
-                    <li><a href="/">Gamer</a></li>
+                    <li><Link to="/">Escritório</Link></li>
+                    <li><Link to="/">Profissional</Link></li>
+                    <li><Link to="/">Gamer</Link></li>
                 </ul>
             </li>
 
             <li>
-                <a href="/guias">Guias Informativos</a>
+                <Link to="/guias">Guias Informativos</Link>
             </li>
 
             <li>
-                <a href="/monte-seu-pc">Monte seu PC</a>
+                <Link to="/monte-seu-pc">Monte seu PC</Link>
             </li>
 
             <li>
-                <a href="/cupons">Cupons</a>
+                <Link to="/cupons">Cupons</Link>
             </li>
 
             <li>
-                <a href="/kit-upgrade">Kit Upgrade</a>
+                <Link to="/kit-upgrade">Kit Upgrade</Link>
             </li>
 
             <li>
-                <a href="/notebooks">Notebooks</a>
+                <Link to="/notebooks">Notebooks</Link>
             </li>
 
             <li>
-                <a href="/monitores">Monitores</a>
+                <Link to="/monitores">Monitores</Link>
             </li>
         </ul>
     )

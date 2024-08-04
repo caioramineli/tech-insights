@@ -7,6 +7,7 @@ import { PiUserCircleLight } from "react-icons/pi";
 import { MdShoppingCart } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
 import { IoSearch } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const { user, logout } = useContext(AuthContext);
@@ -18,9 +19,9 @@ const Header = () => {
     return (
         <header className="header">
             <section className="containerHeaderItens">
-                <a href="/">
+                <Link to="/">
                     <h1>Tech Insights</h1>
-                </a>
+                </Link>
 
                 <div className="containerPesquisa">
                     <input type="text" placeholder="Pesquisar produtos" />

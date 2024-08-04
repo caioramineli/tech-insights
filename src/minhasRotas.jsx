@@ -4,7 +4,7 @@ import Login from "./pages/login/"
 import Cadastrar from "./pages/cadastrar";
 import Conta from "./pages/conta";
 import Carrinho from "./pages/carrinho";
-import PaginaProduto from "./pages/product";
+import PaginaProduto from "./pages/productpage";
 
 import GuiasInformativos from "./pages/guiasInformativos";
 import MontePC from "./pages/montePC";
@@ -13,6 +13,9 @@ import KitUpgrade from "./pages/kitUpgrade";
 import Notebooks from "./pages/notebooks";
 import Monitores from "./pages/monitores";
 
+import Header from './components/Header';
+import Footer from './components/Footer';
+
 import ProductUpload from "./admin/pages/product";
 
 
@@ -20,6 +23,8 @@ export default function MinhasRotas() {
     return (
         <>
             <BR>
+                <Header />
+
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
@@ -36,6 +41,8 @@ export default function MinhasRotas() {
 
                     <Route path="/admin/produtos" element={<ProductUpload />} />
                 </Routes>
+                
+                <Footer />
             </BR>
         </>
     )

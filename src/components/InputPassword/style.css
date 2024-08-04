@@ -1,0 +1,19 @@
+.passwordContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#passwordInput {
+    padding-right: 30px; 
+    width: 100%;
+}
+
+#EyePassword {
+    position: absolute;
+    right: 10px; 
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--slate-600);
+}

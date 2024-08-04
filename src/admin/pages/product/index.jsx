@@ -69,7 +69,7 @@ const ProductUpload = () => {
         }
 
         try {
-            await axios.post("https://backend-tech-insights.vercel.app/product/create", form, {
+            await axios.post("https://backend-tech-insights.onrender.com/product/create", form, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

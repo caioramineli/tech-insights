@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../components/Loading';
 import BtnCadastrar from '../../components/BtnCadastrar';
+import InputPassword from '../../components/InputPassword';
 
 export default function Cadastrar() {
     const [formData, setFormData] = useState({
@@ -199,12 +200,10 @@ export default function Cadastrar() {
                         value={formData.email}
                         onChange={handleChange}
                     />
-                    <input
-                        name="senha"
-                        type="password"
-                        placeholder="Senha"
+                    <InputPassword
+                        placeholder={"Insira sua senha"}
                         value={formData.senha}
-                        onChange={handleChange}
+                        event={handleChange}
                     />
                 </div>
 

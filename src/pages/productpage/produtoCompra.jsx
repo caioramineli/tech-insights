@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { MdShoppingCart } from "react-icons/md";
 import { FaBarcode, FaRegCreditCard } from "react-icons/fa";
-import StarsCod from "../EstrelasCodigo";
-import './style.css';
+import StarsCod from "../../components/EstrelasCodigo";
+import './produtoCompra.css'
 
 export default function Produto({ product }) {
-    const api = "https://backend-tech-insights.vercel.app/"
+    const api = "https://backend-tech-insights.onrender.com/"
     const images = Object.values(product.images || {});
     const [mainImage, setMainImage] = useState(images[0] || "");
 

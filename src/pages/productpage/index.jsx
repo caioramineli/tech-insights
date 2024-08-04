@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './style.css';
-import Produto from '../../components/Produto';
+import Produto from './produtoCompra';
 import DescricaoProduto from '../../components/DescricaoProduto';
 import EspecificacaoProduto from '../../components/EspecificacaoProduto';
 import AvaliacoesProduto from '../../components/AvaliacoesProduto';
+import Loading from '../../components/Loading';
 
 export default function PaginaProduto() {
     const { productId } = useParams(); // Obter productId da URL
@@ -16,10 +17,10 @@ export default function PaginaProduto() {
     useEffect(() => {
         const fetchProductData = async () => {
             try {
-                const response = await axios.get(`https://backend-tech-insights.vercel.app/product/${productId}`);
-                setProductData(response.data.product);  
+                const response = await axios.get(`https://backend-tech-insights.onrender.com/product/${productId}`);
+                setProductData(response.data.product);
                 console.log(response.data.product);
-                
+
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -31,7 +32,7 @@ export default function PaginaProduto() {
     }, [productId]);
 
     if (loading) {
-        return <div>Carregando...</div>;
+        return <Loading />;
     }
 
     if (error) {

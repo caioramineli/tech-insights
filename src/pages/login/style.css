@@ -49,7 +49,7 @@
     box-shadow: 0px 0px 1px 2px var(--cyan-600);
 }
 
-#container-login div svg {
+#container-login div svg:nth-child(1) {
     position: relative;
     left: 7px;
     font-size: 1.8rem;
@@ -64,7 +64,6 @@
 }
 
 #container-login #spanIncorreto {
-    /* display: none; */
     position: absolute;
     bottom: 130px;
     left: 5px;
@@ -86,6 +85,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    cursor: pointer;
 }
 
 #container-login #a-btn-criar {

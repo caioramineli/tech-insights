@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 import Loading from '../../components/Loading';
+import InputPassword from "../../components/InputPassword";
 
 import './style.css';
 
@@ -56,13 +57,11 @@ export default function Login() {
 
                     <div className="inputSenha">
                         <IoIosLock />
-                        <input
-                            name='senha'
-                            type="password"
-                            placeholder="Insira sua senha"
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
-                            required
+                        <InputPassword
+                            placeholder={"Insira sua senha"}
+                            value={senha} 
+                            event={(e) => setSenha(e.target.value)}
+                            required={true}
                         />
                     </div>
 
