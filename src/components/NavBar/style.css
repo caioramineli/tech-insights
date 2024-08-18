@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     background-color: var(--cyan-900);
+    box-shadow: rgba(40, 41, 61, 0.4) 0px 1px 2px, rgba(96, 97, 112, 0.4) 0px 1px 2px;
 }
 
 .navBar .lista {
@@ -18,7 +19,7 @@
     flex: 1 1 auto;
     align-items: center;
     justify-content: center;
-    padding: 12px 5px;
+    padding: 10px 5px;
     transition: 0.3s;
     border-left: 1px solid var(--cyan-700);
 }
@@ -33,7 +34,7 @@
 }
 
 .navBar .lista #liDPT {
-    padding: 12px 2px;
+    padding: 10px 2px;
     display: flex;
     gap: 10px;
     align-items: center;

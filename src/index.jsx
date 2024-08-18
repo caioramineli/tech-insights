@@ -4,6 +4,7 @@ import MinhasRotas from './minhasRotas';
 import "./globalStyle.css";
 
 import { AuthProvider } from './contexts/AuthContext';
+import { CarrinhoProvider } from './contexts/contex-Cart';
 
 // API's
 // http://localhost:5000/
@@ -14,7 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <>
         <AuthProvider>
-            <MinhasRotas />
+            <CarrinhoProvider>
+                <MinhasRotas />
+            </CarrinhoProvider>
         </AuthProvider>
     </>
 );

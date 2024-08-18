@@ -1,18 +1,19 @@
 import { FaChevronLeft, FaChevronRight, FaTrash } from "react-icons/fa";
 import { useState } from "react";
-import rtx3060 from "../../assets/3060MSI.jpg"
+import { useCarrinho } from '../../contexts/contex-Cart';
 
-export default function LineTableCart() {
-    const [qtd, setQtd] = useState(1)
-    const precoUnitario = 1500
-    const [subtotal, setSubTotal] = useState(precoUnitario)
-
+export default function LineTableCart({ produto, removerProduto }) {
+    const { atualizarQuantidade } = useCarrinho();
+    const [qtd, setQtd] = useState(produto.quantidade || 1);
+    const precoUnitario = produto.precoPrazo;
+    const [subtotal, setSubTotal] = useState(precoUnitario * qtd);
 
     function aumentarQtd() {
         if (qtd < 10) {
             const novaQtd = qtd + 1;
             setQtd(novaQtd);
             setSubTotal(novaQtd * precoUnitario);
+            atualizarQuantidade(produto._id, novaQtd);  // Atualiza o estado global
         }
     }
 
@@ -21,6 +22,7 @@ export default function LineTableCart() {
             const novaQtd = qtd - 1;
             setQtd(novaQtd);
             setSubTotal(novaQtd * precoUnitario);
+            atualizarQuantidade(produto._id, novaQtd);  // Atualiza o estado global
         }
     }
 
@@ -28,12 +30,14 @@ export default function LineTableCart() {
         return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     };
 
+    const api = "https://backend-tech-insights.onrender.com/";
+
     return (
         <tr>
             <td>
                 <div className="boxImgDescricao">
-                    <img src={rtx3060} alt="3060" />
-                    <p>Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA GeForce, 12GB GDDR6, DLSS, Ray Tracing - RTX 3060 Ventus 2X 12G OC.</p>
+                    <img src={api + produto.images[0]} alt={produto.nome} />
+                    <p>{produto.nome}</p>
                 </div>
             </td>
             <td>
@@ -44,7 +48,7 @@ export default function LineTableCart() {
                         <FaChevronRight onClick={aumentarQtd} />
                     </div>
 
-                    <div className="remove">
+                    <div className="remove" onClick={() => removerProduto(produto.id)}>
                         <FaTrash />
                         <span>Remover</span>
                     </div>
@@ -52,5 +56,5 @@ export default function LineTableCart() {
             </td>
             <td className="boxPreco">{formatarValor(subtotal)}</td>
         </tr>
-    )
+    );
 }

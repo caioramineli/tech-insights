@@ -25,22 +25,23 @@ export default function MinhasRotas() {
             <BR>
                 <Header />
 
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/cadastrar" element={<Cadastrar />} />
-                    <Route path="/minha-conta" element={<Conta />} />
-                    <Route path="/Carrinho" element={<Carrinho />} />
-                    <Route path="/product/:productId" element={<PaginaProduto />} />
-                    <Route path="/guias" element={<GuiasInformativos />} />
-                    <Route path="/monte-seu-pc" element={<MontePC />} />
-                    <Route path="/cupons" element={<PaginaCupons />} />
-                    <Route path="/kit-upgrade" element={<KitUpgrade />} />
-                    <Route path="/notebooks" element={<Notebooks />} />
-                    <Route path="/monitores" element={<Monitores />} />
-
-                    <Route path="/admin/produtos" element={<ProductUpload />} />
-                </Routes>
+                <main className="containerMainApp">
+                    <Routes style={{ marginTop: '200px' }}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/cadastrar" element={<Cadastrar />} />
+                        <Route path="/minha-conta" element={<Conta />} />
+                        <Route path="/Carrinho" element={<Carrinho />} />
+                        <Route path="/product/:productId" element={<PaginaProduto />} />
+                        <Route path="/guias" element={<GuiasInformativos />} />
+                        <Route path="/monte-seu-pc" element={<MontePC />} />
+                        <Route path="/cupons" element={<PaginaCupons />} />
+                        <Route path="/kit-upgrade" element={<KitUpgrade />} />
+                        <Route path="/notebooks" element={<Notebooks />} />
+                        <Route path="/monitores" element={<Monitores />} />
+                        <Route path="/admin/produtos" element={<ProductUpload />} />
+                    </Routes>
+                </main>
                 
                 <Footer />
             </BR>

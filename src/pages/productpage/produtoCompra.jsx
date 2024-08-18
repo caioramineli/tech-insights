@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
-import { MdShoppingCart } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
+import { MdAddShoppingCart, MdShoppingCart } from "react-icons/md";
 import { FaBarcode, FaRegCreditCard } from "react-icons/fa";
 import StarsCod from "../../components/EstrelasCodigo";
-import './produtoCompra.css'
+import { useCarrinho } from '../../contexts/contex-Cart';
+import './produtoCompra.css';
 
 export default function Produto({ product }) {
-    const api = "https://backend-tech-insights.onrender.com/"
+    const api = "https://backend-tech-insights.onrender.com/";
     const images = Object.values(product.images || {});
     const [mainImage, setMainImage] = useState(images[0] || "");
+    const { adicionarAoCarrinho } = useCarrinho();
+    const navigate = useNavigate();
+
+    const handleComprar = () => {
+        adicionarAoCarrinho({ ...product, quantidade: 1 });
+        navigate('/carrinho');
+    };
+
+    const handleAddCart = () => {
+        adicionarAoCarrinho({ ...product, quantidade: 1 });
+    };
+
+    function formatarValor(valor) {
+        return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    };
 
     return (
         <>
@@ -39,7 +56,7 @@ export default function Produto({ product }) {
                     <div className="containerPagVista">
                         <FaBarcode />
                         <div className="valorVista">
-                            <h3>{product.preco}</h3>
+                            <h3>{formatarValor(product.preco)}</h3>
                             <p>à vista com 10% de desconto no boleto ou pix</p>
                         </div>
                     </div>
@@ -47,13 +64,20 @@ export default function Produto({ product }) {
                     <div className="containerPagPrazo">
                         <FaRegCreditCard />
                         <div className="valorPrazo">
-                            <h3>{product.precoPrazo}</h3>
-                            <p>10x de R$ {product.precoPrazo / 10} sem juros no cartão</p>
+                            <h3>{formatarValor(product.precoPrazo)}</h3>
+                            <p>10x de R$ {formatarValor(product.precoPrazo / 10)} sem juros no cartão</p>
                         </div>
                     </div>
 
                     <button id="btnModalPagamento">Ver mais opções de pagamento</button>
-                    <button id="btnComprar"><MdShoppingCart />Comprar</button>
+                    <div className='btnsComprarAddCart'>
+                        <button id="btnComprar" onClick={handleComprar}>
+                            <MdShoppingCart />Comprar
+                        </button>
+                        <button id='btnAddCart' onClick={handleAddCart}>
+                            <MdAddShoppingCart />
+                        </button>
+                    </div>
 
                     <h4>Consultar frete e prazo de entrega</h4>
                     <div className="containerFrete">

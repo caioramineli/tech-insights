@@ -14,7 +14,6 @@ export default function Home() {
             try {
                 const response = await axios.get("https://backend-tech-insights.onrender.com/product");
                 setProdutos(response.data.products);
-                console.log(response.data.products);
 
             } catch (error) {
                 console.error("Erro ao buscar produtos:", error);

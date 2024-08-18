@@ -8,8 +8,11 @@ import { MdShoppingCart } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
 import { IoSearch } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { useCarrinho } from '../../contexts/contex-Cart'; // Ajuste o caminho do import conforme necessário
+
 
 const Header = () => {
+    const { carrinho } = useCarrinho();
     const { user, logout } = useContext(AuthContext);
 
     const getFirstName = (fullName) => {
@@ -52,8 +55,8 @@ const Header = () => {
                         <span>0</span>
                     </div>
                     <div className="carrinho">
-                        <a href="/carrinho"><MdShoppingCart /></a>
-                        <span>0</span>
+                        <Link to="/carrinho"><MdShoppingCart /></Link>
+                        <span>{carrinho.length}</span>
                     </div>
                 </div>
             </section>

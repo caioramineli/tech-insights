@@ -14,6 +14,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+
 }
 
 :root {
@@ -53,3 +54,11 @@ body {
     --teal-900: #134e4a;
     --teal-950: #042f2e;
   }
+
+.containerMainApp {
+    margin-top: 8.4rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

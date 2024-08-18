@@ -1,9 +1,11 @@
 .header {
     display: flex;
     flex-direction: column;
-    /* background: linear-gradient(180deg, #121C23 53%, #45B692); */
     background-color: var(--cyan-950);
     width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 5;
 }
 
 .containerHeaderItens {
@@ -11,7 +13,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    height: 6.5rem;
+    height: 6rem;
     width: 80%;
     max-width: 1300px;
     margin: 0 auto;

@@ -5,14 +5,17 @@ import { FaTruck } from "react-icons/fa6";
 
 import TableCart from "./table-cart"
 import ResumoCart from "./resumo-cart";
+import { useCarrinho } from '../../contexts/contex-Cart';
 
 
 export default function Carrinho() {
+    const { zerarCarrinho } = useCarrinho();
+
     return (
         <main className="mainCarrinho">
             <section className="containerPrincipal">
                 <TableCart />
-                <div className="limparCarrinho">
+                <div className="limparCarrinho" onClick={() => zerarCarrinho()}>
                     <FaTrash />
                     <h3>Limpar carrinho</h3>
                 </div>
