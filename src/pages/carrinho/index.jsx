@@ -40,7 +40,7 @@ export default function Carrinho() {
             valor_total: calcularValorTotal
         };
 
-        const notifySuccess = () => toast.success("Cadastro realizado com sucesso!");
+        const notifySuccess = () => toast.success("Pedido realizado com sucesso!");
         const notifyError = () => toast.error("Erro ao finalizar o pedido!");
 
         try {
