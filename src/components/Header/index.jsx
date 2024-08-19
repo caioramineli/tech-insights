@@ -8,7 +8,7 @@ import { MdShoppingCart } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
 import { IoSearch } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
-import { useCarrinho } from '../../contexts/contex-Cart'; // Ajuste o caminho do import conforme necessário
+import { useCarrinho } from '../../contexts/contex-Cart';
 
 
 const Header = () => {
@@ -17,7 +17,7 @@ const Header = () => {
 
     const getFirstName = (fullName) => {
         return fullName.split(' ')[0];
-    };
+    };   
 
     return (
         <header className="header">

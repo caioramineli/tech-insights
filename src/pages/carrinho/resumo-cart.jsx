@@ -1,6 +1,7 @@
 import "./resumo-cart-style.css";
 import { useState, useEffect } from "react";
 import { useCarrinho } from "../../contexts/contex-Cart";
+import Separador from "../../components/Separador";
 
 export default function ResumoCart() {
     const { carrinho } = useCarrinho();
@@ -22,28 +23,28 @@ export default function ResumoCart() {
                     <p>{valorCarrinho.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
 
-                <hr />
+                <Separador />
 
                 <div>
                     <p>Descontos:</p>
                     <p>{desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
 
-                <hr />
+                <Separador />
 
                 <div>
                     <p>Frete:</p>
                     <p>{frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
 
-                <hr />
+                <Separador />
 
                 <div>
                     <p>Valor Total a prazo:</p>
                     <p>{(valorCarrinho - desconto + frete).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
 
-                <hr />
+                <Separador />
 
                 <div>
                     <p>Valor Total à vista:</p>

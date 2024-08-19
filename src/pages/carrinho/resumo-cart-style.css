@@ -1,6 +1,7 @@
 .containerResumoFinalizar {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
 .mainCarrinho .containerResumo {
@@ -48,6 +49,5 @@
     font-size: 1.2rem;
     font-weight: bold;
     border-radius: 6px;
-    margin-top: 1rem;
     color: var(--teal-50);
 }

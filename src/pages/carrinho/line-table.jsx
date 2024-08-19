@@ -48,7 +48,7 @@ export default function LineTableCart({ produto, removerProduto }) {
                         <FaChevronRight onClick={aumentarQtd} />
                     </div>
 
-                    <div className="remove" onClick={() => removerProduto(produto.id)}>
+                    <div className="remove" onClick={() => removerProduto(produto._id)}>
                         <FaTrash />
                         <span>Remover</span>
                     </div>

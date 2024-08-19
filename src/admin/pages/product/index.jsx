@@ -69,7 +69,7 @@ const ProductUpload = () => {
         }
 
         try {
-            await axios.post("https://backend-tech-insights.onrender.com/product/create", form, {
+            await axios.post("http://localhost:5000/product/create", form, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -131,6 +131,7 @@ const ProductUpload = () => {
                             <option value="gpu">Placa de Vídeo</option>
                             <option value="placa-mae">Placa mãe</option>
                             <option value="processador">Processador</option>
+                            <option value="memoria-ram">Memoria RAM</option>
                             <option value="fonte">Fonte</option>
                             <option value="gabinete">Gabinete</option>
                             <option value="armazenamento">Armazenamento</option>

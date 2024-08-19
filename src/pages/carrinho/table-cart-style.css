@@ -20,6 +20,10 @@
     border-bottom: 1px solid rgb(201, 201, 201);
 }
 
+.mainCarrinho .containerPrincipal .produtosCarrinho tr:last-child td {
+    border: none;
+}
+
 .mainCarrinho .containerPrincipal .produtosCarrinho .boxImgDescricao {
     display: flex;
     align-items: center;
