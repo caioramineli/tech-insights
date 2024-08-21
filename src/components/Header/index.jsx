@@ -44,7 +44,7 @@ const Header = () => {
                         </div>
                     ) : (
                         <span>
-                            Olá, <a href="/login">Entre</a> ou <a href="/cadastrar">Cadastre-se</a>
+                            Olá, <Link to="/login">Entre</Link> ou <Link to="/cadastrar">Cadastre-se</Link>
                         </span>
                     )}
                 </div>

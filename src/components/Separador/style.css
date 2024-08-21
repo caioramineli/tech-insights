@@ -1,5 +1,4 @@
 .divSeparador {
-    height: 0.0725rem;
     width: 100%;
-    background-color: rgb(177, 178, 182);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
