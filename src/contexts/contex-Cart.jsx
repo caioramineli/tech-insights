@@ -9,7 +9,8 @@ export function useCarrinho() {
 export function CarrinhoProvider({ children }) {
     const [carrinho, setCarrinho] = useState([]);
     const [desconto, setDesconto] = useState(0);
-    const [frete, setFrete] = useState(0);
+    const [frete, setFrete] = useState({ normal: 0, expresso: 0 });
+    const [freteSelecionado, setFreteSelecionado] = useState('normal');
 
     const adicionarAoCarrinho = (novoProduto) => {
         setCarrinho((prevCarrinho) => {
@@ -42,9 +43,10 @@ export function CarrinhoProvider({ children }) {
     const zerarCarrinho = () => {
         setCarrinho([]);
         setDesconto(0);
-        setFrete(0);
+        setFrete({ normal: 0, expresso: 0 });
+        setFreteSelecionado('normal');
     };
-    
+
     const calcularValorTotal = useMemo(() => {
         return carrinho.reduce((total, produto) => {
             return total + produto.precoPrazo * produto.quantidade;
@@ -52,9 +54,13 @@ export function CarrinhoProvider({ children }) {
     }, [carrinho]);
 
     const calcularFrete = (cep) => {
-        const valorFrete = 20;
-        setFrete(valorFrete);
-        return valorFrete;
+        const valorFreteNormal = 15.00;
+        const valorFreteExpresso = 30.00;
+        setFrete({ normal: valorFreteNormal, expresso: valorFreteExpresso });
+    };
+
+    const atualizarFrete = (novoFrete) => {
+        setFrete(novoFrete);
     };
 
     const aplicarDesconto = (valorDesconto) => {
@@ -63,8 +69,9 @@ export function CarrinhoProvider({ children }) {
     };
 
     const calcularValorFinal = useMemo(() => {
-        return calcularValorTotal + frete - desconto;
-    }, [calcularValorTotal, frete, desconto]);
+        const valorFrete = freteSelecionado === 'normal' ? frete.normal : frete.expresso;
+        return calcularValorTotal + valorFrete - desconto;
+    }, [calcularValorTotal, freteSelecionado, frete, desconto]);
 
     return (
         <CarrinhoContext.Provider value={{
@@ -78,6 +85,9 @@ export function CarrinhoProvider({ children }) {
             aplicarDesconto,
             calcularValorFinal,
             frete,
+            freteSelecionado,
+            setFreteSelecionado,
+            atualizarFrete,
             desconto
         }}>
             {children}

@@ -19,7 +19,7 @@
     flex: 1 1 auto;
     align-items: center;
     justify-content: center;
-    padding: 10px 5px;
+    padding: 8px 5px;
     transition: 0.3s;
     border-left: 1px solid var(--cyan-700);
 }
@@ -34,7 +34,7 @@
 }
 
 .navBar .lista #liDPT {
-    padding: 10px 2px;
+    padding: 8px 2px;
     display: flex;
     gap: 10px;
     align-items: center;

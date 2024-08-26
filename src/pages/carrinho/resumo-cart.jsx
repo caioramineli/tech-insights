@@ -1,18 +1,13 @@
 import "./resumo-cart-style.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useCarrinho } from "../../contexts/contex-Cart";
 import Separador from "../../components/Separador";
 
 export default function ResumoCart() {
-    const { carrinho } = useCarrinho();
-    const [valorCarrinho, setValorCarrinho] = useState(0);
-    const [desconto, setDescontos] = useState(0);
-    const [frete, setFrete] = useState(0);
+    const { calcularValorTotal, desconto, frete, calcularValorFinal, freteSelecionado } = useCarrinho();
 
     useEffect(() => {
-        const valorTotal = carrinho.reduce((total, produto) => total + produto.precoPrazo * produto.quantidade, 0);
-        setValorCarrinho(valorTotal);
-    }, [carrinho]);
+    }, [calcularValorTotal, desconto, frete]);
 
     return (
         <section className="containerResumo">
@@ -20,7 +15,7 @@ export default function ResumoCart() {
             <div className="resumoCarrinho">
                 <div>
                     <p>Valor do carrinho:</p>
-                    <p>{valorCarrinho.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    <p>{calcularValorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
 
                 <Separador />
@@ -34,23 +29,24 @@ export default function ResumoCart() {
 
                 <div>
                     <p>Frete:</p>
-                    <p>{frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    <p>{frete[freteSelecionado]?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
 
                 <Separador />
 
                 <div>
                     <p>Valor Total a prazo:</p>
-                    <p>{(valorCarrinho - desconto + frete).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    <p>{calcularValorFinal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
 
                 <Separador />
 
                 <div>
                     <p>Valor Total à vista:</p>
-                    <p>{(valorCarrinho * 0.9).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    <p>{(((calcularValorFinal - frete[freteSelecionado]) * 0.9) + frete[freteSelecionado]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
             </div>
         </section>
     );
 }
+

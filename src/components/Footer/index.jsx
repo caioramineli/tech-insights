@@ -1,5 +1,5 @@
 import "./style.css"
-import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin  } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa'
 import { FaXTwitter } from "react-icons/fa6"
 import visa from "../../assets/visa.png"
 import mastercard from "../../assets/master.png"
@@ -17,7 +17,6 @@ export default function Footer() {
                         <ul>
                             <li>Cental de Ajuda</li>
                             <li>Como Comprar</li>
-                            <li>Médotos de Pagamento</li>
                             <li>Garantia</li>
                             <li>Devolução e Reembolso</li>
                         </ul>
@@ -28,7 +27,6 @@ export default function Footer() {
                         <ul>
                             <li>Sobre nós</li>
                             <li>Localização</li>
-                            <li>Programa de Parceiros</li>
                             <li>Políticas do Site</li>
                             <li>Políticas de Privaciadade</li>
                         </ul>
@@ -60,10 +58,6 @@ export default function Footer() {
                         <div className="redes-sociais">
                             <FaYoutube />
                             <p>YouTube</p>
-                        </div>
-                        <div className="redes-sociais">
-                            <FaLinkedin />
-                            <p>Linkedin</p>
                         </div>
                     </div>
                 </section>

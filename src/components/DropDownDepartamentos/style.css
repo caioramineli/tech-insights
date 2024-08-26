@@ -16,7 +16,7 @@
 }
 
 .dropdownMenu li a {
-    padding: 12px;
+    padding: 8px;
     color: var(--cyan-800);
     transition: .2s;
     display: flex;

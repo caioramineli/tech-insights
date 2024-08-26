@@ -23,7 +23,7 @@ const Header = () => {
         <header className="header">
             <section className="containerHeaderItens">
                 <Link to="/">
-                    <h1>Tech Insights</h1>
+                    <h1 className='text-cyan-50 text-nowrap text-2xl font-bold'>Tech Insights</h1>
                 </Link>
 
                 <div className="containerPesquisa">
