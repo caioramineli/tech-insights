@@ -3,7 +3,7 @@
     flex-direction: column;
     background-color: var(--cyan-950);
     width: 100%;
-    position: fixed;
+    position: static;
     top: 0px;
     z-index: 5;
 }

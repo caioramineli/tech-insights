@@ -14,6 +14,7 @@ import axios from 'axios';
 import Loading from "../../components/Loading";
 import { MdShoppingCart } from "react-icons/md";
 import InputMask from 'react-input-mask';
+import StepBar from "./step-bar";
 
 export default function Carrinho() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -99,90 +100,93 @@ export default function Carrinho() {
                     </div>
                 ) : (
                     <>
-                        <section className="containerPrincipal">
-                            <TableCart />
-                            <div className="limparCarrinho" onClick={() => zerarCarrinho()}>
-                                <FaTrash />
-                                <h3>Limpar carrinho</h3>
-                            </div>
-
-                            <div className="flex items-start justify-between gap-2">
-                                <div className="flex flex-col bg-white rounded-md bsPadrao p-4 gap-2">
-                                    <h3 className="text-lg font-bold">Aplicar desconto</h3>
-                                    <div className="flex gap-2">
-                                        <input className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700" type="text" placeholder="Cupom de desconto" />
-                                        <button className="flex items-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50">
-                                            Aplicar
-                                            <BiSolidCoupon />
-                                        </button>
-                                    </div>
+                        <StepBar />
+                        <div className="flex gap-8 w-4/5 m-auto min-h-[44vh]">
+                            <section className="containerPrincipal">
+                                <TableCart />
+                                <div className="limparCarrinho" onClick={() => zerarCarrinho()}>
+                                    <FaTrash />
+                                    <h3>Limpar carrinho</h3>
                                 </div>
 
-                                <div className="flex flex-col bg-white rounded-md bsPadrao p-4 gap-2">
-                                    <h3 className="text-lg font-bold">Calcular Frete e Prazos</h3>
-                                    <div className="flex gap-2">
-                                        <InputMask
-                                            mask="99999-999"
-                                            value={valorCep}
-                                            onChange={(e) => setValorCep(e.target.value)}
-                                        >
-                                            {() => (
-                                                <input
-                                                    className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700"
-                                                    name="cep"
-                                                    type="text"
-                                                    placeholder="12345-678"
-                                                />
-                                            )}
-                                        </InputMask>
-                                        <button className="flex items-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50" onClick={handleCalcularFrete}>
-                                            Calcular
-                                            <FaTruck />
-                                        </button>
+                                <div className="flex items-start justify-between gap-2">
+                                    <div className="flex flex-col bg-white rounded-md bsPadrao p-4 gap-2">
+                                        <h3 className="text-lg font-bold">Aplicar desconto</h3>
+                                        <div className="flex gap-2">
+                                            <input className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700" type="text" placeholder="Cupom de desconto" />
+                                            <button className="flex items-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50">
+                                                Aplicar
+                                                <BiSolidCoupon />
+                                            </button>
+                                        </div>
                                     </div>
 
-                                    {isCalculatingFrete ? (
-                                        <Loading />
-                                    ) : (
-                                        frete && frete.normal > 0 && frete.expresso > 0 && ( // Verifica se o frete foi calculado e é maior que 0
-                                            <div className="flex flex-col gap-1">
-                                                <label className="flex gap-2">
+                                    <div className="flex flex-col bg-white rounded-md bsPadrao p-4 gap-2">
+                                        <h3 className="text-lg font-bold">Calcular Frete e Prazos</h3>
+                                        <div className="flex gap-2">
+                                            <InputMask
+                                                mask="99999-999"
+                                                value={valorCep}
+                                                onChange={(e) => setValorCep(e.target.value)}
+                                            >
+                                                {() => (
                                                     <input
-                                                        type="radio"
-                                                        name="frete"
-                                                        value="normal"
-                                                        checked={freteSelecionado === 'normal'}
-                                                        onChange={handleFreteChange}
+                                                        className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700"
+                                                        name="cep"
+                                                        type="text"
+                                                        placeholder="12345-678"
                                                     />
-                                                    Frete Normal: R$ {frete.normal.toFixed(2)}
-                                                </label>
-                                                <label className="flex gap-2">
-                                                    <input
-                                                        type="radio"
-                                                        name="frete"
-                                                        value="expresso"
-                                                        checked={freteSelecionado === 'expresso'}
-                                                        onChange={handleFreteChange}
-                                                    />
-                                                    Frete Expresso: R$ {frete.expresso.toFixed(2)}
-                                                </label>
-                                            </div>
-                                        )
-                                    )}
+                                                )}
+                                            </InputMask>
+                                            <button className="flex items-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50" onClick={handleCalcularFrete}>
+                                                Calcular
+                                                <FaTruck />
+                                            </button>
+                                        </div>
 
+                                        {isCalculatingFrete ? (
+                                            <Loading />
+                                        ) : (
+                                            frete && frete.normal > 0 && frete.expresso > 0 && ( // Verifica se o frete foi calculado e é maior que 0
+                                                <div className="flex flex-col gap-1">
+                                                    <label className="flex gap-2">
+                                                        <input
+                                                            type="radio"
+                                                            name="frete"
+                                                            value="normal"
+                                                            checked={freteSelecionado === 'normal'}
+                                                            onChange={handleFreteChange}
+                                                        />
+                                                        Frete Normal: R$ {frete.normal.toFixed(2)}
+                                                    </label>
+                                                    <label className="flex gap-2">
+                                                        <input
+                                                            type="radio"
+                                                            name="frete"
+                                                            value="expresso"
+                                                            checked={freteSelecionado === 'expresso'}
+                                                            onChange={handleFreteChange}
+                                                        />
+                                                        Frete Expresso: R$ {frete.expresso.toFixed(2)}
+                                                    </label>
+                                                </div>
+                                            )
+                                        )}
+
+                                    </div>
                                 </div>
-                            </div>
-                        </section>
-                        <section className="containerResumoFinalizar">
-                            <ResumoCart />
-                            {isSubmitting ? (
-                                <Loading color="#059669" />
-                            ) : (
-                                <button type="button" onClick={finalizarPedido}>
-                                    Finalizar Pedido
-                                </button>
-                            )}
-                        </section>
+                            </section>
+                            <section className="containerResumoFinalizar">
+                                <ResumoCart />
+                                {isSubmitting ? (
+                                    <Loading color="#059669" />
+                                ) : (
+                                    <button type="button" onClick={finalizarPedido}>
+                                        Finalizar Pedido
+                                    </button>
+                                )}
+                            </section>
+                        </div>
                     </>
                 )}
             </main>

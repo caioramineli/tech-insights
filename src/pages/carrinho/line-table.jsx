@@ -40,7 +40,7 @@ export default function LineTableCart({ produto, removerProduto }) {
                     <p>{produto.nome}</p>
                 </div>
             </td>
-            <td>
+            <td className="w-[145px]">
                 <div className="boxQuantidade">
                     <div className="qtd">
                         <FaChevronLeft onClick={diminuirQtd} />
@@ -54,7 +54,7 @@ export default function LineTableCart({ produto, removerProduto }) {
                     </div>
                 </div>
             </td>
-            <td className="boxPreco">{formatarValor(subtotal)}</td>
+            <td className="boxPreco w-[125px]">{formatarValor(subtotal)}</td>
         </tr>
     );
 }
