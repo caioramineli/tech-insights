@@ -86,7 +86,6 @@ export default function Carrinho() {
 
     return (
         <>
-            <ToastContainer />
             <main className="mainCarrinho">
                 {carrinho.length === 0 ? (
                     <div className="carrinhoVazio">
@@ -101,7 +100,8 @@ export default function Carrinho() {
                 ) : (
                     <>
                         <StepBar />
-                        <div className="flex gap-8 w-4/5 m-auto min-h-[44vh]">
+                        <div className="flex gap-8 w-4/5 m-auto min-h-[42vh]">
+                        
                             <section className="containerPrincipal">
                                 <TableCart />
                                 <div className="limparCarrinho" onClick={() => zerarCarrinho()}>
@@ -187,8 +187,10 @@ export default function Carrinho() {
                                 )}
                             </section>
                         </div>
+                        <ToastContainer/>
                     </>
                 )}
+                
             </main>
         </>
     );
