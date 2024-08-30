@@ -16,6 +16,7 @@ export default function DropDownDepartamentos() {
                     <li><Link to="/">Placas de vídeo</Link></li>
                     <li><Link to="/">Fontes</Link></li>
                     <li><Link to="/">Gabinetes</Link></li>
+                    <li><Link to="/">Memórias RAM</Link></li>
                     <li><Link to="/">Armazenatmento</Link></li>
                     <li><Link to="/">Coolers</Link></li>
                 </ul>
