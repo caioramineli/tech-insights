@@ -43,9 +43,10 @@ const Header = () => {
                             </div>
                         </div>
                     ) : (
-                        <span>
-                            Olá, <Link to="/login">Entre</Link> ou <Link to="/cadastrar">Cadastre-se</Link>
-                        </span>
+                        <div className='flex-col'>
+                            <span className='mg-auto'>Olá, <Link to="/login">Entre</Link> ou </span>
+                            <span><Link to="/cadastrar">Cadastre-se</Link></span>
+                        </div>
                     )}
                 </div>
 

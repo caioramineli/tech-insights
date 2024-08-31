@@ -55,27 +55,6 @@
     transform: rotate(180deg);
 }
 
-@media (max-width:650px){
-    .navBar .lista li {
-        font-size: 0.5rem;
-    }
-}
-
-@media (min-width:651px) and (max-width:720px){
-    .navBar .lista li {
-        font-size: 0.6rem;
-    }
-}
-@media (min-width:721px) and (max-width:839px){
-    .navBar .lista li {
-        font-size: 0.7rem;
-    }
-}
-@media (min-width:840px) and (max-width:1024px){
-    .navBar .lista li {
-        font-size: 0.8rem;
-    }
-}
 
 
 
