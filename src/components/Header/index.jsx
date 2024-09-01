@@ -25,14 +25,17 @@ const Header = () => {
     return (
         <header className="header">
             <section className="containerHeaderItens h-16 sm:h-20 md:h-24">
-                <FaBars className='min-w-6 min-h-6 sm:min-w-7 sm:min-h-7 text-cyan-50 md:hidden' />
+                {/* <FaBars className='min-w-6 min-h-6 sm:min-w-7 sm:min-h-7 text-cyan-50 md:hidden' /> */}
+                <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false">
+                    <span id="hamburger"></span>
+                </button>
                 <div className='flex items-center md:min-w-[110px] sm:min-w-[100px] min-w-[80px]'>
                     <Link to="/">
                         <img className='md:w-[110px] sm:w-[100px] w-[80px]' src={Logo} alt="Logo" />
                     </Link>
                 </div>
 
-                <PesquisarHeader/>
+                <PesquisarHeader />
 
                 <div className="hidden sm:flex text-cyan-50 items-center gap-2">
                     <PiUserCircleLight className='w-9 h-9' />
@@ -47,8 +50,8 @@ const Header = () => {
                         </div>
                     ) : (
                         <div className='flex-col w-[100px]'>
-                            <span>Olá, <Link to="/login">Entre</Link> ou </span>
-                            <span className='text-teal-500'><Link to="/cadastrar">Cadastre-se</Link></span>
+                            <span>Olá, <Link className='text-cyan-500 font-bold' to="/login">Entre</Link> ou </span>
+                            <span className='text-teal-500 font-bold'><Link to="/cadastrar">Cadastre-se</Link></span>
                         </div>
                     )}
                 </div>

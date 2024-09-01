@@ -40,13 +40,6 @@ export default function Home() {
                         product={product}
                     />
                 ))}
-
-                {produtos.map((product) => (
-                    <Produto
-                        key={product._id}
-                        product={product}
-                    />
-                ))}
             </section>
         </main>
     );

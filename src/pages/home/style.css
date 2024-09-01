@@ -36,7 +36,6 @@
     flex-direction: column;
     box-shadow: rgba(40, 41, 61, 0.10) 0px 0px 2px, rgba(96, 97, 112, 0.16) 0px 0.5px 2px;
     padding: 12px;
-    gap: 8px;
     background-color: #fff;
     border-radius: 3px;
 }
@@ -48,20 +47,17 @@
 }
 
 .containerProdutos .boxProduto p:nth-child(2) {
-    min-height: 3.375rem;
+    min-height: 3rem;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    color: black;
 }
 
 .containerProdutos .boxProduto p:nth-child(3) {
-    color: var(--cyan-600);
-    font-size: 1.2rem;
+    color: var(--teal-600);
     font-weight: bold;
-    margin-top: 5px;
 }
 
 .containerProdutos .boxProduto p:nth-child(4) {
@@ -75,10 +71,9 @@
 
 .containerProdutos .boxProduto button {
     border: none;
-    background-color: var(--cyan-700);
+    background-color: var(--teal-700);
     padding: 7px;
     border-radius: 5px;
-    font-size: 1.2rem;
     color: white;
     cursor: pointer;
     display: flex;
