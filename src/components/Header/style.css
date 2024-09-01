@@ -88,7 +88,7 @@
 }
 
 #btn-mobile {
-    display: flex;
+    display: none;
     padding: 2px;
     border: none;
     background: none;

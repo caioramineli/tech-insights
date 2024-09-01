@@ -10,7 +10,6 @@ import { FaRegHeart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useCarrinho } from '../../contexts/contex-Cart';
 import Logo from "../../assets/logo.png"
-import { FaBars } from "react-icons/fa";
 
 
 
@@ -25,8 +24,7 @@ const Header = () => {
     return (
         <header className="header">
             <section className="containerHeaderItens h-16 sm:h-20 md:h-24">
-                {/* <FaBars className='min-w-6 min-h-6 sm:min-w-7 sm:min-h-7 text-cyan-50 md:hidden' /> */}
-                <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false">
+                <button id="btn-mobile">
                     <span id="hamburger"></span>
                 </button>
                 <div className='flex items-center md:min-w-[110px] sm:min-w-[100px] min-w-[80px]'>
