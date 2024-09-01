@@ -9,7 +9,7 @@ import mp from "../../assets/mercadoPago.png"
 
 export default function Footer() {
     return (
-        <footer className="footer w-full">
+        <footer className="w-full">
             <section className="containerFooter">
                 <section className="caixas-informacoes">
                     <div className="box">
