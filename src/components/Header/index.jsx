@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import './style.css';
 import NavBar from '../NavBar';
 import PesquisarHeader from '../PesquisarHeader';
+import MenuMobile from '../MenuMobile';
 import { AuthContext } from '../../contexts/AuthContext';
 
 import { PiUserCircleLight } from "react-icons/pi";
@@ -24,9 +25,7 @@ const Header = () => {
     return (
         <header className="header">
             <section className="containerHeaderItens h-16 sm:h-20 md:h-24">
-                <button id="btn-mobile">
-                    <span id="hamburger"></span>
-                </button>
+                <MenuMobile />
                 <div className='flex items-center md:min-w-[110px] sm:min-w-[100px] min-w-[80px]'>
                     <Link to="/">
                         <img className='md:w-[110px] sm:w-[100px] w-[80px]' src={Logo} alt="Logo" />

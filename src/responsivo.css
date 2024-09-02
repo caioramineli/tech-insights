@@ -42,6 +42,10 @@
         width: 90%;
     }
 
+    .containerProdutos {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
 }
 
 /* NAVBAR */
