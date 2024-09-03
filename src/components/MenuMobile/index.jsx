@@ -32,65 +32,58 @@ const MenuMobile = () => {
                 <span id="hamburger"></span>
             </button>
             <ul id="menu">
-                <div className='flex items-center borda'>
-                    <a href="/minha-conta">
+                <div className='w-[90%] m-auto'>
+                    <div className='flex items-center gap-4 borda h-[4.5rem]'>
+                        <a href="/minha-conta">
+                            <span className='flex flex-col items-center text-cyan-50'>
+                                <FaUser className='text-lg' />
+                                Conta
+                            </span>
+                        </a>
                         <span className='flex flex-col items-center text-cyan-50'>
-                            <FaUser className='text-lg' />
-                            Conta
+                            <FaRegHeart className='text-lg' />
+                            Favoritos
                         </span>
-                    </a>
-                    <span className='flex flex-col items-center text-cyan-50'>
-                        <FaRegHeart className='text-lg' />
-                        Favoritos
-                    </span>
+                    </div>
+                    <li id='liHardware'>
+                        <a href="/">
+                            Hardware
+                        </a>
+                    </li>
+                    <li id='liPerife'>
+                        <a href="/">
+                            Periféricos
+                        </a>
+                    </li>
+                    <li id='liRedes'>
+                        <a href="/">
+                            Redes
+                        </a>
+                    </li>
+                    <li id='liComputadores'>
+                        <a href="/">
+                            Computadores
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/guias">Guias Informativos</a>
+                    </li>
+                    <li>
+                        <a href="/monte-seu-pc">Monte seu PC</a>
+                    </li>
+                    <li>
+                        <a href="/cupons">Cupons</a>
+                    </li>
+                    <li>
+                        <a href="/kit-upgrade">Kit Upgrade</a>
+                    </li>
+                    <li>
+                        <a href="/notebooks">Notebooks</a>
+                    </li>
+                    <li>
+                        <a href="/monitores">Monitores</a>
+                    </li>
                 </div>
-                <li id='liHardware'>
-                    <a href="/">
-                        Hardware
-                    </a>
-                </li>
-
-                <li id='liPerife'>
-                    <a href="/">
-                        Periféricos
-                    </a>
-                </li>
-
-                <li id='liRedes'>
-                    <a href="/">
-                        Redes
-                    </a>
-                </li>
-
-                <li id='liComputadores'>
-                    <a href="/">
-                        Computadores
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/guias">Guias Informativos</a>
-                </li>
-
-                <li>
-                    <a href="/monte-seu-pc">Monte seu PC</a>
-                </li>
-
-                <li>
-                    <a href="/cupons">Cupons</a>
-                </li>
-
-                <li>
-                    <a href="/kit-upgrade">Kit Upgrade</a>
-                </li>
-
-                <li>
-                    <a href="/notebooks">Notebooks</a>
-                </li>
-
-                <li>
-                    <a href="/monitores">Monitores</a>
-                </li>
             </ul>
         </nav>
     );
