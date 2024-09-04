@@ -1,9 +1,16 @@
-import "./style.css";
+import { tailspin } from 'ldrs'
 
-export default function Loading({ color = "#0e7490" }) {
+tailspin.register()
+
+export default function Loading() {
     return (
-        <div className="loading">
-            <span className="carregando" style={{ borderColor: color }}></span>
-        </div>
+        <l-tailspin
+            size="40"
+            stroke="6"
+            speed="1"
+            color="#0e7490"
+        ></l-tailspin>
     );
 }
+
+

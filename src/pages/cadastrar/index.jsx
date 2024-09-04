@@ -223,7 +223,7 @@ export default function Cadastrar() {
 
                 <div className='btnCarregamento'>
                     {isSubmitting ? (
-                        <Loading color='#059669' />
+                        <Loading />
                     ) : (
                         <BtnCadastrar />
                     )}

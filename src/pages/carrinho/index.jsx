@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import Loading from "../../components/Loading";
+import Cupom from "./cupom";
 import { MdShoppingCart } from "react-icons/md";
 import InputMask from 'react-input-mask';
 import StepBar from "./step-bar";
@@ -101,7 +102,7 @@ export default function Carrinho() {
                     <>
                         <StepBar />
                         <div className="flex gap-8 w-4/5 m-auto min-h-[42vh]">
-                        
+
                             <section className="containerPrincipal">
                                 <TableCart />
                                 <div className="limparCarrinho" onClick={() => zerarCarrinho()}>
@@ -110,16 +111,9 @@ export default function Carrinho() {
                                 </div>
 
                                 <div className="flex items-start justify-between gap-2">
-                                    <div className="flex flex-col bg-white rounded-md bsPadrao p-4 gap-2">
-                                        <h3 className="text-lg font-bold">Aplicar desconto</h3>
-                                        <div className="flex gap-2">
-                                            <input className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700" type="text" placeholder="Cupom de desconto" />
-                                            <button className="flex items-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50">
-                                                Aplicar
-                                                <BiSolidCoupon />
-                                            </button>
-                                        </div>
-                                    </div>
+
+
+                                    <Cupom />
 
                                     <div className="flex flex-col bg-white rounded-md bsPadrao p-4 gap-2">
                                         <h3 className="text-lg font-bold">Calcular Frete e Prazos</h3>
@@ -179,7 +173,7 @@ export default function Carrinho() {
                             <section className="containerResumoFinalizar">
                                 <ResumoCart />
                                 {isSubmitting ? (
-                                    <Loading color="#059669" />
+                                    <Loading />
                                 ) : (
                                     <button type="button" onClick={finalizarPedido}>
                                         Finalizar Pedido
@@ -187,10 +181,10 @@ export default function Carrinho() {
                                 )}
                             </section>
                         </div>
-                        <ToastContainer/>
+                        <ToastContainer />
                     </>
                 )}
-                
+
             </main>
         </>
     );

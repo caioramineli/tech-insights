@@ -12,8 +12,6 @@ import { Link } from 'react-router-dom';
 import { useCarrinho } from '../../contexts/contex-Cart';
 import Logo from "../../assets/logo.png"
 
-
-
 const Header = () => {
     const { carrinho } = useCarrinho();
     const { user, logout } = useContext(AuthContext);
