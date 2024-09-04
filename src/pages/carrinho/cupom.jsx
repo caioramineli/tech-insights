@@ -13,7 +13,8 @@ const Cupom = () => {
 
     const verifycupom = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/cupon/${cupomCode}`);
+            const response = await axios.get(`https://backend-tech-insights.vercel.app/
+cupon/${cupomCode}`);
             setDiscount(response.data.desconto);
             setError(''); // Limpe o erro se o cupom for válido
         } catch (err) {
