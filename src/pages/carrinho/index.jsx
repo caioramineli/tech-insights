@@ -1,6 +1,5 @@
 import "./style.css";
 import { FaTrash } from "react-icons/fa";
-import { BiSolidCoupon } from "react-icons/bi";
 import { FaTruck } from "react-icons/fa6";
 import TableCart from "./table-cart";
 import ResumoCart from "./resumo-cart";

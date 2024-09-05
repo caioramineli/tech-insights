@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { BiSolidCoupon } from 'react-icons/bi';
+import { useCarrinho } from '../../contexts/contex-Cart';
+import Loading from '../../components/Loading';
 
 const Cupom = () => {
     const [cupomCode, setCupomCode] = useState('');
-    const [discount, setDiscount] = useState(0);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false)
+    const { aplicarDesconto } = useCarrinho();
 
     const handleCupomChange = (e) => {
         setCupomCode(e.target.value);
     };
 
-    const verifycupom = async () => {
+    const verifyCupom = async () => {
+        setLoading(true);
         try {
-            const response = await axios.get(`https://backend-tech-insights.vercel.app/
-cupon/${cupomCode}`);
-            setDiscount(response.data.desconto);
-            setError(''); // Limpe o erro se o cupom for válido
+            const response = await axios.get(`https://backend-tech-insights.vercel.app/cupon/${cupomCode}`);
+            aplicarDesconto(response.data.desconto);
+            setError('');
         } catch (err) {
             setError(err.response?.data?.msg || 'Erro ao verificar o cupom.');
-            setDiscount(0); // Zere o desconto se o cupom for inválido
+            aplicarDesconto(0);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -33,15 +38,22 @@ cupon/${cupomCode}`);
                     value={cupomCode}
                     onChange={handleCupomChange}
                     placeholder="Digite seu cupom"
+                    disabled={loading}
                 />
 
-                <button className="flex items-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50" onClick={verifycupom}>
-                    Aplicar
-                    <BiSolidCoupon />
-                </button>
-
+                {loading ? (
+                    <div className='px-[1.83rem]'>
+                        <Loading stroke='5' size='34'/> 
+                    </div>
+                ) : (
+                    <button
+                        className="flex items-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50"
+                        onClick={verifyCupom}
+                    >
+                        Aplicar <BiSolidCoupon />
+                    </button>
+                )}
             </div>
-            {discount > 0 && <p>Desconto: {discount}%</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );
