@@ -12,7 +12,7 @@ export default function Home() {
     useEffect(() => {
         async function fetchProdutos() {
             try {
-                const response = await axios.get("https://backend-tech-insights.onrender.com/product");
+                const response = await axios.get("https://backend-tech-insights.vercel.app/product");
                 setProdutos(response.data.products);
 
             } catch (error) {

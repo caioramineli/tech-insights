@@ -6,7 +6,7 @@ export default function Produto({ product }) {
     return (
         <Link to={`/product/${product._id}`}>
             <div className="boxProduto gap-1">
-                <img src={"https://backend-tech-insights.onrender.com/" + product.images[0]} alt="produto" />
+                <img src={"https://backend-tech-insights.vercel.app/" + product.images[0]} alt="produto" />
                 <p className="text-sm md:text-base">{product.nome}</p>
                 <p className="text-base md:text-lg">{product.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 <p className="text-[0.65rem] sm:text-sm">10x de <span>{(product.precoPrazo / 10).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> sem juros</p>

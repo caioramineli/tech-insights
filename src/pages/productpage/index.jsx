@@ -17,7 +17,7 @@ export default function PaginaProduto() {
     useEffect(() => {
         const fetchProductData = async () => {
             try {
-                const response = await axios.get(`https://backend-tech-insights.onrender.com/product/${productId}`);
+                const response = await axios.get(`https://backend-tech-insights.vercel.app/product/${productId}`);
                 setProductData(response.data.product);
                 console.log(response.data.product);
 
