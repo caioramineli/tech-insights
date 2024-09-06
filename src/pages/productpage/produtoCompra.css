@@ -93,6 +93,7 @@
 }
 
 .containerDireitaProduto #btnModalPagamento {
+    display: flex;
     border: none;
     background-color: #fff;
     text-decoration: underline;
