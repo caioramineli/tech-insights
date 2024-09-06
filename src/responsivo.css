@@ -89,6 +89,44 @@
     #btn-mobile {
         display: flex;
     }
+
+    /* #COMPRA */
+    .containerMainProduto h2{
+        font-size: 1.2rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .containerPaginaProduto{
+        width: 90%;
+    }
+
+    .containerProdutoInfo .imgPrincipal {
+        margin: 0 auto;
+        width: 400px;
+    }
+
+    .containerProdutoInfo .containerImgsProduto{
+        display: none;
+    }
+
+    .containerMainProduto .containerProdutoInfo {
+        display: grid;
+        /* background-color: aqua; */
+        grid-template-columns: 1fr;
+        /* align-items: start; */
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+
+    .containerProdutoInfo .containerDireitaProduto{
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .containerProdutoInfo .containerDireitaProduto h3{
+        display: none; 
+    }
 }
 
 
