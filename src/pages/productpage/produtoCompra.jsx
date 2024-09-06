@@ -12,7 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Produto({ product }) {
-    const api = "https://backend-tech-insights.onrender.com/";
+    const api = "https://backend-tech-insights.vercel.app/";
     const images = Object.values(product.images || {});
     const [mainImage, setMainImage] = useState(images[0] || "");
     const { adicionarAoCarrinho } = useCarrinho();
