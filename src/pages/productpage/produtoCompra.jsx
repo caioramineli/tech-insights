@@ -23,6 +23,8 @@ export default function Produto({ product }) {
 
     const [isFreteModalOpen, setIsFreteModalOpen] = useState(false);
 
+    const [isFormaPagamentoModalOpen, setIsFormaPagamentoModalOpen] = useState(false);
+
     function openFreteModal() {
         const cepPuro = cep.replace(/\D/g, '');
         if (cepPuro.length === 8) {
@@ -34,6 +36,15 @@ export default function Produto({ product }) {
 
     function closeFreteModal() {
         setIsFreteModalOpen(false);
+    }
+
+    // FORMA DE PAGAMENTO
+    function openFormaPagamentoModal() {
+            setIsFormaPagamentoModalOpen(true);
+    }
+
+    function closeFormaPagamentoModal() {
+        setIsFormaPagamentoModalOpen(false);
     }
 
     const handleComprar = () => {
