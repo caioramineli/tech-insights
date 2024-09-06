@@ -68,13 +68,15 @@ export default function Produto({ product }) {
                 <img className="imgPrincipal" src={api + mainImage} alt="Produto principal" />
 
                 <section className="containerDireitaProduto">
-                    <div className="marcaProduto">
-                        <h2 className='text-xl font-bold'>Marca:</h2>
-                        <p>{product.marca}</p>
+                    <div className='flex items-center w-full justify-between'>
+                        <div className="marcaProduto">
+                            <h2 className='text-xl font-bold'>Marca:</h2>
+                            <p>{product.marca}</p>
+                        </div>
+
+                        <StarsCod />
                     </div>
-
-                    <StarsCod />
-
+                    
                     <p id="disponi">Produto Disponível</p>
 
                     <div className="containerPagVista">
@@ -103,7 +105,7 @@ export default function Produto({ product }) {
                         </button>
                     </div>
 
-                    <h3 className='text-lg font-bold'>Consultar frete e prazo de entrega</h3>
+                    <h3 className='text-lg font-bold hidden md:block '>Consultar frete e prazo de entrega</h3>
                     <div className="flex gap-2">
                         <InputMask
                             mask="99999-999"

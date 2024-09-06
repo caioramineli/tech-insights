@@ -11,7 +11,6 @@ export default function StarsCod() {
             <FaStar />
             <FaRegStarHalfStroke />
             <span>(5)</span>
-            <p>Cód: 1123</p>
         </div>
     )
 }

@@ -81,7 +81,7 @@
     }
 }
 
-@media (max-width:850px) {
+@media (max-width:880px) {
     .navBar .lista {
         display: none;
     }
@@ -92,7 +92,7 @@
 
     /* #COMPRA */
     .containerMainProduto h2{
-        font-size: 1.2rem;
+        font-size: 1rem;
         justify-content: center;
         align-items: center;
     }
@@ -103,9 +103,9 @@
 
     .containerProdutoInfo .imgPrincipal {
         margin: 0 auto;
-        width: 400px;
+        width: 300px;
     }
-
+   
     .containerProdutoInfo .containerImgsProduto{
         display: none;
     }
@@ -121,11 +121,17 @@
 
     .containerProdutoInfo .containerDireitaProduto{
         display: grid; 
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
-    .containerProdutoInfo .containerDireitaProduto h3{
-        display: none; 
+    .containerDireitaProduto .btnsComprarAddCart button:nth-child(1){
+        padding: 0px 10px;
+        justify-content: center;
+        width: 100%; 
+    }
+
+    .containerDireitaProduto .btnsComprarAddCart {
+        width: 100%;
     }
 }
 
@@ -141,6 +147,9 @@
 
     .rodape {
         width: 90%;
+    }
+    .containerProdutoInfo .imgPrincipal {
+        width: 240px;
     }
 }
 
