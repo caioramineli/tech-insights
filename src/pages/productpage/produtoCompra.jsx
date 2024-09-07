@@ -10,6 +10,11 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export default function Produto({ product }) {
     const api = "https://backend-tech-insights.vercel.app/";
@@ -40,7 +45,7 @@ export default function Produto({ product }) {
 
     // FORMA DE PAGAMENTO
     function openFormaPagamentoModal() {
-            setIsFormaPagamentoModalOpen(true);
+        setIsFormaPagamentoModalOpen(true);
     }
 
     function closeFormaPagamentoModal() {
@@ -63,11 +68,12 @@ export default function Produto({ product }) {
     return (
         <>
             <ToastContainer />
-            <h2 className='text-2xl font-bold'>{product.nome}</h2>
+            <h2 className='text-base md:text-lg lg:text-xl xl:text-2xl font-bold'>{product.nome}</h2>
             <section className="containerProdutoInfo">
-                <div className="containerImgsProduto">
+                <div className="hidden lg:flex flex-col gap-4">
                     {images.map((image, index) => (
                         <img
+                            className='w-[65px] border border-black/20 rounded-sm'
                             key={index}
                             src={api + image}
                             alt={`Miniatura ${index + 1}`}
@@ -76,7 +82,17 @@ export default function Produto({ product }) {
                     ))}
                 </div>
 
-                <img className="imgPrincipal" src={api + mainImage} alt="Produto principal" />
+                <div className="block lg:hidden m-auto w-64 sm:w-[350px]">
+                    <Swiper modules={[Pagination]} pagination loop>
+                        {images.map((image, index) => (
+                            <SwiperSlide key={index}>
+                                <img src={api + image} alt={image.alt} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+
+                <img className="lg:w-[350px] xl:w-[400px] m-auto hidden lg:block" src={api + mainImage} alt="Produto principal" />
 
                 <section className="containerDireitaProduto">
                     <div className='flex items-center w-full justify-between'>
@@ -84,25 +100,24 @@ export default function Produto({ product }) {
                             <h2 className='text-xl font-bold'>Marca:</h2>
                             <p>{product.marca}</p>
                         </div>
-
                         <StarsCod />
                     </div>
-                    
+
                     <p id="disponi">Produto Disponível</p>
 
                     <div className="containerPagVista">
                         <FaBarcode />
                         <div className="valorVista">
-                            <h3 className='text-xl font-bold'>{formatarValor(product.preco)}</h3>
-                            <p>à vista com 10% de desconto no boleto ou pix</p>
+                            <h3 className='sm:text-base md:text-lg lg:text-xl xl:text-[1.4rem] text-teal-700 font-bold'>{formatarValor(product.preco)}</h3>
+                            <p className='text-sm sm:text-base'>à vista com 10% de desconto no boleto ou pix</p>
                         </div>
                     </div>
 
                     <div className="containerPagPrazo">
                         <FaRegCreditCard />
                         <div className="valorPrazo">
-                            <h3 className='text-lg font-bold'>{formatarValor(product.precoPrazo)}</h3>
-                            <p>10x de R$ {formatarValor(product.precoPrazo / 10)} sem juros no cartão</p>
+                            <h3 className='md:text-base lg:text-lg xl:text-xl font-bold'>{formatarValor(product.precoPrazo)}</h3>
+                            <p className='text-sm sm:text-base'>10x de R$ {formatarValor(product.precoPrazo / 10)} sem juros no cartão</p>
                         </div>
                     </div>
 
@@ -116,26 +131,28 @@ export default function Produto({ product }) {
                         </button>
                     </div>
 
-                    <h3 className='text-lg font-bold hidden md:block '>Consultar frete e prazo de entrega</h3>
-                    <div className="flex gap-2">
-                        <InputMask
-                            mask="99999-999"
-                            value={cep}
-                            onChange={(e) => setCep(e.target.value)}
-                        >
-                            {() => (
-                                <input
-                                    className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700"
-                                    name="cep"
-                                    type="text"
-                                    placeholder="12345-678"
-                                />
-                            )}
-                        </InputMask>
-                        <button className="flex items-center gap-2 bg-teal-600 rounded-md p-2 text-cyan-50 hover:bg-teal-700" onClick={openFreteModal}>
-                            Calcular
-                            <FaTruck />
-                        </button>
+                    <div>
+                        <h3 className='text-lg font-bold'>Consultar frete e prazo de entrega</h3>
+                        <div className="flex gap-2 mt-2">
+                            <InputMask
+                                mask="99999-999"
+                                value={cep}
+                                onChange={(e) => setCep(e.target.value)}
+                            >
+                                {() => (
+                                    <input
+                                        className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700"
+                                        name="cep"
+                                        type="text"
+                                        placeholder="12345-678"
+                                    />
+                                )}
+                            </InputMask>
+                            <button className="flex items-center gap-2 bg-teal-600 rounded-md p-2 text-cyan-50 hover:bg-teal-700" onClick={openFreteModal}>
+                                Calcular
+                                <FaTruck />
+                            </button>
+                        </div>
                     </div>
 
                     {isFreteModalOpen && (

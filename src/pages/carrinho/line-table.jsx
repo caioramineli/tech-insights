@@ -30,7 +30,7 @@ export default function LineTableCart({ produto, removerProduto }) {
         return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     };
 
-    const api = "https://backend-tech-insights.onrender.com/";
+    const api = "https://backend-tech-insights.vercel.app/";
 
     return (
         <tr>

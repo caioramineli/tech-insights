@@ -46,9 +46,12 @@
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
+    .containerPaginaProduto{
+        width: 90%;
+    }
 }
 
-/* NAVBAR */
+
 @media (max-width:950px) {
     .navBar .lista li {
         font-size: 0.8rem;
@@ -81,7 +84,7 @@
     }
 }
 
-@media (max-width:880px) {
+@media (max-width:850px) {
     .navBar .lista {
         display: none;
     }
@@ -91,30 +94,13 @@
     }
 
     /* #COMPRA */
-    .containerMainProduto h2{
-        font-size: 1rem;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .containerPaginaProduto{
-        width: 90%;
-    }
-
-    .containerProdutoInfo .imgPrincipal {
-        margin: 0 auto;
-        width: 300px;
-    }
-   
-    .containerProdutoInfo .containerImgsProduto{
-        display: none;
+    .containerMainProduto {
+        padding: 1rem;
     }
 
     .containerMainProduto .containerProdutoInfo {
         display: grid;
-        /* background-color: aqua; */
         grid-template-columns: 1fr;
-        /* align-items: start; */
         justify-content: space-between;
         margin-top: 1rem;
     }
