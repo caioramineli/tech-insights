@@ -9,7 +9,7 @@ import { FaCheckCircle } from "react-icons/fa";
 export default function StepBar() {
     return (
         <div className='flex items-center w-full bg-white h-16 bsPadrao'>
-            <div className='flex items-center w-4/5 justify-between m-auto gap-2'>
+            <div className='flex items-center w-4/5 justify-between m-auto gap-2 max-w-[1300px]'>
                 <div className='flex items-center gap-2'>
                     <MdShoppingCart className='text-teal-500 gap-2 text-xl' />
                     <span>Carrinho</span>

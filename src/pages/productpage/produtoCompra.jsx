@@ -11,7 +11,7 @@ import { IoClose } from 'react-icons/io5';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -98,7 +98,7 @@ export default function Produto({ product }) {
                     <div className='flex items-center w-full justify-between'>
                         <div className="marcaProduto">
                             <h2 className='text-xl font-bold'>Marca:</h2>
-                            <p>{product.marca}</p>
+                            <img src={`https://backend-tech-insights.vercel.app/imgs/${product.marca}.jpg`} alt="marca" />
                         </div>
                         <StarsCod />
                     </div>

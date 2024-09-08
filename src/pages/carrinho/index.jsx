@@ -77,8 +77,7 @@ export default function Carrinho() {
                 ) : (
                     <>
                         <StepBar />
-                        <div className="flex gap-8 w-4/5 m-auto min-h-[42vh]">
-
+                        <div className="flex gap-8 w-4/5 m-auto min-h-[42vh] max-w-[1300px]">
                             <section className="containerPrincipal">
                                 <TableCart />
                                 <div className="limparCarrinho" onClick={() => zerarCarrinho()}>

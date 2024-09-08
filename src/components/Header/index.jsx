@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import './style.css';
 import NavBar from '../NavBar';
-import PesquisarHeader from '../PesquisarHeader';
+import PesquisarHeader from './PesquisarHeader';
 import MenuMobile from '../MenuMobile';
 import { AuthContext } from '../../contexts/AuthContext';
-
 import { PiUserCircleLight } from "react-icons/pi";
 import { MdShoppingCart } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
