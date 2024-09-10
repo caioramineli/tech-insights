@@ -98,7 +98,7 @@ export default function Produto({ product }) {
                     <div className='flex items-center w-full justify-between'>
                         <div className="marcaProduto">
                             <h2 className='text-xl font-bold'>Marca:</h2>
-                            <img src={`https://backend-tech-insights.vercel.app/imgs/${product.marca}.jpg`} alt="marca" />
+                            <img src={`${api}imgs/${product.marca}.jpg`} alt="marca" />
                         </div>
                         <StarsCod />
                     </div>

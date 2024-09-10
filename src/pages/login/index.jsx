@@ -2,13 +2,12 @@ import { MdOutlineEmail } from "react-icons/md";
 import { IoIosLock } from "react-icons/io";
 import { LuLogIn } from "react-icons/lu";
 import { IoCreateOutline } from "react-icons/io5";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { useState } from 'react';
-
+import { useState, useContext } from 'react';
 import Loading from '../../components/Loading';
 import InputPassword from "../../components/InputPassword";
+import { AuthContext } from '../../contexts/AuthContext';
 
 import './style.css';
 
@@ -17,6 +16,9 @@ export default function Login() {
     const [senha, setSenha] = useState('');
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const { login } = useContext(AuthContext); 
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,8 +27,8 @@ export default function Login() {
         try {
             const response = await axios.post('https://backend-tech-insights.vercel.app/login', { email, senha });
             localStorage.setItem('token', response.data.token);
-            console.log('Token armazenado:', response.data.token);
-            window.location.href = '/'
+            login(response.data.token);
+            navigate('/')
         } catch (error) {
             console.error('Erro no login:', error.response.data.msg);
             if (error.response.status !== 200) {
@@ -59,7 +61,7 @@ export default function Login() {
                         <IoIosLock />
                         <InputPassword
                             placeholder={"Insira sua senha"}
-                            value={senha} 
+                            value={senha}
                             event={(e) => setSenha(e.target.value)}
                             required={true}
                         />
