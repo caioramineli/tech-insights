@@ -9,26 +9,24 @@ import AvaliacoesProduto from '../../components/AvaliacoesProduto';
 import Loading from '../../components/Loading';
 
 export default function PaginaProduto() {
-    const { productId } = useParams(); // Obter productId da URL
+    const { productId } = useParams();
     const [productData, setProductData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchProductData = async () => {
+        const getProductData = async () => {
             try {
                 const response = await axios.get(`https://backend-tech-insights.vercel.app/product/${productId}`);
                 setProductData(response.data.product);
-                console.log(response.data.product);
-
-            } catch (err) {
+            } catch (err) { 
                 setError(err.message);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchProductData();
+        getProductData();
     }, [productId]);
 
     if (loading) {

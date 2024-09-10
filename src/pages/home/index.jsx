@@ -10,7 +10,7 @@ export default function Home() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        async function fetchProdutos() {
+        async function getProdutos() {
             try {
                 const response = await axios.get("https://backend-tech-insights.vercel.app/product");
                 setProdutos(response.data.products);
@@ -22,7 +22,7 @@ export default function Home() {
                 setLoading(false);
             }
         }
-        fetchProdutos();
+        getProdutos();
     }, []);
 
     if (loading) {

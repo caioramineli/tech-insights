@@ -137,6 +137,14 @@
     .containerProdutoInfo .imgPrincipal {
         width: 240px;
     }
+
+    #menu {
+        top: 115px;
+    }
+
+    #navMobile.active #menu {
+        height: calc(100vh - 115px);
+    }
 }
 
 @media (max-width:500px) {

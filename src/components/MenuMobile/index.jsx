@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './style.css';
 import { FaRegHeart, FaUser } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const MenuMobile = () => {
     const [isActive, setIsActive] = useState(false);
@@ -33,13 +34,13 @@ const MenuMobile = () => {
             </button>
             <ul id="menu">
                 <div className='w-[90%] m-auto'>
-                    <div className='flex items-center gap-4 borda h-[4.5rem]'>
-                        <a href="/minha-conta">
+                    <div className='flex items-center gap-4 borda h-[4rem]'>
+                        <Link to="/minha-conta" onClick={toggleMenu}>
                             <span className='flex flex-col items-center text-cyan-50'>
                                 <FaUser className='text-lg' />
                                 Conta
                             </span>
-                        </a>
+                        </Link>
                         <span className='flex flex-col items-center text-cyan-50'>
                             <FaRegHeart className='text-lg' />
                             Favoritos
