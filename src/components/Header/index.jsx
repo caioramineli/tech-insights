@@ -37,7 +37,7 @@ const Header = () => {
                         <div>
                             <span className='font-bold text-nowrap'>Olá, {getFirstName(user.nome)}</span>
                             <div className='flex gap-1'>
-                                <a href="/minha-conta" className='text-nowrap'><button>Minha conta</button></a>
+                                <Link to="/minha-conta" className='text-nowrap'><button>Minha conta</button></Link>
                                 <span>|</span>
                                 <button onClick={logout}>Sair</button>
                             </div>
