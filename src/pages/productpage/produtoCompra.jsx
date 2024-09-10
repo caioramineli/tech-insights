@@ -52,6 +52,7 @@ export default function Produto({ product }) {
         setIsFormaPagamentoModalOpen(false);
     }
 
+   
     const handleComprar = () => {
         adicionarAoCarrinho({ ...product, quantidade: 1 });
         navigate('/carrinho');
@@ -121,7 +122,10 @@ export default function Produto({ product }) {
                         </div>
                     </div>
 
-                    <button id="btnModalPagamento">Ver mais opções de pagamento</button>
+                    <button id="btnModalPagamento" onClick={openFormaPagamentoModal}>
+                        Ver mais opções de pagamento
+                    </button>
+
                     <div className='btnsComprarAddCart'>
                         <button id="btnComprar" onClick={handleComprar}>
                             <MdShoppingCart />Comprar
@@ -185,6 +189,33 @@ export default function Produto({ product }) {
                                 </div>
                             </div>
                         </div>
+                    )}
+                    
+                    {isFormaPagamentoModalOpen && (
+                        
+                        <div className='fixed inset-0 bg-black/60 flex items-center justify-center'>
+                        <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-xl p-5 relative">
+                        
+
+                            <IoClose onClick={closeFormaPagamentoModal} className="absolute top-2 right-2 text-slate-600 w-8 h-8 cursor-pointer" />
+
+                            <div className='flex flex-col gap-10'>
+                                <div className='flex gap-1 items-center text-xl'>  
+                                    <h3 className='font-bold'>FORMAS DE PAGAMENTO</h3>
+                                </div>
+                                
+                                {/* <div id='root'></div> */}
+                                <div className='flex gap-11'>
+                                {/* <div id='CartaodeCredito'> */}
+                                    <button>Cartão de Crédito</button>
+                                    <button>PIX</button>
+                                    <button>Boleto Bancário</button>
+                                    <button>Nubank</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     )}
                 </section>
             </section>
