@@ -3,7 +3,10 @@ import Home from "./pages/home/";
 import Login from "./pages/login/"
 import Cadastrar from "./pages/cadastrar";
 import Conta from "./pages/conta";
+
 import Carrinho from "./pages/carrinho";
+import Entrega from "./pages/carrinho/entrega";
+
 import PaginaProduto from "./pages/productpage";
 
 import GuiasInformativos from "./pages/guiasInformativos";
@@ -30,7 +33,8 @@ export default function MinhasRotas() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/cadastrar" element={<Cadastrar />} />
                     <Route path="/minha-conta" element={<Conta />} />
-                    <Route path="/Carrinho" element={<Carrinho />} />
+                    <Route path="/carrinho" element={<Carrinho />} />
+                    <Route path="/entrega" element={<Entrega />} />
                     <Route path="/product/:productId" element={<PaginaProduto />} />
                     <Route path="/guias" element={<GuiasInformativos />} />
                     <Route path="/monte-seu-pc" element={<MontePC />} />
