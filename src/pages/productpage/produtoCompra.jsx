@@ -15,6 +15,7 @@ import { Pagination } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import FormaPagamento from '../../components/FormaPagamento';
 
 export default function Produto({ product }) {
     const api = "https://backend-tech-insights.vercel.app/";
@@ -51,7 +52,6 @@ export default function Produto({ product }) {
     function closeFormaPagamentoModal() {
         setIsFormaPagamentoModalOpen(false);
     }
-
 
     const handleComprar = () => {
         adicionarAoCarrinho({ ...product, quantidade: 1 });
@@ -196,23 +196,9 @@ export default function Produto({ product }) {
                         <div className='fixed inset-0 bg-black/60 flex items-center justify-center'>
                             <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-xl p-5 relative">
 
-
                                 <IoClose onClick={closeFormaPagamentoModal} className="absolute top-2 right-2 text-slate-600 w-8 h-8 cursor-pointer" />
 
-                                <div className='flex flex-col gap-10'>
-                                    <div className='flex gap-1 items-center text-xl'>
-                                        <h3 className='font-bold'>FORMAS DE PAGAMENTO</h3>
-                                    </div>
-
-                                    <div className='flex gap-11'>
-                                    
-                                        <button>Cartão de Crédito</button>
-                                        <button>PIX</button>
-                                        <button>Boleto Bancário</button>
-                                        <button>Nubank</button>
-
-                                    </div>
-                                </div>
+                                <FormaPagamento />
                             </div>
                         </div>
                     )}
