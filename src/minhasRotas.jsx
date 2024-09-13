@@ -6,6 +6,8 @@ import Conta from "./pages/conta";
 
 import Carrinho from "./pages/carrinho";
 import Entrega from "./pages/carrinho/entrega";
+import Pagamento from "./pages/carrinho/pagamento";
+import Confirmacao from "./pages/carrinho/confirmacao";
 
 import PaginaProduto from "./pages/productpage";
 
@@ -35,6 +37,8 @@ export default function MinhasRotas() {
                     <Route path="/minha-conta" element={<Conta />} />
                     <Route path="/carrinho" element={<Carrinho />} />
                     <Route path="/entrega" element={<Entrega />} />
+                    <Route path="/pagamento" element={<Pagamento />} />
+                    <Route path="/confirmacao" element={<Confirmacao />} />
                     <Route path="/product/:productId" element={<PaginaProduto />} />
                     <Route path="/guias" element={<GuiasInformativos />} />
                     <Route path="/monte-seu-pc" element={<MontePC />} />

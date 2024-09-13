@@ -92,9 +92,10 @@ export default function Carrinho() {
                             </section>
                             <section className="containerResumoFinalizar">
                                 <ResumoCart />
-                                <button type="button">
-                                    <Link to="/entrega">Continuar</Link>
-                                </button>
+
+                                <Link to="/entrega">
+                                    <button type="button">Continuar</button>
+                                </Link>
                             </section>
                         </div>
                         <ToastContainer />
