@@ -11,7 +11,7 @@ export default function ResumoCart() {
 
     return (
         <section className="containerResumo">
-            <h2>Resumo</h2>
+            <h2 className="font-bold text-xl">Resumo</h2>
             <div className="resumoCarrinho">
                 <div>
                     <p>Valor do carrinho:</p>

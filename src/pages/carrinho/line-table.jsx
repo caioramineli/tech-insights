@@ -1,6 +1,7 @@
 import { FaChevronLeft, FaChevronRight, FaTrash } from "react-icons/fa";
 import { useState } from "react";
 import { useCarrinho } from '../../contexts/contex-Cart';
+import { Link } from "react-router-dom";
 
 export default function LineTableCart({ produto, removerProduto }) {
     const { atualizarQuantidade } = useCarrinho();
@@ -35,10 +36,12 @@ export default function LineTableCart({ produto, removerProduto }) {
     return (
         <tr>
             <td>
-                <div className="boxImgDescricao">
-                    <img src={api + produto.images[0]} alt={produto.nome} />
-                    <p>{produto.nome}</p>
-                </div>
+                <Link to={`/product/${produto._id}`}>
+                    <div className="boxImgDescricao">
+                        <img src={api + produto.images[0]} alt={produto.nome} />
+                        <p>{produto.nome}</p>
+                    </div>
+                </Link>
             </td>
             <td className="w-[145px]">
                 <div className="boxQuantidade">

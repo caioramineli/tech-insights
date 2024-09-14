@@ -9,7 +9,10 @@ import 'react-toastify/dist/ReactToastify.css';
 // import Loading from "../../../components/Loading";
 import { MdShoppingCart } from "react-icons/md";
 import StepBar from "../step-bar";
-import { FaRegCheckCircle } from "react-icons/fa";
+import { FaPencilAlt, FaTrash, FaCheckCircle } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa6";
+
+
 
 
 export default function Entrega() {
@@ -40,39 +43,51 @@ export default function Entrega() {
                             <section className="flex flex-col gap-4 w-full">
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
                                     <div className="flex justify-between items-center">
-                                        <h2 className="text-lg font-bold">Endereço de Entrega</h2>
-                                        <button>+ Novo endereço</button>
+                                        <h2 className="text-lg font-bold text-emerald-600">Endereço de Entrega</h2>
+                                        <button className="flex items-center gap-1 bg-emerald-600 text-teal-50 p-2 rounded-md font-bold"><FaPlus /> Novo endereço</button>
                                     </div>
 
                                     <hr />
 
-                                    <div className="flex justify-between items-center border border-zinc-300 p-2 rounded-md">
-                                        <div className="flex items-center gap-2">
-                                            <FaRegCheckCircle className="text-2xl" />
+                                    <div className="flex justify-between items-center border border-zinc-300 px-4 py-2 rounded-md">
+                                        <div className="flex items-center gap-4">
+                                            <FaCheckCircle className="text-2xl" />
                                             <div className="flex flex-col">
-                                                <h3>Casa Caio</h3>
-                                                <p>Rua Vicente Lopes Ramon 764</p>
-                                                <p>Centro - Anhumas - SP, 19580-000</p>
+                                                <h3 className="font-bold text-base">Casa Caio</h3>
+                                                <p className="text-base">Rua Vicente Lopes Ramon 764</p>
+                                                <p className="text-sm">Centro - Anhumas - SP, 19580-000</p>
                                             </div>
                                         </div>
                                         <div className="flex gap-4">
-                                            <button>Editar</button>
-                                            <button>Excluir</button>
+                                            <button className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm">
+                                                <FaPencilAlt />
+                                                Editar
+                                            </button>
+                                            <button className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm">
+                                                <FaTrash />
+                                                Excluir
+                                            </button>
                                         </div>
                                     </div>
 
-                                    <div className="flex justify-between items-center border border-zinc-300 p-2 rounded-md">
-                                        <div className="flex items-center gap-2">
-                                            <FaRegCheckCircle className="text-2xl" />
+                                    <div className="flex justify-between items-center border border-zinc-300 px-4 py-2 rounded-md">
+                                        <div className="flex items-center gap-4">
+                                            <FaCheckCircle className="text-2xl" />
                                             <div className="flex flex-col">
-                                                <h3>Casa Caio</h3>
-                                                <p>Rua Vicente Lopes Ramon 764</p>
-                                                <p>Centro - Anhumas - SP, 19580-000</p>
+                                                <h3 className="font-bold text-base">Casa Caio</h3>
+                                                <p className="text-base">Rua Vicente Lopes Ramon 764</p>
+                                                <p className="text-sm">Centro - Anhumas - SP, 19580-000</p>
                                             </div>
                                         </div>
                                         <div className="flex gap-4">
-                                            <button>Editar</button>
-                                            <button>Excluir</button>
+                                            <button className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm">
+                                                <FaPencilAlt />
+                                                Editar
+                                            </button>
+                                            <button className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm">
+                                                <FaTrash />
+                                                Excluir
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -82,33 +97,33 @@ export default function Entrega() {
 
                                     <hr />
 
-                                    <div className="flex justify-between items-center border border-zinc-300 p-2 rounded-md">
+                                    <div className="flex justify-between items-center border border-zinc-300 p-4 rounded-md">
                                         <div className="flex items-center gap-4">
-                                            <FaRegCheckCircle className="text-2xl" />
+                                            <FaCheckCircle className="text-2xl" />
                                             <span>Expresso</span>
                                         </div>
                                         <span>Entrega em: até 5 dias úteis</span>
                                     </div>
 
-                                    <div className="flex justify-between items-center border border-zinc-300 p-2 rounded-md">
+                                    <div className="flex justify-between items-center border border-zinc-300 p-4 rounded-md">
                                         <div className="flex items-center gap-4">
-                                            <FaRegCheckCircle className="text-2xl" />
+                                            <FaCheckCircle className="text-2xl" />
                                             <span>Expresso</span>
                                         </div>
                                         <span>Entrega em: até 5 dias úteis</span>
                                     </div>
 
-                                    <div className="flex justify-between items-center border border-zinc-300 p-2 rounded-md">
+                                    <div className="flex justify-between items-center border border-zinc-300 p-4 rounded-md">
                                         <div className="flex items-center gap-4">
-                                            <FaRegCheckCircle className="text-2xl" />
+                                            <FaCheckCircle className="text-2xl" />
                                             <span>Expresso</span>
                                         </div>
                                         <span>Entrega em: até 5 dias úteis</span>
                                     </div>
 
-                                    <div className="flex justify-between items-center border border-zinc-300 p-2 rounded-md">
+                                    <div className="flex justify-between items-center border border-zinc-300 p-4 rounded-md">
                                         <div className="flex items-center gap-4">
-                                            <FaRegCheckCircle className="text-2xl" />
+                                            <FaCheckCircle className="text-2xl" />
                                             <span>Expresso</span>
                                         </div>
                                         <span>Entrega em: até 5 dias úteis</span>
@@ -118,9 +133,9 @@ export default function Entrega() {
 
                             <section className="containerResumoFinalizar">
                                 <ResumoCart />
-                                <button type="button">
-                                    <Link to="/pagamento">Continuar</Link>
-                                </button>
+                                <Link to="/pagamento">
+                                    <button type="button">Continuar</button>
+                                </Link>
                             </section>
                         </div>
 

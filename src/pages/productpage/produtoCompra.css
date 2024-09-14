@@ -89,7 +89,7 @@
     gap: 10px;
 }
 
-.containerDireitaProduto .btnsComprarAddCart button  {
+.containerDireitaProduto .btnsComprarAddCart button {
     border: none;
     background-color: var(--cyan-600);
     padding: 8px 30px;
@@ -120,6 +120,6 @@
     transition: .3s;
 }
 
-.containerDireitaProduto button:hover:not(:last-child){
+.containerDireitaProduto .btnsComprarAddCart button:hover {
     background-color: var(--cyan-700);
 }

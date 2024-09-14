@@ -1,15 +1,13 @@
-// import { FaTrash } from "react-icons/fa";
+
 import ResumoCart from "../resumo-cart";
 import React from 'react';
 import { useCarrinho } from '../../../contexts/contex-Cart';
-// import { ToastContainer, toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-// import axios from 'axios';
-// import Loading from "../../../components/Loading";
 import { MdShoppingCart } from "react-icons/md";
 import StepBar from "../step-bar";
-
+import { FaPix } from "react-icons/fa6";
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function Pagamento() {
     const { carrinho } = useCarrinho();
@@ -33,13 +31,34 @@ export default function Pagamento() {
                 ) : (
                     <>
                         <StepBar />
-                        <h1>Pagamento</h1>
-                        <section className="containerResumoFinalizar">
-                            <ResumoCart />
-                            <Link to="/confirmacao">
-                                <button type="button">Continuar</button>
-                            </Link>
-                        </section>
+                        <div className="flex gap-8 w-4/5 m-auto min-h-[42vh] max-w-[1300px] justify-between">
+                            <section className="flex flex-col gap-4 w-full">
+                                <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
+                                    <h2 className="text-lg font-bold text-emerald-600 uppercase">Escolha a forma de pagamento</h2>
+
+                                    <hr />
+
+                                    <div className="flex justify-between items-center border border-zinc-300 px-4 py-2 rounded-md">
+                                        <div className="flex items-center gap-4">
+                                            <FaPix className="text-4xl px-4 w-16" />
+                                            <div className="flex flex-col">
+                                                <p className="text-base">Pague com PIX</p>
+                                                <p className="text-sm">*precoTotal* com desconto à vista no boleto ou pix</p>
+                                            </div>
+                                        </div>
+                                        <FaCheckCircle className="text-2xl" />
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section className="containerResumoFinalizar">
+                                <ResumoCart />
+                                <Link to="/confirmacao">
+                                    <button type="button">Continuar</button>
+                                </Link>
+                            </section>
+                        </div>
+
                     </>
                 )}
             </main>
