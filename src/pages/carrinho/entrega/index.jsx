@@ -1,4 +1,3 @@
-// import { FaTrash } from "react-icons/fa";
 import ResumoCart from "../resumo-cart";
 import React from 'react';
 import { useCarrinho } from '../../../contexts/contex-Cart';
@@ -7,10 +6,10 @@ import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 // import axios from 'axios';
 // import Loading from "../../../components/Loading";
-import { MdShoppingCart } from "react-icons/md";
 import StepBar from "../step-bar";
 import { FaPencilAlt, FaTrash, FaCheckCircle } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
+import CarrinhoVazio from "../carrinhoVazio";
 
 
 
@@ -27,15 +26,7 @@ export default function Entrega() {
         <>
             <main className="flex flex-col w-full gap-4">
                 {carrinho.length === 0 ? (
-                    <div className="carrinhoVazio">
-                        <h1 className="text-2xl font-bold">O seu carrinho está vazio</h1>
-                        <Link to="/">
-                            <button>
-                                <MdShoppingCart />
-                                Escolher produtos
-                            </button>
-                        </Link>
-                    </div>
+                    <CarrinhoVazio />
                 ) : (
                     <>
                         <StepBar />

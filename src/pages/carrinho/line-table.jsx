@@ -14,7 +14,7 @@ export default function LineTableCart({ produto, removerProduto }) {
             const novaQtd = qtd + 1;
             setQtd(novaQtd);
             setSubTotal(novaQtd * precoUnitario);
-            atualizarQuantidade(produto._id, novaQtd);  // Atualiza o estado global
+            atualizarQuantidade(produto._id, novaQtd);
         }
     }
 
@@ -23,7 +23,7 @@ export default function LineTableCart({ produto, removerProduto }) {
             const novaQtd = qtd - 1;
             setQtd(novaQtd);
             setSubTotal(novaQtd * precoUnitario);
-            atualizarQuantidade(produto._id, novaQtd);  // Atualiza o estado global
+            atualizarQuantidade(produto._id, novaQtd);
         }
     }
 

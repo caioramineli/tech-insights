@@ -4,10 +4,11 @@ import React from 'react';
 import { useCarrinho } from '../../../contexts/contex-Cart';
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-import { MdShoppingCart } from "react-icons/md";
+import CarrinhoVazio from "../carrinhoVazio";
 import StepBar from "../step-bar";
 import { FaPix } from "react-icons/fa6";
 import { FaCheckCircle } from "react-icons/fa";
+import pix from "../../../assets/pixIcon.png"
 
 export default function Pagamento() {
     const { carrinho } = useCarrinho();
@@ -19,15 +20,7 @@ export default function Pagamento() {
         <>
             <main className="flex flex-col w-full gap-4">
                 {carrinho.length === 0 ? (
-                    <div className="carrinhoVazio">
-                        <h1 className="text-2xl font-bold">O seu carrinho está vazio</h1>
-                        <Link to="/">
-                            <button>
-                                <MdShoppingCart />
-                                Escolher produtos
-                            </button>
-                        </Link>
-                    </div>
+                    <CarrinhoVazio />
                 ) : (
                     <>
                         <StepBar />
@@ -40,7 +33,7 @@ export default function Pagamento() {
 
                                     <div className="flex justify-between items-center border border-zinc-300 px-4 py-2 rounded-md">
                                         <div className="flex items-center gap-4">
-                                            <FaPix className="text-4xl px-4 w-16" />
+                                            <img src={pix} alt="pix" className="w-12" />
                                             <div className="flex flex-col">
                                                 <p className="text-base">Pague com PIX</p>
                                                 <p className="text-sm">*precoTotal* com desconto à vista no boleto ou pix</p>
@@ -61,7 +54,7 @@ export default function Pagamento() {
 
                     </>
                 )}
-            </main>
+            </main >
         </>
     );
 }

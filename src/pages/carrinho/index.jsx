@@ -11,9 +11,9 @@ import 'react-toastify/dist/ReactToastify.css';
 // import axios from 'axios';
 // import Loading from "../../components/Loading";
 import Cupom from "./cupom";
-import { MdShoppingCart } from "react-icons/md";
 import StepBar from "./step-bar";
 import Frete from "./frete";
+import CarrinhoVazio from "./carrinhoVazio";
 
 export default function Carrinho() {
     // const [isSubmitting, setIsSubmitting] = useState(false);
@@ -65,15 +65,7 @@ export default function Carrinho() {
         <>
             <main className="mainCarrinho">
                 {carrinho.length === 0 ? (
-                    <div className="carrinhoVazio">
-                        <h1 className="text-2xl font-bold">O seu carrinho está vazio</h1>
-                        <Link to="/">
-                            <button>
-                                <MdShoppingCart />
-                                Escolher produtos
-                            </button>
-                        </Link>
-                    </div>
+                    <CarrinhoVazio />
                 ) : (
                     <>
                         <StepBar />

@@ -126,6 +126,18 @@ export default function Produto({ product }) {
                         Ver mais opções de pagamento
                     </button>
 
+                    {isFormaPagamentoModalOpen && (
+
+                        <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-10'>
+                            <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-xl p-2 sm:p-4 relative h-[440px] sm:h-[500px] overflow-y-auto">
+
+                                <IoClose onClick={closeFormaPagamentoModal} className="absolute top-2 right-2 text-slate-600 w-8 h-8 cursor-pointer" />
+
+                                <FormaPagamento valorPrazo={product.precoPrazo} valor={product.preco} />
+                            </div>
+                        </div>
+                    )}
+
                     <div className='btnsComprarAddCart'>
                         <button id="btnComprar" onClick={handleComprar}>
                             <MdShoppingCart />Comprar
@@ -191,17 +203,7 @@ export default function Produto({ product }) {
                         </div>
                     )}
 
-                    {isFormaPagamentoModalOpen && (
 
-                        <div className='fixed inset-0 bg-black/60 flex items-center justify-center'>
-                            <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-xl p-5 relative">
-
-                                <IoClose onClick={closeFormaPagamentoModal} className="absolute top-2 right-2 text-slate-600 w-8 h-8 cursor-pointer" />
-
-                                <FormaPagamento />
-                            </div>
-                        </div>
-                    )}
                 </section>
             </section>
         </>
