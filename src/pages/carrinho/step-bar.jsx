@@ -11,27 +11,27 @@ export default function StepBar() {
         <div className='flex items-center w-full bg-white h-16 bsPadrao'>
             <div className='flex items-center w-4/5 justify-between m-auto gap-2 max-w-[1300px]'>
                 <div className='flex items-center gap-2'>
-                    <MdShoppingCart className='text-emerald-500 gap-2 text-xl' />
+                    <MdShoppingCart className='text-emerald-600 gap-2 text-xl' />
                     <span>Carrinho</span>
                 </div>
-                <hr className='border-emerald-500 border w-full' />
+                <hr className='border-emerald-600 border w-full' />
                 <div className='flex items-center gap-2'>
-                    <FaUser className='text-emerald-500 text-xl' />
+                    <FaUser className='text-emerald-600 text-xl' />
                     <span>Identificação</span>
                 </div>
-                <hr className='border-emerald-500 border w-full' />
+                <hr className='border-emerald-600 border w-full' />
                 <div className='flex items-center gap-2'>
-                    <FaLocationDot className='text-emerald-500 text-xl' />
+                    <FaLocationDot className='text-emerald-600 text-xl' />
                     <span>Entrega</span>
                 </div>
-                <hr className='border-emerald-500 border w-full' />
+                <hr className='border-emerald-600 border w-full' />
                 <div className='flex items-center gap-2'>
-                    <MdAttachMoney className='text-emerald-500 text-xl' />
+                    <MdAttachMoney className='text-emerald-600 text-xl' />
                     <span>Pagamento</span>
                 </div>
-                <hr className='border-emerald-500 border w-full' />
+                <hr className='border-emerald-600 border w-full' />
                 <div className='flex items-center gap-2'>
-                    <FaCheckCircle className='text-emerald-500 text-xl' />
+                    <FaCheckCircle className='text-emerald-600 text-xl' />
                     <span>Confirmação</span>
                 </div>
             </div>

@@ -6,6 +6,10 @@ import Separador from "../../components/Separador";
 export default function ResumoCart() {
     const { calcularValorTotal, desconto, frete, calcularValorFinal, freteSelecionado } = useCarrinho();
 
+    function formatarPreco(preco) {
+        return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    }
+
     useEffect(() => {
     }, [calcularValorTotal, desconto, frete]);
 
@@ -15,35 +19,35 @@ export default function ResumoCart() {
             <div className="resumoCarrinho">
                 <div>
                     <p>Valor do carrinho:</p>
-                    <p>{calcularValorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    <p>{formatarPreco(calcularValorTotal)}</p>
                 </div>
 
                 <Separador />
 
                 <div>
                     <p>Descontos:</p>
-                    <p>{desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    <p>{formatarPreco(desconto)}</p>
                 </div>
 
                 <Separador />
 
                 <div>
                     <p>Frete:</p>
-                    <p>{frete[freteSelecionado]?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    <p>{frete[freteSelecionado] ? formatarPreco(frete[freteSelecionado]) : null}</p>
                 </div>
 
                 <Separador />
 
                 <div>
                     <p>Valor Total a prazo:</p>
-                    <p>{calcularValorFinal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    <p>{formatarPreco(calcularValorFinal)}</p>
                 </div>
 
                 <Separador />
 
                 <div>
                     <p>Valor Total à vista:</p>
-                    <p>{(((calcularValorFinal - frete[freteSelecionado]) * 0.9) + frete[freteSelecionado]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    <p>{formatarPreco((((calcularValorFinal - frete[freteSelecionado]) * 0.9) + frete[freteSelecionado]))}</p>
                 </div>
             </div>
         </section>

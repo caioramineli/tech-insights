@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css'
 import { FaBarcode, FaRegCreditCard } from "react-icons/fa";
 import { SiPix } from "react-icons/si";
-import { useState } from 'react';
 
 function FormaPagamento({ valorPrazo, valor }) {
     const [toggle, setToggle] = useState(1);

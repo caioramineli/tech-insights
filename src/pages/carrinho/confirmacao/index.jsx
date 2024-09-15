@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // import Loading from "../../../components/Loading";
 import { MdShoppingCart } from "react-icons/md";
 import StepBar from "../step-bar";
+import CarrinhoVazio from "../carrinhoVazio/index";
 
 
 export default function Confirmacao() {
@@ -21,15 +22,7 @@ export default function Confirmacao() {
         <>
             <main className="flex flex-col w-full gap-4">
                 {carrinho.length === 0 ? (
-                    <div className="carrinhoVazio">
-                        <h1 className="text-2xl font-bold">O seu carrinho está vazio</h1>
-                        <Link to="/">
-                            <button>
-                                <MdShoppingCart />
-                                Escolher produtos
-                            </button>
-                        </Link>
-                    </div>
+                    <CarrinhoVazio />
                 ) : (
                     <>
                         <StepBar />

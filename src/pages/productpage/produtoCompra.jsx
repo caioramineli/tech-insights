@@ -109,7 +109,7 @@ export default function Produto({ product }) {
                     <div className="containerPagVista">
                         <FaBarcode />
                         <div className="valorVista">
-                            <h3 className='sm:text-base md:text-lg lg:text-xl xl:text-[1.4rem] text-teal-700 font-bold'>{formatarValor(product.preco)}</h3>
+                            <h3 className='sm:text-base md:text-lg lg:text-xl xl:text-[1.4rem] text-emerald-700 font-bold'>{formatarValor(product.preco)}</h3>
                             <p className='text-sm sm:text-base'>à vista com 10% de desconto no boleto ou pix</p>
                         </div>
                     </div>
@@ -164,7 +164,7 @@ export default function Produto({ product }) {
                                     />
                                 )}
                             </InputMask>
-                            <button className="flex items-center gap-2 bg-teal-600 rounded-md p-2 text-cyan-50 hover:bg-teal-700" onClick={openFreteModal}>
+                            <button className="flex items-center gap-2 bg-emerald-600 rounded-md p-2 text-cyan-50 hover:bg-emerald-700" onClick={openFreteModal}>
                                 Calcular
                                 <FaTruck />
                             </button>
@@ -179,13 +179,13 @@ export default function Produto({ product }) {
 
                                 <div className='flex flex-col gap-4'>
                                     <div className='flex gap-1 items-center text-xl'>
-                                        <FaTruck className='text-teal-600' />
+                                        <FaTruck className='text-emerald-600' />
                                         <h3 className='font-bold'>Frete e Prazo</h3>
 
                                     </div>
 
                                     <div className='flex gap-1 items-center text-lg'>
-                                        <FaLocationDot className='text-teal-600' />
+                                        <FaLocationDot className='text-emerald-600' />
                                         <h3 className='font-bold'>CEP {cep}</h3>
                                     </div>
 
