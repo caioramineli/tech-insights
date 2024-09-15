@@ -24,7 +24,7 @@ function FormaPagamento({ valorPrazo, valor }) {
         <>
             <h3 className='font-bold text-lg md:text-2xl flex justify-center mb-6'>FORMAS DE PAGAMENTO</h3>
 
-            <div className='flex w-11/12 m-auto justify-between mb-6'>
+            <div className='flex w-[95%] sm:w-11/12 m-auto justify-between mb-6'>
                 <button className='flex flex-col items-center gap-1' onClick={() => updateToglle(1)}>
                     <FaRegCreditCard className={toggle === 1 ? 'text-teal-600 text-4xl' : 'text-zinc-400 text-4xl'} />
                     Cartão de Crédito
@@ -41,7 +41,7 @@ function FormaPagamento({ valorPrazo, valor }) {
                 </button>
             </div>
 
-            <ul className={toggle === 1 ? 'flex flex-col w-11/12 m-auto' : 'hidden'}>
+            <ul className={toggle === 1 ? 'flex flex-col w-[95%] sm:w-11/12 m-auto' : 'hidden'}>
                 {precos.map((preco, index) => (
                     <li
                         key={index}
@@ -53,14 +53,14 @@ function FormaPagamento({ valorPrazo, valor }) {
                 ))}
             </ul>
 
-            <div className={toggle === 2 ? 'flex flex-col items-center gap-2 w-11/12 m-auto' : 'hidden'}>
+            <div className={toggle === 2 ? 'flex flex-col items-center gap-2 w-[95%] sm:w-11/12 m-auto' : 'hidden'}>
                 <h1 className='text-2xl text-teal-700 font-bold'>{formatarPreco(valor)}</h1>
                 <p className='font-bold'>À vista no Pix com 10% OFF</p>
                 <hr className='border border-teal-600 w-full' />
                 <p>Pague com o PIX e priorizamos o despacho em 1 hora!</p>
             </div>
 
-            <div className={toggle === 3 ? 'flex flex-col items-center gap-2 w-11/12 m-auto' : 'hidden'}>
+            <div className={toggle === 3 ? 'flex flex-col items-center gap-2 w-[95%] sm:w-11/12 m-auto' : 'hidden'}>
                 <h1 className='text-2xl text-teal-700 font-bold'>{formatarPreco(valor)}</h1>
                 <p className='font-bold'>À vista no Boleto com 10% OFF</p>
                 <hr className='border border-teal-600 w-full' />
