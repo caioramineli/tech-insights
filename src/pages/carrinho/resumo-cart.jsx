@@ -33,7 +33,7 @@ export default function ResumoCart() {
 
                 <div>
                     <p>Frete:</p>
-                    <p>{frete[freteSelecionado] ? formatarPreco(frete[freteSelecionado]) : null}</p>
+                    <p>{frete[freteSelecionado] ? formatarPreco(frete[freteSelecionado]) : formatarPreco(0)}</p>
                 </div>
 
                 <Separador />

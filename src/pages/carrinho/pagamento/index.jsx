@@ -35,9 +35,9 @@ export default function Pagamento() {
                     <CarrinhoVazio />
                 ) : (
                     <>
-                        <StepBar />
-                        <div className="flex gap-8 w-4/5 m-auto min-h-[52vh] max-w-[1300px] justify-between">
-                            <section className="flex flex-col gap-5 w-full">
+                        <StepBar step={4}  />
+                        <div className="flex gap-8 w-[90%] xl:w-4/5 m-auto min-h-[52vh] max-w-[1300px] justify-between">
+                            <section className="flex flex-col gap-5 mb-4 w-full">
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
                                     <h2 className="text-lg font-bold text-emerald-600 uppercase">Escolha a forma de pagamento</h2>
 

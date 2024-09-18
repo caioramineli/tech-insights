@@ -4,9 +4,9 @@ import TableCart from "./table-cart";
 import ResumoCart from "./resumo-cart";
 import React, { useContext, useState } from 'react';
 import { useCarrinho } from '../../contexts/contex-Cart';
-// import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 // import axios from 'axios';
 // import Loading from "../../components/Loading";
@@ -18,7 +18,16 @@ import CarrinhoVazio from "./carrinhoVazio";
 export default function Carrinho() {
     // const [isSubmitting, setIsSubmitting] = useState(false);
     const { carrinho, zerarCarrinho, calcularValorFinal, frete, freteSelecionado } = useCarrinho();
-    // const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    function verificarLogin() {
+        if (user) {
+            navigate('/entrega')
+        } else {
+            navigate('/login')
+        }
+    }
 
     // const notifySuccess = (text) => toast.success(text);
     // const notifyError = (text) => toast.error(text);
@@ -69,9 +78,10 @@ export default function Carrinho() {
                 ) : (
                     <>
                         <StepBar />
-                        <div className="flex gap-8 w-4/5 m-auto min-h-[42vh] max-w-[1300px]">
+                        <div className="flex gap-8 w-[90%] xl:w-4/5 m-auto min-h-[42vh] max-w-[1300px]">
                             <section className="containerPrincipal">
                                 <TableCart />
+
                                 <div className="limparCarrinho" onClick={() => zerarCarrinho()}>
                                     <FaTrash />
                                     <h3>Limpar carrinho</h3>
@@ -85,9 +95,7 @@ export default function Carrinho() {
                             <section className="containerResumoFinalizar">
                                 <ResumoCart />
 
-                                <Link to="/entrega">
-                                    <button type="button">Continuar</button>
-                                </Link>
+                                <button type="button" onClick={verificarLogin}>Continuar</button>
                             </section>
                         </div>
                         <ToastContainer />

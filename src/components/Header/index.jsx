@@ -7,13 +7,18 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { PiUserCircleLight } from "react-icons/pi";
 import { MdShoppingCart } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCarrinho } from '../../contexts/contex-Cart';
 import Logo from "../../assets/logo.png"
 
 const Header = () => {
     const { carrinho } = useCarrinho();
     const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    function returnHome() {
+        navigate("/")
+    }
 
     const getFirstName = (fullName) => {
         return fullName.split(' ')[0];
@@ -37,9 +42,15 @@ const Header = () => {
                         <div>
                             <span className='font-bold text-nowrap'>Olá, {getFirstName(user.nome)}</span>
                             <div className='flex gap-1'>
-                                <Link to="/minha-conta" className='text-nowrap'><button>Minha conta</button></Link>
+                                <Link to="/minha-conta" className='text-nowrap hover:text-cyan-500 duration-200'><button>Minha conta</button></Link>
                                 <span>|</span>
-                                <button onClick={logout}>Sair</button>
+                                <button className='hover:text-cyan-500 duration-200'
+                                    onClick={() => {
+                                        logout();
+                                        returnHome();
+                                    }}>
+                                    Sair
+                                </button>
                             </div>
                         </div>
                     ) : (

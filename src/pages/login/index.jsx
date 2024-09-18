@@ -8,6 +8,7 @@ import { useState, useContext } from 'react';
 import Loading from '../../components/Loading';
 import InputPassword from "../../components/InputPassword";
 import { AuthContext } from '../../contexts/AuthContext';
+import { useCarrinho } from '../../contexts/contex-Cart';
 
 import './style.css';
 
@@ -16,7 +17,8 @@ export default function Login() {
     const [senha, setSenha] = useState('');
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const { login } = useContext(AuthContext); 
+    const { login } = useContext(AuthContext);
+    const { carrinho } = useCarrinho();
 
     const navigate = useNavigate();
 
@@ -28,9 +30,12 @@ export default function Login() {
             const response = await axios.post('https://backend-tech-insights.vercel.app/login', { email, senha });
             localStorage.setItem('token', response.data.token);
             login(response.data.token);
-            navigate('/')
+            if (carrinho.length > 0) {
+                navigate('/entrega')
+            } else {
+                navigate('/')
+            }
         } catch (error) {
-            console.error('Erro no login:', error.response.data.msg);
             if (error.response.status !== 200) {
                 setError("E-mail ou senha incorretos!");
             }

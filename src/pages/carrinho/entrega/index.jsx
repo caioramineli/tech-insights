@@ -33,8 +33,8 @@ export default function Entrega() {
                     <CarrinhoVazio />
                 ) : (
                     <>
-                        <StepBar />
-                        <div className="flex gap-8 w-4/5 m-auto min-h-[42vh] max-w-[1300px] justify-between">
+                        <StepBar step={3} />
+                        <div className="flex gap-8 w-[90%] xl:w-4/5 m-auto min-h-[42vh] max-w-[1300px] justify-between">
                             <section className="flex flex-col gap-5 w-full mb-4">
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
                                     <div className="flex justify-between items-center">

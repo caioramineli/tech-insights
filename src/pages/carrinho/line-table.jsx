@@ -46,9 +46,9 @@ export default function LineTableCart({ produto, removerProduto }) {
             <td className="w-[145px]">
                 <div className="boxQuantidade">
                     <div className="qtd">
-                        <FaChevronLeft onClick={diminuirQtd} />
+                        <FaChevronLeft className="cursor-pointer" onClick={diminuirQtd} />
                         <span>{qtd}</span>
-                        <FaChevronRight onClick={aumentarQtd} />
+                        <FaChevronRight className="cursor-pointer" onClick={aumentarQtd} />
                     </div>
 
                     <div className="remove" onClick={() => removerProduto(produto._id)}>

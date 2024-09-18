@@ -8,7 +8,7 @@ export default function PesquisarHeader({ display = "hidden", responsivo= "md:fl
                 type="text"
                 placeholder="Pesquisar produtos"
             />
-            <IoSearch className="text-cyan-100 text-2xl" />
+            <IoSearch className="text-cyan-100 text-2xl cursor-pointer" />
         </div>
     );
 }
