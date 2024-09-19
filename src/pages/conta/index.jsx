@@ -3,6 +3,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import Loading from '../../components/Loading';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { PiUserCircleLight } from "react-icons/pi";
 
 import './style.css';
 
@@ -39,14 +40,19 @@ export default function Conta() {
     }
 
     return (
-        <div className="conta-container">
-            <h1 className='text-xl'>Minha Conta</h1>
-            <div className="user-details">
-                <p><strong>Nome:</strong> {userData.nome}</p>
-                <p><strong>CPF:</strong> {userData.cpf}</p>
-                <p><strong>Data de Nascimento:</strong> {userData.dataNascimento}</p>
-                <p><strong>Telefone:</strong> {userData.telefone}</p>
-                <p><strong>Email:</strong> {userData.email}</p>
+
+        <div className='flex'>
+            <PiUserCircleLight className='absolute mx-32 -mt-5 justify-center w-11 h-11 ' />
+            <div className="conta-container">
+                
+                <h1 className='flex text-xl justify-center'>Minha Conta</h1>
+                <div className="user-details">
+                    <p><strong>Nome do Perfil:</strong> {userData.nome} <hr /></p>
+                    <p><strong>CPF:</strong> {userData.cpf} <hr /></p>
+                    <p><strong>Data de Nascimento:</strong> {userData.dataNascimento}<hr /></p>
+                    <p><strong>Telefone:</strong> {userData.telefone}<hr /></p>
+                    <p><strong>Email:</strong> {userData.email}<hr /></p>
+                </div>
             </div>
         </div>
     );
