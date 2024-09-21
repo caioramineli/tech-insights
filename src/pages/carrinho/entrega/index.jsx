@@ -1,28 +1,23 @@
 import ResumoCart from "../resumo-cart";
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useCarrinho } from '../../../contexts/contex-Cart';
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-// import axios from 'axios';
-// import Loading from "../../../components/Loading";
 import StepBar from "../step-bar";
-import { FaPencilAlt, FaTrash } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import CarrinhoVazio from "../carrinhoVazio";
 import { FaArrowLeft } from "react-icons/fa6";
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 import FormCadastrarEndereco from "./formCadastrarEndereco";
 import { ToastContainer } from "react-toastify";
+import Enderecos from "./enderecos";
+import { AuthContext } from '../../../contexts/AuthContext';
 
 export default function Entrega() {
     const [formEndereco, setFormEndereco] = useState(false)
     const { carrinho } = useCarrinho();
-    const [toggle, setToggle] = useState(1);
     const [toggleEnvio, setToggleEnvio] = useState(1);
-
-    function updateToglle(id) {
-        setToggle(id);
-    }
+    const { user } = useContext(AuthContext);
 
     function updateToglleEnvio(id) {
         setToggleEnvio(id);
@@ -54,51 +49,7 @@ export default function Entrega() {
                                         <FormCadastrarEndereco estado={formEndereco} setEstado={setFormEndereco} />
                                     )}
 
-                                    <div onClick={() => updateToglle(1)} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggle !== 1 ? 'border-zinc-300' : ''}`}>
-                                        <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={toggle === 1 ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={toggle !== 1 ? 'text-3xl' : 'hidden'} />
-
-                                            <div className="flex flex-col">
-                                                <h3 className="font-bold text-base">Casa Caio</h3>
-                                                <p className="text-base">Rua Vicente Lopes Ramon 764</p>
-                                                <p className="text-sm">Centro - Anhumas - SP, 19580-000</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex gap-4">
-                                            <button className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm">
-                                                <FaPencilAlt />
-                                                Editar
-                                            </button>
-                                            <button className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm">
-                                                <FaTrash />
-                                                Excluir
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div onClick={() => updateToglle(2)} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggle !== 2 ? 'border-zinc-300' : ''}`}>
-                                        <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={toggle === 2 ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={toggle !== 2 ? 'text-3xl' : 'hidden'} />
-
-                                            <div className="flex flex-col">
-                                                <h3 className="font-bold text-base">Casa Caio</h3>
-                                                <p className="text-base">Rua Vicente Lopes Ramon 764</p>
-                                                <p className="text-sm">Centro - Anhumas - SP, 19580-000</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex gap-4">
-                                            <button className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm">
-                                                <FaPencilAlt />
-                                                Editar
-                                            </button>
-                                            <button className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm">
-                                                <FaTrash />
-                                                Excluir
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <Enderecos userId={user.id} />
                                 </div>
 
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">

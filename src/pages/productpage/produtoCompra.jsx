@@ -44,7 +44,6 @@ export default function Produto({ product }) {
         setIsFreteModalOpen(false);
     }
 
-    // FORMA DE PAGAMENTO
     function openFormaPagamentoModal() {
         setIsFormaPagamentoModalOpen(true);
     }
