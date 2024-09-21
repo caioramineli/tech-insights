@@ -222,8 +222,11 @@ export default function Cadastrar() {
                 </div>
 
                 <div className='btnCarregamento'>
+
                     {isSubmitting ? (
-                        <Loading />
+                        <div className='flex justify-center h-[3.42rem] items-center'>
+                            <Loading color = "#047857" />
+                        </div>
                     ) : (
                         <BtnCadastrar />
                     )}

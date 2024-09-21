@@ -1,7 +1,6 @@
 import ResumoCart from "../resumo-cart";
 import React, { useState } from 'react';
 import { useCarrinho } from '../../../contexts/contex-Cart';
-// import { ToastContainer, toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 // import axios from 'axios';
@@ -12,8 +11,11 @@ import { FaPlus } from "react-icons/fa6";
 import CarrinhoVazio from "../carrinhoVazio";
 import { FaArrowLeft } from "react-icons/fa6";
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
+import FormCadastrarEndereco from "./formCadastrarEndereco";
+import { ToastContainer } from "react-toastify";
 
 export default function Entrega() {
+    const [formEndereco, setFormEndereco] = useState(false)
     const { carrinho } = useCarrinho();
     const [toggle, setToggle] = useState(1);
     const [toggleEnvio, setToggleEnvio] = useState(1);
@@ -24,6 +26,10 @@ export default function Entrega() {
 
     function updateToglleEnvio(id) {
         setToggleEnvio(id);
+    }
+
+    function openFormEnderecoModal() {
+        setFormEndereco(true)
     }
 
     return (
@@ -39,10 +45,14 @@ export default function Entrega() {
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
                                     <div className="flex justify-between items-center">
                                         <h2 className="text-lg font-bold text-emerald-600">Endereço de Entrega</h2>
-                                        <button className="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 duration-200 text-teal-50 p-2 rounded-md font-bold"><FaPlus /> Novo endereço</button>
+                                        <button className="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 duration-200 text-teal-50 p-2 rounded-md font-bold" onClick={openFormEnderecoModal}><FaPlus /> Novo endereço</button>
                                     </div>
 
                                     <hr />
+
+                                    {formEndereco && (
+                                        <FormCadastrarEndereco estado={formEndereco} setEstado={setFormEndereco} />
+                                    )}
 
                                     <div onClick={() => updateToglle(1)} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggle !== 1 ? 'border-zinc-300' : ''}`}>
                                         <div className="flex items-center gap-4">
@@ -141,7 +151,7 @@ export default function Entrega() {
                                 <ResumoCart />
                             </section>
                         </div>
-
+                        <ToastContainer />
                     </>
                 )}
             </main>

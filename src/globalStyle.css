@@ -75,3 +75,61 @@ body {
 li {
     list-style: none;
 }
+
+.divInputModerno {
+    position: relative;
+}
+
+.divInputModerno input {
+    border-radius: 6px;
+    font-size: 1rem;
+    padding: 10px 12px;
+    border: 1px solid #71717a;
+    background-color: transparent;
+    outline: 0;
+    transition: 0.2s;
+    width: 100%;
+}
+
+.divInputModerno input::placeholder {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: #71717a;
+}
+
+.divInputModerno label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.2s;
+    color: #71717a;
+}
+
+.divInputModerno input:focus~label {
+    top: 0px;
+    left: 8px;
+    font-size: 14px;
+    background-color: #fff;
+    padding: 0 2px;
+    color: #059669;
+}
+
+.divInputModerno input:focus {
+    border: 1px solid #059669;
+}
+
+.divInputModerno input:focus::placeholder {
+    opacity: 1;
+}
+
+.divInputModerno input:not(:placeholder-shown)+label {
+    top: 0px;
+    color: #71717a;
+    left: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    padding: 0 2px;
+}
