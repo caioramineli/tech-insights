@@ -1,0 +1,208 @@
+import axios from 'axios';
+import { useState, useContext } from 'react';
+import InputMask from 'react-input-mask';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../contexts/AuthContext';
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from '../../../components/Loading';
+
+const FormCadastrarEndereco = ({ estado, setEstado }) => {
+    function closeFormEnderecoModal() {
+        setEstado(false)
+    }
+
+    const [formData, setFormData] = useState({
+        nome: '',
+        cep: '',
+        rua: '',
+        numero: '',
+        complemento: '',
+        bairro: '',
+        cidade: '',
+        estado: ''
+    });
+
+    const { user } = useContext(AuthContext);
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const notifySuccess = () => toast.success("Endereço cadastrado com sucesso!");
+    const notifyError = (message) => toast.error(message);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        const cepPuro = formData.cep.replace(/\D/g, '');
+        if (cepPuro.length !== 8) {
+            notifyError("Informe um CEP válido")
+            setIsSubmitting(false);
+            return
+        }
+
+        try {
+            await axios.post(`https://backend-tech-insights.vercel.app/user/${user.id}/endereco`, formData);
+            setFormData({
+                nome: '',
+                cep: '',
+                rua: '',
+                numero: '',
+                complemento: '',
+                bairro: '',
+                cidade: '',
+                estado: ''
+            });
+            notifySuccess();
+        } catch (error) {
+            const erro = error.response?.data?.msg || "Erro ao realizar o cadastro.";
+            notifyError(erro);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+
+    return (
+        <>
+            <h1 className='text-xl mb-2'>Novo Endereço de Entrega</h1>
+            <form method="POST" onSubmit={handleSubmit} className='flex flex-col gap-4'>
+                <div className='grid grid-cols-3 gap-4'>
+                    <div className='divInputModerno'>
+                        <input
+                            name="nome"
+                            type="text"
+                            placeholder="Minha casa"
+                            value={formData.nome}
+                            onChange={handleChange}
+                            required
+                        />
+                        <label>
+                            Nome do endereço
+                        </label>
+                    </div>
+
+                    <div className='divInputModerno'>
+                        <InputMask
+                            mask="99999-999"
+                            value={formData.cep}
+                            onChange={handleChange}
+                        >
+                            {() => (
+                                <input
+                                    name="cep"
+                                    type="text"
+                                    placeholder=""
+                                />
+                            )}
+                        </InputMask>
+                        <label>
+                            CEP
+                        </label>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4">
+                    <div className="divInputModerno">
+                        <input
+                            name="rua"
+                            type="text"
+                            placeholder="Ex: Rua Teresina"
+                            value={formData.rua}
+                            onChange={handleChange}
+                            required
+                        />
+                        <label>
+                            Rua
+                        </label>
+                    </div>
+                    <div className="divInputModerno">
+                        <input
+                            name="numero"
+                            type="text"
+                            placeholder="Ex: 1000"
+                            value={formData.numero}
+                            onChange={handleChange}
+                            required
+                        />
+                        <label>
+                            Número
+                        </label>
+                    </div>
+                    <div className="divInputModerno">
+                        <input
+                            name="complemento"
+                            type="text"
+                            placeholder=""
+                            value={formData.complemento}
+                            onChange={handleChange}
+                            required
+                        />
+                        <label>
+                            Complemento
+                        </label>
+                    </div>
+                    <div className="divInputModerno">
+                        <input
+                            name="bairro"
+                            type="text"
+                            placeholder="Centro"
+                            value={formData.bairro}
+                            onChange={handleChange}
+                            required
+                        />
+                        <label>
+                            Bairro
+                        </label>
+                    </div>
+                    <div className="divInputModerno">
+                        <input
+                            name="estado"
+                            type="text"
+                            placeholder="Estado"
+                            value={formData.estado}
+                            onChange={handleChange}
+                            required
+                        />
+                        <label>
+                            Estado
+                        </label>
+                    </div>
+                    <div className="divInputModerno">
+                        <input
+                            name="cidade"
+                            type="text"
+                            placeholder="Cidade"
+                            value={formData.cidade}
+                            onChange={handleChange}
+                            required
+                        />
+                        <label>
+                            Cidade
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    {isSubmitting ? (
+                        <div className='flex justify-center h-[3.42rem] items-center'>
+                            <Loading color="#047857" />
+                        </div>
+                    ) : (
+                        <div className='flex justify-end gap-4'>
+                            <button className='bg-gray-300 rounded-md py-2 px-6' type='button' onClick={closeFormEnderecoModal}>Cancelar</button>
+                            <button className='bg-emerald-600 rounded-md py-2 px-6 font-bold text-emerald-50' type='subimit'>Salvar</button>
+                        </div>
+                    )}
+                </div>
+            </form>
+            <hr />
+        </>
+    );
+}
+
+export default FormCadastrarEndereco;
