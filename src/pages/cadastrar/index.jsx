@@ -143,63 +143,87 @@ export default function Cadastrar() {
     return (
         <div id="containerCadastrar">
             <ToastContainer />
-            <form method="POST" onSubmit={handleSubmit}>
+            <form method="POST" onSubmit={handleSubmit} className="flex flex-col bg-white bsPadrao rounded-lg p-8 gap-3">
                 <h1>Cadastrar-se</h1>
                 <div id='containerInputs'>
-                    <input
-                        name="nome"
-                        type="text"
-                        placeholder="Nome completo"
-                        value={formData.nome}
-                        onChange={handleChange}
-                    />
-                    <InputMask
-                        mask="999.999.999-99"
-                        value={formData.cpf}
-                        onChange={handleChange}
-                    >
-                        {() => (
-                            <input
-                                name="cpf"
-                                type="text"
-                                placeholder="CPF"
-
-                            />
-                        )}
-                    </InputMask>
-                    <InputMask
-                        mask="99/99/9999"
-                        value={formData.dataNascimento}
-                        onChange={handleChange}
-                    >
-                        {() => (
-                            <input
-                                name="dataNascimento"
-                                type="text"
-                                placeholder="Data de nascimento"
-                            />
-                        )}
-                    </InputMask>
-                    <InputMask
-                        mask="(99) 99999-9999"
-                        value={formData.telefone}
-                        onChange={handleChange}
-                    >
-                        {() => (
-                            <input
-                                name="telefone"
-                                type="text"
-                                placeholder="Telefone celular"
-                            />
-                        )}
-                    </InputMask>
-                    <input
-                        name="email"
-                        type="email"
-                        placeholder="E-mail"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
+                    <div className="divInputModerno">
+                        <input
+                            name="nome"
+                            type="text"
+                            placeholder="Nome "
+                            value={formData.nome}
+                            onChange={handleChange}
+                        />
+                        <label>
+                            Nome completo
+                        </label>
+                    </div>
+                    <div className="divInputModerno">
+                        <InputMask
+                            mask="999.999.999-99"
+                            value={formData.cpf}
+                            onChange={handleChange}
+                        >
+                            {() => (
+                                <input
+                                    name="cpf"
+                                    type="text"
+                                    placeholder=""
+                                />
+                            )}
+                        </InputMask>
+                        <label>
+                            CPF
+                        </label>
+                    </div>
+                    <div className="divInputModerno">
+                        <InputMask
+                            mask="99/99/9999"
+                            value={formData.dataNascimento}
+                            onChange={handleChange}
+                        >
+                            {() => (
+                                <input
+                                    name="dataNascimento"
+                                    type="text"
+                                    placeholder=""
+                                />
+                            )}
+                        </InputMask>
+                        <label>
+                            Data de nascimento
+                        </label>
+                    </div>
+                    <div className="divInputModerno">
+                        <InputMask
+                            mask="(99) 99999-9999"
+                            value={formData.telefone}
+                            onChange={handleChange}
+                        >
+                            {() => (
+                                <input
+                                    name="telefone"
+                                    type="text"
+                                    placeholder=""
+                                />
+                            )}
+                        </InputMask>
+                        <label>
+                        Telefone celular
+                        </label>
+                    </div>
+                    <div className="divInputModerno">
+                        <input
+                            name="email"
+                            type="email"
+                            placeholder="exemplo@gmail.com"
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
+                        <label>
+                            E-mail
+                        </label>
+                    </div>
                     <InputPassword
                         placeholder={"Insira sua senha"}
                         value={formData.senha}
@@ -225,7 +249,7 @@ export default function Cadastrar() {
 
                     {isSubmitting ? (
                         <div className='flex justify-center h-[3.42rem] items-center'>
-                            <Loading color = "#047857" />
+                            <Loading color="#047857" />
                         </div>
                     ) : (
                         <BtnCadastrar />

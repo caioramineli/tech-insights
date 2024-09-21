@@ -155,3 +155,40 @@
         gap: 10px;
     }
 }
+
+@media(max-width:800px){
+    /* LOGIN */
+    #container-login{
+        margin-top: 3rem;
+        margin-bottom: 3rem;   
+    }
+    
+    #container-login input{
+        padding: 8px;
+        font-size: 0.9rem;  
+    }
+    #container-login form{
+        width: 90%;
+        margin: 0 auto;
+    }
+    #container-login #esqueceuSenha {
+        bottom: 8px;
+        font-size: 0.9rem;
+    }
+}
+@media(max-width:500px){
+    /* LOGIN */
+    #container-login{
+        min-width: 80%;
+        margin-top: 3.05rem;
+        margin-bottom: 5rem; 
+    }
+    #container-login input{
+        padding: 5px;
+        margin-left: 4px;
+    }
+    #container-login #esqueceuSenha {
+        bottom: 8px;
+        font-size: 0.8rem;
+    }
+}

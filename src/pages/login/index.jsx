@@ -47,19 +47,22 @@ export default function Login() {
     return (
         <>
             <div id="container-login">
-                <form method="POST" onSubmit={handleSubmit}>
+                <form method="POST" onSubmit={handleSubmit} className="flex flex-col bg-white bsPadrao rounded-lg p-8 gap-3">
                     <h1>Login</h1>
 
-                    <div className="inputEmail">
+                    <div className="divInputModerno">
                         <MdOutlineEmail />
                         <input
                             name="email"
                             type="email"
-                            placeholder="Insira seu email"
+                            placeholder="exemplo@gmail.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
+                        <label>
+                        Insira seu email
+                        </label>
                     </div>
 
                     <div className="inputSenha">
