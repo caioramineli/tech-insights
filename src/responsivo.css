@@ -161,6 +161,10 @@
         font-size: 1.1rem;
     }
 
+    #container-login .divInputModerno label{
+        font-size: 1rem;
+    }
+
     /* Cadastrar */
     #containerCadastrar .termos {
         font-size: 0.9rem;
@@ -177,17 +181,17 @@
     }
 
     .passwordContainer label.filled {
-        font-size: 0.8rem;
+        font-size: 0.9rem !important;
     }
 
     /* Input Moderno */
     .divInputModerno input {
-        font-size: 0.95rem !important;
-        padding: 9px 11px !important;
+        font-size: 0.95rem;
+        padding: 9px 11px;
     }
     
     .divInputModerno label {
-        font-size: 0.95rem !important;
+        font-size: 0.95rem;
     }
     
     .divInputModerno:focus-within label {
