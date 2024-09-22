@@ -174,7 +174,7 @@ export default function Produto({ product }) {
                         <div className='fixed inset-0 bg-black/60 flex items-center justify-center'>
                             <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-xl p-5 relative">
 
-                                <IoClose onClick={closeFreteModal} className="absolute top-2 right-2 text-slate-600 w-8 h-8 cursor-pointer" />
+                                <IoClose onClick={closeFreteModal} className="absolute top-2 right-2 text-slate-600 w-8 h-8 cursor-pointer z-10" />
 
                                 <div className='flex flex-col gap-4'>
                                     <div className='flex gap-1 items-center text-xl'>

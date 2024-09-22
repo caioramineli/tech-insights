@@ -1,5 +1,5 @@
 import ResumoCart from "../resumo-cart";
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { useCarrinho } from '../../../contexts/contex-Cart';
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,23 +9,53 @@ import CarrinhoVazio from "../carrinhoVazio";
 import { FaArrowLeft } from "react-icons/fa6";
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 import FormCadastrarEndereco from "./formCadastrarEndereco";
+import FormAtualizarEndereco from "./formAtualizarEndereco";
 import { ToastContainer } from "react-toastify";
 import Enderecos from "./enderecos";
 import { AuthContext } from '../../../contexts/AuthContext';
+import axios from 'axios';
 
 export default function Entrega() {
-    const [formEndereco, setFormEndereco] = useState(false)
+    const [formEndereco, setFormEndereco] = useState(false);
+    const [formEditarEndereco, setFormEditarEndereco] = useState(false);
     const { carrinho } = useCarrinho();
     const [toggleEnvio, setToggleEnvio] = useState(1);
     const { user } = useContext(AuthContext);
+    const [formData, setFormData] = useState({
+        enderecoId: '',
+        nome: '',
+        cep: '',
+        rua: '',
+        numero: '',
+        complemento: '',
+        bairro: '',
+        cidade: '',
+        estado: ''
+    });
+
+    // Estado para armazenar os endereços
+    const [enderecos, setEnderecos] = useState([]);
 
     function updateToglleEnvio(id) {
         setToggleEnvio(id);
     }
 
     function openFormEnderecoModal() {
-        setFormEndereco(true)
+        setFormEndereco(true);
     }
+
+    const fetchEnderecos = useCallback(async () => {
+        try {
+            const response = await axios.get(`https://backend-tech-insights.vercel.app/user/${user.id}/endereco`);
+            setEnderecos(response.data.enderecos);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [user.id]);
+
+    useEffect(() => {
+        fetchEnderecos();
+    }, [fetchEnderecos]);
 
     return (
         <>
@@ -42,14 +72,32 @@ export default function Entrega() {
                                         <h2 className="text-lg font-bold text-emerald-600">Endereço de Entrega</h2>
                                         <button className="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 duration-200 text-teal-50 p-2 rounded-md font-bold" onClick={openFormEnderecoModal}><FaPlus /> Novo endereço</button>
                                     </div>
-
                                     <hr />
-
                                     {formEndereco && (
-                                        <FormCadastrarEndereco estado={formEndereco} setEstado={setFormEndereco} />
+                                        <FormCadastrarEndereco
+                                            setEstado={setFormEndereco}
+                                            userId={user.id}
+                                            onEnderecoCadastrado={fetchEnderecos}
+                                        />
                                     )}
 
-                                    <Enderecos userId={user.id} />
+                                    {formEditarEndereco && (
+                                        <FormAtualizarEndereco
+                                            setEstado={setFormEditarEndereco}
+                                            userId={user.id}
+                                            onEnderecoCadastrado={fetchEnderecos}
+                                            formData={formData}
+                                            setFormData={setFormData}
+                                        />
+                                    )}
+
+                                    <Enderecos
+                                        setEstado={setFormEditarEndereco}
+                                        setFormData={setFormData}
+                                        userId={user.id}
+                                        enderecos={enderecos}
+                                        atualizarEnderecos={fetchEnderecos}
+                                    />
                                 </div>
 
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
@@ -57,31 +105,31 @@ export default function Entrega() {
 
                                     <hr />
 
-                                    <div onClick={() => updateToglleEnvio(1)} className={`border-emerald-600 flex justify-between items-center border px-4 py-1 rounded-md cursor-pointer ${toggleEnvio !== 1 ? 'border-zinc-300' : ''}`}>
+                                    <div onClick={() => updateToglleEnvio(1)} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 1 ? 'border-zinc-300' : ''}`}>
                                         <div className="flex items-center gap-4">
                                             <IoMdRadioButtonOn className={toggleEnvio === 1 ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={toggleEnvio !== 1 ? 'text-3xl' : 'hidden'} />
-                                            <span>Expresso</span>
+                                            <span>Normal - R$ 15,00</span>
                                         </div>
-                                        <span>Entrega em: até 5 dias úteis</span>
+                                        <span>Entrega em: até 8 dias úteis</span>
                                     </div>
 
-                                    <div onClick={() => updateToglleEnvio(2)} className={`border-emerald-600 flex justify-between items-center border px-4 py-1 rounded-md cursor-pointer ${toggleEnvio !== 2 ? 'border-zinc-300' : ''}`}>
+                                    <div onClick={() => updateToglleEnvio(2)} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 2 ? 'border-zinc-300' : ''}`}>
                                         <div className="flex items-center gap-4">
                                             <IoMdRadioButtonOn className={toggleEnvio === 2 ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={toggleEnvio !== 2 ? 'text-3xl' : 'hidden'} />
-                                            <span>Expresso</span>
+                                            <span>Expresso - R$ 30,00</span>
                                         </div>
                                         <span>Entrega em: até 5 dias úteis</span>
                                     </div>
 
-                                    <div onClick={() => updateToglleEnvio(3)} className={`border-emerald-600 flex justify-between items-center border px-4 py-1 rounded-md cursor-pointer ${toggleEnvio !== 3 ? 'border-zinc-300' : ''}`}>
+                                    <div onClick={() => updateToglleEnvio(3)} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 3 ? 'border-zinc-300' : ''}`}>
                                         <div className="flex items-center gap-4">
                                             <IoMdRadioButtonOn className={toggleEnvio === 3 ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={toggleEnvio !== 3 ? 'text-3xl' : 'hidden'} />
-                                            <span>Expresso</span>
+                                            <span>Agendado - R$ 20,00</span>
                                         </div>
-                                        <span>Entrega em: até 5 dias úteis</span>
+                                        <span>Entrega em: a partir 8 dias úteis</span>
                                     </div>
                                 </div>
 

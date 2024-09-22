@@ -5,21 +5,10 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../../components/Loading';
 
-const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
-    const [formData, setFormData] = useState({
-        nome: '',
-        cep: '',
-        rua: '',
-        numero: '',
-        complemento: '',
-        bairro: '',
-        cidade: '',
-        estado: ''
-    });
-
+const FormCadastrarEndereco = ({ setEstado, userId, onEnderecoCadastrado, formData, setFormData }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const notifySuccess = () => toast.success("Endereço cadastrado com sucesso!");
+    const notifySuccess = () => toast.success("Endereço atualizado com sucesso!");
     const notifyError = (message) => toast.error(message);
 
     function closeFormEnderecoModal() {
@@ -43,10 +32,11 @@ const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
         }
 
         try {
-            await axios.post(`https://backend-tech-insights.vercel.app/user/${userId}/endereco`, formData);
+            await axios.put(`https://backend-tech-insights.vercel.app/user/${userId}/endereco`, formData);
             notifySuccess();
             onEnderecoCadastrado();
             setFormData({
+                enderecoId: '',
                 nome: '',
                 cep: '',
                 rua: '',
@@ -66,8 +56,8 @@ const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
     };
     return (
         <>
-            <h1 className='text-xl mb-2'>Novo Endereço de Entrega</h1>
-            <form method="POST" onSubmit={handleSubmit} className='flex flex-col gap-4'>
+            <h1 className='text-xl mb-2'>Atualizar Endereço de Entrega</h1>
+            <form method="PUT" onSubmit={handleSubmit} className='flex flex-col gap-4'>
                 <div className='grid grid-cols-3 gap-4'>
                     <div className='divInputModerno'>
                         <input
@@ -202,4 +192,4 @@ const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
     );
 }
 
-export default FormAtualizarEndereco;
+export default FormCadastrarEndereco;
