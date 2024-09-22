@@ -165,6 +165,10 @@
         font-size: 1rem;
     }
 
+    #container-login input {
+        font-size: 1rem;
+    }
+
     /* Cadastrar */
     #containerCadastrar .termos {
         font-size: 0.9rem;
