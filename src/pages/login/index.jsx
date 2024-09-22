@@ -47,7 +47,7 @@ export default function Login() {
     return (
         <>
             <div id="container-login">
-                <form method="POST" onSubmit={handleSubmit} className="flex flex-col bg-white bsPadrao rounded-lg p-8 gap-3">
+                <form method="POST" onSubmit={handleSubmit}>
                     <h1>Login</h1>
 
                     <div className="divInputModerno">
@@ -60,8 +60,8 @@ export default function Login() {
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
-                        <label>
-                        Insira seu email
+                        <label className="!bg-slate-100 !left-10">
+                            Insira seu email
                         </label>
                     </div>
 

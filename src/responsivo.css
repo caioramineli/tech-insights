@@ -93,7 +93,7 @@
         display: flex;
     }
 
-    /* #COMPRA */
+    /* COMPRA */
     .containerMainProduto {
         padding: 1rem;
     }
@@ -147,48 +147,60 @@
     }
 }
 
-@media (max-width:500px) {
+@media(max-width:500px){
+    /* LOGIN */
+    #container-login{
+        height: 60vh;
+    }
+    #container-login #esqueceuSenha {
+        bottom: 10px;
+        font-size: 0.9rem;
+    }
+
+    #container-login button {
+        font-size: 1.1rem;
+    }
+
+    /* Cadastrar */
+    #containerCadastrar .termos {
+        font-size: 0.9rem;
+    }
+
+    #containerCadastrar .termos #spanCheckbox:hover {
+        background-color: transparent;
+    }
+
+    #containerCadastrar #containerInputs {
+        margin-top: 1.5rem;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .passwordContainer label.filled {
+        font-size: 0.8rem;
+    }
+
+    /* Input Moderno */
+    .divInputModerno input {
+        font-size: 0.95rem !important;
+        padding: 9px 11px !important;
+    }
+    
+    .divInputModerno label {
+        font-size: 0.95rem !important;
+    }
+    
+    .divInputModerno:focus-within label {
+        font-size: 0.9rem !important;
+    }
+    
+    .divInputModerno input:not(:placeholder-shown)+label {
+        font-size: 0.9rem !important;
+    }
 
     /* HOME */
     .containerProdutos {
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 10px;
-    }
-}
-
-@media(max-width:800px){
-    /* LOGIN */
-    #container-login{
-        margin-top: 3rem;
-        margin-bottom: 3rem;   
-    }
-    
-    #container-login input{
-        padding: 8px;
-        font-size: 0.9rem;  
-    }
-    #container-login form{
-        width: 90%;
-        margin: 0 auto;
-    }
-    #container-login #esqueceuSenha {
-        bottom: 8px;
-        font-size: 0.9rem;
-    }
-}
-@media(max-width:500px){
-    /* LOGIN */
-    #container-login{
-        min-width: 80%;
-        margin-top: 3.05rem;
-        margin-bottom: 5rem; 
-    }
-    #container-login input{
-        padding: 5px;
-        margin-left: 4px;
-    }
-    #container-login #esqueceuSenha {
-        bottom: 8px;
-        font-size: 0.8rem;
     }
 }

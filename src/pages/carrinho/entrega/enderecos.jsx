@@ -5,8 +5,9 @@ import { IoClose } from 'react-icons/io5';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loading from '../../../components/Loading';
 
-const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEnderecos }) => {
+const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEnderecos, isLoading }) => {
     const [toggle, setToggle] = useState(0);
     const [modalExcluirEndereco, setModalExcluirEndereco] = useState(false);
     const [enderecoExcluir, setEnderecoExcluir] = useState(null);
@@ -45,7 +46,7 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
 
     async function deletarEndereco(userId, enderecoId) {
         try {
-            await axios.delete(`https://backend-tech-insights.vercel.app/${userId}/endereco/${enderecoId}`);
+            await axios.delete(`https://backend-tech-insights.vercel.app/user/${userId}/endereco/${enderecoId}`);
             closeModalExcluirEndereco();
             notifySuccess();
             atualizarEnderecos();
@@ -55,8 +56,12 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
         }
     }
 
-    if (!enderecos || enderecos.length === 0) {
-        return <p>Nenhum endereço encontrado.</p>;
+    if (isLoading) {
+        return <Loading color='#047857'/>;
+    }
+
+    if (enderecos.length === 0) {
+        return <p>Nenhum endereço cadastrado!</p>;
     }
 
     return (

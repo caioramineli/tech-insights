@@ -21,6 +21,7 @@ export default function Entrega() {
     const { carrinho } = useCarrinho();
     const [toggleEnvio, setToggleEnvio] = useState(1);
     const { user } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(true); // Inicialize com true
     const [formData, setFormData] = useState({
         enderecoId: '',
         nome: '',
@@ -33,7 +34,6 @@ export default function Entrega() {
         estado: ''
     });
 
-    // Estado para armazenar os endereços
     const [enderecos, setEnderecos] = useState([]);
 
     function updateToglleEnvio(id) {
@@ -45,11 +45,14 @@ export default function Entrega() {
     }
 
     const fetchEnderecos = useCallback(async () => {
+        setIsLoading(true); 
         try {
             const response = await axios.get(`https://backend-tech-insights.vercel.app/user/${user.id}/endereco`);
             setEnderecos(response.data.enderecos);
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false);
         }
     }, [user.id]);
 
@@ -97,6 +100,7 @@ export default function Entrega() {
                                         userId={user.id}
                                         enderecos={enderecos}
                                         atualizarEnderecos={fetchEnderecos}
+                                        isLoading={isLoading}
                                     />
                                 </div>
 

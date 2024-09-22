@@ -10,7 +10,7 @@ export default function InputPassword({ placeholder, value, event, required = fa
     }
 
     return (
-        <section className="passwordContainer">
+        <section className="passwordContainer divInputModerno">
             <input
                 type={ver ? 'password' : 'text'}
                 name='senha'
@@ -19,12 +19,16 @@ export default function InputPassword({ placeholder, value, event, required = fa
                 onChange={event}
                 required={required}
                 id="passwordInput"
+                className={value ? 'filled' : ''}
             />
             {ver ? (
                 <IoEyeOff id='EyePassword' onClick={Trocar} />
             ) : (
                 <IoEye id='EyePassword' onClick={Trocar} />
             )}
+            <label className={`!bg-slate-100 ${value ? 'filled' : ''}`}>
+                Senha
+            </label>
         </section>
     );
 }

@@ -1,12 +1,13 @@
 #container-login {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    justify-content: center;
+    width: 90%;
     margin: 0 auto;
-    margin-top: 2.05rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     max-width: 500px;
-    min-width: 400px;
+    min-width: 300px;
 }
 
 #container-login form {
@@ -34,25 +35,25 @@
     border: 1px solid var(--slate-600);
     border-radius: 6px;
     transition: .2s;
+    gap: 5px;
 }
 
 #container-login input {
-    font-size: 1rem;
-    width: 100%;
-    padding: 10px;
-    background-color: transparent;
-    outline: 0;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
+
 #container-login .divInputModerno label{
-    font-size: 1rem;
-    left: 35px;
+    font-size: 1.1rem;
+}
+
+#container-login .divInputModerno:focus-within label {
+    color:  #0891b2 !important;
 }
 
 #container-login div:focus-within {
     outline: 1;
-    border: 1px solid var(--teal-600);
+    border: 1px solid var(--cyan-600);
 }
 
 #container-login div svg:nth-child(1) {

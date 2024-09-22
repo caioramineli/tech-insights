@@ -1,27 +1,18 @@
 #containerCadastrar {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 90%;
     margin: 0 auto;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    max-width: 800px;
-    min-width: 600px;
+    max-width: 700px;
 }
 
 #containerCadastrar form {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
-}
-
-#containerCadastrar h1 {
-    display: flex;
-    justify-content: center;
-    color: var(--teal-600);
-    font-weight: bold;
-    font-size: 2rem;
 }
 
 #containerCadastrar #containerInputs {
@@ -29,21 +20,6 @@
     margin-top: 1.8rem;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-}
-
-#containerCadastrar form #containerInputs input {
-    width: 100%;
-    padding: 8px;
-    background-color: transparent;
-    outline: 0;
-    border: none;
-    font-size: 1.1rem;
-    box-shadow: 0px 0px 1px 1px var(--slate-600);
-    border-radius: 6px;
-}
-
-#containerCadastrar form #containerInputs input:focus {
-    box-shadow: 0px 0px 1px 2px var(--teal-600);
 }
 
 #containerCadastrar .termos {

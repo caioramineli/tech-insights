@@ -6,14 +6,22 @@
 }
 
 #passwordInput {
-    padding-right: 30px; 
+    padding-right: 40px;
     width: 100%;
 }
 
 #EyePassword {
     position: absolute;
-    right: 10px; 
+    right: 10px;
     cursor: pointer;
     font-size: 1.5rem;
     color: var(--slate-600);
+}
+
+.passwordContainer label.filled {
+    top: 0px;
+    color: #71717a;
+    background-color: #fff;
+    padding: 0 2px;
+    font-size: 0.9rem;
 }

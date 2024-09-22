@@ -143,8 +143,8 @@ export default function Cadastrar() {
     return (
         <div id="containerCadastrar">
             <ToastContainer />
-            <form method="POST" onSubmit={handleSubmit} className="flex flex-col bg-white bsPadrao rounded-lg p-8 gap-3">
-                <h1>Cadastrar-se</h1>
+            <form method="POST" onSubmit={handleSubmit}>
+                <h1 className='flex justify-center text-emerald-600 font-bold text-2xl sm:text-3xl'>Cadastrar-se</h1>
                 <div id='containerInputs'>
                     <div className="divInputModerno">
                         <input
@@ -154,7 +154,7 @@ export default function Cadastrar() {
                             value={formData.nome}
                             onChange={handleChange}
                         />
-                        <label>
+                        <label className='!bg-slate-100'>
                             Nome completo
                         </label>
                     </div>
@@ -172,7 +172,7 @@ export default function Cadastrar() {
                                 />
                             )}
                         </InputMask>
-                        <label>
+                        <label className='!bg-slate-100'>
                             CPF
                         </label>
                     </div>
@@ -190,7 +190,7 @@ export default function Cadastrar() {
                                 />
                             )}
                         </InputMask>
-                        <label>
+                        <label className='!bg-slate-100'>
                             Data de nascimento
                         </label>
                     </div>
@@ -208,8 +208,8 @@ export default function Cadastrar() {
                                 />
                             )}
                         </InputMask>
-                        <label>
-                        Telefone celular
+                        <label className='!bg-slate-100'>
+                            Telefone celular
                         </label>
                     </div>
                     <div className="divInputModerno">
@@ -220,7 +220,7 @@ export default function Cadastrar() {
                             value={formData.email}
                             onChange={handleChange}
                         />
-                        <label>
+                        <label className='!bg-slate-100'>
                             E-mail
                         </label>
                     </div>
