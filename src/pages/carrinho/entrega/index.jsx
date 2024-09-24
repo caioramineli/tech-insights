@@ -21,7 +21,7 @@ export default function Entrega() {
     const { carrinho } = useCarrinho();
     const [toggleEnvio, setToggleEnvio] = useState(1);
     const { user } = useContext(AuthContext);
-    const [isLoading, setIsLoading] = useState(true); // Inicialize com true
+    const [isLoading, setIsLoading] = useState(true);
     const [formData, setFormData] = useState({
         enderecoId: '',
         nome: '',
@@ -45,7 +45,11 @@ export default function Entrega() {
     }
 
     const fetchEnderecos = useCallback(async () => {
-        setIsLoading(true); 
+        if (!user || !user.id) {
+            return;
+        }
+
+        setIsLoading(true);
         try {
             const response = await axios.get(`https://backend-tech-insights.vercel.app/user/${user.id}/endereco`);
             setEnderecos(response.data.enderecos);
@@ -54,11 +58,13 @@ export default function Entrega() {
         } finally {
             setIsLoading(false);
         }
-    }, [user.id]);
+    }, [user]);
 
     useEffect(() => {
-        fetchEnderecos();
-    }, [fetchEnderecos]);
+        if (user && user.id) {
+            fetchEnderecos();
+        }
+    }, [fetchEnderecos, user]);
 
     return (
         <>
