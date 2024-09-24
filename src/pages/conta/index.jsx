@@ -26,8 +26,6 @@ export default function Conta() {
                 .catch((error) => {
                     console.error('Erro ao carregar dados do usuário:', error);
                 });
-        } else {
-            navigate('/login');
         }
     }, [user, token, navigate]);
 
@@ -44,7 +42,7 @@ export default function Conta() {
         <div className='flex'>
             <PiUserCircleLight className='absolute mx-32 -mt-5 justify-center w-11 h-11 ' />
             <div className="conta-container">
-                
+
                 <h1 className='flex text-xl justify-center'>Minha Conta</h1>
                 <div className="user-details">
                     <p><strong>Nome do Perfil:</strong> {userData.nome} <hr /></p>

@@ -23,6 +23,8 @@ import Footer from './components/Footer';
 
 import ProductUpload from "./admin/pages/product";
 
+import ProtectedRoute from './protectRoutes';
+
 
 export default function MinhasRotas() {
     return (
@@ -34,11 +36,11 @@ export default function MinhasRotas() {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/cadastrar" element={<Cadastrar />} />
-                    <Route path="/minha-conta" element={<Conta />} />
+                    <Route path="/minha-conta" element={<ProtectedRoute element={<Conta />} />} />
                     <Route path="/carrinho" element={<Carrinho />} />
-                    <Route path="/entrega" element={<Entrega />} />
-                    <Route path="/pagamento" element={<Pagamento />} />
-                    <Route path="/confirmacao" element={<Confirmacao />} />
+                    <Route path="/entrega" element={<ProtectedRoute element={<Entrega />} />} />
+                    <Route path="/pagamento" element={<ProtectedRoute element={<Pagamento />} />} />
+                    <Route path="/confirmacao" element={<ProtectedRoute element={<Confirmacao />} />} />
                     <Route path="/product/:productId" element={<PaginaProduto />} />
                     <Route path="/guias" element={<GuiasInformativos />} />
                     <Route path="/monte-seu-pc" element={<MontePC />} />
