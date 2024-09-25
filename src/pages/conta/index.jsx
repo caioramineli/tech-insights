@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import Loading from '../../components/Loading';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { PiUserCircleLight } from "react-icons/pi";
 
@@ -10,7 +9,6 @@ import './style.css';
 export default function Conta() {
     const { user, token } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (user && token) {
@@ -27,7 +25,7 @@ export default function Conta() {
                     console.error('Erro ao carregar dados do usuário:', error);
                 });
         }
-    }, [user, token, navigate]);
+    }, [user, token]);
 
     if (!userData) {
         return (
@@ -45,11 +43,11 @@ export default function Conta() {
 
                 <h1 className='flex text-xl justify-center'>Minha Conta</h1>
                 <div className="user-details">
-                    <p><strong>Nome do Perfil:</strong> {userData.nome} <hr /></p>
-                    <p><strong>CPF:</strong> {userData.cpf} <hr /></p>
-                    <p><strong>Data de Nascimento:</strong> {userData.dataNascimento}<hr /></p>
-                    <p><strong>Telefone:</strong> {userData.telefone}<hr /></p>
-                    <p><strong>Email:</strong> {userData.email}<hr /></p>
+                    <p><strong>Nome do Perfil:</strong> {userData.nome}</p>
+                    <p><strong>CPF:</strong> {userData.cpf}</p>
+                    <p><strong>Data de Nascimento:</strong> {userData.dataNascimento}</p>
+                    <p><strong>Telefone:</strong> {userData.telefone}</p>
+                    <p><strong>Email:</strong> {userData.email}</p>
                 </div>
             </div>
         </div>

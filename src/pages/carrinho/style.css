@@ -54,31 +54,3 @@
     border-radius: 6px;
     white-space: nowrap;
 }
-
-.carrinhoVazio {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 0 auto;
-}
-
-.carrinhoVazio a {
-    text-decoration: none;
-    color: var(--cyan-50);
-}
-
-.carrinhoVazio button {
-    font-size: 1.6rem;
-    font-weight: bold;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border-radius: 6px;
-    border: none;
-    background-color: var(--cyan-700);
-    color: var(--cyan-50);
-    cursor: pointer;
-    width: 100%;
-}

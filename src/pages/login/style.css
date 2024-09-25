@@ -35,7 +35,7 @@
     border: 1px solid var(--slate-600);
     border-radius: 6px;
     transition: .2s;
-    gap: 5px;
+    gap: 5px; 
 }
 
 #container-login input {
@@ -54,6 +54,7 @@
 #container-login div:focus-within {
     outline: 1;
     border: 1px solid var(--cyan-600);
+    box-shadow: 0px 0px 0px 1px var(--cyan-600);
 }
 
 #container-login div svg:nth-child(1) {

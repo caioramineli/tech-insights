@@ -3,18 +3,16 @@ import LineTableCart from './line-table';
 import "./table-cart-style.css";
 import { useCarrinho } from '../../contexts/contex-Cart';
 
-
 export default function TableCart() {
     const { carrinho, removerProduto } = useCarrinho();  
     
-
     return (
-        <table className="produtosCarrinho">
+        <table className="border-spacing-0 bg-white rounded-md bsPadrao tablecart">
             <thead>
                 <tr>
-                    <th>Produto</th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
+                    <th className='p-3 border-b border-b-gray-300'>Produto</th>
+                    <th className='p-3 border-b border-b-gray-300'>Quantidade</th>
+                    <th className='p-3 border-b border-b-gray-300'>Preço</th>
                 </tr>
             </thead>
             <tbody>

@@ -2,22 +2,19 @@ import "./style.css";
 import { FaTrash } from "react-icons/fa";
 import TableCart from "./table-cart";
 import ResumoCart from "./resumo-cart";
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useCarrinho } from '../../contexts/contex-Cart';
 import { AuthContext } from '../../contexts/AuthContext';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-// import axios from 'axios';
-// import Loading from "../../components/Loading";
 import Cupom from "./cupom";
 import StepBar from "./step-bar";
 import Frete from "./frete";
 import CarrinhoVazio from "./carrinhoVazio";
 
 export default function Carrinho() {
-    // const [isSubmitting, setIsSubmitting] = useState(false);
-    const { carrinho, zerarCarrinho, calcularValorFinal, frete, freteSelecionado } = useCarrinho();
+    const { carrinho, zerarCarrinho } = useCarrinho();
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -28,47 +25,6 @@ export default function Carrinho() {
             navigate('/login')
         }
     }
-
-    // const notifySuccess = (text) => toast.success(text);
-    // const notifyError = (text) => toast.error(text);
-
-    // const finalizarPedido = async () => {
-    //     const id_user = user.id;
-
-    //     const produtos = carrinho.map(produto => ({
-    //         id_produto: produto._id,
-    //         quantidade: produto.quantidade
-    //     }));
-
-    //     const valorFrete = freteSelecionado === 'expresso' ? frete.expresso : frete.normal;
-
-    //     const pedido = {
-    //         id_user,
-    //         produtos,
-    //         id_endereco: "66c284946ecf469b920f0d8d",
-    //         forma_pagamento: "cartao",
-    //         desconto: 0,
-    //         frete: valorFrete,
-    //         valor_total: calcularValorFinal
-    //     };
-
-    //     try {
-    //         setIsSubmitting(true);
-    //         const response = await axios.post('https://backend-tech-insights.vercel.app/order', pedido);
-
-    //         if (response.status === 201) {
-    //             notifySuccess("Pedido realizado!");
-    //             zerarCarrinho();
-    //         } else {
-    //             notifyError("Erro ao finalizar pedido!");
-    //         }
-    //     } catch (error) {
-    //         console.error('Erro ao finalizar o pedido:', error);
-    //         notifyError("Erro ao finalizar pedido");
-    //     } finally {
-    //         setIsSubmitting(false);
-    //     }
-    // };
 
     return (
         <>
@@ -94,7 +50,6 @@ export default function Carrinho() {
                             </section>
                             <section className="containerResumoFinalizar">
                                 <ResumoCart />
-
                                 <button type="button" onClick={verificarLogin}>Continuar</button>
                             </section>
                         </div>

@@ -32,10 +32,10 @@
 #containerCadastrar .termos #spanCheckbox {
     padding: 8px;
     display: flex;
-    border-radius: 50%;
+    border-radius: 50%; 
     position: relative;
     right: 5px;
-    transition: 0.6s;
+    transition: 0.4s;
 }
 
 #containerCadastrar .termos #spanCheckbox:hover {
