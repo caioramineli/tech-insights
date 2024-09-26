@@ -11,39 +11,39 @@ import { FaArrowLeft, FaRegCreditCard, FaTruck, FaUser } from "react-icons/fa";
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
 import TableCart from "../table-cart";
+import { MdShoppingCart } from "react-icons/md";
 
 export default function Confirmacao() {
-    const { carrinho, zerarCarrinho, calcularValorFinal, frete, freteSelecionado } = useCarrinho();
+    const { carrinho, zerarCarrinho, calcularValorFinal, frete, freteSelecionado, desconto } = useCarrinho();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { user } = useContext(AuthContext);
-
 
     const notifySuccess = (text) => toast.success(text);
     const notifyError = (text) => toast.error(text);
 
     const finalizarPedido = async () => {
-        const id_user = user.id;
+        const idUser = user.id;
 
         const produtos = carrinho.map(produto => ({
-            id_produto: produto._id,
+            idProduto: produto._id,
             quantidade: produto.quantidade
         }));
 
         const valorFrete = freteSelecionado === 'expresso' ? frete.expresso : frete.normal;
 
         const pedido = {
-            id_user,
+            idUser,
             produtos,
-            id_endereco: "66c284946ecf469b920f0d8d",
-            forma_pagamento: "cartao",
-            desconto: 0,
+            idEndereco: "66f08421c65deee3fe73b425",
+            formaPagamento: "PIX",
+            desconto: desconto,
             frete: valorFrete,
-            valor_total: calcularValorFinal
+            valorTotal: calcularValorFinal
         };
 
         try {
             setIsSubmitting(true);
-            const response = await axios.post('https://backend-tech-insights.vercel.app/order', pedido);
+            const response = await axios.post('http://localhost:5000/order', pedido);
 
             if (response.status === 201) {
                 notifySuccess("Pedido realizado!");
@@ -59,11 +59,9 @@ export default function Confirmacao() {
         }
     };
 
-    console.log(user);
-
-
     return (
         <>
+            <ToastContainer />
             <main className="flex flex-col w-full gap-4">
                 {carrinho.length === 0 ? (
                     <CarrinhoVazio />
@@ -73,18 +71,18 @@ export default function Confirmacao() {
                         <div className="flex gap-8 w-[90%] xl:w-4/5 m-auto min-h-[52vh] max-w-[1300px] justify-between">
                             <section className="flex flex-col gap-5 mb-4 w-full">
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
-                                    <div className="flex gap-2 items-center">
-                                        <FaUser className="text-emerald-700 text-xl" />
-                                        <h2 className="text-xl">Dados pessoais</h2>
-                                    </div>
-                                    <div className="flex flex-col gap-1">
-                                        <span>{user.nome}</span>
-                                        <span>{user.email}</span>
-                                        <span>CPF: {user.cpf}</span>
-                                    </div>
-                                    <hr />
-
                                     <div className="grid grid-cols-2">
+                                        <div className="flex flex-col gap-2">
+                                            <div className="flex gap-2 items-center">
+                                                <FaUser className="text-emerald-700 text-xl" />
+                                                <h2 className="text-xl">Dados pessoais</h2>
+                                            </div>
+                                            <div className="flex flex-col gap-1">
+                                                <span>{user.nome}</span>
+                                                <span>{user.email}</span>
+                                                <span>CPF: {user.cpf}</span>
+                                            </div>
+                                        </div>
                                         <div className="flex flex-col gap-2">
                                             <div className="flex gap-2 items-center ">
                                                 <FaTruck className="text-emerald-700 text-xl" />
@@ -94,35 +92,36 @@ export default function Confirmacao() {
                                                 <span>Rua tal, 764, Casa verde</span>
                                                 <span>19580-000 - Anhumas - SP</span>
                                             </div>
-                                        </div>
-                                        <div className="flex flex-col gap-2">
-                                            <div className="flex gap-2 items-center ">
-                                                <FaRegCreditCard className="text-emerald-700 text-xl" />
-                                                <h2 className="text-xl">Pagamento</h2>
-                                            </div>
-                                            <span>PIX</span>
+                                            <span>Envio normal - R$ 15,00</span>
                                         </div>
                                     </div>
-
-                                    <span>Envio normal - R$ 15,00</span>
+                                    <hr />
+                                    <div className="flex flex-col gap-2">
+                                        <div className="flex gap-2 items-center ">
+                                            <FaRegCreditCard className="text-emerald-700 text-xl" />
+                                            <h2 className="text-xl">Pagamento</h2>
+                                        </div>
+                                        <span>PIX</span>
+                                    </div>
                                 </div>
 
-                                <h1>Lista de produtos</h1>
-                                <TableCart />
+                                <div className="flex flex-col gap-1">
+                                    <div className="flex items-center gap-2">
+                                        <MdShoppingCart className="text-emerald-700 text-xl" />
+                                        <h1 className="text-xl">Lista de produtos</h1>
+                                    </div>
+                                    <TableCart esconderBtns="hidden" />
+                                </div>
 
                                 <div className="flex justify-between">
                                     <Link to="/pagamento">
                                         <button className="flex items-center gap-2 p-2 hover:bg-zinc-300 duration-200 rounded-md">
                                             <FaArrowLeft />
-                                            <span className="uppercase text-sm">Voltar para o carrinho</span>
+                                            <span className="uppercase text-sm">Voltar para o pagamento</span>
                                         </button>
-                                    </Link>
-                                    <Link to="/confirmacao">
-                                        <button className="bg-emerald-600 hover:bg-emerald-700 duration-200 p-2 rounded-md text-emerald-50 font-bold" type="button">Continuar para pagamento</button>
                                     </Link>
                                 </div>
                             </section>
-
                             <section className="containerResumoFinalizar">
                                 <ResumoCart />
                                 {isSubmitting ? (
@@ -132,7 +131,6 @@ export default function Confirmacao() {
                                 ) : (
                                     <button type="button" onClick={finalizarPedido}>Finalizar Pedido</button>
                                 )}
-                                <ToastContainer />
                             </section>
                         </div>
                     </>

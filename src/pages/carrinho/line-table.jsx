@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useCarrinho } from '../../contexts/contex-Cart';
 import { Link } from "react-router-dom";
 
-export default function LineTableCart({ produto, removerProduto }) {
+export default function LineTableCart({ produto, removerProduto, esconder = 'flex' }) {
     const { atualizarQuantidade } = useCarrinho();
     const [qtd, setQtd] = useState(produto.quantidade || 1);
     const precoUnitario = produto.precoPrazo;
@@ -46,18 +46,18 @@ export default function LineTableCart({ produto, removerProduto }) {
             <td className="p-3 border-b border-b-gray-300 w-[145px]">
                 <div className="flex flex-col gap-4 min-w-[120px]">
                     <div className="flex items-center justify-center">
-                        <FaChevronLeft className="cursor-pointer" onClick={diminuirQtd} />
-                        <span className="w-6 flex justify-center">{qtd}</span>
-                        <FaChevronRight className="cursor-pointer" onClick={aumentarQtd} />
+                        <FaChevronLeft className={`${esconder} cursor-pointer`} onClick={diminuirQtd} />
+                        <span className="w-6 flex justify-center font-semibold">{qtd}</span>
+                        <FaChevronRight className={`${esconder} cursor-pointer`} onClick={aumentarQtd} />
                     </div>
 
-                    <div className="flex items-center justify-center gap-2 text-red-700" onClick={() => removerProduto(produto._id)}>
+                    <div className={`${esconder} items-center justify-center gap-2 text-red-700`} onClick={() => removerProduto(produto._id)}>
                         <FaTrash />
                         <span>Remover</span>
                     </div>
                 </div>
             </td>
-            <td className="p-3 border-b border-b-gray-300 w-[125px] min-w-[120px] text-center">{formatarValor(subtotal)}</td>
-        </tr>
+            <td className="p-3 border-b border-b-gray-300 min-w-[132px] text-center font-semibold text-emerald-600">{formatarValor(subtotal)}</td>
+        </tr >
     );
 }

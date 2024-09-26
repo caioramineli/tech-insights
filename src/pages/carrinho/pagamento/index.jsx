@@ -108,11 +108,11 @@ export default function Pagamento() {
                                     <Link to="/entrega">
                                         <button className="flex items-center gap-2 p-2 hover:bg-zinc-300 duration-200 rounded-md">
                                             <FaArrowLeft />
-                                            <span className="uppercase text-sm">Voltar para o carrinho</span>
+                                            <span className="uppercase text-sm">Voltar para a entrega</span>
                                         </button>
                                     </Link>
                                     <Link to="/confirmacao">
-                                        <button className="bg-emerald-600 hover:bg-emerald-700 duration-200 p-2 rounded-md text-emerald-50 font-bold" type="button">Continuar para pagamento</button>
+                                        <button className="bg-emerald-600 hover:bg-emerald-700 duration-200 p-2 rounded-md text-emerald-50 font-bold" type="button">Continuar para confirmação</button>
                                     </Link>
                                 </div>
                             </section>

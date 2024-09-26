@@ -67,7 +67,7 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
     return (
         <>
             {enderecos.map((endereco, index) => (
-                <div key={index} onClick={() => updateToggle(index)} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggle === index ? 'border-emerald-600' : 'border-zinc-300'}`}>
+                <div key={index} onClick={() => updateToggle(index)} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggle === index ? 'border-emerald-600' : 'border-zinc-300'}`}>
                     <div className="flex items-center gap-4">
                         <IoMdRadioButtonOn className={toggle === index ? 'text-3xl text-emerald-600' : 'hidden'} />
                         <IoMdRadioButtonOff className={toggle !== index ? 'text-3xl' : 'hidden'} />

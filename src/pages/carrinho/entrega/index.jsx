@@ -115,7 +115,7 @@ export default function Entrega() {
 
                                     <hr />
 
-                                    <div onClick={() => updateToglleEnvio(1)} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 1 ? 'border-zinc-300' : ''}`}>
+                                    <div onClick={() => updateToglleEnvio(1)} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 1 ? 'border-zinc-300' : ''}`}>
                                         <div className="flex items-center gap-4">
                                             <IoMdRadioButtonOn className={toggleEnvio === 1 ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={toggleEnvio !== 1 ? 'text-3xl' : 'hidden'} />
@@ -124,7 +124,7 @@ export default function Entrega() {
                                         <span>Entrega em: até 8 dias úteis</span>
                                     </div>
 
-                                    <div onClick={() => updateToglleEnvio(2)} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 2 ? 'border-zinc-300' : ''}`}>
+                                    <div onClick={() => updateToglleEnvio(2)} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 2 ? 'border-zinc-300' : ''}`}>
                                         <div className="flex items-center gap-4">
                                             <IoMdRadioButtonOn className={toggleEnvio === 2 ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={toggleEnvio !== 2 ? 'text-3xl' : 'hidden'} />
@@ -133,7 +133,7 @@ export default function Entrega() {
                                         <span>Entrega em: até 5 dias úteis</span>
                                     </div>
 
-                                    <div onClick={() => updateToglleEnvio(3)} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 3 ? 'border-zinc-300' : ''}`}>
+                                    <div onClick={() => updateToglleEnvio(3)} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 3 ? 'border-zinc-300' : ''}`}>
                                         <div className="flex items-center gap-4">
                                             <IoMdRadioButtonOn className={toggleEnvio === 3 ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={toggleEnvio !== 3 ? 'text-3xl' : 'hidden'} />

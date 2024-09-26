@@ -3,9 +3,9 @@ import LineTableCart from './line-table';
 import "./table-cart-style.css";
 import { useCarrinho } from '../../contexts/contex-Cart';
 
-export default function TableCart() {
-    const { carrinho, removerProduto } = useCarrinho();  
-    
+export default function TableCart({ esconderBtns = "flex"}) {
+    const { carrinho, removerProduto } = useCarrinho();
+
     return (
         <table className="border-spacing-0 bg-white rounded-md bsPadrao tablecart">
             <thead>
@@ -21,6 +21,7 @@ export default function TableCart() {
                         key={produto._id}
                         produto={produto}
                         removerProduto={removerProduto}
+                        esconder={esconderBtns}
                     />
                 ))}
             </tbody>
