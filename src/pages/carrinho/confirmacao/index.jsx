@@ -43,7 +43,7 @@ export default function Confirmacao() {
 
         try {
             setIsSubmitting(true);
-            const response = await axios.post('http://localhost:5000/order', pedido);
+            const response = await axios.post('https://backend-tech-insights.vercel.app/order', pedido);
 
             if (response.status === 201) {
                 notifySuccess("Pedido realizado!");

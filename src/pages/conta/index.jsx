@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import Loading from '../../components/Loading';
 import axios from 'axios';
-import { PiUserCircleLight } from "react-icons/pi";
+// import { PiUserCircleLight } from "react-icons/pi";
 import { FaRegAddressCard } from "react-icons/fa6";
 import { LiaLuggageCartSolid } from "react-icons/lia";
 import { FaRegHeart } from "react-icons/fa";
@@ -85,7 +85,6 @@ export default function Conta() {
                     <p><strong>Email:</strong> {userData.email}</p>
                 </div>
                 <div className={toggle === 2 ? 'flex flex-col items-center gap-2 w-[95%] sm:w-11/12 m-auto' : 'hidden'}>
-                    <h1 className='text-2xl text-teal-700 font-bold'></h1>
                     <p className='font-bold'>Todos pedidos</p>
                     <hr className='border border-teal-600 w-full' />
                     <p>****PEDIDOS****</p>
