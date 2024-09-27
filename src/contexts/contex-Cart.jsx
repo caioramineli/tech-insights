@@ -11,6 +11,7 @@ export function CarrinhoProvider({ children }) {
     const [desconto, setDesconto] = useState(0);
     const [frete, setFrete] = useState({ tipo: "", valor: 0 });
     const [endereco, setEndereco] = useState({ dadosEndereco: {} });
+    const [formaPagamento, setFormaPagamento] = useState('')
 
 
     const adicionarAoCarrinho = (novoProduto) => {
@@ -44,7 +45,9 @@ export function CarrinhoProvider({ children }) {
     const zerarCarrinho = () => {
         setCarrinho([]);
         setDesconto(0);
-        setFrete(0);
+        setFrete({ tipo: "", valor: 0 });
+        setEndereco({ dadosEndereco: {} });
+        setFormaPagamento('');
     };
 
     const calcularValorTotal = useMemo(() => {
@@ -97,7 +100,9 @@ export function CarrinhoProvider({ children }) {
             escolhaFrete,
             endereco,
             setEndereco,
-            desconto
+            desconto,
+            formaPagamento,
+            setFormaPagamento
         }}>
             {children}
         </CarrinhoContext.Provider>

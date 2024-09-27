@@ -14,7 +14,7 @@ import TableCart from "../table-cart";
 import { MdShoppingCart } from "react-icons/md";
 
 export default function Confirmacao() {
-    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco } = useCarrinho();
+    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento } = useCarrinho();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { user } = useContext(AuthContext);
 
@@ -33,7 +33,7 @@ export default function Confirmacao() {
             idUser,
             produtos,
             idEndereco: endereco._id,
-            formaPagamento: "PIX",
+            formaPagamento: formaPagamento,
             desconto: desconto,
             frete: { 
                 tipo: frete.tipo, 
@@ -102,7 +102,7 @@ export default function Confirmacao() {
                                             <FaRegCreditCard className="text-emerald-700 text-xl" />
                                             <h2 className="text-xl">Pagamento</h2>
                                         </div>
-                                        <span>PIX</span>
+                                        <span>{formaPagamento}</span>
                                     </div>
                                 </div>
 
