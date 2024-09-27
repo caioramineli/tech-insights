@@ -35,7 +35,10 @@ export default function Confirmacao() {
             idEndereco: endereco._id,
             formaPagamento: "PIX",
             desconto: desconto,
-            frete: frete.valor,
+            frete: { 
+                tipo: frete.tipo, 
+                valor: frete.valor 
+            },
             valorTotal: calcularValorFinal
         };
 

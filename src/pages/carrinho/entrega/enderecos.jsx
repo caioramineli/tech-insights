@@ -20,11 +20,11 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
     const escolhaEnderecoInicial = useCallback((endereco) => {
         setEndereco(endereco);
     }, [setEndereco]);
-
+    
     useEffect(() => {
         if (enderecos.length > 0) {
             setToggle(0);
-            escolhaEndereco(enderecos[0]);
+            escolhaEnderecoInicial(enderecos[0]);
         }
     }, [enderecos, escolhaEnderecoInicial]);
 
