@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from 'react-icons/io';
 import { FaPencilAlt, FaTrash } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
@@ -6,14 +6,27 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../../components/Loading';
+import { useCarrinho } from "../../../contexts/contex-Cart";
 
 const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEnderecos, isLoading }) => {
     const [toggle, setToggle] = useState(0);
     const [modalExcluirEndereco, setModalExcluirEndereco] = useState(false);
     const [enderecoExcluir, setEnderecoExcluir] = useState(null);
+    const { setEndereco } = useCarrinho();
 
     const notifySuccess = () => toast.success("Endereço removido com sucesso!");
     const notifyError = (message) => toast.error(message);
+
+    const escolhaEnderecoInicial = useCallback((endereco) => {
+        setEndereco(endereco);
+    }, [setEndereco]);
+
+    useEffect(() => {
+        if (enderecos.length > 0) {
+            setToggle(0);
+            escolhaEndereco(enderecos[0]);
+        }
+    }, [enderecos, escolhaEnderecoInicial]);
 
     function openModalExcluirEndereco(endereco) {
         setEnderecoExcluir(endereco);
@@ -27,6 +40,10 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
 
     function updateToggle(index) {
         setToggle(index);
+    }
+
+    function escolhaEndereco(endereco) {
+        setEndereco(endereco);
     }
 
     function atualizarEndereco(endereco) {
@@ -57,7 +74,7 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
     }
 
     if (isLoading) {
-        return <Loading color='#047857'/>;
+        return <Loading color='#047857' />;
     }
 
     if (enderecos.length === 0) {
@@ -67,7 +84,7 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
     return (
         <>
             {enderecos.map((endereco, index) => (
-                <div key={index} onClick={() => updateToggle(index)} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggle === index ? 'border-emerald-600' : 'border-zinc-300'}`}>
+                <div key={index} onClick={() => { updateToggle(index); escolhaEndereco(endereco); }} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggle === index ? 'border-emerald-600' : 'border-zinc-300'}`}>
                     <div className="flex items-center gap-4">
                         <IoMdRadioButtonOn className={toggle === index ? 'text-3xl text-emerald-600' : 'hidden'} />
                         <IoMdRadioButtonOff className={toggle !== index ? 'text-3xl' : 'hidden'} />

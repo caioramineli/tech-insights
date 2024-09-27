@@ -14,7 +14,7 @@ import Frete from "./frete";
 import CarrinhoVazio from "./carrinhoVazio";
 
 export default function Carrinho() {
-    const { carrinho, zerarCarrinho } = useCarrinho();
+    const { carrinho, zerarCarrinho, frete, escolhaFrete } = useCarrinho();
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -24,6 +24,13 @@ export default function Carrinho() {
         } else {
             navigate('/login')
         }
+    }
+
+    function irParaEntrega() {
+        if (frete.valor === 0) {
+            escolhaFrete('normal')
+        }
+        verificarLogin()
     }
 
     return (
@@ -50,7 +57,7 @@ export default function Carrinho() {
                             </section>
                             <section className="containerResumoFinalizar">
                                 <ResumoCart />
-                                <button type="button" onClick={verificarLogin}>Continuar</button>
+                                <button type="button" onClick={irParaEntrega}>Continuar</button>
                             </section>
                         </div>
                         <ToastContainer />

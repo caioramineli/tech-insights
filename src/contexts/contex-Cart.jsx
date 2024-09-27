@@ -9,8 +9,9 @@ export function useCarrinho() {
 export function CarrinhoProvider({ children }) {
     const [carrinho, setCarrinho] = useState([]);
     const [desconto, setDesconto] = useState(0);
-    const [frete, setFrete] = useState({ normal: 0, expresso: 0 });
-    const [freteSelecionado, setFreteSelecionado] = useState('normal');
+    const [frete, setFrete] = useState({ tipo: "", valor: 0 });
+    const [endereco, setEndereco] = useState({ dadosEndereco: {} });
+
 
     const adicionarAoCarrinho = (novoProduto) => {
         setCarrinho((prevCarrinho) => {
@@ -43,8 +44,7 @@ export function CarrinhoProvider({ children }) {
     const zerarCarrinho = () => {
         setCarrinho([]);
         setDesconto(0);
-        setFrete({ normal: 0, expresso: 0 });
-        setFreteSelecionado('normal');
+        setFrete(0);
     };
 
     const calcularValorTotal = useMemo(() => {
@@ -53,14 +53,24 @@ export function CarrinhoProvider({ children }) {
         }, 0);
     }, [carrinho]);
 
-    const calcularFrete = (cep) => {
-        const valorFreteNormal = 15.00;
-        const valorFreteExpresso = 30.00;
-        setFrete({ normal: valorFreteNormal, expresso: valorFreteExpresso });
-    };
+    const escolhaFrete = (tipo) => {
+        let valorFrete = 0;
 
-    const atualizarFrete = (novoFrete) => {
-        setFrete(novoFrete);
+        switch (tipo) {
+            case 'normal':
+                valorFrete = 15.00;
+                break;
+            case 'agendado':
+                valorFrete = 20.00;
+                break;
+            case 'expresso':
+                valorFrete = 30.00;
+                break;
+            default:
+                valorFrete = 0;
+        }
+
+        setFrete({ tipo: tipo, valor: valorFrete });
     };
 
     const aplicarDesconto = (valorDesconto) => {
@@ -69,9 +79,9 @@ export function CarrinhoProvider({ children }) {
     };
 
     const calcularValorFinal = useMemo(() => {
-        const valorFrete = freteSelecionado === 'normal' ? frete.normal : frete.expresso;
+        const valorFrete = frete.valor;
         return calcularValorTotal + valorFrete - desconto;
-    }, [calcularValorTotal, freteSelecionado, frete, desconto]);
+    }, [calcularValorTotal, frete.valor, desconto]);
 
     return (
         <CarrinhoContext.Provider value={{
@@ -81,13 +91,12 @@ export function CarrinhoProvider({ children }) {
             removerProduto,
             zerarCarrinho,
             calcularValorTotal,
-            calcularFrete,
-            aplicarDesconto,
+            aplicarDesconto, 
             calcularValorFinal,
             frete,
-            freteSelecionado,
-            setFreteSelecionado,
-            atualizarFrete,
+            escolhaFrete,
+            endereco,
+            setEndereco,
             desconto
         }}>
             {children}

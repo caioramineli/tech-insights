@@ -14,12 +14,15 @@ import { ToastContainer } from "react-toastify";
 import Enderecos from "./enderecos";
 import { AuthContext } from '../../../contexts/AuthContext';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Entrega() {
     const [formEndereco, setFormEndereco] = useState(false);
     const [formEditarEndereco, setFormEditarEndereco] = useState(false);
-    const { carrinho } = useCarrinho();
-    const [toggleEnvio, setToggleEnvio] = useState(1);
+    const { carrinho, frete, escolhaFrete, endereco } = useCarrinho();
     const { user } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
     const [formData, setFormData] = useState({
@@ -33,12 +36,22 @@ export default function Entrega() {
         cidade: '',
         estado: ''
     });
-
     const [enderecos, setEnderecos] = useState([]);
 
-    function updateToglleEnvio(id) {
-        setToggleEnvio(id);
+    const notifyError = (message) => toast.error(message);
+    const navigate = useNavigate();
+
+    const verificarEndereco = () => {
+        if (endereco._id === undefined) {
+            notifyError('Escolha um endereço de entrega');
+        } else {
+            navigate('/pagamento');
+        }
     }
+
+    const freteEscolhido = (tipo) => {
+        escolhaFrete(tipo);
+    };
 
     function openFormEnderecoModal() {
         setFormEndereco(true);
@@ -115,31 +128,31 @@ export default function Entrega() {
 
                                     <hr />
 
-                                    <div onClick={() => updateToglleEnvio(1)} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 1 ? 'border-zinc-300' : ''}`}>
+                                    <div onClick={() => freteEscolhido('normal')} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'normal' ? 'border-zinc-300' : ''}`}>
                                         <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={toggleEnvio === 1 ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={toggleEnvio !== 1 ? 'text-3xl' : 'hidden'} />
+                                            <IoMdRadioButtonOn className={frete.tipo === 'normal' ? 'text-3xl text-emerald-600' : 'hidden'} />
+                                            <IoMdRadioButtonOff className={frete.tipo !== 'normal' ? 'text-3xl' : 'hidden'} />
                                             <span>Normal - R$ 15,00</span>
                                         </div>
                                         <span>Entrega em: até 8 dias úteis</span>
                                     </div>
 
-                                    <div onClick={() => updateToglleEnvio(2)} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 2 ? 'border-zinc-300' : ''}`}>
+                                    <div onClick={() => freteEscolhido('agendado')} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'agendado' ? 'border-zinc-300' : ''}`}>
                                         <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={toggleEnvio === 2 ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={toggleEnvio !== 2 ? 'text-3xl' : 'hidden'} />
-                                            <span>Expresso - R$ 30,00</span>
-                                        </div>
-                                        <span>Entrega em: até 5 dias úteis</span>
-                                    </div>
-
-                                    <div onClick={() => updateToglleEnvio(3)} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggleEnvio !== 3 ? 'border-zinc-300' : ''}`}>
-                                        <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={toggleEnvio === 3 ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={toggleEnvio !== 3 ? 'text-3xl' : 'hidden'} />
+                                            <IoMdRadioButtonOn className={frete.tipo === 'agendado' ? 'text-3xl text-emerald-600' : 'hidden'} />
+                                            <IoMdRadioButtonOff className={frete.tipo !== 'agendado' ? 'text-3xl' : 'hidden'} />
                                             <span>Agendado - R$ 20,00</span>
                                         </div>
                                         <span>Entrega em: a partir 8 dias úteis</span>
+                                    </div>
+
+                                    <div onClick={() => freteEscolhido('expresso')} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'expresso' ? 'border-zinc-300' : ''}`}>
+                                        <div className="flex items-center gap-4">
+                                            <IoMdRadioButtonOn className={frete.tipo === 'expresso' ? 'text-3xl text-emerald-600' : 'hidden'} />
+                                            <IoMdRadioButtonOff className={frete.tipo !== 'expresso' ? 'text-3xl' : 'hidden'} />
+                                            <span>Expresso - R$ 30,00</span>
+                                        </div>
+                                        <span>Entrega em: até 5 dias úteis</span>
                                     </div>
                                 </div>
 
@@ -150,9 +163,9 @@ export default function Entrega() {
                                             <span className="uppercase text-sm">Voltar para o carrinho</span>
                                         </button>
                                     </Link>
-                                    <Link to="/pagamento">
-                                        <button className="bg-emerald-600 hover:bg-emerald-700 duration-200 p-2 rounded-md text-emerald-50 font-bold" type="button">Continuar para pagamento</button>
-                                    </Link>
+
+                                    <button onClick={verificarEndereco} className="bg-emerald-600 hover:bg-emerald-700 duration-200 p-2 rounded-md text-emerald-50 font-bold" type="button">Continuar para pagamento</button>
+
                                 </div>
                             </section>
 

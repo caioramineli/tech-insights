@@ -14,7 +14,7 @@ import { FaArrowLeft, FaBarcode, FaRegCreditCard } from "react-icons/fa";
 
 
 export default function Pagamento() {
-    const { carrinho, frete, calcularValorFinal, freteSelecionado } = useCarrinho();
+    const { carrinho, frete, calcularValorFinal } = useCarrinho();
     const [toggle, setToggle] = useState(1);
 
     function updateToglle(id) {
@@ -50,7 +50,7 @@ export default function Pagamento() {
                                             <div className="flex flex-col">
                                                 <p className="text-base">Pague com PIX</p>
                                                 <p className="text-sm">
-                                                    {formatarPreco((((calcularValorFinal - frete[freteSelecionado]) * 0.9) + frete[freteSelecionado]))} com desconto à vista no boleto ou pix
+                                                    {formatarPreco((((calcularValorFinal - frete.valor) * 0.9) + frete.valor))} com desconto à vista no boleto ou pix
                                                 </p>
                                             </div>
                                         </div>
@@ -65,7 +65,7 @@ export default function Pagamento() {
                                             <div className="flex flex-col">
                                                 <p className="text-base">Pague com Boleto</p>
                                                 <p className="text-sm">
-                                                    {formatarPreco((((calcularValorFinal - frete[freteSelecionado]) * 0.9) + frete[freteSelecionado]))} com desconto à vista no boleto ou pix
+                                                    {formatarPreco((((calcularValorFinal - frete.valor) * 0.9) + frete.valor))} com desconto à vista no boleto ou pix
                                                 </p>
                                             </div>
                                         </div>

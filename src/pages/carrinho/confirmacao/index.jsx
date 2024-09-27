@@ -14,7 +14,7 @@ import TableCart from "../table-cart";
 import { MdShoppingCart } from "react-icons/md";
 
 export default function Confirmacao() {
-    const { carrinho, zerarCarrinho, calcularValorFinal, frete, freteSelecionado, desconto } = useCarrinho();
+    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco } = useCarrinho();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { user } = useContext(AuthContext);
 
@@ -29,15 +29,13 @@ export default function Confirmacao() {
             quantidade: produto.quantidade
         }));
 
-        const valorFrete = freteSelecionado === 'expresso' ? frete.expresso : frete.normal;
-
         const pedido = {
             idUser,
             produtos,
-            idEndereco: "66f08421c65deee3fe73b425",
+            idEndereco: endereco._id,
             formaPagamento: "PIX",
             desconto: desconto,
-            frete: valorFrete,
+            frete: frete.valor,
             valorTotal: calcularValorFinal
         };
 
@@ -89,10 +87,10 @@ export default function Confirmacao() {
                                                 <h2 className="text-xl">Entrega</h2>
                                             </div>
                                             <div className="flex flex-col">
-                                                <span>Rua tal, 764, Casa verde</span>
-                                                <span>19580-000 - Anhumas - SP</span>
+                                                <span>{endereco.rua}, {endereco.numero}, {endereco.complemento}</span>
+                                                <span>{endereco.cep} - {endereco.cidade} - {endereco.estado}</span>
                                             </div>
-                                            <span>Envio normal - R$ 15,00</span>
+                                            <span>Envio {frete.tipo} - R$ {frete.valor},00</span>
                                         </div>
                                     </div>
                                     <hr />

@@ -4,10 +4,10 @@ import { useCarrinho } from "../../contexts/contex-Cart";
 import Separador from "../../components/Separador";
 
 export default function ResumoCart() {
-    const { calcularValorTotal, desconto, frete, calcularValorFinal, freteSelecionado } = useCarrinho();
+    const { calcularValorTotal, desconto, frete, calcularValorFinal } = useCarrinho();
 
     function formatarPreco(preco) {
-        return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+        return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
     useEffect(() => {
@@ -33,7 +33,7 @@ export default function ResumoCart() {
 
                 <div>
                     <p>Frete:</p>
-                    <p>{frete[freteSelecionado] ? formatarPreco(frete[freteSelecionado]) : formatarPreco(0)}</p>
+                    <p>{frete?.valor ? formatarPreco(frete.valor) : formatarPreco(0)}</p>
                 </div>
 
                 <Separador />
@@ -47,10 +47,13 @@ export default function ResumoCart() {
 
                 <div>
                     <p>Valor Total à vista:</p>
-                    <p>{formatarPreco((((calcularValorFinal - frete[freteSelecionado]) * 0.9) + frete[freteSelecionado]))}</p>
+                    <p>
+                        {formatarPreco(
+                            ((calcularValorFinal - (frete?.valor || 0)) * 0.9) + (frete?.valor || 0)
+                        )}
+                    </p>
                 </div>
             </div>
         </section>
     );
 }
-

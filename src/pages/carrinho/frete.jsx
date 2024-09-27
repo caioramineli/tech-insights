@@ -9,7 +9,8 @@ import Loading from "../../components/Loading";
 const Frete = () => {
     const [valorCep, setValorCep] = useState('');
     const [isCalculatingFrete, setIsCalculatingFrete] = useState(false);
-    const { calcularFrete, frete, freteSelecionado, setFreteSelecionado, atualizarFrete } = useCarrinho();
+    const [calculoFrete, setCalculoFrete] = useState(false);
+    const { frete, escolhaFrete } = useCarrinho();
 
     const notifyError = (text) => toast.error(text);
 
@@ -19,18 +20,17 @@ const Frete = () => {
         setTimeout(() => {
             const cep = valorCep.replace(/\D/g, '');
             if (cep.length === 8) {
-                calcularFrete();
+                setCalculoFrete(true);
+                escolhaFrete('normal');
             } else {
-                notifyError("Digite um cep válido!")
-                atualizarFrete({ normal: 0, expresso: 0 });
+                notifyError("Digite um cep válido!");
             }
-
             setIsCalculatingFrete(false);
         }, 1000);
     };
 
     const handleFreteChange = (e) => {
-        setFreteSelecionado(e.target.value);
+        escolhaFrete(e.target.value);
     };
 
     return (
@@ -69,27 +69,39 @@ const Frete = () => {
                 )}
             </div>
 
-            {frete && frete.normal > 0 && frete.expresso > 0 && (
+            {calculoFrete && (
                 <div className="flex flex-col gap-1">
                     <label className="flex gap-2">
                         <input
                             type="radio"
                             name="frete"
                             value="normal"
-                            checked={freteSelecionado === 'normal'}
+                            checked={frete.tipo === 'normal'}
                             onChange={handleFreteChange}
                         />
-                        Frete Normal: R$ {frete.normal.toFixed(2)}
+                        Frete Normal: R$ 15,00
                     </label>
+
+                    <label className="flex gap-2">
+                        <input
+                            type="radio"
+                            name="frete"
+                            value="agendado"
+                            checked={frete.tipo === 'agendado'}
+                            onChange={handleFreteChange}
+                        />
+                        Frete Agendado: R$ 20,00
+                    </label>
+
                     <label className="flex gap-2">
                         <input
                             type="radio"
                             name="frete"
                             value="expresso"
-                            checked={freteSelecionado === 'expresso'}
+                            checked={frete.tipo === 'expresso'}
                             onChange={handleFreteChange}
                         />
-                        Frete Expresso: R$ {frete.expresso.toFixed(2)}
+                        Frete Expresso: R$ 30,00
                     </label>
                 </div>
             )}
