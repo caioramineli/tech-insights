@@ -13,6 +13,7 @@ import './style.css';
 export default function Conta() {
     const { user, token } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
+    const api = process.env.REACT_APP_API_URL;
 
     const [toggle, setToggle] = useState(1);
     function updateToglle(id) {
@@ -20,7 +21,7 @@ export default function Conta() {
     }
     useEffect(() => {
         if (user && token) {
-            axios.get(`https://backend-tech-insights.vercel.app/user/${user.id}`, {
+            axios.get(`${api}user/${user.id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -33,7 +34,7 @@ export default function Conta() {
                     console.error('Erro ao carregar dados do usuário:', error);
                 });
         }
-    }, [user, token]);
+    }, [user, token, api]);
 
     if (!userData) {
         return (
@@ -49,7 +50,7 @@ export default function Conta() {
             <div className="conta-container">
                 <h1 className='flex text-xl justify-center font-bold py-2'>MINHA CONTA</h1>
                 <hr className='border border-teal-600 w-full ' />
-                <br/>
+                <br />
                 <div className='grid grid-cols-2 gap-3'>
                     <button className='flex flex-col items-center gap-1' onClick={() => updateToglle(1)}>
                         <FaRegAddressCard className={toggle === 1 ? 'text-teal-600 text-4xl' : 'text-zinc-400 text-4xl'} />
@@ -57,7 +58,7 @@ export default function Conta() {
                     </button>
 
                     <button className='flex flex-col items-center gap-1' onClick={() => updateToglle(2)}>
-                        <LiaLuggageCartSolid className={toggle === 2 ? 'text-teal-600 text-4xl' : 'text-zinc-400 text-4xl'}/>
+                        <LiaLuggageCartSolid className={toggle === 2 ? 'text-teal-600 text-4xl' : 'text-zinc-400 text-4xl'} />
                         Meu pedidos
                     </button>
 
@@ -73,10 +74,10 @@ export default function Conta() {
 
 
 
-                    
+
                 </div>
                 <br />
-                <hr className='border border-teal-600 w-full' />   
+                <hr className='border border-teal-600 w-full' />
                 <div className={toggle === 1 ? 'grid items-center  gap-2 w-[95%] sm:w-11/12 m-auto' : 'hidden'}>
                     <p><strong>Nome do Perfil:</strong> {userData.nome}</p>
                     <p><strong>CPF:</strong> {userData.cpf}</p>

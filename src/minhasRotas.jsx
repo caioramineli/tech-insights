@@ -8,6 +8,7 @@ import Carrinho from "./pages/carrinho";
 import Entrega from "./pages/carrinho/entrega";
 import Pagamento from "./pages/carrinho/pagamento";
 import Confirmacao from "./pages/carrinho/confirmacao";
+import PedidoRealizado from "./pages/pedidoRealizado";
 
 import PaginaProduto from "./pages/productpage";
 
@@ -41,6 +42,7 @@ export default function MinhasRotas() {
                     <Route path="/entrega" element={<ProtectedRoute element={<Entrega />} />} />
                     <Route path="/pagamento" element={<ProtectedRoute element={<Pagamento />} />} />
                     <Route path="/confirmacao" element={<ProtectedRoute element={<Confirmacao />} />} />
+                    <Route path="/pedido-realizado" element={<ProtectedRoute element={<PedidoRealizado />} />} />
                     <Route path="/product/:productId" element={<PaginaProduto />} />
                     <Route path="/guias" element={<GuiasInformativos />} />
                     <Route path="/monte-seu-pc" element={<MontePC />} />

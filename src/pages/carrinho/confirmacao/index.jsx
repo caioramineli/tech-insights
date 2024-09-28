@@ -7,13 +7,16 @@ import axios from 'axios';
 import Loading from "../../../components/Loading";
 import StepBar from "../step-bar";
 import CarrinhoVazio from "../carrinhoVazio/index";
-import { FaArrowLeft, FaRegCreditCard, FaTruck, FaUser } from "react-icons/fa";
+import { FaArrowLeft, FaRegCreditCard, FaTruck, FaUser, FaBarcode } from "react-icons/fa";
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
 import TableCart from "../table-cart";
 import { MdShoppingCart } from "react-icons/md";
+import { FaPix } from "react-icons/fa6";
+import { SiMercadopago } from "react-icons/si";
 
 export default function Confirmacao() {
+    const api = process.env.REACT_APP_API_URL;
     const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento } = useCarrinho();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { user } = useContext(AuthContext);
@@ -35,16 +38,16 @@ export default function Confirmacao() {
             idEndereco: endereco._id,
             formaPagamento: formaPagamento,
             desconto: desconto,
-            frete: { 
-                tipo: frete.tipo, 
-                valor: frete.valor 
+            frete: {
+                tipo: frete.tipo,
+                valor: frete.valor
             },
             valorTotal: calcularValorFinal
         };
 
         try {
             setIsSubmitting(true);
-            const response = await axios.post('https://backend-tech-insights.vercel.app/order', pedido);
+            const response = await axios.post(api + "order", pedido);
 
             if (response.status === 201) {
                 notifySuccess("Pedido realizado!");
@@ -57,6 +60,21 @@ export default function Confirmacao() {
             notifyError("Erro ao finalizar pedido");
         } finally {
             setIsSubmitting(false);
+        }
+    };
+
+    const exibirIconePagamento = () => {
+        switch (formaPagamento) {
+            case 'PIX':
+                return <FaPix className="text-2xl text-teal-600" />;
+            case 'Boleto':
+                return <FaBarcode className="text-2xl text-zinc-900" />;
+            case 'Cartão':
+                return <FaRegCreditCard className="text-2xl text-cyan-700" />;
+            case 'Mercado Pago':
+                return <SiMercadopago className="text-2xl text-sky-700" />;
+            default:
+                return null;
         }
     };
 
@@ -102,7 +120,10 @@ export default function Confirmacao() {
                                             <FaRegCreditCard className="text-emerald-700 text-xl" />
                                             <h2 className="text-xl">Pagamento</h2>
                                         </div>
-                                        <span>{formaPagamento}</span>
+                                        <div className="flex gap-2 items-center">
+                                            <span>Pague com {formaPagamento}</span>
+                                            {exibirIconePagamento()}
+                                        </div>
                                     </div>
                                 </div>
 
@@ -130,7 +151,9 @@ export default function Confirmacao() {
                                         <Loading color="#047857" />
                                     </div>
                                 ) : (
-                                    <button type="button" onClick={finalizarPedido}>Finalizar Pedido</button>
+                                    <button type="button" onClick={finalizarPedido} disabled={isSubmitting}>
+                                        Finalizar Pedido
+                                    </button>
                                 )}
                             </section>
                         </div>

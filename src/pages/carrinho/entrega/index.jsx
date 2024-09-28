@@ -37,6 +37,7 @@ export default function Entrega() {
         estado: ''
     });
     const [enderecos, setEnderecos] = useState([]);
+    const api = process.env.REACT_APP_API_URL;
 
     const notifyError = (message) => toast.error(message);
     const navigate = useNavigate();
@@ -64,14 +65,14 @@ export default function Entrega() {
 
         setIsLoading(true);
         try {
-            const response = await axios.get(`https://backend-tech-insights.vercel.app/user/${user.id}/endereco`);
+            const response = await axios.get(`${api}user/${user.id}/endereco`);
             setEnderecos(response.data.enderecos);
         } catch (error) {
             console.log(error);
         } finally {
             setIsLoading(false);
         }
-    }, [user]);
+    }, [user, api]);
 
     useEffect(() => {
         if (user && user.id) {

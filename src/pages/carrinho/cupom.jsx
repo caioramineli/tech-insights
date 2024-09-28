@@ -10,6 +10,7 @@ const Cupom = () => {
     const [cupomCode, setCupomCode] = useState('');
     const [loading, setLoading] = useState(false)
     const { aplicarDesconto } = useCarrinho();
+    const api = process.env.REACT_APP_API_URL;
 
     const notifySuccess = (text) => toast.success(text);
     const notifyError = (text) => toast.error(text);
@@ -21,7 +22,7 @@ const Cupom = () => {
     const verifyCupom = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`https://backend-tech-insights.vercel.app/cupon/${cupomCode}`);
+            const response = await axios.get(`${api}cupon/${cupomCode}`);
             aplicarDesconto(response.data.desconto);
             notifySuccess("Cupom aplicado com sucesso!")
         } catch (err) {

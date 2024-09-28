@@ -7,6 +7,7 @@ import Loading from '../../../components/Loading';
 
 const FormCadastrarEndereco = ({ setEstado, userId, onEnderecoCadastrado, formData, setFormData }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const api = process.env.REACT_APP_API_URL;
 
     const notifySuccess = () => toast.success("Endereço atualizado com sucesso!");
     const notifyError = (message) => toast.error(message);
@@ -32,7 +33,7 @@ const FormCadastrarEndereco = ({ setEstado, userId, onEnderecoCadastrado, formDa
         }
 
         try {
-            await axios.put(`https://backend-tech-insights.vercel.app/user/${userId}/endereco`, formData);
+            await axios.put(`${api}user/${userId}/endereco`, formData);
             notifySuccess();
             onEnderecoCadastrado();
             setFormData({

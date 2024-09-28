@@ -19,6 +19,7 @@ export default function Login() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { login } = useContext(AuthContext);
     const { carrinho } = useCarrinho();
+    const api = process.env.REACT_APP_API_URL;
 
     const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ export default function Login() {
         setError('');
         setIsSubmitting(true);
         try {
-            const response = await axios.post('https://backend-tech-insights.vercel.app/login', { email, senha });
+            const response = await axios.post(api + 'login', { email, senha });
             localStorage.setItem('token', response.data.token);
             login(response.data.token);
             if (carrinho.length > 0) {

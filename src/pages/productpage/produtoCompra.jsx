@@ -18,7 +18,7 @@ import 'swiper/css/pagination';
 import FormaPagamento from '../../components/FormaPagamento';
 
 export default function Produto({ product }) {
-    const api = "https://backend-tech-insights.vercel.app/";
+    const api = process.env.REACT_APP_API_URL;
     const images = Object.values(product.images || {});
     const [mainImage, setMainImage] = useState(images[0] || "");
     const { adicionarAoCarrinho } = useCarrinho();
@@ -42,6 +42,8 @@ export default function Produto({ product }) {
 
     function closeFreteModal() {
         setIsFreteModalOpen(false);
+        console.log(api);
+
     }
 
     function openFormaPagamentoModal() {

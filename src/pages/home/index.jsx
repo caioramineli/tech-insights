@@ -8,13 +8,13 @@ import Loading from "../../components/Loading";
 export default function Home() {
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         async function getProdutos() {
             try {
-                const response = await axios.get("https://backend-tech-insights.vercel.app/product");
+                const response = await axios.get(api + "product");
                 setProdutos(response.data.products);
-
             } catch (error) {
                 console.error("Erro ao buscar produtos:", error);
             }
@@ -23,7 +23,7 @@ export default function Home() {
             }
         }
         getProdutos();
-    }, []);
+    }, [api]);
 
     if (loading) {
         return <Loading />;

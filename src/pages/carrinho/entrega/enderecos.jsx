@@ -13,6 +13,7 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
     const [modalExcluirEndereco, setModalExcluirEndereco] = useState(false);
     const [enderecoExcluir, setEnderecoExcluir] = useState(null);
     const { setEndereco } = useCarrinho();
+    const api = process.env.REACT_APP_API_URL;
 
     const notifySuccess = () => toast.success("Endereço removido com sucesso!");
     const notifyError = (message) => toast.error(message);
@@ -31,11 +32,13 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
     function openModalExcluirEndereco(endereco) {
         setEnderecoExcluir(endereco);
         setModalExcluirEndereco(true);
+        document.body.style.overflow = 'hidden';
     }
 
     function closeModalExcluirEndereco() {
         setModalExcluirEndereco(false);
         setEnderecoExcluir(null);
+        document.body.style.overflow = 'auto';
     }
 
     function updateToggle(index) {
@@ -63,7 +66,7 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
 
     async function deletarEndereco(userId, enderecoId) {
         try {
-            await axios.delete(`https://backend-tech-insights.vercel.app/user/${userId}/endereco/${enderecoId}`);
+            await axios.delete(`${api}user/${userId}/endereco/${enderecoId}`);
             closeModalExcluirEndereco();
             notifySuccess();
             atualizarEnderecos();
@@ -105,7 +108,7 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
                             Excluir
                         </button>
                         {modalExcluirEndereco && enderecoExcluir && (
-                            <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-10'>
+                            <div className='fixed inset-0 bg-black/40 flex items-center justify-center z-10'>
                                 <div className="flex flex-col gap-4 bg-white rounded-lg shadow-lg w-4/5 max-w-md p-5 relative">
                                     <IoClose onClick={closeModalExcluirEndereco} className="absolute top-2 right-2 text-slate-600 w-8 h-8 cursor-pointer" />
                                     <h1 className='text-lg font-bold'>Deseja realmente excluir esse endereço?</h1>

@@ -21,6 +21,7 @@ const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
 
     const notifySuccess = () => toast.success("Endereço cadastrado com sucesso!");
     const notifyError = (message) => toast.error(message);
+    const api = process.env.REACT_APP_API_URL;
 
     function closeFormEnderecoModal() {
         setEstado(false);
@@ -43,7 +44,7 @@ const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
         }
 
         try {
-            await axios.post(`https://backend-tech-insights.vercel.app/user/${userId}/endereco`, formData);
+            await axios.post(`${api}user/${userId}/endereco`, formData);
             notifySuccess();
             onEnderecoCadastrado();
             setFormData({

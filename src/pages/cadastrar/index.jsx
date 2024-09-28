@@ -1,7 +1,7 @@
 import './style.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import InputMask from 'react-input-mask';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../components/Loading';
 import BtnCadastrar from '../../components/BtnCadastrar';
 import InputPassword from '../../components/InputPassword';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export default function Cadastrar() {
     const [formData, setFormData] = useState({
@@ -20,8 +21,12 @@ export default function Cadastrar() {
         senha: ''
     });
 
+    const { login } = useContext(AuthContext);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+    const api = process.env.REACT_APP_API_URL;
+
+    const navigate = useNavigate();
 
     const notifySuccess = () => toast.success("Cadastro realizado com sucesso!");
     const notifyError = (message) => toast.error(message);
@@ -122,7 +127,12 @@ export default function Cadastrar() {
         }
 
         try {
-            await axios.post('https://backend-tech-insights.vercel.app/register', formData);
+            await axios.post(api + 'register', formData);
+            notifySuccess();
+            const response = await axios.post(api + 'login', {
+                email: formData.email,
+                senha: formData.senha
+            });
             setFormData({
                 nome: '',
                 cpf: '',
@@ -131,7 +141,12 @@ export default function Cadastrar() {
                 email: '',
                 senha: ''
             });
-            notifySuccess();
+            localStorage.setItem('token', response.data.token);
+            login(response.data.token);
+
+            setTimeout(() => {
+                navigate('/')
+            }, 2000);
         } catch (error) {
             const erro = error.response?.data?.msg || "Erro ao realizar o cadastro.";
             notifyError(erro);

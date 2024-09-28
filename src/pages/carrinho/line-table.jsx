@@ -31,7 +31,7 @@ export default function LineTableCart({ produto, removerProduto, esconder = 'fle
         return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     };
 
-    const api = "https://backend-tech-insights.vercel.app/";
+    const api = process.env.REACT_APP_API_URL;
 
     return (
         <tr>

@@ -13,13 +13,14 @@ export default function PaginaProduto() {
     const [productData, setProductData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const getProductData = async () => {
             try {
-                const response = await axios.get(`https://backend-tech-insights.vercel.app/product/${productId}`);
+                const response = await axios.get(`${api}product/${productId}`);
                 setProductData(response.data.product);
-            } catch (err) { 
+            } catch (err) {
                 setError(err.message);
             } finally {
                 setLoading(false);
@@ -27,7 +28,7 @@ export default function PaginaProduto() {
         };
 
         getProductData();
-    }, [productId]);
+    }, [productId, api]);
 
     if (loading) {
         return <Loading />;
