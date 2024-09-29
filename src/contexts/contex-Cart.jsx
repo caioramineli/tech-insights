@@ -16,24 +16,30 @@ export function CarrinhoProvider({ children }) {
 
     const adicionarAoCarrinho = (novoProduto) => {
         setCarrinho((prevCarrinho) => {
-            const produtoExistente = prevCarrinho.find(produto => produto._id === novoProduto._id);
-
+            const produtoExistente = prevCarrinho.find((produto) => produto._id === novoProduto._id);
+            
             if (produtoExistente) {
-                return prevCarrinho.map(produto =>
-                    produto._id === novoProduto._id
-                        ? { ...produto, quantidade: produto.quantidade + novoProduto.quantidade }
-                        : produto
-                );
-            } else {
-                return [...prevCarrinho, { ...novoProduto, quantidade: novoProduto.quantidade }];
+                if (produtoExistente.quantidade < 10) {
+                    return prevCarrinho.map((produto) =>
+                        produto._id === novoProduto._id
+                            ? { ...produto, quantidade: produto.quantidade + 1 }
+                            : produto
+                    );
+                } else {
+                    return prevCarrinho;
+                }
             }
+    
+            return [...prevCarrinho, novoProduto];
         });
     };
 
     const atualizarQuantidade = (id, novaQuantidade) => {
-        setCarrinho(prevCarrinho =>
-            prevCarrinho.map(produto =>
-                produto._id === id ? { ...produto, quantidade: novaQuantidade } : produto
+        setCarrinho((prevCarrinho) =>
+            prevCarrinho.map((produto) =>
+                produto._id === id
+                    ? { ...produto, quantidade: novaQuantidade }
+                    : produto
             )
         );
     };

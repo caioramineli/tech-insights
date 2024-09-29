@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MdAddShoppingCart, MdShoppingCart } from "react-icons/md";
+import { MdShoppingCart } from "react-icons/md";
+import { BsCartPlusFill, BsFillCartCheckFill } from "react-icons/bs";
 import { FaBarcode, FaRegCreditCard, FaTruck } from "react-icons/fa";
 import StarsCod from "../../components/EstrelasCodigo";
 import { useCarrinho } from '../../contexts/contex-Cart';
@@ -21,14 +22,15 @@ export default function Produto({ product }) {
     const api = process.env.REACT_APP_API_URL;
     const images = Object.values(product.images || {});
     const [mainImage, setMainImage] = useState(images[0] || "");
-    const { adicionarAoCarrinho } = useCarrinho();
+
+    const { adicionarAoCarrinho, carrinho } = useCarrinho();
+    const [iconAdd, setIconAdd] = useState(false);
     const [cep, setCep] = useState("");
     const navigate = useNavigate();
 
     const notifyError = (text) => toast.error(text);
-
+    const notifyWarning = (text) => toast.warning(text);
     const [isFreteModalOpen, setIsFreteModalOpen] = useState(false);
-
     const [isFormaPagamentoModalOpen, setIsFormaPagamentoModalOpen] = useState(false);
 
     function openFreteModal() {
@@ -36,14 +38,12 @@ export default function Produto({ product }) {
         if (cepPuro.length === 8) {
             setIsFreteModalOpen(true);
         } else {
-            notifyError("Informe um CEP válido")
+            notifyError("Informe um CEP válido");
         }
     }
 
     function closeFreteModal() {
         setIsFreteModalOpen(false);
-        console.log(api);
-
     }
 
     function openFormaPagamentoModal() {
@@ -54,13 +54,26 @@ export default function Produto({ product }) {
         setIsFormaPagamentoModalOpen(false);
     }
 
+    const handleAddCart = () => {
+        const produtoExistente = carrinho.find((item) => item._id === product._id);
+        const quantidadeAtual = produtoExistente ? produtoExistente.quantidade : 0;
+
+        if (quantidadeAtual >= 10) {
+            notifyWarning("Quantidade máxima atingida para este produto.");
+            return;
+        }
+
+        adicionarAoCarrinho({ ...product, quantidade: 1 });
+
+        setIconAdd(true);
+        setTimeout(() => {
+            setIconAdd(false);
+        }, 1000);
+    };
+
     const handleComprar = () => {
         adicionarAoCarrinho({ ...product, quantidade: 1 });
         navigate('/carrinho');
-    };
-
-    const handleAddCart = () => {
-        adicionarAoCarrinho({ ...product, quantidade: 1 });
     };
 
     function formatarValor(valor) {
@@ -144,7 +157,7 @@ export default function Produto({ product }) {
                             <MdShoppingCart />Comprar
                         </button>
                         <button id='btnAddCart' onClick={handleAddCart}>
-                            <MdAddShoppingCart />
+                            {iconAdd ? <BsFillCartCheckFill /> : <BsCartPlusFill />}
                         </button>
                     </div>
 

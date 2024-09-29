@@ -1,5 +1,5 @@
 import { FaChevronLeft, FaChevronRight, FaTrash } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCarrinho } from '../../contexts/contex-Cart';
 import { Link } from "react-router-dom";
 
@@ -9,11 +9,14 @@ export default function LineTableCart({ produto, removerProduto, esconder = 'fle
     const precoUnitario = produto.precoPrazo;
     const [subtotal, setSubTotal] = useState(precoUnitario * qtd);
 
+    useEffect(() => {
+        setSubTotal(precoUnitario * qtd);
+    }, [qtd, precoUnitario]);
+
     function aumentarQtd() {
         if (qtd < 10) {
             const novaQtd = qtd + 1;
             setQtd(novaQtd);
-            setSubTotal(novaQtd * precoUnitario);
             atualizarQuantidade(produto._id, novaQtd);
         }
     }
@@ -22,7 +25,6 @@ export default function LineTableCart({ produto, removerProduto, esconder = 'fle
         if (qtd > 1) {
             const novaQtd = qtd - 1;
             setQtd(novaQtd);
-            setSubTotal(novaQtd * precoUnitario);
             atualizarQuantidade(produto._id, novaQtd);
         }
     }
