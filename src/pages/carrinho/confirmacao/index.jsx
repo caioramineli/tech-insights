@@ -14,14 +14,17 @@ import TableCart from "../table-cart";
 import { MdShoppingCart } from "react-icons/md";
 import { FaPix } from "react-icons/fa6";
 import { SiMercadopago } from "react-icons/si";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Confirmacao() {
     const api = process.env.REACT_APP_API_URL;
-    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento } = useCarrinho();
+    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento, setPedido } = useCarrinho();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { user } = useContext(AuthContext);
 
-    const notifySuccess = (text) => toast.success(text);
+    const navigate = useNavigate();
+
     const notifyError = (text) => toast.error(text);
 
     const finalizarPedido = async () => {
@@ -48,9 +51,11 @@ export default function Confirmacao() {
         try {
             setIsSubmitting(true);
             const response = await axios.post(api + "order", pedido);
-
             if (response.status === 201) {
-                notifySuccess("Pedido realizado!");
+                setPedido(response.data.order);
+                navigate('/pedido-realizado', {
+                    state: { numeroPedido: response.data.order.numeroPedido, formaPagamento: formaPagamento }
+                });
                 zerarCarrinho();
             } else {
                 notifyError("Erro ao finalizar pedido!");

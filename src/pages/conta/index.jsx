@@ -7,6 +7,7 @@ import { FaRegAddressCard } from "react-icons/fa6";
 import { LiaLuggageCartSolid } from "react-icons/lia";
 import { FaRegHeart } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
+import Pedidos from './pedido';
 
 import './style.css';
 
@@ -88,7 +89,7 @@ export default function Conta() {
                 <div className={toggle === 2 ? 'flex flex-col items-center gap-2 w-[95%] sm:w-11/12 m-auto' : 'hidden'}>
                     <p className='font-bold'>Todos pedidos</p>
                     <hr className='border border-teal-600 w-full' />
-                    <p>****PEDIDOS****</p>
+                    <Pedidos userId={user.id} />
                 </div>
             </div>
         </div>

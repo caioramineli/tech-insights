@@ -12,7 +12,7 @@ export function CarrinhoProvider({ children }) {
     const [frete, setFrete] = useState({ tipo: "", valor: 0 });
     const [endereco, setEndereco] = useState({ dadosEndereco: {} });
     const [formaPagamento, setFormaPagamento] = useState('')
-
+    const [pedido, setPedido] = useState(null);
 
     const adicionarAoCarrinho = (novoProduto) => {
         setCarrinho((prevCarrinho) => {
@@ -94,7 +94,7 @@ export function CarrinhoProvider({ children }) {
             removerProduto,
             zerarCarrinho,
             calcularValorTotal,
-            aplicarDesconto, 
+            aplicarDesconto,
             calcularValorFinal,
             frete,
             escolhaFrete,
@@ -102,7 +102,9 @@ export function CarrinhoProvider({ children }) {
             setEndereco,
             desconto,
             formaPagamento,
-            setFormaPagamento
+            setFormaPagamento,
+            pedido,
+            setPedido
         }}>
             {children}
         </CarrinhoContext.Provider>

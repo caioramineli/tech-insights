@@ -70,12 +70,12 @@ export default function Produto({ product }) {
     return (
         <>
             <ToastContainer />
-            <h2 className='text-base md:text-lg lg:text-xl xl:text-2xl font-bold'>{product.nome}</h2>
+            <h2 className='text-base md:text-lg lg:text-xl 2xl:text-2xl font-bold'>{product.nome}</h2>
             <section className="containerProdutoInfo">
                 <div className="hidden lg:flex flex-col gap-4">
                     {images.map((image, index) => (
                         <img
-                            className='w-[65px] border border-black/20 rounded-sm'
+                            className='w-[66px] border border-black/20 rounded p-[2px]'
                             key={index}
                             src={api + image}
                             alt={`Miniatura ${index + 1}`}
@@ -94,7 +94,7 @@ export default function Produto({ product }) {
                     </Swiper>
                 </div>
 
-                <img className="lg:w-[350px] xl:w-[400px] m-auto hidden lg:block" src={api + mainImage} alt="Produto principal" />
+                <img className="lg:w-[350px] xl:w-[380px] 2xl:[420px] m-auto hidden lg:block" src={api + mainImage} alt="Produto principal" />
 
                 <section className="containerDireitaProduto">
                     <div className='flex items-center w-full justify-between'>
