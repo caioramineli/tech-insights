@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../../../contexts/AuthContext';
 
-const Pedidos = ({ userId }) => {
+const Pedidos = () => {
     const [pedidos, setPedidos] = useState([]);
+    const { user } = useContext(AuthContext)
     const [loading, setLoading] = useState(true);
     const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const fetchPedidos = async () => {
             try {
-                const response = await axios.get(`${api}user/${userId}/orders`);
+                const response = await axios.get(`${api}user/${user.id}/orders`);
                 setPedidos(response.data);
             } catch (err) {
                 console.log(err);
@@ -18,8 +20,10 @@ const Pedidos = ({ userId }) => {
             }
         };
 
-        fetchPedidos();
-    }, [userId, api]);
+        if (user) {
+            fetchPedidos();
+        }
+    }, [user, api]);
 
     if (loading) return <div>Carregando...</div>;
 

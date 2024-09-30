@@ -30,7 +30,7 @@ export default function Slider() {
 
     return (
         <div className="slider">
-            <Swiper modules={[Navigation, Pagination]} navigation pagination loop>
+            <Swiper modules={[Navigation, Pagination]} navigation pagination loopAdditionalSlides loop={true}>
                 {slides.map(slide => (
                     <SwiperSlide key={slide.id}>
                         <img src={slide.src} alt={slide.alt} />

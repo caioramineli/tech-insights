@@ -55,20 +55,22 @@ export default function Produto({ product }) {
     }
 
     const handleAddCart = () => {
-        const produtoExistente = carrinho.find((item) => item._id === product._id);
-        const quantidadeAtual = produtoExistente ? produtoExistente.quantidade : 0;
+        if (!iconAdd) {
+            const produtoExistente = carrinho.find((item) => item._id === product._id);
+            const quantidadeAtual = produtoExistente ? produtoExistente.quantidade : 0;
 
-        if (quantidadeAtual >= 10) {
-            notifyWarning("Quantidade máxima atingida para este produto.");
-            return;
+            if (quantidadeAtual >= 10) {
+                notifyWarning("Quantidade máxima atingida para este produto.");
+                return;
+            }
+
+            adicionarAoCarrinho({ ...product, quantidade: 1 });
+
+            setIconAdd(true);
+            setTimeout(() => {
+                setIconAdd(false);
+            }, 1500);
         }
-
-        adicionarAoCarrinho({ ...product, quantidade: 1 });
-
-        setIconAdd(true);
-        setTimeout(() => {
-            setIconAdd(false);
-        }, 1000);
     };
 
     const handleComprar = () => {
@@ -98,7 +100,7 @@ export default function Produto({ product }) {
                 </div>
 
                 <div className="block lg:hidden m-auto w-64 sm:w-[350px] z-0">
-                    <Swiper modules={[Pagination]} pagination loop>
+                    <Swiper modules={[Pagination]} pagination>
                         {images.map((image, index) => (
                             <SwiperSlide key={index}>
                                 <img src={api + image} alt={image.alt} />
