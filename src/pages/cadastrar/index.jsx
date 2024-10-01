@@ -30,7 +30,7 @@ export default function Cadastrar() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
     const api = process.env.REACT_APP_API_URL;
-    const apiChatBot = process.env.API_CHATBOT;
+    const apiChatBot = process.env.REACT_APP_API_CHATBOT;
 
     const navigate = useNavigate();
 
@@ -92,6 +92,8 @@ export default function Cadastrar() {
     }, [chatBotData, apiChatBot]);
 
     const handleSubmit = async (e) => {
+        console.log(apiChatBot, api, 'teste');
+        
         e.preventDefault();
         setIsSubmitting(true);
 
@@ -146,8 +148,7 @@ export default function Cadastrar() {
 
             await axios.post(api + 'register', formData);
             console.log(chatBotData, formData.telefone);
-            notifySuccess();
-
+            
             const response = await axios.post(api + 'login', {
                 email: formData.email,
                 senha: formData.senha
@@ -164,6 +165,8 @@ export default function Cadastrar() {
 
             localStorage.setItem('token', response.data.token);
             login(response.data.token);
+
+            notifySuccess();
 
             setTimeout(() => {
                 navigate('/');
