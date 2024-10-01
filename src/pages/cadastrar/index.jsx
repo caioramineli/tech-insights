@@ -1,7 +1,7 @@
 import './style.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import InputMask from 'react-input-mask';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -21,10 +21,16 @@ export default function Cadastrar() {
         senha: ''
     });
 
+    const [chatBotData, setChatBotData] = useState({
+        phone: "",
+        message: "Olá, Bem vindo a Tech Insights! Se tiver alguma dúvida estou a disposição."
+    });
+
     const { login } = useContext(AuthContext);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
     const api = process.env.REACT_APP_API_URL;
+    const apiChatBot = process.env.API_CHATBOT;
 
     const navigate = useNavigate();
 
@@ -79,6 +85,12 @@ export default function Cadastrar() {
         return password.length >= 6;
     };
 
+    useEffect(() => {
+        if (chatBotData.phone !== "") {
+            axios.post(apiChatBot, chatBotData);
+        }
+    }, [chatBotData, apiChatBot]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
@@ -127,12 +139,20 @@ export default function Cadastrar() {
         }
 
         try {
+            setChatBotData(prevData => ({
+                ...prevData,
+                phone: formData.telefone
+            }));
+
             await axios.post(api + 'register', formData);
+            console.log(chatBotData, formData.telefone);
             notifySuccess();
+
             const response = await axios.post(api + 'login', {
                 email: formData.email,
                 senha: formData.senha
             });
+
             setFormData({
                 nome: '',
                 cpf: '',
@@ -141,11 +161,12 @@ export default function Cadastrar() {
                 email: '',
                 senha: ''
             });
+
             localStorage.setItem('token', response.data.token);
             login(response.data.token);
 
             setTimeout(() => {
-                navigate('/')
+                navigate('/');
             }, 2000);
         } catch (error) {
             const erro = error.response?.data?.msg || "Erro ao realizar o cadastro.";
