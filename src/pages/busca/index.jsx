@@ -14,6 +14,7 @@ const Busca = () => {
     const query = new URLSearchParams(location.search).get('query');
 
     const fetchData = useCallback(async () => {
+        setLoading(true);
         try {
             if (query) {
                 const response = await axios.get(`${api}products/search?q=${query}&sort=${sortOption}`);
