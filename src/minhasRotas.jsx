@@ -14,6 +14,8 @@ import PedidoRealizado from "./pages/pedidoRealizado";
 
 import PaginaProduto from "./pages/productpage";
 
+import Busca from "./pages/busca";
+
 import GuiasInformativos from "./pages/guiasInformativos";
 import MontePC from "./pages/montePC";
 import PaginaCupons from "./pages/cupons";
@@ -47,6 +49,7 @@ export default function MinhasRotas() {
                     <Route path="/confirmacao" element={<ProtectedRoute element={<Confirmacao />} />} />
                     <Route path="/pedido-realizado" element={<ProtectedRoute element={<PedidoRealizado />} />} />
                     <Route path="/product/:productId" element={<PaginaProduto />} />
+                    <Route path="/busca" element={<Busca />} />
                     <Route path="/guias" element={<GuiasInformativos />} />
                     <Route path="/monte-seu-pc" element={<MontePC />} />
                     <Route path="/cupons" element={<PaginaCupons />} />

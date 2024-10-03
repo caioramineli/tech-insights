@@ -6,7 +6,7 @@ export default function Produto({ product }) {
     const api = process.env.REACT_APP_API_URL;
 
     return (
-        <Link to={`product/${product._id}`}>
+        <Link to={`/product/${product._id}`}>
             <div className="boxProduto gap-1">
                 <img src={api + product.images[0]} alt="produto" />
                 <p className="text-sm md:text-base">{product.nome}</p>
