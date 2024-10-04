@@ -5,6 +5,7 @@ import Cadastrar from "./pages/cadastrar";
 
 import Conta from "./pages/conta";
 import Pedidos from "./pages/conta/pedidos";
+import PaginaFavoritos from "./pages/conta/favoritos";
 
 import Carrinho from "./pages/carrinho";
 import Entrega from "./pages/carrinho/entrega";
@@ -43,6 +44,7 @@ export default function MinhasRotas() {
                     <Route path="/cadastrar" element={<Cadastrar />} />
                     <Route path="/minha-conta" element={<ProtectedRoute element={<Conta />} />} />
                     <Route path="/minha-conta/pedidos" element={<Pedidos />} />
+                    <Route path="/minha-conta/favoritos" element={<PaginaFavoritos />} />
                     <Route path="/carrinho" element={<Carrinho />} />
                     <Route path="/entrega" element={<ProtectedRoute element={<Entrega />} />} />
                     <Route path="/pagamento" element={<ProtectedRoute element={<Pagamento />} />} />
