@@ -39,8 +39,8 @@ const Favoritar = ({ produto }) => {
                 e.preventDefault();
             }}
         >
-            <FaRegHeart className={!fav ? 'text-zinc-600 text-xl hover:text-red-700 duration-200' : 'hidden'} />
-            <FaHeart className={fav ? 'text-red-700 text-xl' : 'hidden'} />
+            <FaRegHeart className={!fav ? 'text-zinc-600 text-lg sm:text-xl hover:text-red-700 duration-200' : 'hidden'} />
+            <FaHeart className={fav ? 'text-red-700 text-lg sm:text-xl' : 'hidden'} />
         </button>
     );
 };

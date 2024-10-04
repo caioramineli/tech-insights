@@ -2,28 +2,21 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import Loading from '../../components/Loading';
 import axios from 'axios';
-// import { PiUserCircleLight } from "react-icons/pi";
 import { FaRegAddressCard } from "react-icons/fa6";
 import { LiaLuggageCartSolid } from "react-icons/lia";
 import { FaRegHeart } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { VscSmiley } from "react-icons/vsc";
 import { IoIosArrowForward } from "react-icons/io";
-
 import { MdAccessible } from "react-icons/md";
-
-import './style.css';
 import { Link } from 'react-router-dom';
+import './style.css';
 
 export default function Conta() {
     const { user, token } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
     const api = process.env.REACT_APP_API_URL;
 
-    const [toggle, setToggle] = useState(1);
-    function updateToglle(id) {
-        setToggle(id);
-    }
     useEffect(() => {
         if (user && token) {
             axios.get(`${api}user/${user.id}`, {

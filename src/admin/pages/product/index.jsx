@@ -23,6 +23,7 @@ const ProductUpload = () => {
 
     const [previews, setPreviews] = useState([]);
     const fileInputRef = useRef(null);
+    const api = process.env.REACT_APP_API_URL;
 
     const notifySuccess = () => toast.success("Cadastro realizado com sucesso!");
     const notifyError = (message) => toast.error(message);
@@ -69,7 +70,7 @@ const ProductUpload = () => {
         }
 
         try {
-            await axios.post("https://backend-tech-insights.onrender.com/product/create", form, {
+            await axios.post(api + "product/create", form, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
