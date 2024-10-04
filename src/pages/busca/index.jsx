@@ -64,7 +64,7 @@ const Busca = () => {
                             </div>
                         </div>
                     </div>
-                    <section className="!auto-cols-[minmax(220px,300px)] !grid-cols-[repeat(auto-fit,minmax(220px,300px))] containerProdutos">
+                    <section className="!grid-cols-[repeat(auto-fit,minmax(200px))] containerProdutos">
                         {produtos.map((product) => (
                             <Produto key={product._id} product={product} />
                         ))}

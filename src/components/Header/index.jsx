@@ -7,18 +7,13 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { PiUserCircleLight } from "react-icons/pi";
 import { MdShoppingCart } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useCarrinho } from '../../contexts/contex-Cart';
 import Logo from "../../assets/logo.png"
 
 const Header = () => {
     const { carrinho } = useCarrinho();
-    const { user, logout } = useContext(AuthContext);
-    const navigate = useNavigate();
-
-    function returnHome() {
-        navigate("/")
-    }
+    const { user, logout, favoritos } = useContext(AuthContext);
 
     const getFirstName = (fullName) => {
         return fullName.split(' ')[0];
@@ -46,8 +41,8 @@ const Header = () => {
                                 <span>|</span>
                                 <button className='hover:text-cyan-500 duration-200'
                                     onClick={() => {
+                                        window.location.href = '/';
                                         logout();
-                                        returnHome();
                                     }}>
                                     Sair
                                 </button>
@@ -64,7 +59,7 @@ const Header = () => {
                 <div className="containerFavCart">
                     <div className="hidden sm:flex">
                         <FaRegHeart />
-                        <span>0</span>
+                        <span>{favoritos.length}</span>
                     </div>
                     <div className="carrinho">
                         <Link to="/carrinho"><MdShoppingCart /></Link>

@@ -1,6 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { MdShoppingCart } from "react-icons/md";
+import Favoritar from "../../components/Favoritar";
 
 export default function Produto({ product }) {
     const api = process.env.REACT_APP_API_URL;
@@ -8,6 +8,7 @@ export default function Produto({ product }) {
     return (
         <Link to={`/product/${product._id}`}>
             <div className="boxProduto gap-1">
+                <Favoritar produto={product._id} />
                 <img src={api + product.images[0]} alt="produto" />
                 <p className="text-sm md:text-base">{product.nome}</p>
                 <p className="text-base md:text-lg">{product.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
