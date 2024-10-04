@@ -57,19 +57,24 @@ const Header = () => {
                 </div>
 
                 <div className="containerFavCart">
-                    <div className="hidden sm:flex">
-                        <FaRegHeart />
-                        <span>{favoritos.length}</span>
-                    </div>
-                    <div className="carrinho">
-                        <Link to="/carrinho"><MdShoppingCart /></Link>
-                        <span>{carrinho.length}</span>
-                    </div>
+                    <Link to='/minha-conta/favoritos'>
+                        <div className="hidden sm:flex">
+                            <FaRegHeart />
+                            <span>{favoritos.length}</span>
+                        </div>
+                    </Link>
+                    <Link to="/carrinho">
+                        <div className="carrinho">
+                            <MdShoppingCart />
+                            <span>{carrinho.length}</span>
+
+                        </div>
+                    </Link>
                 </div>
             </section>
             <NavBar />
             <PesquisarHeader display='flex' responsivo="md:hidden" mb="mb-4" />
-        </header>
+        </header >
     );
 }
 
