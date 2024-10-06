@@ -3,6 +3,7 @@ import Produto from "../../home/Produto";
 import { AuthContext } from "../../../contexts/AuthContext";
 import axios from "axios";
 import Loading from "../../../components/Loading";
+import { FaRegHeart } from "react-icons/fa";
 import NenhumFavorito from "./nenhum-favorito";
 
 const PaginaFavoritos = () => {
@@ -41,6 +42,10 @@ const PaginaFavoritos = () => {
 
     return (
         <main className="containerMainPaginaProdutos">
+            <div className="flex items-center gap-2">
+                <FaRegHeart className="text-3xl text-emerald-600"/>
+                <h1 className="font-bold text-zinc-900 text-2xl">Favoritos</h1>
+            </div>
             <section className="containerProdutos">
                 {produtosFavoritos.map((product) => (
                     <Produto key={product._id} product={product} />

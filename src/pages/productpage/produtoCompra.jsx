@@ -17,6 +17,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import FormaPagamento from '../../components/FormaPagamento';
+import Favoritar from '../../components/Favoritar';
 
 export default function Produto({ product }) {
     const api = process.env.REACT_APP_API_URL;
@@ -85,6 +86,7 @@ export default function Produto({ product }) {
     return (
         <>
             <ToastContainer />
+            <Favoritar produto={product._id} tamanho='text-2xl' />
             <h2 className='text-base md:text-lg lg:text-xl 2xl:text-2xl font-bold'>{product.nome}</h2>
             <section className="containerProdutoInfo">
                 <div className="hidden lg:flex flex-col gap-4">
