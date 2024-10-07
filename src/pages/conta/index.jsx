@@ -46,7 +46,7 @@ export default function Conta() {
 
         <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] my-10 gap-1'>
             <h1 className='flex text-2xl justify-center font-bold py-1 text-zinc-900'>MINHA CONTA</h1>
-            <hr className='border border-emerald-600 w-60 m-auto' />
+            <hr className='border border-emerald-600 w-52 m-auto' />
 
             <div className='flex items-center p-3 bsPadrao bg-white rounded-md gap-4 mt-4'>
                 <PiUserCircleLight className='text-5xl' />

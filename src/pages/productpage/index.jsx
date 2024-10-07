@@ -11,6 +11,7 @@ import Loading from '../../components/Loading';
 export default function PaginaProduto() {
     const { productId } = useParams();
     const [productData, setProductData] = useState(null);
+    const [rating, setRating] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const api = process.env.REACT_APP_API_URL;
@@ -41,12 +42,12 @@ export default function PaginaProduto() {
     return (
         <main className='containerPaginaProduto'>
             <section className="containerMainProduto">
-                <Produto product={productData} />
+                <Produto product={productData} rating={rating} />
             </section>
 
             <DescricaoProduto descricao={productData.descricao} />
             <EspecificacaoProduto especificacoes={productData.especificacoes} />
-            <AvaliacoesProduto avaliacoes={productData.avaliacoes} />
+            <AvaliacoesProduto produto={productData} setNotaMedia={setRating} />
         </main>
     );
 }

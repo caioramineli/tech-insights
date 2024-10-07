@@ -80,7 +80,8 @@ li {
     position: relative;
 }
 
-.divInputModerno input {
+.divInputModerno input,
+.divInputModerno textarea {
     border-radius: 6px;
     font-size: 1rem;
     padding: 10px 12px;
@@ -91,7 +92,8 @@ li {
     width: 100%;
 }
 
-.divInputModerno input::placeholder {
+.divInputModerno input::placeholder,
+.divInputModerno textarea::placeholder {
     opacity: 0;
     transition: opacity 0.2s ease;
     color: #71717a;
@@ -108,8 +110,19 @@ li {
     color: #71717a;
 }
 
+.textarea-label-moderno {
+    position: absolute;
+    top: 1.4rem !important;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.2s;
+    color: #71717a;
+}
+
 .divInputModerno:focus-within label {
-    top: 0px;
+    top: 0px !important;
     left: 8px;
     font-size: 0.9rem;
     background-color: #fff;
@@ -117,20 +130,37 @@ li {
     color: #059669 !important;
 }
 
-.divInputModerno input:focus {
+.divInputModerno input:focus,
+.divInputModerno textarea:focus {
     border: 1px solid #059669;
 }
 
-.divInputModerno input:focus::placeholder {
+.divInputModerno input:focus::placeholder,
+.divInputModerno textarea:focus::placeholder {
     opacity: 1;
 }
 
-.divInputModerno input:not(:placeholder-shown)+label {
-    top: 0px;
+.divInputModerno input:not(:placeholder-shown)+label,
+.divInputModerno textarea:not(:placeholder-shown)+label {
+    top: 0px !important;
     color: #71717a;
     left: 8px;
     font-size: 0.9rem;
     background-color: #fff;
     padding: 0 2px;
     line-height: 0.7;
+}
+
+.btnPadrao {
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 1.1rem;
+    color: var(--teal-50);
+    background-color: var(--teal-600);
+    transition: 0.2s;
+    font-weight: 600;
+}
+
+.btnPadrao:hover {
+    background-color: var(--teal-700);
 }

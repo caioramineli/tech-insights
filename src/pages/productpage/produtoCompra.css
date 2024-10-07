@@ -38,20 +38,6 @@
     width: 70px;
 }
 
-.containerDireitaProduto .containerAvaliacaoCod {
-    display: flex;
-    column-gap: 2px;
-}
-
-.containerDireitaProduto .containerAvaliacaoCod svg {
-    fill: orange;
-}
-
-
-.containerDireitaProduto .containerAvaliacaoCod p {
-    margin-left: 1rem;
-}
-
 .containerDireitaProduto #disponi {
     color: green;
     font-weight: bold;

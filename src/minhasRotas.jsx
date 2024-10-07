@@ -43,8 +43,8 @@ export default function MinhasRotas() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/cadastrar" element={<Cadastrar />} />
                     <Route path="/minha-conta" element={<ProtectedRoute element={<Conta />} />} />
-                    <Route path="/minha-conta/pedidos" element={<Pedidos />} />
-                    <Route path="/minha-conta/favoritos" element={<PaginaFavoritos />} />
+                    <Route path="/minha-conta/pedidos" element={<ProtectedRoute element={<Pedidos />} />} />
+                    <Route path="/minha-conta/favoritos" element={<ProtectedRoute element={<PaginaFavoritos />} />} />
                     <Route path="/carrinho" element={<Carrinho />} />
                     <Route path="/entrega" element={<ProtectedRoute element={<Entrega />} />} />
                     <Route path="/pagamento" element={<ProtectedRoute element={<Pagamento />} />} />

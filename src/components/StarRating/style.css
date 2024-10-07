@@ -1,0 +1,9 @@
+.containerAvaliacaoCod {
+    display: flex;
+    align-items: center;
+    column-gap: 2px;
+}
+
+.containerAvaliacaoCod svg {
+    fill: orange;
+}
