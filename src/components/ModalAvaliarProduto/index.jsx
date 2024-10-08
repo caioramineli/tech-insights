@@ -80,7 +80,7 @@ const ModalAvaliarProduto = ({ produto, setEstado, listarAvalicoes }) => {
 
                 <hr />
 
-                <form method="POST" onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <form method="POST" onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-5">
                     <div className="flex flex-col justify-center gap-1">
                         <h4>Qual nota você dá para o produto?</h4>
 

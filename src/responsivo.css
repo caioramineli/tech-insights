@@ -119,6 +119,11 @@
     .containerDireitaProduto .btnsComprarAddCart {
         width: 100%;
     }
+
+    /* Pagina do produto */
+    .containerEspecificacaoEDescricao {
+        padding: 1rem;
+    }
 }
 
 
@@ -146,9 +151,15 @@
     #navMobile.active #menu {
         height: calc(100vh - 115px);
     }
+
+    /* btnPadrao */
+    .btnPadrao {
+        font-size: 0.9rem;
+    }
 }
 
 @media(max-width:500px) {
+
     /* LOGIN */
     #container-login {
         height: 60vh;

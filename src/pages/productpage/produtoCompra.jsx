@@ -123,7 +123,7 @@ export default function Produto({ product, rating }) {
                             <h2 className='text-xl font-bold'>Marca:</h2>
                             <img src={`${api}imgs/${product.marca}.jpg`} alt="marca" />
                         </div>
-                        <a href="#favoritos"><StarRating rating={rating} /></a>
+                        <a href="#avalicao"><StarRating rating={rating} /></a>
                     </div>
 
                     <p id="disponi">Produto Disponível</p>

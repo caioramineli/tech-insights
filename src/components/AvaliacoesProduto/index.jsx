@@ -70,7 +70,7 @@ export default function AvaliacoesProduto({ produto, setNotaMedia }) {
     }
 
     return (
-        <div className='containerEspecificacaoEDescricao' id="favoritos">
+        <div className='containerEspecificacaoEDescricao' id="avalicao">
             <h2
                 className='text-xl text-zinc-900 font-bold cursor-pointer flex justify-between items-center'
                 onClick={toggleAccordion}
@@ -90,11 +90,12 @@ export default function AvaliacoesProduto({ produto, setNotaMedia }) {
             >
                 <div className="flex justify-between items-center my-2">
                     <div>
-                        <div className="flex items-center gap-1">
-                            <span className="text-[#ffa500] font-bold text-xl"><span className="text-2xl ">{media}</span>/5 - </span>
+                        <div className="flex flex-col sm:flex-row items-center gap-1">
+                            <span className="text-[#ffa500] font-bold text-xl"><span className="text-2xl ">{media}</span>/5</span>
+                            <span className="text-[#ffa500] font-bold hidden sm:block sm:text-xl">-</span>
                             <StarRating rating={media} />
                         </div>
-                        <span>({avaliacoes.length} Avaliações)</span>
+                        <span className="text-base">({avaliacoes.length} Avaliações)</span>
                     </div>
 
                     <button onClick={openModalAvaliarProduto} className="btnPadrao">Faça uma avaliação</button>
@@ -107,19 +108,19 @@ export default function AvaliacoesProduto({ produto, setNotaMedia }) {
                 {avaliacoes.map((avaliacao, index) => (
                     <div key={index} className="flex flex-col gap-1 my-2">
                         <hr className="my-2" />
-                        <div className="flex items-center gap-2 mt-1">
+                        <div className="flex items-center gap-1 sm:gap-2 mt-1">
                             <span>
-                                <PiUserCircleThin className="text-5xl" />
+                                <PiUserCircleThin className="text-4xl sm:text-5xl" />
                             </span>
                             <div>
                                 <StarRating rating={avaliacao.nota} />
-                                <span className="text-sm">
+                                <span className="text-xs sm:text-sm">
                                     <span className="font-semibold text-base">{avaliacao.user.nome} </span>
                                     ({format(new Date(avaliacao.data), "dd/MM/yyyy HH:mm")})
                                 </span>
                             </div>
                         </div>
-                        <h2 className="text-xl font-bold text-zinc-900 mt-1">{avaliacao.titulo}</h2>
+                        <h2 className="text-lg sm:text-xl font-bold text-zinc-900 mt-1">{avaliacao.titulo}</h2>
                         <p>{avaliacao.descricao}</p>
                     </div>
                 ))}
