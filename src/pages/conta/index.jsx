@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import Loading from '../../components/Loading';
 import axios from 'axios';
-import { FaRegAddressCard } from "react-icons/fa6";
-import { LiaLuggageCartSolid } from "react-icons/lia";
 import { FaRegHeart } from "react-icons/fa";
-import { FaMapLocationDot } from "react-icons/fa6";
-import { VscSmiley } from "react-icons/vsc";
+import { FaMapLocationDot, FaRegAddressCard } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
+import { PiUserCircleLight } from "react-icons/pi";
 import { MdAccessible } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import { HiShoppingBag } from "react-icons/hi2";
+
 import './style.css';
 
 export default function Conta() {
@@ -41,25 +41,24 @@ export default function Conta() {
             </div>
         );
     }
-    const getFirstName = (fullName) => {
-        return fullName.split(' ')[0];
-    };
 
     return (
 
-        <div className='flex flex-col w-[80%] max-w-[1300px] my-12'>
-            <h1 className='flex text-2xl justify-center font-bold py-2'>MINHA CONTA</h1>
-            <hr className='border border-teal-600 w-60 m-auto' />
+        <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] my-10 gap-1'>
+            <h1 className='flex text-2xl justify-center font-bold py-1 text-zinc-900'>MINHA CONTA</h1>
+            <hr className='border border-emerald-600 w-52 m-auto' />
 
-            <div className='p-3 bsPadrao bg-white rounded-md gap-2 mt-4'>
-                <div className='flex flex-row'>
-                    <VscSmiley className='text-4xl' />
-                    <span className='text-xl p-1 font-bold text-nowrap'>Seja Bem-vindo, {getFirstName(user.nome)}</span>
+            <div className='flex items-center p-3 bsPadrao bg-white rounded-md gap-4 mt-4'>
+                <PiUserCircleLight className='text-5xl' />
+                <div className='flex flex-col justify-center'>
+                    <span className='text-lg font-bold text-nowrap'>Seja Bem-vindo, {user.nome}</span>
+                    <span>{user.email}</span>
                 </div>
             </div>
-            <div id='container-MinhaConta'>
+            
+            <div className='grid grid-cols-4 gap-3 mt-2'>
                 <Link to={'dados'}>
-                    <div className='flex items-center justify-center p-5 border bsPadrao bg-white rounded-md gap-4 h-36'>
+                    <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
                         <span>
                             <FaRegAddressCard className='text-emerald-600 text-4xl' />
                         </span>
@@ -71,9 +70,9 @@ export default function Conta() {
                 </Link>
 
                 <Link to={'pedidos'}>
-                    <div className='flex items-center justify-center p-5 border bsPadrao bg-white rounded-md gap-4 h-36'>
+                    <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
                         <span>
-                            <LiaLuggageCartSolid className='text-emerald-600 text-4xl' />
+                            <HiShoppingBag className='text-emerald-600 text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
                             <h2 className='text-base font-bold uppercase'>Meu pedidos</h2>
@@ -83,19 +82,19 @@ export default function Conta() {
                 </Link>
 
                 <Link to={'favoritos'}>
-                    <div className='flex items-center justify-center p-5 border bsPadrao bg-white rounded-md gap-4 h-36'>
+                    <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
                         <span>
                             <FaRegHeart className='text-emerald-600 text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
                             <h2 className='text-base font-bold uppercase'>Favoritos</h2>
-                            <p className='text-sm sm-1'>Veja seus Favoritos</p>
+                            <p className='text-sm sm-1'>Consulte sua lista de produtos favoritos</p>
                         </div>
                     </div>
                 </Link>
 
                 <Link to={'enderecos'}>
-                    <div className='flex items-center justify-center p-5 border bsPadrao bg-white rounded-md gap-4 h-36'>
+                    <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
                         <span>
                             <FaMapLocationDot className='text-emerald-600 text-4xl' />
                         </span>
@@ -106,35 +105,39 @@ export default function Conta() {
                     </div>
                 </Link>
             </div>
-            <hr className='border border-teal-600 w-full mt-4' />
+
+            <hr className='border border-emerald-600 w-full mt-5' />
+
             <div className='flex flex-row justify-between mt-4'>
-                <h1 className='font-bold uppercase '>Resumo do seu ultimo pedido</h1>
-                <Link to={'pedidos'} className='uppercase underline decoration-solid'> ir para meus pedidos</Link>
-            </div>      
-            <div className='flex flex-col bsPadrao bg-white mt-4 rounded-md'>
-                <div className='gap-2 p-2 items-center '>
-                    <div className='flex p-1 gap-2 items-center'>
-                        <h1 className='font-bold uppercase'>Pedido:</h1>
-                        <p className=' items-center'> cod-pedido - 02/02/2022 </p>
-                        <Link className='flex ml-auto '>
-                            <button className='flex flex-row border bg-emerald-600 p-2 rounded-md items-center'>
-                                <h2 className='text-base uppercase text-teal-50'> ver Detalhes </h2>
-                                <IoIosArrowForward className='text-teal-50' />
-                            </button>
-                        </Link>
-                    </div>
+                <h1 className='font-bold uppercase '>Resumo do seu último pedido</h1>
+                <Link to={'pedidos'} className='uppercase underline decoration-solid text-sm'> ir para meus pedidos</Link>
+            </div>
+
+            <div className='flex flex-col bsPadrao bg-white rounded-md '>
+                <div className='flex gap-2 items-center justify-between py-2 px-3'>
+                    <p><span className='font-bold'>Pedido:</span> cod-pedido - 02/02/2022 </p>
+                    <Link>
+                        <button className='flex gap-1 bg-emerald-600 hover:bg-emerald-700 duration-200 p-2 rounded-md items-center text-emerald-50'>
+                            Ver Detalhes
+                            <IoIosArrowForward className='text-emerald-50 text-lg' />
+                        </button>
+                    </Link>
                 </div>
+
                 <hr />
-                <div className='p-3 gap-2 mt-1 items-center '>
-                    <h1 className='font-bold uppercase text-teal-600'>Aguardando o status do pedido</h1>
-                </div>
+
+                <h1 className='font-bold uppercase text-emerald-600 py-2 px-3'>Aguardando o status do pedido</h1>
+
                 <hr />
-                <div className='p-3 gap-2 mt-1 items-center '>
+
+                <div className='flex gap-2 mt-1 items-center py-2 px-3'>
                     <h1>IMG  Pagamento via FORMA-PAGAMENTO</h1>
                 </div>
+
                 <hr />
-                <div className='flex flex-row p-3 gap-4 mt-1 items-center '>
-                    <MdAccessible className='text-6xl border bsPadrao bg-white '/>
+
+                <div className='flex flex-row gap-4 items-center py-2 px-3'>
+                    <MdAccessible className='text-6xl border bsPadrao bg-white ' />
                     <div className='grid grid-cols-1 gap-1'>
                         <h1 className='font-bold uppercase'>Caderante de primeira classe  </h1>
                         <p>Quantidade: 0</p>

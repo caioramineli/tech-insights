@@ -124,6 +124,10 @@ const ProductUpload = () => {
                         <option value="acer"></option>
                         <option value="lg"></option>
                         <option value="redragon"></option>
+                        <option value="hyperX"></option>
+                        <option value="ASRock"></option>
+                        <option value="galax"></option>
+                        <option value="pny"></option>
                     </datalist>
 
                     <div className="custom-select-container">

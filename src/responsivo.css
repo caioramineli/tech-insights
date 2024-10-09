@@ -119,6 +119,11 @@
     .containerDireitaProduto .btnsComprarAddCart {
         width: 100%;
     }
+
+    /* Pagina do produto */
+    .containerEspecificacaoEDescricao {
+        padding: 1rem;
+    }
 }
 
 
@@ -146,9 +151,15 @@
     #navMobile.active #menu {
         height: calc(100vh - 115px);
     }
+
+    /* btnPadrao */
+    .btnPadrao {
+        font-size: 0.9rem;
+    }
 }
 
 @media(max-width:500px) {
+
     /* LOGIN */
     #container-login {
         height: 60vh;
@@ -222,26 +233,4 @@
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 10px;
     }
-}
-@media(max-width:2500px){
-    #container-MinhaConta{
-        display: grid;
-        grid-template-columns: repeat(4, 1fr); 
-        gap: 12px; 
-        margin-top: 12px; 
-    }
-}
-@media(max-width:1200px){
-    #container-MinhaConta{       
-        grid-template-columns: repeat(2, 1fr);        
-    }
-}
-@media(max-width:600px){
-    #container-MinhaConta{
-        grid-template-columns: repeat(1, 1fr); 
-
-    }
-    /* .p{
-        display: none;
-    } */
 }

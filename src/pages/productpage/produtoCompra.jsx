@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MdShoppingCart } from "react-icons/md";
 import { BsCartPlusFill, BsFillCartCheckFill } from "react-icons/bs";
 import { FaBarcode, FaRegCreditCard, FaTruck } from "react-icons/fa";
-import StarsCod from "../../components/EstrelasCodigo";
+import StarRating from "../../components/StarRating";
 import { useCarrinho } from '../../contexts/contex-Cart';
 import './produtoCompra.css';
 import InputMask from 'react-input-mask';
@@ -17,8 +17,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import FormaPagamento from '../../components/FormaPagamento';
+import Favoritar from '../../components/Favoritar';
 
-export default function Produto({ product }) {
+export default function Produto({ product, rating }) {
     const api = process.env.REACT_APP_API_URL;
     const images = Object.values(product.images || {});
     const [mainImage, setMainImage] = useState(images[0] || "");
@@ -37,6 +38,7 @@ export default function Produto({ product }) {
         const cepPuro = cep.replace(/\D/g, '');
         if (cepPuro.length === 8) {
             setIsFreteModalOpen(true);
+            document.body.style.overflow = 'hidden';
         } else {
             notifyError("Informe um CEP válido");
         }
@@ -44,14 +46,17 @@ export default function Produto({ product }) {
 
     function closeFreteModal() {
         setIsFreteModalOpen(false);
+        document.body.style.overflow = 'auto';
     }
 
     function openFormaPagamentoModal() {
         setIsFormaPagamentoModalOpen(true);
+        document.body.style.overflow = 'hidden';
     }
 
     function closeFormaPagamentoModal() {
         setIsFormaPagamentoModalOpen(false);
+        document.body.style.overflow = 'auto';
     }
 
     const handleAddCart = () => {
@@ -85,7 +90,8 @@ export default function Produto({ product }) {
     return (
         <>
             <ToastContainer />
-            <h2 className='text-base md:text-lg lg:text-xl 2xl:text-2xl font-bold'>{product.nome}</h2>
+            <Favoritar produto={product._id} tamanho='text-2xl' />
+            <h2 className='text-zinc-900 text-base md:text-lg lg:text-xl 2xl:text-2xl font-bold'>{product.nome}</h2>
             <section className="containerProdutoInfo">
                 <div className="hidden lg:flex flex-col gap-4">
                     {images.map((image, index) => (
@@ -117,7 +123,7 @@ export default function Produto({ product }) {
                             <h2 className='text-xl font-bold'>Marca:</h2>
                             <img src={`${api}imgs/${product.marca}.jpg`} alt="marca" />
                         </div>
-                        <StarsCod />
+                        <a href="#avalicao"><StarRating rating={rating} /></a>
                     </div>
 
                     <p id="disponi">Produto Disponível</p>

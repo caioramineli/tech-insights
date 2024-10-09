@@ -4,7 +4,7 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const Favoritar = ({ produto }) => {
+const Favoritar = ({ produto, tamanho = 'text-xl' }) => {
     const [fav, setFav] = useState(false);
     const api = process.env.REACT_APP_API_URL;
     const { user, favoritos, updateFavoritos } = useContext(AuthContext);
@@ -39,8 +39,8 @@ const Favoritar = ({ produto }) => {
                 e.preventDefault();
             }}
         >
-            <FaRegHeart className={!fav ? 'text-zinc-600 text-lg sm:text-xl hover:text-red-700 duration-200' : 'hidden'} />
-            <FaHeart className={fav ? 'text-red-700 text-lg sm:text-xl' : 'hidden'} />
+            <FaRegHeart className={!fav ? `text-zinc-600 text-lg sm:${tamanho} hover:text-red-700 duration-200` : 'hidden'} />
+            <FaHeart className={fav ? `text-red-700 text-lg sm:${tamanho}` : 'hidden'} />
         </button>
     );
 };
