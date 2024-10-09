@@ -57,7 +57,7 @@ export default function Conta() {
                     <span className='text-xl p-1 font-bold text-nowrap'>Seja Bem-vindo, {getFirstName(user.nome)}</span>
                 </div>
             </div>
-            <div className='grid grid-cols-4 gap-3 mt-3'>
+            <div id='container-MinhaConta'>
                 <Link to={'dados'}>
                     <div className='flex items-center justify-center p-5 border bsPadrao bg-white rounded-md gap-4 h-36'>
                         <span>
