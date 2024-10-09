@@ -56,15 +56,15 @@ export default function Conta() {
                 </div>
             </div>
             
-            <div className='grid grid-cols-4 gap-3 mt-2'>
+            <div className='grid grid-cols-2 lg:grid-cols-4 gap-3 mt-2'>
                 <Link to={'dados'}>
                     <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
                         <span>
-                            <FaRegAddressCard className='text-emerald-600 text-4xl' />
+                            <FaRegAddressCard className='text-emerald-600 text-2xl sm:text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
-                            <h2 className='text-base font-bold'>MEUS DADOS</h2>
-                            <p className='text-sm sm-1'>Altere seus dados cadastrados. </p>
+                            <h2 className='text-sm sm:text-base font-bold'>MEUS DADOS</h2>
+                            <p className='text-sm sm-1 hidden sm:block'>Altere seus dados cadastrados. </p>
                         </div>
                     </div>
                 </Link>
@@ -72,11 +72,11 @@ export default function Conta() {
                 <Link to={'pedidos'}>
                     <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
                         <span>
-                            <HiShoppingBag className='text-emerald-600 text-4xl' />
+                            <HiShoppingBag className='text-emerald-600 text-2xl sm:text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
-                            <h2 className='text-base font-bold uppercase'>Meu pedidos</h2>
-                            <p className='text-sm sm-1'>Veja históricos e acompanhe suas compras.</p>
+                            <h2 className='text-sm sm:text-base font-bold uppercase'>Meu pedidos</h2>
+                            <p className='text-sm sm-1 hidden sm:block'>Veja históricos e acompanhe suas compras.</p>
                         </div>
                     </div>
                 </Link>
@@ -84,11 +84,11 @@ export default function Conta() {
                 <Link to={'favoritos'}>
                     <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
                         <span>
-                            <FaRegHeart className='text-emerald-600 text-4xl' />
+                            <FaRegHeart className='text-emerald-600 text-2xl sm:text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
-                            <h2 className='text-base font-bold uppercase'>Favoritos</h2>
-                            <p className='text-sm sm-1'>Consulte sua lista de produtos favoritos</p>
+                            <h2 className='text-sm sm:text-base font-bold uppercase'>Favoritos</h2>
+                            <p className='text-sm sm-1 hidden sm:block'>Consulte sua lista de produtos favoritos</p>
                         </div>
                     </div>
                 </Link>
@@ -96,11 +96,11 @@ export default function Conta() {
                 <Link to={'enderecos'}>
                     <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
                         <span>
-                            <FaMapLocationDot className='text-emerald-600 text-4xl' />
+                            <FaMapLocationDot className='text-emerald-600 text-2xl sm:text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
-                            <h2 className='text-base font-bold uppercase'>Meus Endereços</h2>
-                            <p className='text-sm sm-1'> Veja seus endereços ou cadastre um novo endereço.</p>
+                            <h2 className='text-sm sm:text-base font-bold uppercase'>Meus Endereços</h2>
+                            <p className='text-sm sm-1 hidden sm:block'> Veja seus endereços ou cadastre um novo endereço.</p>
                         </div>
                     </div>
                 </Link>
