@@ -10,7 +10,7 @@ const StarRating = ({ rating }) => {
                         {currentRating <= rating ? (
                             <FaStar className='mr-1 text-lg sm:text-2xl' color="#ffa500" />
                         ) : currentRating - rating < 1 && currentRating > rating ? (
-                            <FaRegStarHalfStroke className='mr-1' size={25} color="#ffa500" />
+                            <FaRegStarHalfStroke className='mr-1 text-lg sm:text-2xl' color="#ffa500" />
                         ) : (
                             <FaRegStar className='mr-1 text-lg sm:text-2xl' color="#ffa500" />
                         )}
