@@ -44,11 +44,16 @@ export default function AvaliacoesProduto({ produto, setNotaMedia }) {
                 callback();
             }
         } catch (error) {
-            console.error("Erro ao buscar avaliações:", error);
+            if (error.response && error.response.data.msg === 'Nenhum avaliação encontrada para esse produto!') {
+                console.warn(error.response.data.msg);
+            } else {
+                console.error("Erro ao buscar avaliações:", error);
+            }
         } finally {
             setLoading(false);
         }
     }, [api, produto._id]);
+
 
     useEffect(() => {
         getAvaliacoes();
@@ -90,7 +95,7 @@ export default function AvaliacoesProduto({ produto, setNotaMedia }) {
             >
                 <div className="flex justify-between items-center my-2">
                     <div>
-                        <div className="flex flex-col sm:flex-row items-center gap-1">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-1">
                             <span className="text-[#ffa500] font-bold text-xl"><span className="text-2xl ">{media}</span>/5</span>
                             <span className="text-[#ffa500] font-bold hidden sm:block sm:text-xl">-</span>
                             <StarRating rating={media} />
