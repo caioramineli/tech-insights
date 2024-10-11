@@ -28,6 +28,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import ProductUpload from "./admin/pages/product";
+import AdminCuponPage from "./admin/pages/cupon";
 
 import ProtectedRoute from './protectRoutes';
 
@@ -58,7 +59,9 @@ export default function MinhasRotas() {
                     <Route path="/kit-upgrade" element={<KitUpgrade />} />
                     <Route path="/notebooks" element={<Notebooks />} />
                     <Route path="/monitores" element={<Monitores />} />
+
                     <Route path="/admin/produtos" element={<ProductUpload />} />
+                    <Route path="/admin/cupons" element={<AdminCuponPage />} />
                 </Routes>
 
                 <Footer />
