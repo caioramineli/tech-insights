@@ -9,6 +9,10 @@
     font-family: Inter;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--slate-100);
 }

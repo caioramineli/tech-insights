@@ -1,37 +1,36 @@
-import StarRating from "../StarRating"
+import React, { useRef, useState, useEffect, useCallback, useContext } from "react";
+import axios from "axios";
+import { format } from 'date-fns';
+import StarRating from "../StarRating";
 import { PiUserCircleThin } from "react-icons/pi";
 import ModalAvaliarProduto from "../ModalAvaliarProduto";
-import { useCallback, useEffect, useState, useRef, useContext } from "react";
-import axios from "axios";
 import Loading from "../Loading";
-import { format } from 'date-fns';
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function AvaliacoesProduto({ produto, setNotaMedia }) {
+export default function AvaliacoesProduto({ produto, setNotaMedia, accordion, setOpenAccordion }) {
     const [isModalAvaliarProduto, setIsModalAvaliarProduto] = useState(false);
-    const api = process.env.REACT_APP_API_URL;
-    const [avaliacoes, setAvaliacoes] = useState([])
+    const [avaliacoes, setAvaliacoes] = useState([]);
     const [media, setMedia] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [isOpen, setIsOpen] = useState(false);
     const contentRef = useRef(null);
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
+    const api = process.env.REACT_APP_API_URL;
 
     const notifyError = (message) => toast.error(message);
 
     const toggleAccordion = () => {
-        setIsOpen(!isOpen);
+        setOpenAccordion(!accordion);
     };
 
     function openModalAvaliarProduto() {
         if (user) {
-            setIsModalAvaliarProduto(true)
+            setIsModalAvaliarProduto(true);
             document.body.style.overflow = 'hidden';
         } else {
-            notifyError('Você precisa estar logado para escrever uma avalição')
+            notifyError('Você precisa estar logado para escrever uma avaliação');
         }
     }
 
@@ -44,7 +43,7 @@ export default function AvaliacoesProduto({ produto, setNotaMedia }) {
                 callback();
             }
         } catch (error) {
-            if (error.response && error.response.data.msg === 'Nenhum avaliação encontrada para esse produto!') {
+            if (error.response && error.response.data.msg === 'Nenhuma avaliação encontrada para esse produto!') {
                 console.warn(error.response.data.msg);
             } else {
                 console.error("Erro ao buscar avaliações:", error);
@@ -54,10 +53,15 @@ export default function AvaliacoesProduto({ produto, setNotaMedia }) {
         }
     }, [api, produto._id]);
 
-
     useEffect(() => {
         getAvaliacoes();
     }, [getAvaliacoes]);
+
+    useEffect(() => {
+        if (accordion && contentRef.current) {
+            contentRef.current.style.height = `${contentRef.current.scrollHeight}px`;
+        }
+    }, [accordion]);
 
     useEffect(() => {
         if (avaliacoes.length > 0) {
@@ -75,14 +79,14 @@ export default function AvaliacoesProduto({ produto, setNotaMedia }) {
     }
 
     return (
-        <div className='containerEspecificacaoEDescricao' id="avalicao">
+        <div className='containerEspecificacaoEDescricao'>
             <h2
                 className='text-xl text-zinc-900 font-bold cursor-pointer flex justify-between items-center'
                 onClick={toggleAccordion}
             >
                 Avaliações
                 <span
-                    className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                    className={`transform transition-transform duration-300 ${accordion ? 'rotate-180' : ''}`}
                 >
                     <MdKeyboardArrowDown className='text-4xl text-emerald-600' />
                 </span>
@@ -91,9 +95,9 @@ export default function AvaliacoesProduto({ produto, setNotaMedia }) {
             <div
                 ref={contentRef}
                 className='transition-height duration-300 ease-in-out overflow-hidden'
-                style={{ height: isOpen ? `${contentRef.current.scrollHeight}px` : '0px' }}
+                style={{ height: accordion ? `${contentRef.current?.scrollHeight}px` : '0px' }}
             >
-                <div className="flex justify-between items-center my-2">
+                <div className="flex justify-between items-center my-2" id="avalicao">
                     <div>
                         <div className="flex flex-col sm:flex-row sm:items-center gap-1">
                             <span className="text-[#ffa500] font-bold text-xl"><span className="text-2xl ">{media}</span>/5</span>
@@ -130,7 +134,6 @@ export default function AvaliacoesProduto({ produto, setNotaMedia }) {
                     </div>
                 ))}
             </div>
-
         </div>
-    )
+    );
 }

@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 const Cupom = () => {
     const [cupomCode, setCupomCode] = useState('');
     const [loading, setLoading] = useState(false)
-    const { aplicarDesconto } = useCarrinho();
+    const { calcularValorTotal, setCupom, setDesconto } = useCarrinho();
     const api = process.env.REACT_APP_API_URL;
 
     const notifySuccess = (text) => toast.success(text);
@@ -21,14 +21,23 @@ const Cupom = () => {
 
     const verifyCupom = async () => {
         setLoading(true);
+        setDesconto(0);
+        setCupom([]);
         try {
             const response = await axios.get(`${api}cupon/${cupomCode}`);
-            aplicarDesconto(response.data.desconto);
-            notifySuccess("Cupom aplicado com sucesso!")
+            if (calcularValorTotal < response.data.minimo) {
+                notifyError("O valor mínimo do carrinho é de R$ " + response.data.minimo);
+                setCupom([]);
+                return setDesconto(0);
+            }
+            setCupom(response.data);
+            notifySuccess("Cupom aplicado com sucesso!");
         } catch (err) {
-            notifyError("Cupom Inválido!")
-            aplicarDesconto(0);
+            setCupom([]);
+            notifyError("Cupom Inválido!");
+            return setDesconto(0);
         } finally {
+            setCupomCode('')
             setLoading(false);
         }
     };
@@ -36,7 +45,7 @@ const Cupom = () => {
     return (
         <div className="flex flex-col bg-white rounded-md bsPadrao p-4 gap-2">
             <h3 className="text-lg font-bold">Aplicar desconto</h3>
-            <div className="flex gap-2">
+            <form onSubmit={verifyCupom} className="flex gap-2">
                 <input
                     className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700"
                     type="text"
@@ -51,13 +60,14 @@ const Cupom = () => {
                     </div>
                 ) : (
                     <button
+                        type='submit'
                         className="flex items-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50"
                         onClick={verifyCupom}
                     >
                         Aplicar <BiSolidCoupon />
                     </button>
                 )}
-            </div>
+            </form>
         </div>
     );
 };

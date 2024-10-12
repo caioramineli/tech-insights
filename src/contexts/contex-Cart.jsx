@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useMemo } from 'react';
+import React, { createContext, useContext, useState, useMemo, useEffect, useCallback } from 'react';
 
 const CarrinhoContext = createContext();
 
@@ -8,16 +8,23 @@ export function useCarrinho() {
 
 export function CarrinhoProvider({ children }) {
     const [carrinho, setCarrinho] = useState([]);
+    const [cupom, setCupom] = useState([]);
     const [desconto, setDesconto] = useState(0);
     const [frete, setFrete] = useState({ tipo: "", valor: 0 });
     const [endereco, setEndereco] = useState({ dadosEndereco: {} });
-    const [formaPagamento, setFormaPagamento] = useState('')
+    const [formaPagamento, setFormaPagamento] = useState('');
     const [pedido, setPedido] = useState(null);
+
+    const calcularValorTotal = useMemo(() => {
+        return carrinho.reduce((total, produto) => {
+            return total + produto.precoPrazo * produto.quantidade;
+        }, 0);
+    }, [carrinho]);
 
     const adicionarAoCarrinho = (novoProduto) => {
         setCarrinho((prevCarrinho) => {
             const produtoExistente = prevCarrinho.find((produto) => produto._id === novoProduto._id);
-            
+
             if (produtoExistente) {
                 if (produtoExistente.quantidade < 10) {
                     return prevCarrinho.map((produto) =>
@@ -29,38 +36,34 @@ export function CarrinhoProvider({ children }) {
                     return prevCarrinho;
                 }
             }
-    
+
             return [...prevCarrinho, novoProduto];
         });
     };
 
     const atualizarQuantidade = (id, novaQuantidade) => {
-        setCarrinho((prevCarrinho) =>
-            prevCarrinho.map((produto) =>
+        setCarrinho((prevCarrinho) => {
+            const novoCarrinho = prevCarrinho.map((produto) =>
                 produto._id === id
                     ? { ...produto, quantidade: novaQuantidade }
                     : produto
-            )
-        );
+            );
+            return novoCarrinho;
+        });
     };
 
     const removerProduto = (id) => {
-        setCarrinho(prevCarrinho => prevCarrinho.filter(produto => produto._id !== id));
+        setCarrinho((prevCarrinho) => prevCarrinho.filter(produto => produto._id !== id));
     };
 
     const zerarCarrinho = () => {
         setCarrinho([]);
+        setCupom([]);
         setDesconto(0);
         setFrete({ tipo: "", valor: 0 });
         setEndereco({ dadosEndereco: {} });
         setFormaPagamento('');
     };
-
-    const calcularValorTotal = useMemo(() => {
-        return carrinho.reduce((total, produto) => {
-            return total + produto.precoPrazo * produto.quantidade;
-        }, 0);
-    }, [carrinho]);
 
     const escolhaFrete = (tipo) => {
         let valorFrete = 0;
@@ -82,14 +85,27 @@ export function CarrinhoProvider({ children }) {
         setFrete({ tipo: tipo, valor: valorFrete });
     };
 
-    const aplicarDesconto = (valorDesconto) => {
-        setDesconto(valorDesconto);
-        return valorDesconto;
-    };
+    const aplicarDesconto = useCallback(() => {
+        if (!cupom || calcularValorTotal < cupom.minimo) {
+            setDesconto(0);
+            return;
+        }
+
+        if (cupom.tipo === "fixo") {
+            setDesconto(cupom.desconto);
+        } else if (cupom.tipo === "percentual") {
+            const valorDesconto = calcularValorTotal * (cupom.desconto / 100);
+            setDesconto(valorDesconto);
+        }
+    }, [cupom, calcularValorTotal]);
+
+    useEffect(() => {
+        aplicarDesconto();
+    }, [cupom, calcularValorTotal, aplicarDesconto]);
 
     const calcularValorFinal = useMemo(() => {
         const valorFrete = frete.valor;
-        return calcularValorTotal + valorFrete - desconto;
+        return valorFrete + calcularValorTotal - desconto;
     }, [calcularValorTotal, frete.valor, desconto]);
 
     return (
@@ -106,7 +122,10 @@ export function CarrinhoProvider({ children }) {
             escolhaFrete,
             endereco,
             setEndereco,
+            cupom,
+            setCupom,
             desconto,
+            setDesconto,
             formaPagamento,
             setFormaPagamento,
             pedido,
