@@ -31,6 +31,8 @@ const AdminCuponPage = () => {
         setIsSubmitting(true);
 
         try {
+            console.log(formData.validade);
+
             await axios.post(`${api}cupon/create`, formData);
 
             setFormData({
@@ -52,11 +54,11 @@ const AdminCuponPage = () => {
         }
     };
     return (
-        <>
+        <div className='flex flex-col gap-4 w-[90%] xl:w-4/5 m-auto max-w-[1300px] my-8'>
             <ToastContainer />
             <h1 className='text-xl mb-2'>Cadastar um novo Cupom de desconto</h1>
             <form method="POST" onSubmit={handleSubmit} className='flex flex-col gap-4'>
-                <div className='grid grid-cols-3 gap-4'>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                     <div className='divInputModerno'>
                         <input
                             name="codigo"
@@ -84,11 +86,13 @@ const AdminCuponPage = () => {
                             Descrição
                         </label>
                     </div>
-                </div>
 
-                <div className="grid grid-cols-3 gap-4">
                     <div className='flex flex-col'>
-                        <select name="tipo" value={formData.tipo} onChange={handleChange} className='!bg-slate-100'>
+                        <select
+                            name="tipo"
+                            value={formData.tipo}
+                            onChange={handleChange}
+                            className='!bg-slate-100 border border-[#71717a] rounded-md py-[11px] px-3 text-[#71717a]'>
                             <option value="">Selecione uma categoria</option>
                             <option value="percentual">Percentual %</option>
                             <option value="fixo">Fixo $</option>
@@ -136,10 +140,9 @@ const AdminCuponPage = () => {
                     </div>
                     <div className="divInputModerno">
                         <input
-                            name="estado"
+                            name="validade"
                             type="date"
-                            placeholder="SP"
-                            value={formData.data}
+                            value={formData.validade}
                             onChange={handleChange}
                             required
                         />
@@ -162,8 +165,7 @@ const AdminCuponPage = () => {
                     )}
                 </div>
             </form>
-            <hr />
-        </>
+        </div>
     );
 }
 

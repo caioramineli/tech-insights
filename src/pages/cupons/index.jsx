@@ -49,14 +49,14 @@ export default function PaginaCupons() {
                         <h1 className="text-xl text-emerald-50 font-bold">
                             {cupon.tipo === "percentual" ? `${cupon.valor}% OFF` : `R$ ${cupon.valor} OFF`}
                         </h1>
-                        <p className="text-lg text-emerald-50">{cupon.descricao}</p>
+                        <p className="text-base sm:text-lg text-emerald-50">{cupon.descricao}</p>
                         <hr className="border-dashed border my-2" />
-                        <button onClick={() => handleCopy(cupon.codigo)} className="text-xl p-2 font-bold bg-white rounded-md relative text-zinc-900">
+                        <button onClick={() => handleCopy(cupon.codigo)} className="text-lg sm:text-xl p-2 font-bold bg-white rounded-md relative text-zinc-900">
                             {cupon.codigo}
                             {copiedCode === cupon.codigo ? (
-                                <FaCheck className="absolute top-1 right-1 text-zinc-900" />
+                                <FaCheck className="absolute top-1 right-1 text-zinc-900 text-base" />
                             ) : (
-                                <FaRegCopy className="absolute top-1 right-1 text-zinc-900" />
+                                <FaRegCopy className="absolute top-1 right-1 text-zinc-900 text-base" />
                             )}
                         </button>
                     </div>
