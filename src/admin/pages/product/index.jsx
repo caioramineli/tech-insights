@@ -100,7 +100,7 @@ const ProductUpload = () => {
     return (
         <section className="cadastroProdutos">
             <ToastContainer />
-            <h1>Cadastro de Produto</h1>
+            <h1 className="text-xl font-bold">Cadastro de Produto</h1>
             <form className="formCadastroProdutos" onSubmit={handleSubmit}>
                 <div className="boxInputs">
                     <InputAdmin label="Nome:" nome="nome" value={formData.nome} func={handleChange} />
@@ -133,7 +133,7 @@ const ProductUpload = () => {
                     <div className="custom-select-container">
                         <label htmlFor="categoria">Selecione uma categoria</label>
                         <select name="categoria" value={formData.categoria} onChange={handleChange}>
-                            <option value="">Selecione uma categoria</option>
+                            <option value=""></option>
                             <option value="gpu">Placa de Vídeo</option>
                             <option value="placa-mae">Placa mãe</option>
                             <option value="processador">Processador</option>

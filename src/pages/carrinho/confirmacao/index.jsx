@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Confirmacao() {
     const api = process.env.REACT_APP_API_URL;
-    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento, setPedido } = useCarrinho();
+    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento, setPedido, cupom } = useCarrinho();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { user } = useContext(AuthContext);
 
@@ -45,11 +45,14 @@ export default function Confirmacao() {
                 tipo: frete.tipo,
                 valor: frete.valor
             },
-            valorTotal: calcularValorFinal
+            valorTotal: calcularValorFinal,
+            codigoCupom: cupom.codigo
         };
 
         try {
             setIsSubmitting(true);
+            console.log(cupom.codigo);
+            
             const response = await axios.post(api + "order", pedido);
             if (response.status === 201) {
                 setPedido(response.data.order);

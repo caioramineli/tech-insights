@@ -19,7 +19,7 @@ import 'swiper/css/pagination';
 import FormaPagamento from '../../components/FormaPagamento';
 import Favoritar from '../../components/Favoritar';
 
-export default function Produto({ product, rating }) {
+export default function Produto({ product, rating, setOpenAccordion }) {
     const api = process.env.REACT_APP_API_URL;
     const images = Object.values(product.images || {});
     const [mainImage, setMainImage] = useState(images[0] || "");
@@ -57,6 +57,10 @@ export default function Produto({ product, rating }) {
     function closeFormaPagamentoModal() {
         setIsFormaPagamentoModalOpen(false);
         document.body.style.overflow = 'auto';
+    }
+
+    function openAccordion() {
+        setOpenAccordion(true)
     }
 
     const handleAddCart = () => {
@@ -123,7 +127,11 @@ export default function Produto({ product, rating }) {
                             <h2 className='text-xl font-bold'>Marca:</h2>
                             <img src={`${api}imgs/${product.marca}.jpg`} alt="marca" />
                         </div>
-                        <a href="#avalicao"><StarRating rating={rating} /></a>
+                        <a href="#avalicao">
+                            <div onClick={openAccordion}>
+                                <StarRating rating={rating} />
+                            </div>
+                        </a>
                     </div>
 
                     <p id="disponi">Produto Disponível</p>

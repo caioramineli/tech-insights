@@ -14,6 +14,7 @@ export default function PaginaProduto() {
     const [rating, setRating] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [openAccordion, setOpenAccordion] = useState(false)
     const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
@@ -42,12 +43,12 @@ export default function PaginaProduto() {
     return (
         <main className='containerPaginaProduto'>
             <section className="containerMainProduto">
-                <Produto product={productData} rating={rating} />
+                <Produto product={productData} rating={rating} setOpenAccordion={setOpenAccordion} />
             </section>
 
             <DescricaoProduto descricao={productData.descricao} />
             <EspecificacaoProduto especificacoes={productData.especificacoes} />
-            <AvaliacoesProduto produto={productData} setNotaMedia={setRating} />
+            <AvaliacoesProduto produto={productData} setNotaMedia={setRating} accordion={openAccordion} setOpenAccordion={setOpenAccordion} />
         </main>
     );
 }

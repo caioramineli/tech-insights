@@ -53,7 +53,7 @@ export default function LineTableCart({ produto, removerProduto, esconder = 'fle
                         <FaChevronRight className={`${esconder} cursor-pointer`} onClick={aumentarQtd} />
                     </div>
 
-                    <div className={`${esconder} items-center justify-center gap-2 text-red-700`} onClick={() => removerProduto(produto._id)}>
+                    <div className={`${esconder} items-center justify-center gap-2 text-red-700 cursor-pointer`} onClick={() => removerProduto(produto._id)}>
                         <FaTrash />
                         <span>Remover</span>
                     </div>
