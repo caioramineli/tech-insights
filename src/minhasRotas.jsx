@@ -45,7 +45,7 @@ export default function MinhasRotas() {
                     <Route path="/cadastrar" element={<Cadastrar />} />
                     <Route path="/minha-conta" element={<ProtectedRoute element={<Conta />} />} />
                     <Route path="/minha-conta/pedidos" element={<ProtectedRoute element={<Pedidos />} />} />
-                    <Route path="/minha-conta/pedidos/1" element={<Pedido />} />
+                    <Route path="/minha-conta/pedidos/:idPedido" element={<Pedido />} />
                     <Route path="/minha-conta/favoritos" element={<ProtectedRoute element={<PaginaFavoritos />} />} />
                     <Route path="/carrinho" element={<Carrinho />} />
                     <Route path="/entrega" element={<ProtectedRoute element={<Entrega />} />} />
@@ -60,8 +60,8 @@ export default function MinhasRotas() {
                     <Route path="/kit-upgrade" element={<KitUpgrade />} />
                     <Route path="/notebooks" element={<Notebooks />} />
                     <Route path="/monitores" element={<Monitores />} />
-
                     <Route path="/admin/produtos" element={<ProductUpload />} />
+                    <Route path="/admin/cupons" element={< AdminCuponPage />} />
                 </Routes>
 
                 <Footer />

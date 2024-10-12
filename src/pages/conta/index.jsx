@@ -6,16 +6,20 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaMapLocationDot, FaRegAddressCard } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 import { PiUserCircleLight } from "react-icons/pi";
-import { MdAccessible } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { HiShoppingBag } from "react-icons/hi2";
+import { useNavigate } from 'react-router-dom';
 
 import './style.css';
 
 export default function Conta() {
     const { user, token } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
+    const [pedidos, setPedidos] = useState([]);
+    const [loading, setLoading] = useState(true);
     const api = process.env.REACT_APP_API_URL;
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         if (user && token) {
@@ -34,12 +38,35 @@ export default function Conta() {
         }
     }, [user, token, api]);
 
+    useEffect(() => {
+        const fetchPedidos = async () => {
+            try {
+                const response = await axios.get(`${api}user/${user.id}/orders`);
+                setPedidos(response.data);
+            } catch (err) {
+                console.log(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (user) {
+            fetchPedidos();
+        }
+    }, [user, api]);
+
     if (!userData) {
         return (
             <div className='flex justify-center'>
                 <Loading />
             </div>
         );
+    }
+
+    function enviarDadosPedido(idPedido, pedido) {
+        navigate(`pedidos/${idPedido}`, {
+            state: { pedido }
+        });
     }
 
     return (
@@ -55,7 +82,7 @@ export default function Conta() {
                     <span>{user.email}</span>
                 </div>
             </div>
-            
+
             <div className='grid grid-cols-2 lg:grid-cols-4 gap-3 mt-2'>
                 <Link to={'dados'}>
                     <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
@@ -113,37 +140,46 @@ export default function Conta() {
                 <Link to={'pedidos'} className='uppercase underline decoration-solid text-sm'> ir para meus pedidos</Link>
             </div>
 
-            <div className='flex flex-col bsPadrao bg-white rounded-md '>
-                <div className='flex gap-2 items-center justify-between py-2 px-3'>
-                    <p><span className='font-bold'>Pedido:</span> cod-pedido - 02/02/2022 </p>
-                    <Link>
-                        <button className='flex gap-1 bg-emerald-600 hover:bg-emerald-700 duration-200 p-2 rounded-md items-center text-emerald-50'>
-                            Ver Detalhes
-                            <IoIosArrowForward className='text-emerald-50 text-lg' />
-                        </button>
-                    </Link>
-                </div>
+            {pedidos.length === 0 ? (
+                <p>Nenhum pedido encontrado.</p>
+            ) : (
+                <div className='flex flex-col gap-6'>
+                    <div className='flex flex-col bsPadrao bg-white rounded-md' key={pedidos[pedidos.length - 1]._id}>
+                        <hr />
+                        <div className='flex gap-2 items-center justify-between py-2 px-3'>
+                            <h2><span className='font-bold'>Numero do pedido: </span>{pedidos[pedidos.length - 1].numeroPedido} - {new Date(pedidos[pedidos.length - 1].data).toLocaleDateString()}</h2>
 
-                <hr />
+                            <button onClick={() => enviarDadosPedido(pedidos[pedidos.length - 1]._id, pedidos[pedidos.length - 1])} className='flex gap-1 bg-emerald-600 hover:bg-emerald-700 duration-200 p-2 rounded-md items-center text-emerald-50'>
+                                Ver Detalhes
+                                <IoIosArrowForward className='text-emerald-50 text-lg' />
+                            </button>
 
-                <h1 className='font-bold uppercase text-emerald-600 py-2 px-3'>Aguardando o status do pedido</h1>
+                        </div>
+                        <hr />
+                        <div className='flex gap-2 items-center py-2 px-3'>
+                            <h1><span className='font-bold'>Forma de Pagamento:</span> {pedidos[pedidos.length - 1].formaPagamento}</h1>
+                        </div>
+                        <hr />
 
-                <hr />
+                        <h1 className='font-bold uppercase text-emerald-600 py-2 px-3'>Aguardando o status do pedido</h1>
 
-                <div className='flex gap-2 mt-1 items-center py-2 px-3'>
-                    <h1>IMG  Pagamento via FORMA-PAGAMENTO</h1>
-                </div>
-
-                <hr />
-
-                <div className='flex flex-row gap-4 items-center py-2 px-3'>
-                    <MdAccessible className='text-6xl border bsPadrao bg-white ' />
-                    <div className='grid grid-cols-1 gap-1'>
-                        <h1 className='font-bold uppercase'>Caderante de primeira classe  </h1>
-                        <p>Quantidade: 0</p>
+                        <ul>
+                            {pedidos[pedidos.length - 1].produtos.map((produto) => (
+                                <div key={produto.dadosProduto._id}>
+                                    <hr />
+                                    <div className='flex gap-4 items-center py-2 px-3'>
+                                        <img className='w-20' src={api + produto.dadosProduto.images[0]} alt="img-principal" />
+                                        <div className='grid grid-cols-1 gap-1'>
+                                            <h1 className='font-bold uppercase'> {produto.dadosProduto.nome}</h1>
+                                            <p>Quantidade: {produto.quantidade}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </ul>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

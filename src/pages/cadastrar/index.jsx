@@ -23,7 +23,7 @@ export default function Cadastrar() {
 
     const [chatBotData, setChatBotData] = useState({
         phone: "",
-        message: "Olá, Bem vindo a Tech Insights! Se tiver alguma dúvida estou a disposição."
+        message: ""
     });
 
     const { login } = useContext(AuthContext);
@@ -93,7 +93,7 @@ export default function Cadastrar() {
 
     const handleSubmit = async (e) => {
         console.log(apiChatBot, api, 'teste');
-        
+
         e.preventDefault();
         setIsSubmitting(true);
 
@@ -141,14 +141,13 @@ export default function Cadastrar() {
         }
 
         try {
-            setChatBotData(prevData => ({
-                ...prevData,
-                phone: formData.telefone
-            }));
+            setChatBotData({
+                phone: formData.telefone,
+                message: `Olá ${formData.nome}, bem vindo a Tech Insights! Se tiver alguma dúvida estou a disposição.`
+            });
 
             await axios.post(api + 'register', formData);
-            console.log(chatBotData, formData.telefone);
-            
+
             const response = await axios.post(api + 'login', {
                 email: formData.email,
                 senha: formData.senha

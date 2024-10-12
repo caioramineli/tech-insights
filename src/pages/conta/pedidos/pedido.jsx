@@ -1,34 +1,31 @@
-import { MdAccessible } from "react-icons/md";
-import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import { AuthContext } from '../../../contexts/AuthContext';
+import { useLocation } from 'react-router-dom';
 
-export default function Pedido({ pedido }) {
-    const [pedidos, setPedidos] = useState([]);
-    const { user } = useContext(AuthContext)
-    const [loading, setLoading] = useState(true);
-    const api = process.env.REACT_APP_API_URL;
+export default function Pedido() {
+    const location = useLocation();
+    const pedido = location.state?.pedido;
 
-
-    useEffect(() => {
-        const fetchPedidos = async () => {
-            try {
-                const response = await axios.get(`${api}user/${user.id}/orders`);
-                setPedidos(response.data);
-            } catch (err) {
-                console.log(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        if (user) {
-            fetchPedidos();
-        }
-    }, [user, api]);
+    function formatarPreco(preco) {
+        return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
 
     return (
-        <h1>tela pedido</h1>
-        
+        <div>
+            <h1>tela pedido</h1>
+            <p>{pedido.numeroPedido} teste</p>
+            <hr />
+            <p>Valor do produto a prazo: {pedido.valorTotal + pedido.desconto - pedido.frete.valor}</p>
+            <hr />
+
+            <hr />
+            <p>Desconto: - {formatarPreco(pedido.desconto)}</p>
+            <hr />
+            <p>frete valor: {formatarPreco(pedido.frete.valor)}</p>
+            <hr />
+            <p>Valor total do pedido: {pedido.valorTotal}</p>
+
+            {/* <p>Valor do produto 1: {pedido.produtos[0].dadosProduto.preco}</p> */}
+
+        </div>
+
     )
 }
