@@ -156,6 +156,24 @@
     .btnPadrao {
         font-size: 0.9rem;
     }
+
+    /* Input Moderno */
+    .divInputModerno input {
+        font-size: 0.95rem;
+        padding: 9px 11px;
+    }
+
+    .divInputModerno label {
+        font-size: 0.95rem;
+    }
+
+    .divInputModerno:focus-within label {
+        font-size: 0.9rem !important;
+    }
+
+    .divInputModerno input:not(:placeholder-shown)+label {
+        font-size: 0.9rem !important;
+    }
 }
 
 @media(max-width:500px) {
@@ -207,24 +225,6 @@
     }
 
     .passwordContainer label.filled {
-        font-size: 0.9rem !important;
-    }
-
-    /* Input Moderno */
-    .divInputModerno input {
-        font-size: 0.95rem;
-        padding: 9px 11px;
-    }
-
-    .divInputModerno label {
-        font-size: 0.95rem;
-    }
-
-    .divInputModerno:focus-within label {
-        font-size: 0.9rem !important;
-    }
-
-    .divInputModerno input:not(:placeholder-shown)+label {
         font-size: 0.9rem !important;
     }
 

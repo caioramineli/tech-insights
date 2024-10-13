@@ -156,6 +156,9 @@ li {
 }
 
 .btnPadrao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 6px;
     padding: 8px;
     font-size: 1.1rem;

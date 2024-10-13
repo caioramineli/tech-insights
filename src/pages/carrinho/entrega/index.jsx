@@ -56,6 +56,7 @@ export default function Entrega() {
 
     function openFormEnderecoModal() {
         setFormEndereco(true);
+        setFormEditarEndereco(false);
     }
 
     const fetchEnderecos = useCallback(async () => {
@@ -121,6 +122,7 @@ export default function Entrega() {
                                         enderecos={enderecos}
                                         atualizarEnderecos={fetchEnderecos}
                                         isLoading={isLoading}
+                                        setFormEnderecoCadastrar={setFormEndereco}
                                     />
                                 </div>
 

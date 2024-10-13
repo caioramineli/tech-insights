@@ -35,6 +35,11 @@ export default function Confirmacao() {
             quantidade: produto.quantidade
         }));
 
+        let valorFinalCarrinho = calcularValorFinal;
+        if (formaPagamento === 'PIX' || formaPagamento === 'Boleto') {
+            valorFinalCarrinho = ((calcularValorFinal - frete.valor) * 0.9) + frete.valor
+        }
+
         const pedido = {
             idUser,
             produtos,
@@ -45,14 +50,12 @@ export default function Confirmacao() {
                 tipo: frete.tipo,
                 valor: frete.valor
             },
-            valorTotal: calcularValorFinal,
+            valorTotal: valorFinalCarrinho,
             codigoCupom: cupom.codigo
         };
 
         try {
             setIsSubmitting(true);
-            console.log(cupom.codigo);
-            
             const response = await axios.post(api + "order", pedido);
             if (response.status === 201) {
                 setPedido(response.data.order);

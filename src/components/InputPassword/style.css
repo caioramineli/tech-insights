@@ -5,11 +5,6 @@
     width: 100%;
 }
 
-#passwordInput {
-    padding-right: 40px;
-    width: 100%;
-}
-
 #EyePassword {
     position: absolute;
     right: 10px;

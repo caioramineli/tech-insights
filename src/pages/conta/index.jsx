@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import Loading from '../../components/Loading';
 import axios from 'axios';
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { FaMapLocationDot, FaRegAddressCard } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 import { PiUserCircleLight } from "react-icons/pi";
@@ -10,33 +10,11 @@ import { Link } from 'react-router-dom';
 import { HiShoppingBag } from "react-icons/hi2";
 import { useNavigate } from 'react-router-dom';
 
-import './style.css';
-
 export default function Conta() {
-    const { user, token } = useContext(AuthContext);
-    const [userData, setUserData] = useState(null);
+    const { user } = useContext(AuthContext);
     const [pedidos, setPedidos] = useState([]);
-    const [loading, setLoading] = useState(true);
     const api = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
-
-
-    useEffect(() => {
-        if (user && token) {
-            axios.get(`${api}user/${user.id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            })
-                .then((response) => {
-                    setUserData(response.data.user);
-                })
-                .catch((error) => {
-                    console.error('Erro ao carregar dados do usuário:', error);
-                });
-        }
-    }, [user, token, api]);
 
     useEffect(() => {
         const fetchPedidos = async () => {
@@ -45,8 +23,6 @@ export default function Conta() {
                 setPedidos(response.data);
             } catch (err) {
                 console.log(err);
-            } finally {
-                setLoading(false);
             }
         };
 
@@ -55,7 +31,7 @@ export default function Conta() {
         }
     }, [user, api]);
 
-    if (!userData) {
+    if (!pedidos) {
         return (
             <div className='flex justify-center'>
                 <Loading />
@@ -70,7 +46,6 @@ export default function Conta() {
     }
 
     return (
-
         <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] my-10 gap-1'>
             <h1 className='flex text-2xl justify-center font-bold py-1 text-zinc-900'>MINHA CONTA</h1>
             <hr className='border border-emerald-600 w-52 m-auto' />
@@ -84,10 +59,10 @@ export default function Conta() {
             </div>
 
             <div className='grid grid-cols-2 lg:grid-cols-4 gap-3 mt-2'>
-                <Link to={'dados'}>
-                    <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
+                <Link to={'meus-dados'}>
+                    <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap- h-36'>
                         <span>
-                            <FaRegAddressCard className='text-emerald-600 text-2xl sm:text-4xl' />
+                            <FaRegAddressCard className='text-emerald-600 text-3xl sm:text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
                             <h2 className='text-sm sm:text-base font-bold'>MEUS DADOS</h2>
@@ -97,9 +72,9 @@ export default function Conta() {
                 </Link>
 
                 <Link to={'pedidos'}>
-                    <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
+                    <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap- h-36'>
                         <span>
-                            <HiShoppingBag className='text-emerald-600 text-2xl sm:text-4xl' />
+                            <HiShoppingBag className='text-emerald-600 text-3xl sm:text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
                             <h2 className='text-sm sm:text-base font-bold uppercase'>Meu pedidos</h2>
@@ -109,9 +84,9 @@ export default function Conta() {
                 </Link>
 
                 <Link to={'favoritos'}>
-                    <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
+                    <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap-4 h-36'>
                         <span>
-                            <FaRegHeart className='text-emerald-600 text-2xl sm:text-4xl' />
+                            <FaHeart className='text-emerald-600 text-3xl sm:text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
                             <h2 className='text-sm sm:text-base font-bold uppercase'>Favoritos</h2>
@@ -121,9 +96,9 @@ export default function Conta() {
                 </Link>
 
                 <Link to={'enderecos'}>
-                    <div className='flex items-center justify-center p-5 bsPadrao bg-white rounded-md gap-4 h-36'>
+                    <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap- h-36'>
                         <span>
-                            <FaMapLocationDot className='text-emerald-600 text-2xl sm:text-4xl' />
+                            <FaMapLocationDot className='text-emerald-600 text-3xl sm:text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
                             <h2 className='text-sm sm:text-base font-bold uppercase'>Meus Endereços</h2>
@@ -135,9 +110,9 @@ export default function Conta() {
 
             <hr className='border border-emerald-600 w-full mt-5' />
 
-            <div className='flex flex-row justify-between mt-4'>
+            <div className='flex flex-row justify-between mt-4 mb-1'>
                 <h1 className='font-bold uppercase '>Resumo do seu último pedido</h1>
-                <Link to={'pedidos'} className='uppercase underline decoration-solid text-sm'> ir para meus pedidos</Link>
+                <Link to={'pedidos'} className='hidden sm:block uppercase underline decoration-solid text-sm'> ir para meus pedidos</Link>
             </div>
 
             {pedidos.length === 0 ? (

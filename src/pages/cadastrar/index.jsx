@@ -92,8 +92,6 @@ export default function Cadastrar() {
     }, [chatBotData, apiChatBot]);
 
     const handleSubmit = async (e) => {
-        console.log(apiChatBot, api, 'teste');
-
         e.preventDefault();
         setIsSubmitting(true);
 
@@ -299,7 +297,6 @@ export default function Cadastrar() {
                     <Link to="/login">Fazer Login</Link>
                 </div>
             </form>
-
         </div>
     );
 }

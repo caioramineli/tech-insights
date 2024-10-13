@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../../components/Loading';
 import { useCarrinho } from "../../../contexts/contex-Cart";
 
-const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEnderecos, isLoading }) => {
+const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEnderecos, isLoading, setFormEnderecoCadastrar }) => {
     const [toggle, setToggle] = useState(0);
     const [modalExcluirEndereco, setModalExcluirEndereco] = useState(false);
     const [enderecoExcluir, setEnderecoExcluir] = useState(null);
@@ -50,6 +50,7 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
     }
 
     function atualizarEndereco(endereco) {
+        setFormEnderecoCadastrar(false)
         setEstado(true);
         setFormData({
             enderecoId: endereco._id,

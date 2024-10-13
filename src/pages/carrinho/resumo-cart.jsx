@@ -4,7 +4,7 @@ import { useCarrinho } from "../../contexts/contex-Cart";
 import Separador from "../../components/Separador";
 
 export default function ResumoCart() {
-    const { calcularValorTotal, desconto, frete, calcularValorFinal } = useCarrinho();
+    const { calcularValorTotal, desconto, frete, calcularValorFinal, formaPagamento } = useCarrinho();
 
     function formatarPreco(preco) {
         return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -19,40 +19,48 @@ export default function ResumoCart() {
             <div className="resumoCarrinho">
                 <div>
                     <p>Valor do carrinho:</p>
-                    <p>{formatarPreco(calcularValorTotal)}</p>
+                    <p className="font-semibold">{formatarPreco(calcularValorTotal)}</p>
                 </div>
 
                 <Separador />
 
                 <div>
                     <p>Descontos:</p>
-                    <p>{formatarPreco(desconto)}</p>
+                    <p className={desconto > 0 ? 'text-emerald-600 font-semibold' : 'text-zinc-900 font-semibold'}>
+                        {desconto > 0 ? `- ${formatarPreco(desconto)}` : formatarPreco(desconto)}
+                    </p>
                 </div>
 
                 <Separador />
 
                 <div>
                     <p>Frete:</p>
-                    <p>{frete?.valor ? formatarPreco(frete.valor) : formatarPreco(0)}</p>
+                    <p className="font-semibold text-zinc-900">{frete?.valor ? formatarPreco(frete.valor) : formatarPreco(0)}</p>
                 </div>
 
-                <Separador />
+                {(formaPagamento === 'Cartão' || formaPagamento === 'Mercado Pago' || formaPagamento === '') && (
+                    <>
+                        <Separador />
+                        <div>
+                            <p>Valor Total à prazo:</p>
+                            <p className="font-semibold text-zinc-900">{formatarPreco(calcularValorFinal)}</p>
+                        </div>
+                    </>
+                )}
 
-                <div>
-                    <p>Valor Total a prazo:</p>
-                    <p>{formatarPreco(calcularValorFinal)}</p>
-                </div>
-
-                <Separador />
-
-                <div>
-                    <p>Valor Total à vista:</p>
-                    <p>
-                        {formatarPreco(
-                            ((calcularValorFinal - (frete?.valor || 0)) * 0.9) + (frete?.valor || 0)
-                        )}
-                    </p>
-                </div>
+                {(formaPagamento === 'PIX' || formaPagamento === 'Boleto' || formaPagamento === '') && (
+                    <>
+                        <Separador />
+                        <div>
+                            <p>Valor Total à vista:</p>
+                            <p className={formaPagamento ? 'text-emerald-600 font-semibold' : 'text-zinc-900 font-semibold'}>
+                                {formatarPreco(
+                                    ((calcularValorFinal - (frete?.valor || 0)) * 0.9) + (frete?.valor || 0)
+                                )}
+                            </p>
+                        </div>
+                    </>
+                )}
             </div>
         </section>
     );

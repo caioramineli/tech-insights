@@ -2,7 +2,7 @@ import './style.css';
 import { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 
-export default function InputPassword({ placeholder, value, event, required = false }) {
+export default function InputPassword({ name = 'senha', placeholder, value, event, required = false, label = 'Senha', bgLabel = 'slate-100' }) {
     const [ver, setVer] = useState(true);
 
     function Trocar() {
@@ -13,21 +13,20 @@ export default function InputPassword({ placeholder, value, event, required = fa
         <section className="passwordContainer divInputModerno">
             <input
                 type={ver ? 'password' : 'text'}
-                name='senha'
+                name={name}
                 placeholder={placeholder}
                 value={value}
                 onChange={event}
                 required={required}
-                id="passwordInput"
-                className={value ? 'filled' : ''}
+                className={value ? 'filled !w-full !pr-10' : ''}
             />
             {ver ? (
                 <IoEyeOff id='EyePassword' onClick={Trocar} />
             ) : (
                 <IoEye id='EyePassword' onClick={Trocar} />
             )}
-            <label className={`!bg-slate-100 ${value ? 'filled' : ''}`}>
-                Senha
+            <label className={`!bg-${bgLabel} ${value ? 'filled' : ''}`}>
+                {label}
             </label>
         </section>
     );

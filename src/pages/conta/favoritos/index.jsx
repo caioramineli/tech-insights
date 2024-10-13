@@ -3,8 +3,9 @@ import Produto from "../../home/Produto";
 import { AuthContext } from "../../../contexts/AuthContext";
 import axios from "axios";
 import Loading from "../../../components/Loading";
-import { FaRegHeart } from "react-icons/fa";
+import { FaArrowLeft, FaHeart } from "react-icons/fa";
 import NenhumFavorito from "./nenhum-favorito";
+import { Link } from "react-router-dom";
 
 const PaginaFavoritos = () => {
     const [produtosFavoritos, setProdutosFavoritos] = useState([]);
@@ -42,9 +43,17 @@ const PaginaFavoritos = () => {
 
     return (
         <main className="containerMainPaginaProdutos">
-            <div className="flex items-center gap-2">
-                <FaRegHeart className="text-3xl text-emerald-600"/>
-                <h1 className="font-bold text-zinc-900 text-2xl">Favoritos</h1>
+            <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                    <FaHeart className='text-emerald-600 text-2xl sm:text-3xl' />
+                    <h1 className="font-bold text-zinc-900 text-xl md:text-2xl">Favoritos</h1>
+                </div>
+                <Link to="/minha-conta">
+                    <button className="flex items-center gap-2 p-2 hover:bg-zinc-300 duration-200 rounded-md">
+                        <FaArrowLeft />
+                        <span className="uppercase text-base font-semibold">Voltar</span>
+                    </button>
+                </Link>
             </div>
             <section className="containerProdutos">
                 {produtosFavoritos.map((product) => (
