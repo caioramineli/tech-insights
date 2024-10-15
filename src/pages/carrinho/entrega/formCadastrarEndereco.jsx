@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
-import InputMask from 'react-input-mask';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../../components/Loading';
+import InputModerno from '../../../components/InputModerno';
 
 const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
     const [formData, setFormData] = useState({
@@ -70,119 +70,86 @@ const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
             <h1 className='text-xl mb-2'>Novo Endereço de Entrega</h1>
             <form method="POST" onSubmit={handleSubmit} className='flex flex-col gap-4'>
                 <div className='grid grid-cols-3 gap-4'>
-                    <div className='divInputModerno'>
-                        <input
-                            name="nome"
-                            type="text"
-                            placeholder="Minha casa"
-                            value={formData.nome}
-                            onChange={handleChange}
-                            required
-                        />
-                        <label>
-                            Nome do endereço
-                        </label>
-                    </div>
-
-                    <div className='divInputModerno'>
-                        <InputMask
-                            mask="99999-999"
-                            value={formData.cep}
-                            onChange={handleChange}
-                        >
-                            {() => (
-                                <input
-                                    name="cep"
-                                    type="text"
-                                    placeholder=""
-                                />
-                            )}
-                        </InputMask>
-                        <label>
-                            CEP
-                        </label>
-                    </div>
+                    <InputModerno
+                        name="nome"
+                        type="text"
+                        placeholder="Minha casa"
+                        value={formData.nome}
+                        onChange={handleChange}
+                        label="Nome do endereço"
+                        required
+                    />
+                    <InputModerno
+                        name="cep"
+                        type="text"
+                        placeholder=""
+                        value={formData.cep}
+                        onChange={handleChange}
+                        label="CEP"
+                        mask="99999-999"
+                    />
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
-                    <div className="divInputModerno">
-                        <input
-                            name="rua"
-                            type="text"
-                            placeholder="Ex: Rua Teresina"
-                            value={formData.rua}
-                            onChange={handleChange}
-                            required
-                        />
-                        <label>
-                            Rua
-                        </label>
-                    </div>
-                    <div className="divInputModerno">
-                        <input
-                            name="numero"
-                            type="text"
-                            placeholder="Ex: 1000"
-                            value={formData.numero}
-                            onChange={handleChange}
-                            required
-                        />
-                        <label>
-                            Número
-                        </label>
-                    </div>
-                    <div className="divInputModerno">
-                        <input
-                            name="complemento"
-                            type="text"
-                            placeholder="Casa verde"
-                            value={formData.complemento}
-                            onChange={handleChange}
-                            required
-                        />
-                        <label>
-                            Complemento
-                        </label>
-                    </div>
-                    <div className="divInputModerno">
-                        <input
-                            name="bairro"
-                            type="text"
-                            placeholder="Centro"
-                            value={formData.bairro}
-                            onChange={handleChange}
-                            required
-                        />
-                        <label>
-                            Bairro
-                        </label>
-                    </div>
-                    <div className="divInputModerno">
-                        <input
-                            name="estado"
-                            type="text"
-                            placeholder="SP"
-                            value={formData.estado}
-                            onChange={handleChange}
-                            required
-                        />
-                        <label>
-                            Estado
-                        </label>
-                    </div>
-                    <div className="divInputModerno">
-                        <input
-                            name="cidade"
-                            type="text"
-                            placeholder="Presidente Prudente"
-                            value={formData.cidade}
-                            onChange={handleChange}
-                            required
-                        />
-                        <label>
-                            Cidade
-                        </label>
-                    </div>
+                    <InputModerno
+                        name="rua"
+                        type="text"
+                        placeholder="Ex: Rua Teresina"
+                        value={formData.rua}
+                        onChange={handleChange}
+                        label="Rua"
+                        required
+                    />
+
+                    <InputModerno
+                        name="numero"
+                        type="text"
+                        placeholder="Ex: 1000"
+                        value={formData.numero}
+                        onChange={handleChange}
+                        label="Número"
+                        required
+                    />
+
+                    <InputModerno
+                        name="complemento"
+                        type="text"
+                        placeholder="Casa verde"
+                        value={formData.complemento}
+                        onChange={handleChange}
+                        label="Complemento"
+                        required
+                    />
+
+                    <InputModerno
+                        name="bairro"
+                        type="text"
+                        placeholder="Centro"
+                        value={formData.bairro}
+                        onChange={handleChange}
+                        label="Bairro"
+                        required
+                    />
+
+                    <InputModerno
+                        name="estado"
+                        type="text"
+                        placeholder="SP"
+                        value={formData.estado}
+                        onChange={handleChange}
+                        label="Estado"
+                        required
+                    />
+
+                    <InputModerno
+                        name="cidade"
+                        type="text"
+                        placeholder="Presidente Prudente"
+                        value={formData.cidade}
+                        onChange={handleChange}
+                        label="Cidade"
+                        required
+                    />
                 </div>
 
                 <div>
