@@ -3,6 +3,7 @@ import InputPassword from "../../../components/InputPassword";
 import Loading from "../../../components/Loading";
 import { toast } from 'react-toastify';
 import { useState } from "react";
+import { validatePassword } from '../../../components/Validations';
 
 const RedefinirSenha = ({ user }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,10 +16,6 @@ const RedefinirSenha = ({ user }) => {
 
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
-
-    const validatePassword = (password) => {    
-        return password.length >= 5;
-    };
 
     const resertForm = () => {
         setPasswordData({
