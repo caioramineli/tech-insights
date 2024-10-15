@@ -79,15 +79,13 @@ export default function AvaliacoesProduto({ produto, setNotaMedia, accordion, se
     }
 
     return (
-        <div className='containerEspecificacaoEDescricao'>
+        <div className='containerEspecificacaoEDescricao' id="avalicao">
             <h2
                 className='text-xl text-zinc-900 font-bold cursor-pointer flex justify-between items-center'
                 onClick={toggleAccordion}
             >
                 Avaliações
-                <span
-                    className={`transform transition-transform duration-300 ${accordion ? 'rotate-180' : ''}`}
-                >
+                <span className={`transform transition-transform duration-300 ${accordion ? 'rotate-180' : ''}`}>
                     <MdKeyboardArrowDown className='text-4xl text-emerald-600' />
                 </span>
             </h2>
@@ -97,7 +95,7 @@ export default function AvaliacoesProduto({ produto, setNotaMedia, accordion, se
                 className='transition-height duration-300 ease-in-out overflow-hidden'
                 style={{ height: accordion ? `${contentRef.current?.scrollHeight}px` : '0px' }}
             >
-                <div className="flex justify-between items-center my-2" id="avalicao">
+                <div className="flex justify-between items-center my-2">
                     <div>
                         <div className="flex flex-col sm:flex-row sm:items-center gap-1">
                             <span className="text-[#ffa500] font-bold text-xl"><span className="text-2xl ">{media}</span>/5</span>

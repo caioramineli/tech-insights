@@ -1,43 +1,20 @@
 import { useLocation } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
-import axios from 'axios';
 import { HiShoppingBag } from 'react-icons/hi2';
 
 export default function Pedido() {
     const location = useLocation();
     const pedido = location.state?.pedido;
-
+    const { user} = useContext(AuthContext);
     const api = process.env.REACT_APP_API_URL;
-    const [userData, setUserData] = useState(null);
-    const { user, token } = useContext(AuthContext);
 
     function formatarPreco(preco) {
         return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            if (user && token) {
-                try {
-                    const response = await axios.get(`${api}user/${user.id}`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                            'Content-Type': 'application/json',
-                        },
-                    });
-                    setUserData(response.data.user);
-                } catch (error) {
-                    console.error('Erro ao carregar dados do usuário:', error);
-                }
-            }
-        };
-
-        fetchUserData();
-    }, [user, token, api]);
-
     return (
-        <div className="flex flex-col item-center gap-4 w-full w-[90%] xl:w-[80%] max-w-[1300px] ">      
+        <div className="flex flex-col item-center gap-4 w-[90%] xl:w-[80%] max-w-[1300px] ">      
             <div className='flex items-center gap-2'>
                 <HiShoppingBag className='text-emerald-600 text-3xl' />
                 <h1 className='text-2xl font-bold text-zinc-900 uppercase'>Meus Pedidos</h1>
@@ -99,12 +76,8 @@ export default function Pedido() {
                         <p className="font-bold">Valor total: </p>
                         <p>{formatarPreco(pedido.valorTotal)}</p>
                     </div>
-                
                 </div>
             </div>
         </div>
-
-        
-
     )
 }
