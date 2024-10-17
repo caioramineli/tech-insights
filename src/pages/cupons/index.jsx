@@ -5,7 +5,6 @@ import axios from "axios";
 import Loading from "../../components/Loading";
 import { TbRuler3 } from "react-icons/tb";
 
-
 export default function PaginaCupons() {
     const [cupons, setCupons] = useState([]);
     const [loading, setLoading] = useState(TbRuler3);
@@ -45,7 +44,7 @@ export default function PaginaCupons() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {cupons.map((cupon) => (
-                    <div className="flex flex-col gap-1 p-4 bg-emerald-700 rounded-lg shadow-md" key={cupon.codigo}>
+                    <div className="flex flex-col gap-1 p-4 bg-emerald-700 rounded-lg shadow-md duration-200 hover:scale-[1.02]" key={cupon.codigo}>
                         <h1 className="text-xl text-emerald-50 font-bold">
                             {cupon.tipo === "percentual" ? `${cupon.valor}% OFF` : `R$ ${cupon.valor} OFF`}
                         </h1>

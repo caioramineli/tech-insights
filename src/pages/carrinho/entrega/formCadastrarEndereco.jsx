@@ -67,7 +67,7 @@ const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
     };
     return (
         <>
-            <h1 className='text-xl mb-2'>Novo Endereço de Entrega</h1>
+            <h1 className='text-lg mb-2'>Novo Endereço de Entrega</h1>
             <form method="POST" onSubmit={handleSubmit} className='flex flex-col gap-4'>
                 <div className='grid grid-cols-3 gap-4'>
                     <InputModerno

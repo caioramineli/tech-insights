@@ -1,4 +1,4 @@
-import { FaArrowLeft, FaRegAddressCard } from "react-icons/fa";
+import { FaRegAddressCard } from "react-icons/fa";
 import axios from 'axios';
 import { useState, useEffect, useContext } from 'react';
 import { ToastContainer } from 'react-toastify';
@@ -7,7 +7,7 @@ import Loading from '../../../components/Loading';
 import { AuthContext } from '../../../contexts/AuthContext';
 import FormDados from "./formDados";
 import RedefinirSenha from "./formRedefinirSenha";
-import { Link } from "react-router-dom";
+import VoltarMinhaConta from "../../../components/VoltarMinhaConta";
 
 const Dados = () => {
     const api = process.env.REACT_APP_API_URL;
@@ -47,16 +47,11 @@ const Dados = () => {
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <FaRegAddressCard className='text-emerald-600 text-3xl sm:text-4xl' />
-                    <h1 className="font-bold text-zinc-900 text-xl md:text-2xl">Meus Dados</h1>
+                    <h1 className="font-bold text-zinc-900 text-lg md:text-2xl">Meus Dados</h1>
                 </div>
-                <Link to="/minha-conta">
-                    <button className="flex items-center gap-2 p-2 hover:bg-zinc-300 duration-200 rounded-md">
-                        <FaArrowLeft />
-                        <span className="uppercase text-base font-semibold">Voltar</span>
-                    </button>
-                </Link>
+                <VoltarMinhaConta />
             </div>
-            
+
             {userData && (
                 <FormDados reqUserData={userData} user={user} />
             )}

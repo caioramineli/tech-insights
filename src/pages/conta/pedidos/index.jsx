@@ -4,6 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { AuthContext } from '../../../contexts/AuthContext';
 import { HiShoppingBag } from 'react-icons/hi2';
 import { useNavigate } from 'react-router-dom';
+import VoltarMinhaConta from '../../../components/VoltarMinhaConta';
 
 const Pedidos = () => {
     const [pedidos, setPedidos] = useState([]);
@@ -39,10 +40,13 @@ const Pedidos = () => {
     }
 
     return (
-        <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] my-10 gap-2'>
-            <div className='flex items-center gap-2'>
-                <HiShoppingBag className='text-emerald-600 text-3xl' />
-                <h1 className='text-2xl font-bold text-zinc-900 uppercase'>Meus Pedidos</h1>
+        <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] my-6 sm:my-8 gap-2'>
+            <div className="flex justify-between items-center">
+                <div className='flex items-center gap-2'>
+                    <HiShoppingBag className='text-emerald-600 text-2xl sm:text-3xl' />
+                    <h1 className='font-bold text-zinc-900 text-lg md:text-2xl'>Meus Pedidos</h1>
+                </div>
+                <VoltarMinhaConta />
             </div>
             <hr className='border my-2' />
             {pedidos.length === 0 ? (

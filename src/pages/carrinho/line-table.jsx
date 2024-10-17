@@ -38,7 +38,7 @@ export default function LineTableCart({ produto, removerProduto, esconder = 'fle
     return (
         <tr>
             <td className='p-3 border-b border-b-gray-300'>
-                <Link to={`/product/${produto._id}`}>
+                <Link to={`/produto/${produto._id}`}>
                     <div className="flex items-center gap-2">
                         <img className="w-28" src={api + produto.images[0]} alt={produto.nome} />
                         <p>{produto.nome}</p>
