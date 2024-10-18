@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../../components/Loading';
 import InputModerno from '../../../components/InputModerno';
 
-const FormCadastrarEndereco = ({ setEstado, userId, onEnderecoCadastrado, formData, setFormData }) => {
+const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado, formData, setFormData }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const api = process.env.REACT_APP_API_URL;
 
@@ -33,7 +33,7 @@ const FormCadastrarEndereco = ({ setEstado, userId, onEnderecoCadastrado, formDa
         }
 
         try {
-            await axios.put(`${api}user/${userId}/endereco`, formData);
+            await axios.put(`${api}user/${userId}/endereco/${formData.enderecoId}`, formData);
             notifySuccess();
             onEnderecoCadastrado();
             setFormData({
@@ -160,4 +160,4 @@ const FormCadastrarEndereco = ({ setEstado, userId, onEnderecoCadastrado, formDa
     );
 }
 
-export default FormCadastrarEndereco;
+export default FormAtualizarEndereco;

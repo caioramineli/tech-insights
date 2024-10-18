@@ -7,6 +7,9 @@ import { BsPencilSquare } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa";
 import Loading from "../../../components/Loading";
 import ModalEndereco from "../../../components/ModalEndereco";
+import FormCadastrarEndereco from "../../../components/FormsEndereco/atualizar";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const EnderecosUser = () => {
     const { user } = useContext(AuthContext);
@@ -59,6 +62,7 @@ const EnderecosUser = () => {
 
     return (
         <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] min-h-[50vh] my-6 sm:my-8 gap-6'>
+            <ToastContainer />
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <FaMapLocationDot className='text-emerald-600 text-3xl sm:text-4xl' />
@@ -92,10 +96,15 @@ const EnderecosUser = () => {
             </div>
 
             {modalUpdate && (
-                <ModalEndereco
-                    setEstado={setModalUpdate}
-                    titulo={`Atualizar endereço: ${selectedEndereco?.nome}`}
-                />
+                <ModalEndereco setEstado={setModalUpdate} titulo="Atualizar endereço">
+                    <FormCadastrarEndereco
+                        setEstado={setModalUpdate}
+                        userId={user.id}
+                        attEnderecos={fetchEnderecos}
+                        formData={selectedEndereco}
+                        setFormData={setSelectedEndereco}
+                    />
+                </ModalEndereco>
             )}
 
             {modalDelete && (

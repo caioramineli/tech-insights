@@ -1,11 +1,8 @@
 import { IoClose } from "react-icons/io5";
-// import { useState } from "react";
-// import { toast } from 'react-toastify';
 
-
-const ModalEndereco = ({ setEstado, titulo }) => {
+const ModalEndereco = ({ setEstado, titulo, children }) => {
     function closeModalEndereco() {
-        setEstado(false)
+        setEstado(false);
         document.body.style.overflow = 'auto';
     }
 
@@ -16,6 +13,8 @@ const ModalEndereco = ({ setEstado, titulo }) => {
                 <IoClose onClick={closeModalEndereco} className="absolute top-2 right-2 text-slate-600 hover:text-slate-500 duration-200 w-8 h-8 cursor-pointer z-10" />
 
                 <h2 className="text-lg sm:text-xl font-bold text-zinc-900">{titulo}</h2>
+
+                {children}
 
             </div>
         </div>

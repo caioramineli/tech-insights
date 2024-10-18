@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../../components/Loading';
 import InputModerno from '../../../components/InputModerno';
 
-const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
+const FormCadastrarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
     const [formData, setFormData] = useState({
         nome: '',
         cep: '',
@@ -170,4 +170,4 @@ const FormAtualizarEndereco = ({ setEstado, userId, onEnderecoCadastrado }) => {
     );
 }
 
-export default FormAtualizarEndereco;
+export default FormCadastrarEndereco;
