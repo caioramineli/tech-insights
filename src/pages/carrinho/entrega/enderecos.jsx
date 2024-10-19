@@ -1,27 +1,21 @@
-import React, { useState, useEffect, useCallback} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from 'react-icons/io';
 import { FaPencilAlt, FaTrash } from 'react-icons/fa';
-import { IoClose } from 'react-icons/io5';
-import axios from 'axios';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../../components/Loading';
 import { useCarrinho } from "../../../contexts/contex-Cart";
+import { Modal } from '../../../components/Modal';
+import { FormDeletarEndereco } from '../../../components/FormsEndereco/deletar';
 
-const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEnderecos, isLoading, setFormEnderecoCadastrar }) => {
+const Enderecos = ({ enderecos = [], userId, atualizarEnderecos, isLoading, setFormEnderecoCadastrar, setFormAtualizar, selectedEndereco, setSelectedEndereco }) => {
     const [toggle, setToggle] = useState(0);
     const [modalExcluirEndereco, setModalExcluirEndereco] = useState(false);
-    const [enderecoExcluir, setEnderecoExcluir] = useState(null);
     const { setEndereco } = useCarrinho();
-    const api = process.env.REACT_APP_API_URL;
-
-    const notifySuccess = () => toast.success("Endereço removido com sucesso!");
-    const notifyError = (message) => toast.error(message);
 
     const escolhaEnderecoInicial = useCallback((endereco) => {
         setEndereco(endereco);
     }, [setEndereco]);
-    
+
     useEffect(() => {
         if (enderecos.length > 0) {
             setToggle(0);
@@ -30,15 +24,9 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
     }, [enderecos, escolhaEnderecoInicial]);
 
     function openModalExcluirEndereco(endereco) {
-        setEnderecoExcluir(endereco);
+        setSelectedEndereco(endereco);
         setModalExcluirEndereco(true);
         document.body.style.overflow = 'hidden';
-    }
-
-    function closeModalExcluirEndereco() {
-        setModalExcluirEndereco(false);
-        setEnderecoExcluir(null);
-        document.body.style.overflow = 'auto';
     }
 
     function updateToggle(index) {
@@ -49,36 +37,18 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
         setEndereco(endereco);
     }
 
-    function atualizarEndereco(endereco) {
+    function openFormAtualizarEndereco(endereco) {
         setFormEnderecoCadastrar(false)
-        setEstado(true);
-        setFormData({
-            enderecoId: endereco._id,
-            nome: endereco.nome,
-            cep: endereco.cep,
-            rua: endereco.rua,
-            numero: endereco.numero,
-            complemento: endereco.complemento,
-            bairro: endereco.bairro,
-            cidade: endereco.cidade,
-            estado: endereco.estado
-        });
-    }
-
-    async function deletarEndereco(userId, enderecoId) {
-        try {
-            await axios.delete(`${api}user/${userId}/endereco/${enderecoId}`);
-            closeModalExcluirEndereco();
-            notifySuccess();
-            atualizarEnderecos();
-        } catch (error) {
-            console.error('Erro ao remover endereço:', error.response || error);
-            notifyError("Erro ao remover endereço");
-        }
+        setFormAtualizar(true);
+        setSelectedEndereco(endereco)
     }
 
     if (isLoading) {
-        return <Loading color='#047857' />;
+        return (
+            <div className='m-auto'>
+                <Loading color='#047857' />;
+            </div>
+        )
     }
 
     if (enderecos.length === 0) {
@@ -100,7 +70,7 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
                         </div>
                     </div>
                     <div className="flex gap-4">
-                        <button onClick={() => atualizarEndereco(endereco)} className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm hover:border-cyan-600">
+                        <button onClick={() => openFormAtualizarEndereco(endereco)} className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm hover:border-cyan-600">
                             <FaPencilAlt />
                             Editar
                         </button>
@@ -108,22 +78,15 @@ const Enderecos = ({ setEstado, enderecos = [], setFormData, userId, atualizarEn
                             <FaTrash />
                             Excluir
                         </button>
-                        {modalExcluirEndereco && enderecoExcluir && (
-                            <div className='fixed inset-0 bg-black/40 flex items-center justify-center z-10'>
-                                <div className="flex flex-col gap-4 bg-white rounded-lg shadow-lg w-4/5 max-w-md p-5 relative">
-                                    <IoClose onClick={closeModalExcluirEndereco} className="absolute top-2 right-2 text-slate-600 w-8 h-8 cursor-pointer" />
-                                    <h1 className='text-lg font-bold'>Deseja realmente excluir esse endereço?</h1>
-                                    <div className="flex flex-col">
-                                        <h3 className="font-bold text-base">{enderecoExcluir.nome}</h3>
-                                        <p className="text-base">{enderecoExcluir.rua} {enderecoExcluir.numero}</p>
-                                        <p className="text-sm">{enderecoExcluir.bairro} - {enderecoExcluir.cidade} - {enderecoExcluir.estado}, {enderecoExcluir.cep}</p>
-                                    </div>
-                                    <div className='flex justify-center gap-4'>
-                                        <button className='bg-gray-300 rounded-md py-2 px-6' type='button' onClick={closeModalExcluirEndereco}>Cancelar</button>
-                                        <button className='bg-red-700 rounded-md py-2 px-6 font-bold text-emerald-50' type='submit' onClick={() => deletarEndereco(userId, enderecoExcluir._id)}>Excluir</button>
-                                    </div>
-                                </div>
-                            </div>
+                        {modalExcluirEndereco && (
+                            <Modal setEstado={setModalExcluirEndereco} titulo="Deseja excluir esse endereço?" largura='md'>
+                                <FormDeletarEndereco
+                                    setEstadoForm={setModalExcluirEndereco}
+                                    userId={userId}
+                                    atualizarEnderecos={atualizarEnderecos}
+                                    endereco={selectedEndereco}
+                                />
+                            </Modal>
                         )}
                     </div>
                 </div>

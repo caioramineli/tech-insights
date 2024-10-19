@@ -8,8 +8,7 @@ import { FaPlus } from "react-icons/fa6";
 import CarrinhoVazio from "../carrinhoVazio";
 import { FaArrowLeft } from "react-icons/fa6";
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
-import FormCadastrarEndereco from "./formCadastrarEndereco";
-import FormAtualizarEndereco from "./formAtualizarEndereco";
+import { FormCadastrarEndereco } from "../../../components/FormsEndereco/cadastrar";
 import { ToastContainer } from "react-toastify";
 import Enderecos from "./enderecos";
 import { AuthContext } from '../../../contexts/AuthContext';
@@ -17,25 +16,15 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-
+import { FormAtualizarEndereco } from "../../../components/FormsEndereco/atualizar";
 
 export default function Entrega() {
-    const [formEndereco, setFormEndereco] = useState(false);
-    const [formEditarEndereco, setFormEditarEndereco] = useState(false);
     const { carrinho, frete, escolhaFrete, endereco } = useCarrinho();
     const { user } = useContext(AuthContext);
+    const [formEndereco, setFormEndereco] = useState(false);
+    const [formEditarEndereco, setFormEditarEndereco] = useState(false);
+    const [selectedEndereco, setSelectedEndereco] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [formData, setFormData] = useState({
-        enderecoId: '',
-        nome: '',
-        cep: '',
-        rua: '',
-        numero: '',
-        complemento: '',
-        bairro: '',
-        cidade: '',
-        estado: ''
-    });
     const [enderecos, setEnderecos] = useState([]);
     const api = process.env.REACT_APP_API_URL;
 
@@ -98,31 +87,37 @@ export default function Entrega() {
                                     </div>
                                     <hr />
                                     {formEndereco && (
-                                        <FormCadastrarEndereco
-                                            setEstado={setFormEndereco}
-                                            userId={user.id}
-                                            onEnderecoCadastrado={fetchEnderecos}
-                                        />
+                                        <>
+                                            <h2 className="text-lg">Novo endereço de entrega</h2>
+                                            <FormCadastrarEndereco
+                                                setEstadoForm={setFormEndereco}
+                                                userId={user.id}
+                                                atualizarEnderecos={fetchEnderecos}
+                                            />
+                                        </>
                                     )}
-
                                     {formEditarEndereco && (
-                                        <FormAtualizarEndereco
-                                            setEstado={setFormEditarEndereco}
-                                            userId={user.id}
-                                            onEnderecoCadastrado={fetchEnderecos}
-                                            formData={formData}
-                                            setFormData={setFormData}
-                                        />
+                                        <>
+                                            <h2 className="text-lg">Atualizar endereço de entrega</h2>
+                                            <FormAtualizarEndereco
+                                                setEstadoForm={setFormEditarEndereco}
+                                                userId={user.id}
+                                                atualizarEnderecos={fetchEnderecos}
+                                                endereco={selectedEndereco}
+                                                setEndereco={setSelectedEndereco}
+                                            />
+                                        </>
                                     )}
-
                                     <Enderecos
-                                        setEstado={setFormEditarEndereco}
-                                        setFormData={setFormData}
                                         userId={user.id}
                                         enderecos={enderecos}
                                         atualizarEnderecos={fetchEnderecos}
                                         isLoading={isLoading}
                                         setFormEnderecoCadastrar={setFormEndereco}
+                                        formAtualizar={formEditarEndereco}
+                                        setFormAtualizar={setFormEditarEndereco}
+                                        selectedEndereco={selectedEndereco}
+                                        setSelectedEndereco={setSelectedEndereco}
                                     />
                                 </div>
 

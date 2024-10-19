@@ -1,31 +1,32 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import Loading from '../../components/Loading';
 import InputModerno from '../../components/InputModerno';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const FormCadastrarEndereco = ({ setEstado, userId, attEnderecos, formData, setFormData }) => {
+const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, endereco, setEndereco }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const api = process.env.REACT_APP_API_URL;
 
     const notifySuccess = () => toast.success("Endereço atualizado com sucesso!");
     const notifyError = (message) => toast.error(message);
 
-    function closeAtualizarEnderecoModal() {
-        setEstado(false);
+    function closeModal() {
+        setEstadoForm(false);
+        document.body.style.overflow = 'auto';
     }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setEndereco({ ...endereco, [name]: value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        const cepPuro = formData.cep.replace(/\D/g, '');
+        const cepPuro = endereco.cep.replace(/\D/g, '');
         if (cepPuro.length !== 8) {
             notifyError("Informe um CEP válido");
             setIsSubmitting(false);
@@ -33,28 +34,25 @@ const FormCadastrarEndereco = ({ setEstado, userId, attEnderecos, formData, setF
         }
 
         try {
-            const response = await axios.put(`${api}user/${userId}/endereco/${formData._id}`, formData);
-            console.log(response);
-            
-            closeAtualizarEnderecoModal();
-            attEnderecos();
+            await axios.put(`${api}user/${userId}/endereco/${endereco._id}`, endereco);
             notifySuccess();
-            notifyError('m');
+            atualizarEnderecos();
+            closeModal();
         } catch (error) {
-            const erro = error.response?.data?.msg || "Erro ao realizar o cadastro.";
+            const erro = error.response?.data?.msg || "Erro ao atualizar endereço.";
             notifyError(erro);
         } finally {
             setIsSubmitting(false);
         }
     };
     return (
-        <form method="PUT" onSubmit={handleSubmit} className='flex flex-col gap-4'>
-            <div className='grid grid-cols-3 gap-4'>
+        <form method="PUT" onSubmit={handleSubmit} className='flex flex-col gap-4 mt-2'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
                 <InputModerno
                     name="nome"
                     type="text"
                     placeholder="Minha casa"
-                    value={formData.nome}
+                    value={endereco.nome}
                     onChange={handleChange}
                     label="Nome do endereço"
                     required
@@ -63,19 +61,19 @@ const FormCadastrarEndereco = ({ setEstado, userId, attEnderecos, formData, setF
                     name="cep"
                     type="text"
                     placeholder=""
-                    value={formData.cep}
+                    value={endereco.cep}
                     onChange={handleChange}
                     label="CEP"
                     mask="99999-999"
                 />
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <InputModerno
                     name="rua"
                     type="text"
                     placeholder="Ex: Rua Teresina"
-                    value={formData.rua}
+                    value={endereco.rua}
                     onChange={handleChange}
                     label="Rua"
                     required
@@ -85,7 +83,7 @@ const FormCadastrarEndereco = ({ setEstado, userId, attEnderecos, formData, setF
                     name="numero"
                     type="text"
                     placeholder="Ex: 1000"
-                    value={formData.numero}
+                    value={endereco.numero}
                     onChange={handleChange}
                     label="Número"
                     required
@@ -95,7 +93,7 @@ const FormCadastrarEndereco = ({ setEstado, userId, attEnderecos, formData, setF
                     name="complemento"
                     type="text"
                     placeholder="Casa verde"
-                    value={formData.complemento}
+                    value={endereco.complemento}
                     onChange={handleChange}
                     label="Complemento"
                     required
@@ -105,7 +103,7 @@ const FormCadastrarEndereco = ({ setEstado, userId, attEnderecos, formData, setF
                     name="bairro"
                     type="text"
                     placeholder="Centro"
-                    value={formData.bairro}
+                    value={endereco.bairro}
                     onChange={handleChange}
                     label="Bairro"
                     required
@@ -115,7 +113,7 @@ const FormCadastrarEndereco = ({ setEstado, userId, attEnderecos, formData, setF
                     name="estado"
                     type="text"
                     placeholder="SP"
-                    value={formData.estado}
+                    value={endereco.estado}
                     onChange={handleChange}
                     label="Estado"
                     required
@@ -125,21 +123,20 @@ const FormCadastrarEndereco = ({ setEstado, userId, attEnderecos, formData, setF
                     name="cidade"
                     type="text"
                     placeholder="Presidente Prudente"
-                    value={formData.cidade}
+                    value={endereco.cidade}
                     onChange={handleChange}
                     label="Cidade"
                     required
                 />
             </div>
-
             <div>
                 {isSubmitting ? (
-                    <div className='flex justify-center h-[3.42rem] items-center'>
+                    <div className='flex justify-center h-[2.8rem] items-center'>
                         <Loading color="#047857" />
                     </div>
                 ) : (
                     <div className='flex justify-end gap-4'>
-                        <button className='bg-gray-300 rounded-md py-2 px-6' type='button' onClick={closeAtualizarEnderecoModal}>Cancelar</button>
+                        <button className='bg-gray-300 rounded-md py-2 px-6' type='button' onClick={closeModal}>Cancelar</button>
                         <button className='bg-emerald-600 rounded-md py-2 px-6 font-bold text-emerald-50' type='subimit'>Salvar</button>
                     </div>
                 )}
@@ -148,4 +145,4 @@ const FormCadastrarEndereco = ({ setEstado, userId, attEnderecos, formData, setF
     );
 }
 
-export default FormCadastrarEndereco;
+export { FormAtualizarEndereco };

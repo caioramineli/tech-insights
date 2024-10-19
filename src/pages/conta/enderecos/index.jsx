@@ -6,10 +6,12 @@ import axios from "axios";
 import { BsPencilSquare } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa";
 import Loading from "../../../components/Loading";
-import ModalEndereco from "../../../components/ModalEndereco";
-import FormCadastrarEndereco from "../../../components/FormsEndereco/atualizar";
+import { Modal } from "../../../components/Modal";
+import { FormCadastrarEndereco } from "../../../components/FormsEndereco/cadastrar";
+import { FormAtualizarEndereco } from "../../../components/FormsEndereco/atualizar";
+import { FormDeletarEndereco } from "../../../components/FormsEndereco/deletar";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+
 
 const EnderecosUser = () => {
     const { user } = useContext(AuthContext);
@@ -23,16 +25,19 @@ const EnderecosUser = () => {
 
     function openModalCreate() {
         setModalCreate(true);
+        document.body.style.overflow = 'hidden';
     }
 
     function openModalUpdate(endereco) {
         setSelectedEndereco(endereco);
         setModalUpdate(true);
+        document.body.style.overflow = 'hidden';
     }
 
     function openModalDelete(endereco) {
         setSelectedEndereco(endereco);
         setModalDelete(true);
+        document.body.style.overflow = 'hidden';
     }
 
     const fetchEnderecos = useCallback(async () => {
@@ -56,13 +61,9 @@ const EnderecosUser = () => {
         }
     }, [fetchEnderecos, user]);
 
-    if (isLoading) {
-        return <Loading />;
-    }
-
     return (
         <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] min-h-[50vh] my-6 sm:my-8 gap-6'>
-            <ToastContainer />
+
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <FaMapLocationDot className='text-emerald-600 text-3xl sm:text-4xl' />
@@ -71,48 +72,76 @@ const EnderecosUser = () => {
                 <VoltarMinhaConta />
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
-                {enderecos.map((endereco) => (
-                    <div key={endereco._id} className="flex flex-col rounded-md bsPadrao bg-white">
-                        <div className="flex justify-between items-center bg-cyan-800 py-2 px-3 rounded-t-md">
-                            <h2 className="text-lg font-semibold uppercase text-white">{endereco.nome}</h2>
-                            <div className="flex gap-3 items-center">
-                                <button onClick={() => openModalUpdate(endereco)}>
-                                    <BsPencilSquare className="text-xl text-emerald-500" />
-                                </button>
-                                <button onClick={() => openModalDelete(endereco)}>
-                                    <FaTrash className="text-xl text-emerald-500" />
-                                </button>
+            {isLoading ? (
+                <div className="flex items-center justify-center">
+                    <Loading />
+                </div>
+            ) : (
+                <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {enderecos.map((endereco) => (
+                            <div key={endereco._id} className="flex flex-col rounded-md bsPadrao bg-white">
+                                <div className="flex justify-between items-center bg-cyan-800 py-2 px-3 rounded-t-md">
+                                    <h2 className="text-base sm:text-lg font-semibold uppercase text-white">{endereco.nome}</h2>
+                                    <div className="flex gap-3 items-center">
+                                        <button onClick={() => openModalUpdate(endereco)}>
+                                            <BsPencilSquare className="text-xl text-emerald-400" />
+                                        </button>
+                                        <button onClick={() => openModalDelete(endereco)}>
+                                            <FaTrash className="text-xl text-emerald-400" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col py-2 px-3">
+                                    <p className="font-semibold">{endereco.rua}, {endereco.numero}</p>
+                                    <p>{endereco.complemento}</p>
+                                    <p>{endereco.bairro} - {endereco.cidade} - {endereco.estado}</p>
+                                    <p>CEP {endereco.cep}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex flex-col py-2 px-3">
-                            <p className="font-semibold">{endereco.rua}, {endereco.numero}</p>
-                            <p>{endereco.complemento}</p>
-                            <p>{endereco.bairro} - {endereco.cidade} - {endereco.estado}</p>
-                            <p>CEP {endereco.cep}</p>
+                        ))}
+                        <div>
+                            <button onClick={openModalCreate} className="btnPadrao">Novo endereço</button>
                         </div>
                     </div>
-                ))}
-            </div>
 
-            {modalUpdate && (
-                <ModalEndereco setEstado={setModalUpdate} titulo="Atualizar endereço">
-                    <FormCadastrarEndereco
-                        setEstado={setModalUpdate}
-                        userId={user.id}
-                        attEnderecos={fetchEnderecos}
-                        formData={selectedEndereco}
-                        setFormData={setSelectedEndereco}
-                    />
-                </ModalEndereco>
-            )}
+                    {modalCreate && (
+                        <Modal setEstado={setModalCreate} titulo="Cadastrar endereço" largura='4xl'>
+                            <FormCadastrarEndereco
+                                setEstadoForm={setModalCreate}
+                                userId={user.id}
+                                atualizarEnderecos={fetchEnderecos}
+                            />
+                        </Modal>
+                    )}
 
-            {modalDelete && (
-                <ModalEndereco
-                    setEstado={setModalDelete}
-                    titulo={`Excluir endereço: ${selectedEndereco?.nome}`}
-                />
+                    {modalUpdate && (
+                        <Modal setEstado={setModalUpdate} titulo="Atualizar endereço" largura='4xl'>
+                            <FormAtualizarEndereco
+                                setEstadoForm={setModalUpdate}
+                                userId={user.id}
+                                atualizarEnderecos={fetchEnderecos}
+                                endereco={selectedEndereco}
+                                setEndereco={setSelectedEndereco}
+                            />
+                        </Modal>
+                    )}
+
+                    {modalDelete && (
+                        <Modal setEstado={setModalDelete} titulo="Deseja excluir esse endereço?" largura='md'>
+                            <FormDeletarEndereco
+                                setEstadoForm={setModalDelete}
+                                userId={user.id}
+                                atualizarEnderecos={fetchEnderecos}
+                                endereco={selectedEndereco}
+                            />
+                        </Modal>
+                    )}
+                </>
             )}
+            <ToastContainer
+                autoClose={3000}
+            />
         </div>
     );
 }
