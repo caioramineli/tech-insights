@@ -73,7 +73,7 @@ const FormCartao = ({ dadosCartao, setDadosCartao }) => {
 
     return (
         <form method="POST" onSubmit={handleSubmit} className='flex flex-col gap-4 mt-2'>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5'>
                 <InputModerno
                     name="numero"
                     type="text"
@@ -96,7 +96,7 @@ const FormCartao = ({ dadosCartao, setDadosCartao }) => {
                 <InputModerno
                     name="validade"
                     type="text"
-                    placeholder=""
+                    placeholder="12/24"
                     value={dadosCartao.validade}
                     onChange={handleChangeValidade}
                     label="Validade do Cartão"
@@ -127,8 +127,8 @@ const FormCartao = ({ dadosCartao, setDadosCartao }) => {
                 />
 
                 <SelectModerno
-                    name="mySelect"
-                    value={dadosCartao.mySelect}
+                    name="parcelas"
+                    value={dadosCartao.parcelas || '1x'}
                     onChange={handleChange}
                     label="Parcelamento"
                     bgLabel="white"
@@ -138,7 +138,7 @@ const FormCartao = ({ dadosCartao, setDadosCartao }) => {
 
                         return {
                             value: `${parcelas}x`,
-                            label: `${parcelas}x ${formatarPreco(valorParcela)}`,
+                            label: `${parcelas}x de ${formatarPreco(valorParcela)}`,
                         };
                     })}
                 />

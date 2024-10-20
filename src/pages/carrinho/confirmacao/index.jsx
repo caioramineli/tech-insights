@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Confirmacao() {
     const api = process.env.REACT_APP_API_URL;
-    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento, setPedido, cupom } = useCarrinho();
+    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento, setPedido, cupom, cartao } = useCarrinho();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { user } = useContext(AuthContext);
 
@@ -89,6 +89,9 @@ export default function Confirmacao() {
         }
     };
 
+    console.log(cartao);
+    
+
     return (
         <>
             <ToastContainer />
@@ -132,7 +135,10 @@ export default function Confirmacao() {
                                             <h2 className="text-xl">Pagamento</h2>
                                         </div>
                                         <div className="flex gap-2 items-center">
-                                            <span>Pague com {formaPagamento}</span>
+                                            <span>
+                                                Pague com {formaPagamento}
+                                                {formaPagamento === 'Cartão' ? ` em ${cartao.parcelas}` : ''}
+                                            </span>
                                             {exibirIconePagamento()}
                                         </div>
                                     </div>

@@ -49,12 +49,15 @@ export default function Pagamento() {
     }
 
     function removerCartao() {
+        limparDadosCartao()
         setCartao(null);
     }
 
     const verificarFromaPagamento = () => {
         if (formaPagamento === "") {
             notifyError('Escolha uma forma de pagamento!');
+        } else if (cartao.status === false) {
+            notifyError('Informe os dados do cartão!');
         } else {
             navigate('/confirmacao');
         }

@@ -9,9 +9,6 @@ const SelectModerno = ({ name, value, onChange, label, bgLabel, options, require
                 onChange={onChange}
                 required={required}
             >
-                <option value="" disabled hidden>
-                    {label}
-                </option>
                 {options.map((option, index) => (
                     <option key={index} value={option.value}>
                         {option.label}
