@@ -171,3 +171,13 @@ li {
 .btnPadrao:hover {
     background-color: var(--teal-700);
 }
+
+.containerPadrao {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 1300px;
+    min-height: 50vh;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}

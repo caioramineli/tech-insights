@@ -1,27 +1,51 @@
-import { useLocation } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
-import { HiShoppingBag } from 'react-icons/hi2';
+import axios from 'axios';
+import Loading from '../../../components/Loading';
+import { useParams } from 'react-router-dom';
+import { FaReceipt } from "react-icons/fa";
+
 
 export default function Pedido() {
-    const location = useLocation();
-    const pedido = location.state?.pedido;
-    const { user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const { idPedido } = useParams();
+    const [pedido, setPedido] = useState(null)
+    const [loading, setLoading] = useState(true);
     const api = process.env.REACT_APP_API_URL;
 
     function formatarPreco(preco) {
         return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
+    useEffect(() => {
+        const fetchPedidos = async () => {
+            try {
+                const response = await axios.get(`${api}user/${user.id}/orders/${idPedido}`);
+                setPedido(response.data);
+            } catch (err) {
+                console.log(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (user) {
+            fetchPedidos();
+        }
+    }, [user, api, idPedido]);
+
+    if (loading) {
+        return <Loading />;
+    }
+
     return (
-        <div className="flex flex-col item-center gap-4 w-[90%] xl:w-[80%] max-w-[1300px] ">      
+        <div className="containerPadrao my-6 sm:my-8 gap-4">
             <div className='flex items-center gap-2'>
-                <HiShoppingBag className='text-emerald-600 text-3xl' />
-                <h1 className='text-2xl font-bold text-zinc-900 uppercase'>Meus Pedidos</h1>
+                <FaReceipt className='text-emerald-600 text-3xl' />
+                <h1 className='font-bold text-zinc-900 text-lg md:text-2xl'>Pedido {pedido.numeroPedido}</h1>
             </div>
             <hr />
             <div>
-                
                 <p><span className="font-bold uppercase">Pedido:</span> {pedido.numeroPedido} - {new Date(pedido.data).toLocaleDateString()}</p>
                 <h1 className='font-bold uppercase text-emerald-600 py-2 '>Aguardando o status do pedido</h1>
             </div>
@@ -53,7 +77,7 @@ export default function Pedido() {
                         <p>Endereço</p>
                         <hr />
                     </div>
-                    
+
                     <div>
                         <h1>Pagamento via TIPO</h1>
                         <p>10x sem juros</p>

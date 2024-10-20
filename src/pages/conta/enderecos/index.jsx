@@ -62,7 +62,7 @@ const EnderecosUser = () => {
     }, [fetchEnderecos, user]);
 
     return (
-        <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] min-h-[50vh] my-6 sm:my-8 gap-6'>
+        <div className='containerPadrao my-6 sm:my-8 gap-6'>
 
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
