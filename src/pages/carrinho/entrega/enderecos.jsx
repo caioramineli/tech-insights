@@ -46,7 +46,7 @@ const Enderecos = ({ enderecos = [], userId, atualizarEnderecos, isLoading, setF
     if (isLoading) {
         return (
             <div className='m-auto'>
-                <Loading color='#047857' />;
+                <Loading color='#047857' />
             </div>
         )
     }

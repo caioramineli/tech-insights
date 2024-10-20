@@ -12,6 +12,7 @@ export function CarrinhoProvider({ children }) {
     const [desconto, setDesconto] = useState(0);
     const [frete, setFrete] = useState({ tipo: "", valor: 0 });
     const [endereco, setEndereco] = useState({ dadosEndereco: {} });
+    const [cartao, setCartao] = useState(null);
     const [formaPagamento, setFormaPagamento] = useState('');
     const [pedido, setPedido] = useState(null);
 
@@ -63,6 +64,7 @@ export function CarrinhoProvider({ children }) {
         setFrete({ tipo: "", valor: 0 });
         setEndereco({ dadosEndereco: {} });
         setFormaPagamento('');
+        setCartao(null)
     };
 
     const escolhaFrete = (tipo) => {
@@ -108,6 +110,7 @@ export function CarrinhoProvider({ children }) {
         return valorFrete + calcularValorTotal - desconto;
     }, [calcularValorTotal, frete.valor, desconto]);
 
+
     return (
         <CarrinhoContext.Provider value={{
             carrinho,
@@ -129,7 +132,9 @@ export function CarrinhoProvider({ children }) {
             formaPagamento,
             setFormaPagamento,
             pedido,
-            setPedido
+            setPedido,
+            cartao,
+            setCartao
         }}>
             {children}
         </CarrinhoContext.Provider>

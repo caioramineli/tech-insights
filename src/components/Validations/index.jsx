@@ -39,3 +39,8 @@ export const validatePhone = (phone) => {
 export const validatePassword = (password) => {
     return password.length >= 6;
 };
+
+export const validateCardNumber = (cardNumber) => {
+    const cardRegex = /^(\d{4} ){3}\d{4}$/;
+    return cardRegex.test(cardNumber);
+};
