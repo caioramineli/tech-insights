@@ -21,7 +21,7 @@ export default function Pagamento() {
         validade: '',
         cvv: '',
         cpfTitular: '',
-        parcelas: '',
+        parcelas: '1x',
         status: false
     });
 
@@ -43,7 +43,7 @@ export default function Pagamento() {
             validade: '',
             cvv: '',
             cpfTitular: '',
-            parcelas: '',
+            parcelas: '1x',
             status: false
         });
     }
@@ -56,12 +56,18 @@ export default function Pagamento() {
     const verificarFromaPagamento = () => {
         if (formaPagamento === "") {
             notifyError('Escolha uma forma de pagamento!');
-        } else if (cartao.status === false) {
-            notifyError('Informe os dados do cartão!');
-        } else {
-            navigate('/confirmacao');
+            return;
         }
-    }
+
+        if (formaPagamento === "Cartão") {
+            if (cartao.status === false) {
+                notifyError('Informe os dados do cartão!');
+                return;
+            }
+        }
+        navigate('/confirmacao');
+    };
+
 
     return (
         <>

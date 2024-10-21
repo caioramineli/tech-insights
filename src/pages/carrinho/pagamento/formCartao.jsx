@@ -128,7 +128,7 @@ const FormCartao = ({ dadosCartao, setDadosCartao }) => {
 
                 <SelectModerno
                     name="parcelas"
-                    value={dadosCartao.parcelas || '1x'}
+                    value={dadosCartao.parcelas}
                     onChange={handleChange}
                     label="Parcelamento"
                     bgLabel="white"
