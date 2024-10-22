@@ -4,6 +4,7 @@ import Produto from "./Produto";
 import Slider from "./slider";
 import "./style.css";
 import Loading from "../../components/Loading";
+import Marca from "../../components/containerMarcas/Marca";
 
 export default function Home() {
     const [produtos, setProdutos] = useState([]);
@@ -33,6 +34,28 @@ export default function Home() {
     return (
         <main className="containerMainPaginaProdutos">
             <Slider />
+            <hr className='border border-emerald-600 w-full mt-8' />
+            <div className="grid gap-3 mt-5">
+                <h1 className="text-sm sm:text-base font-bold uppercase">Pesquisar pela marca:</h1>
+                <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] lg:grid-cols-5 gap-3 mt-3 mb-3">
+                    <Marca  marca="msi"/>
+                    <Marca  marca={"gigabyte"}/>
+                    <Marca  marca={"asus"}/>
+                    <Marca  marca={"cooler-master"}/>
+                    <Marca  marca={"kingston"}/>
+                    <Marca  marca={"xpg"}/>
+                    <Marca  marca={"acer"}/>
+                    <Marca  marca={"lg"}/>
+                    <Marca  marca={"redragon"}/>
+                    <Marca  marca={"hyperX"}/>
+                    <Marca  marca={"ASRock"}/>
+                    <Marca  marca={"galax"}/>
+                    <Marca  marca={"pny"}/>
+                    <Marca  marca={"amd"}/>
+                    <Marca  marca={"intel"}/>
+                </div>
+            </div>
+            <hr className='border border-emerald-600 w-full mt-5' />
             <section className="containerProdutos">
                 {produtos.map((product) => (
                     <Produto
