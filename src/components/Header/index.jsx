@@ -49,7 +49,7 @@ const Header = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className='flex-col w-[100px]'>
+                        <div className='flex-col w-[105px]'>
                             <span>Olá, <Link className='text-cyan-500 font-bold' to="/login">Entre</Link> ou </span>
                             <span className='text-emerald-500 font-bold'><Link to="/cadastrar">Cadastre-se</Link></span>
                         </div>

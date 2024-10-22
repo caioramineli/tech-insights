@@ -43,9 +43,11 @@ export default function Conta() {
             <hr className='border border-emerald-600 w-52 m-auto' />
 
             <div className='flex items-center p-3 bsPadrao bg-white rounded-md gap-4 mt-4'>
-                <PiUserCircleLight className='text-5xl' />
+                <span className='min-w-10'>
+                    <PiUserCircleLight className='text-5xl' />
+                </span>
                 <div className='flex flex-col justify-center'>
-                    <span className='text-lg font-bold text-nowrap'>Seja Bem-vindo, {user.nome}</span>
+                    <span className='text-lg font-bold'>Seja Bem-vindo, {user.nome}</span>
                     <span>{user.email}</span>
                 </div>
             </div>
