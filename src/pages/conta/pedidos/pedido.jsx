@@ -4,6 +4,8 @@ import axios from 'axios';
 import Loading from '../../../components/Loading';
 import { useParams } from 'react-router-dom';
 import { FaReceipt } from "react-icons/fa";
+import { format } from 'date-fns';
+import VoltarMinhaConta from '../../../components/VoltarMinhaConta';
 
 
 export default function Pedido() {
@@ -41,13 +43,13 @@ export default function Pedido() {
     return (
         <div className="containerPadrao my-6 sm:my-8 gap-4">
             <div className='flex items-center gap-2'>
-                <FaReceipt className='text-emerald-600 text-3xl' />
+                <FaReceipt className='text-emerald-600 text-2xl sm:text-3xl' />
                 <h1 className='font-bold text-zinc-900 text-lg md:text-2xl'>Pedido {pedido.numeroPedido}</h1>
             </div>
             <hr />
-            <div>
-                <p><span className="font-bold uppercase">Pedido:</span> {pedido.numeroPedido} - {new Date(pedido.data).toLocaleDateString()}</p>
-                <h1 className='font-bold uppercase text-emerald-600 py-2 '>Aguardando o status do pedido</h1>
+            <div className='flex items-center justify-between'>
+                <p className='text-zinc-900 text-base'><span className="font-semibold">Data do pedido:</span> {format(new Date(pedido.data), "dd/MM/yyyy HH:mm")}</p>
+                <p className='font-bold text-zinc-900 text-base'>Status: <span className='text-emerald-600 uppercase'>Pedido realizado</span></p>
             </div>
             <hr />
             <div className="flex gap-3">

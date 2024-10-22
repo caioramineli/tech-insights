@@ -8,7 +8,8 @@
 .containerMainPaginaProdutos .slider {
     margin: 0 auto;
 }
-.containerMainPaginaProdutos .slider img{
+
+.containerMainPaginaProdutos .slider img {
     width: 100%;
 }
 
@@ -48,12 +49,14 @@
 }
 
 .containerProdutos .boxProduto p:nth-child(3) {
-    min-height: 3rem;
+    min-height: 4.2rem;
+    max-height: 4.2rem;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    line-height: 1.4rem;
 }
 
 .containerProdutos .boxProduto p:nth-child(4) {

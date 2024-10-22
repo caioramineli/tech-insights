@@ -17,6 +17,7 @@ import Confirmacao from "./pages/carrinho/confirmacao";
 import PedidoRealizado from "./pages/pedidoRealizado";
 
 import PaginaProduto from "./pages/productpage";
+import { PaginaMarca } from "./pages/marcas";
 
 import Busca from "./pages/busca";
 
@@ -59,6 +60,7 @@ export default function MinhasRotas() {
                     <Route path="/confirmacao" element={<ProtectedRoute element={<Confirmacao />} />} />
                     <Route path="/pedido-realizado" element={<ProtectedRoute element={<PedidoRealizado />} />} />
 
+                    <Route path="/marcas/:marca" element={<PaginaMarca />} />
                     <Route path="/produto/:productId" element={<PaginaProduto />} />
                     <Route path="/busca" element={<Busca />} />
                     <Route path="/guias" element={<GuiasInformativos />} />

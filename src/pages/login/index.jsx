@@ -9,23 +9,24 @@ import Loading from '../../components/Loading';
 import InputPassword from "../../components/InputPassword";
 import { AuthContext } from '../../contexts/AuthContext';
 import { useCarrinho } from '../../contexts/contex-Cart';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './style.css';
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { login } = useContext(AuthContext);
     const { carrinho } = useCarrinho();
     const api = process.env.REACT_APP_API_URL;
 
     const navigate = useNavigate();
+    const notifyError = (message) => toast.error(message);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError('');
         setIsSubmitting(true);
         try {
             const response = await axios.post(api + 'login', { email, senha });
@@ -38,7 +39,7 @@ export default function Login() {
             }
         } catch (error) {
             if (error.response.status !== 200) {
-                setError("E-mail ou senha incorretos!");
+                notifyError("E-mail ou senha incorretos!");
             }
         } finally {
             setIsSubmitting(false);
@@ -78,8 +79,6 @@ export default function Login() {
 
                     <a id="esqueceuSenha" href='/'>Esqueceu a senha?</a>
 
-                    {error && <span id="spanIncorreto">{error}</span>}
-
                     {isSubmitting ? (
                         <Loading color='#0891b2' />
                     ) : (
@@ -97,6 +96,7 @@ export default function Login() {
                     </Link>
                 </form>
             </div>
+            <ToastContainer autoClose={2500} />
         </>
     )
 }

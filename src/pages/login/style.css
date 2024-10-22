@@ -71,14 +71,6 @@
     bottom: 10px;
 }
 
-#container-login #spanIncorreto {
-    position: absolute;
-    bottom: 130px;
-    left: 5px;
-    color: brown;
-    font-weight: 500;
-}
-
 #container-login button {
     margin: 0 auto;
     font-size: 1.2rem;
