@@ -87,10 +87,7 @@ export default function Confirmacao() {
             default:
                 return null;
         }
-    };
-
-    console.log(cartao);
-    
+    };    
 
     return (
         <>

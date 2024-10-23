@@ -34,7 +34,7 @@ const Pedidos = () => {
     }
 
     return (
-        <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] my-6 sm:my-8 gap-2'>
+        <div className='containerPadrao my-6 sm:my-8 gap-2'>
             <div className="flex justify-between items-center">
                 <div className='flex items-center gap-2'>
                     <HiShoppingBag className='text-emerald-600 text-2xl sm:text-3xl' />

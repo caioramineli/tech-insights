@@ -118,7 +118,7 @@ const ProductUpload = () => {
                         <option value="msi"></option>
                         <option value="gigabyte"></option>
                         <option value="asus"></option>
-                        <option value="cooler-master"></option>
+                        <option value="coolermaster"></option>
                         <option value="kingston"></option>
                         <option value="xpg"></option>
                         <option value="acer"></option>
