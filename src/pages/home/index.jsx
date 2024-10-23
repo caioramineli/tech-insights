@@ -4,18 +4,20 @@ import Produto from "./Produto";
 import Slider from "./slider";
 import "./style.css";
 import Loading from "../../components/Loading";
-import Marca from "../../components/containerMarcas/Marca";
+import { ContainerMarcas } from "../../components/ContainerMarcas/index";
 
 export default function Home() {
-    const [produtos, setProdutos] = useState([]);
+    const [primeirosProdutos, setPrimeirosProdutos] = useState([]);
+    const [restanteProdutos, setRestanteProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
     const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         async function getProdutos() {
             try {
-                const response = await axios.get(api + "product");
-                setProdutos(response.data.products);
+                const response = await axios.get(api + "productHome?limite=15");
+                setPrimeirosProdutos(response.data.primeirosProdutos);
+                setRestanteProdutos(response.data.restanteProdutos);
             } catch (error) {
                 console.error("Erro ao buscar produtos:", error);
             }
@@ -34,30 +36,19 @@ export default function Home() {
     return (
         <main className="containerMainPaginaProdutos">
             <Slider />
+            <section className="containerProdutos">
+                {primeirosProdutos.map((product) => (
+                    <Produto
+                        key={product._id}
+                        product={product}
+                    />
+                ))}
+            </section>
             <hr className='border border-emerald-600 w-full mt-8' />
-            <div className="grid gap-3 mt-5">
-                <h1 className="text-sm sm:text-base font-bold uppercase">Pesquisar pela marca:</h1>
-                <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] lg:grid-cols-5 gap-3 mt-3 mb-3">
-                    <Marca  marca="msi"/>
-                    <Marca  marca={"gigabyte"}/>
-                    <Marca  marca={"asus"}/>
-                    <Marca  marca={"cooler-master"}/>
-                    <Marca  marca={"kingston"}/>
-                    <Marca  marca={"xpg"}/>
-                    <Marca  marca={"acer"}/>
-                    <Marca  marca={"lg"}/>
-                    <Marca  marca={"redragon"}/>
-                    <Marca  marca={"hyperX"}/>
-                    <Marca  marca={"ASRock"}/>
-                    <Marca  marca={"galax"}/>
-                    <Marca  marca={"pny"}/>
-                    <Marca  marca={"amd"}/>
-                    <Marca  marca={"intel"}/>
-                </div>
-            </div>
+            <ContainerMarcas />
             <hr className='border border-emerald-600 w-full mt-5' />
             <section className="containerProdutos">
-                {produtos.map((product) => (
+                {restanteProdutos.map((product) => (
                     <Produto
                         key={product._id}
                         product={product}

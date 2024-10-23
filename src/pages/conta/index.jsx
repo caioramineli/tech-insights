@@ -54,7 +54,7 @@ export default function Conta() {
 
             <div className='grid grid-cols-2 lg:grid-cols-4 gap-3 mt-2'>
                 <Link to={'meus-dados'}>
-                    <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap- h-36'>
+                    <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap-4 h-36'>
                         <span>
                             <FaRegAddressCard className='text-emerald-600 text-3xl sm:text-4xl' />
                         </span>
@@ -66,7 +66,7 @@ export default function Conta() {
                 </Link>
 
                 <Link to={'pedidos'}>
-                    <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap- h-36'>
+                    <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap-4 h-36'>
                         <span>
                             <HiShoppingBag className='text-emerald-600 text-3xl sm:text-4xl' />
                         </span>
@@ -90,7 +90,7 @@ export default function Conta() {
                 </Link>
 
                 <Link to={'enderecos'}>
-                    <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap- h-36'>
+                    <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap-4 h-36'>
                         <span>
                             <FaMapLocationDot className='text-emerald-600 text-3xl sm:text-4xl' />
                         </span>
