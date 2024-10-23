@@ -15,7 +15,7 @@ export default function Home() {
     useEffect(() => {
         async function getProdutos() {
             try {
-                const response = await axios.get(api + "productHome?limite=16");
+                const response = await axios.get(api + "productHome?limite=20");
                 setPrimeirosProdutos(response.data.primeirosProdutos);
                 setRestanteProdutos(response.data.restanteProdutos);
             } catch (error) {
