@@ -1,16 +1,19 @@
-import { tailspin } from 'ldrs'
+import { ring } from 'ldrs'
 
-tailspin.register()
+ring.register()
 
-export default function Loading({ size = "45", stroke="6", color = "#0e7490" }) {
+export default function Loading({ size = "45", stroke = "6", color = "#0e7490" }) {
     return (
-        <l-tailspin
+        <l-ring
             size={size}
             stroke={stroke}
             speed="1"
             color={color}
-        ></l-tailspin>
+        ></l-ring>
+
     );
 }
+
+
 
 

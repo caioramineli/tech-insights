@@ -15,7 +15,7 @@ export default function Home() {
     useEffect(() => {
         async function getProdutos() {
             try {
-                const response = await axios.get(api + "productHome?limite=20");
+                const response = await axios.get(api + "productHome?divisao=10");
                 setPrimeirosProdutos(response.data.primeirosProdutos);
                 setRestanteProdutos(response.data.restanteProdutos);
             } catch (error) {
@@ -31,7 +31,6 @@ export default function Home() {
     if (loading) {
         return <Loading />;
     }
-
 
     return (
         <main className="containerMainPaginaProdutos">

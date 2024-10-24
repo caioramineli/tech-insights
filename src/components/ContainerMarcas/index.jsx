@@ -5,7 +5,7 @@ export function BoxMarca({ marca }) {
     const api = process.env.REACT_APP_API_URL;
     return (
         <Link to={`/marcas/${marca}`}>
-            <div className='w-56 sm:w-auto flex flex-col gap-4 items-center bsPadrao rounded-md p-6 cursor-pointer duration-200 hover:scale-[1.02] bg-white'>
+            <div className='w-56 sm:w-auto flex flex-col gap-4 items-center bsPadrao rounded-md p-6 cursor-pointer duration-200 hover:scale-[1.03] bg-white'>
                 <img src={`${api}imgs/${marca}.jpg`} alt={marca} className="w-20" />
                 <div className="flex flex-row items-center justify-center">
                     <p className='font-bold uppercase text-emerald-600 text-sm '>ver produtos</p>

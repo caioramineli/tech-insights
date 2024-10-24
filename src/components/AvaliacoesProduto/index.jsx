@@ -86,17 +86,17 @@ export default function AvaliacoesProduto({ produto, setNotaMedia, accordion, se
                 </span>
             </h2>
 
-            {loading ? (
-                <div className='m-auto'>
-                    <Loading color='#047857' />
-                </div>
-            ) :
-                (
-                    <div
-                        ref={contentRef}
-                        className='transition-height duration-300 ease-in-out overflow-hidden'
-                        style={{ height: accordion ? `${contentRef.current?.scrollHeight}px` : '0px' }}
-                    >
+            <div
+                ref={contentRef}
+                className='transition-height duration-300 ease-in-out overflow-hidden'
+                style={{ height: accordion ? `${contentRef.current?.scrollHeight}px` : '0px' }}
+            >
+                {loading ? (
+                    <div className='m-auto'>
+                        <Loading color='#047857' />
+                    </div>
+                ) : (
+                    <>
                         <div className="flex justify-between items-center my-2">
                             <div>
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-1">
@@ -106,9 +106,7 @@ export default function AvaliacoesProduto({ produto, setNotaMedia, accordion, se
                                 </div>
                                 <span className="text-base">({avaliacoes.length} Avaliações)</span>
                             </div>
-
                             <button onClick={openModalAvaliarProduto} className="btnPadrao">Faça uma avaliação</button>
-
                             {isModalAvaliarProduto && (
                                 <ModalAvaliarProduto produto={produto} setEstado={setIsModalAvaliarProduto} listarAvalicoes={getAvaliacoes} />
                             )}
@@ -133,9 +131,9 @@ export default function AvaliacoesProduto({ produto, setNotaMedia, accordion, se
                                 <p>{avaliacao.descricao}</p>
                             </div>
                         ))}
-                    </div>
-                )
-            }
+                    </>
+                )}
+            </div>
         </div>
     );
 }

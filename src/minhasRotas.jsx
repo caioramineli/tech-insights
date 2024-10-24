@@ -1,7 +1,11 @@
 import { BrowserRouter as BR, Route, Routes } from "react-router-dom";
-import Home from "./pages/home/";
+import Header from './components/Header';
+import Footer from './components/Footer';
+
 import Login from "./pages/login/"
 import Cadastrar from "./pages/cadastrar";
+
+import Home from "./pages/home/";
 
 import Conta from "./pages/conta";
 import Dados from "./pages/conta/dados";
@@ -24,22 +28,23 @@ import Busca from "./pages/busca";
 import GuiasInformativos from "./pages/guiasInformativos";
 import MontePC from "./pages/montePC";
 import PaginaCupons from "./pages/cupons";
-import KitUpgrade from "./pages/kitUpgrade";
-import Notebooks from "./pages/notebooks";
-import Monitores from "./pages/monitores";
-import Header from './components/Header';
-import Footer from './components/Footer';
+import { KitUpgrade } from "./pages/kitUpgrade";
+import { Notebooks } from "./pages/notebooks";
+import { Monitores } from "./pages/monitores";
+
 
 import ProductUpload from "./admin/pages/product";
 import AdminCuponPage from "./admin/pages/cupon";
 
 import ProtectedRoute from './protectRoutes';
+import ScrollToTop from "./components/ScrollTop";
 
 
 export default function MinhasRotas() {
     return (
         <>
             <BR>
+                <ScrollToTop />
                 <Header />
 
                 <Routes>

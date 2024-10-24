@@ -12,6 +12,7 @@ import { PedidoContainer } from '../../components/Pedido';
 export default function Conta() {
     const { user } = useContext(AuthContext);
     const [pedidos, setPedidos] = useState([]);
+    const [loading, setLoading] = useState(true);
     const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
@@ -21,6 +22,8 @@ export default function Conta() {
                 setPedidos(response.data);
             } catch (err) {
                 console.log(err);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -109,11 +112,15 @@ export default function Conta() {
                 <Link to={'pedidos'} className='hidden sm:block uppercase underline decoration-solid text-sm'> ir para meus pedidos</Link>
             </div>
 
-            {pedidos.length === 0 ? (
-                <p>Nenhum pedido encontrado.</p>
+            {loading ? (
+                <p>Carregando...</p>
             ) : (
                 <>
-                    <PedidoContainer pedido={pedidos[pedidos.length - 1]} />
+                    {pedidos.length === 0 ? (
+                        <p>Nenhum pedido encontrado.</p>
+                    ) : (
+                        <PedidoContainer pedido={pedidos[pedidos.length - 1]} />
+                    )}
                 </>
             )}
         </div>

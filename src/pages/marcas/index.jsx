@@ -30,9 +30,9 @@ function PaginaMarca() {
     }
 
     return (
-        <main className="containerMainPaginaProdutos">
+        <main className="containerMainPaginaProdutos !min-h-[50vh]">
             <h1 className='text-lg'>Produtos da marca: <span className='uppercase font-semibold'>{marca}</span></h1>
-            <section className="containerProdutos">
+            <section className="!mt-4 containerProdutos">
                 {produtos.map((produto) => (
                     <Produto
                         key={produto._id}
