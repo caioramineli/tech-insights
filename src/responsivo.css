@@ -183,10 +183,6 @@
         --swiper-navigation-size: 25px;
         --swiper-pagination-bullet-size: 7px
     }
-
-    .swiper-pagination-bullets.swiper-pagination-horizontal {
-        top: 70px !important;
-    }
 }
 
 @media(max-width:500px) {
