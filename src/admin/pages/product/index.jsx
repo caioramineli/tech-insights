@@ -75,7 +75,6 @@ const ProductUpload = () => {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            notifySuccess();
             setFormData({
                 nome: "",
                 precoPrazo: "",
@@ -91,6 +90,7 @@ const ProductUpload = () => {
             if (fileInputRef.current) {
                 fileInputRef.current.value = null;
             }
+            notifySuccess();
         } catch (error) {
             const erro = error.response?.data?.msg || "Erro ao cadastrar o produto.";
             notifyError(erro);
@@ -130,6 +130,7 @@ const ProductUpload = () => {
                         <option value="pny"></option>
                         <option value="amd"></option>
                         <option value="intel"></option>
+                        <option value="samsung"></option>
                     </datalist>
 
                     <div className="custom-select-container">

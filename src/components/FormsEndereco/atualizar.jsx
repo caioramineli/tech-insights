@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Loading from '../../components/Loading';
 import InputModerno from '../../components/InputModerno';
 import { toast } from 'react-toastify';
@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, endereco, setEndereco }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [cepAlterado, setCepAlterado] = useState(false);
+    const [cepIncorreto, setCepIncorreto] = useState(false)
     const api = process.env.REACT_APP_API_URL;
 
     const notifySuccess = () => toast.success("Endereço atualizado com sucesso!");
@@ -19,16 +21,63 @@ const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, ende
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setEndereco({ ...endereco, [name]: value });
+        setEndereco((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+        if (name === "cep") {
+            setCepAlterado(true);
+        }
     };
+
+    const buscarCEP = useCallback(async () => {
+        try {
+            const response = await axios.get(`https://brasilapi.com.br/api/cep/v1/${endereco.cep.replace(/\D/g, '')}`);
+            const { street, neighborhood, city, state } = response.data;
+            setCepIncorreto(false);
+
+            setEndereco((prev) => ({
+                ...prev,
+                rua: street || '',
+                bairro: neighborhood || '',
+                cidade: city || prev.cidade,
+                estado: state || prev.estado
+            }));
+
+            if (!street || !neighborhood) {
+                setEndereco((prev) => ({
+                    ...prev,
+                    rua: '',
+                    bairro: ''
+                }));
+            }
+            setCepAlterado(false);
+        } catch (error) {
+            setCepIncorreto(true);
+            notifyError("Erro ao buscar o CEP. Verifique e tente novamente.");
+        }
+    }, [endereco.cep, setEndereco]);
+
+    useEffect(() => {
+        if (cepAlterado && endereco.cep?.replace(/\D/g, '').length === 8) {
+            buscarCEP();
+        }
+    }, [endereco.cep, cepAlterado, buscarCEP]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
 
         const cepPuro = endereco.cep.replace(/\D/g, '');
+
         if (cepPuro.length !== 8) {
             notifyError("Informe um CEP válido");
+            setIsSubmitting(false);
+            return;
+        }
+
+        if (cepIncorreto) {
+            notifyError("O CEP informado não é válido.");
             setIsSubmitting(false);
             return;
         }
@@ -45,6 +94,7 @@ const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, ende
             setIsSubmitting(false);
         }
     };
+
     return (
         <form method="PUT" onSubmit={handleSubmit} className='flex flex-col gap-4 mt-2'>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
@@ -60,7 +110,7 @@ const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, ende
                 <InputModerno
                     name="cep"
                     type="text"
-                    placeholder=""
+                    placeholder="CEP"
                     value={endereco.cep}
                     onChange={handleChange}
                     label="CEP"
@@ -117,6 +167,8 @@ const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, ende
                     onChange={handleChange}
                     label="Estado"
                     required
+                    className='!cursor-no-drop'
+                    readOnly
                 />
 
                 <InputModerno
@@ -127,6 +179,8 @@ const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, ende
                     onChange={handleChange}
                     label="Cidade"
                     required
+                    className='!cursor-no-drop'
+                    readOnly
                 />
             </div>
             <div>
@@ -137,7 +191,7 @@ const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, ende
                 ) : (
                     <div className='flex justify-end gap-4'>
                         <button className='bg-gray-300 rounded-md py-2 px-6' type='button' onClick={closeModal}>Cancelar</button>
-                        <button className='bg-emerald-600 rounded-md py-2 px-6 font-bold text-emerald-50' type='subimit'>Salvar</button>
+                        <button className='bg-emerald-600 rounded-md py-2 px-6 font-bold text-emerald-50' type='submit'>Salvar</button>
                     </div>
                 )}
             </div>

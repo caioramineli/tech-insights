@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Loading from '../../components/Loading';
 import InputModerno from '../../components/InputModerno';
 import { toast } from 'react-toastify';
@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const FormCadastrarEndereco = ({ setEstadoForm, userId, atualizarEnderecos }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [cepIncorreto, setCepIncorreto] = useState(false)
     const [endereco, setEndereco] = useState({
         nome: '',
         cep: '',
@@ -36,11 +37,47 @@ const FormCadastrarEndereco = ({ setEstadoForm, userId, atualizarEnderecos }) =>
         setEstadoForm(false);
         document.body.style.overflow = 'auto';
     }
-
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setEndereco({ ...endereco, [name]: value });
+        setEndereco((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
     };
+
+    const buscarCEP = useCallback(async () => {
+        try {
+            const response = await axios.get(`https://brasilapi.com.br/api/cep/v1/${endereco.cep.replace(/\D/g, '')}`);
+            const { street, neighborhood, city, state } = response.data;
+            setCepIncorreto(false);
+
+            setEndereco((prev) => ({
+                ...prev,
+                rua: street || '',
+                bairro: neighborhood || '',
+                cidade: city || prev.cidade,
+                estado: state || prev.estado
+            }));
+
+            if (!street || !neighborhood) {
+                setEndereco((prev) => ({
+                    ...prev,
+                    rua: '',
+                    bairro: ''
+                }));
+            }
+        } catch (error) {
+            setCepIncorreto(true);
+            notifyError("Erro ao buscar o CEP. Verifique e tente novamente.");
+        }
+    }, [endereco.cep, setEndereco]);
+
+    useEffect(() => {
+        if (endereco.cep?.replace(/\D/g, '').length === 8) {
+            buscarCEP();
+        }
+    }, [endereco.cep, buscarCEP]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,6 +86,12 @@ const FormCadastrarEndereco = ({ setEstadoForm, userId, atualizarEnderecos }) =>
         const cepPuro = endereco.cep.replace(/\D/g, '');
         if (cepPuro.length !== 8) {
             notifyError("Informe um CEP válido");
+            setIsSubmitting(false);
+            return;
+        }
+
+        if (cepIncorreto) {
+            notifyError("O CEP informado não é válido.");
             setIsSubmitting(false);
             return;
         }
@@ -138,6 +181,8 @@ const FormCadastrarEndereco = ({ setEstadoForm, userId, atualizarEnderecos }) =>
                     onChange={handleChange}
                     label="Estado"
                     required
+                    className='!cursor-no-drop'
+                    readOnly
                 />
 
                 <InputModerno
@@ -148,6 +193,8 @@ const FormCadastrarEndereco = ({ setEstadoForm, userId, atualizarEnderecos }) =>
                     onChange={handleChange}
                     label="Cidade"
                     required
+                    className='!cursor-no-drop'
+                    readOnly
                 />
             </div>
             <div>

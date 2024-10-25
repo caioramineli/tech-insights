@@ -70,20 +70,16 @@ const FormDados = ({ reqUserData, user }) => {
                     label="Nome completo"
                 />
 
-                <div className="divInputModerno">
-                    <input
-                        name="cpf"
-                        type="text"
-                        placeholder=""
-                        value={userData.cpf}
-                        onChange={handleChange}
-                        className="!cursor-no-drop"
-                        disabled
-                    />
-                    <label>
-                        CPF
-                    </label>
-                </div>
+                <InputModerno
+                    name="cpf"
+                    type="text"
+                    placeholder=""
+                    value={userData.cpf}
+                    onChange={handleChange}
+                    label="CPF"
+                    className='!cursor-no-drop'
+                    readOnly
+                />
 
                 <InputModerno
                     name="dataNascimento"
