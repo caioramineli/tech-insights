@@ -15,6 +15,7 @@ export default function Pedido() {
     const { idPedido } = useParams();
     const [pedido, setPedido] = useState(null)
     const [loading, setLoading] = useState(true);
+    const [erro, setErro] = useState(false);
     const api = process.env.REACT_APP_API_URL;
 
     function formatarPreco(preco) {
@@ -43,6 +44,7 @@ export default function Pedido() {
                 setPedido(response.data);
             } catch (err) {
                 console.log(err);
+                setErro(true);
             } finally {
                 setLoading(false);
             }
@@ -55,6 +57,10 @@ export default function Pedido() {
 
     if (loading) {
         return <Loading />;
+    }
+
+    if (erro) {
+        return <h1 className='text-2xl font-semibold text-zinc-950 m-auto'>Erro ao carregar pedido!</h1>;
     }
 
     return (

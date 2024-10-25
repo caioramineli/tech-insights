@@ -106,7 +106,7 @@ const EnderecosUser = () => {
                     </div>
 
                     {modalCreate && (
-                        <Modal setEstado={setModalCreate} titulo="Cadastrar endereço" largura='4xl'>
+                        <Modal setEstado={setModalCreate} titulo="Cadastrar endereço" largura="max-w-4xl">
                             <FormCadastrarEndereco
                                 setEstadoForm={setModalCreate}
                                 userId={user.id}
@@ -116,7 +116,7 @@ const EnderecosUser = () => {
                     )}
 
                     {modalUpdate && (
-                        <Modal setEstado={setModalUpdate} titulo="Atualizar endereço" largura='4xl'>
+                        <Modal setEstado={setModalUpdate} titulo="Atualizar endereço" largura="max-w-4xl">
                             <FormAtualizarEndereco
                                 setEstadoForm={setModalUpdate}
                                 userId={user.id}
@@ -128,7 +128,7 @@ const EnderecosUser = () => {
                     )}
 
                     {modalDelete && (
-                        <Modal setEstado={setModalDelete} titulo="Deseja excluir esse endereço?" largura='md'>
+                        <Modal setEstado={setModalDelete} titulo="Deseja excluir esse endereço?" largura="max-w-md">
                             <FormDeletarEndereco
                                 setEstadoForm={setModalDelete}
                                 userId={user.id}

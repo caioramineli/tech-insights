@@ -181,3 +181,7 @@ li {
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
+
+.swiper-button-prev, .swiper-button-next {
+    color: #0891b2;
+}

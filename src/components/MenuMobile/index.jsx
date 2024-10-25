@@ -1,51 +1,33 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './style.css';
 import { FaRegHeart, FaUser } from 'react-icons/fa';
 import { IoMdExit } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 
 const MenuMobile = () => {
     const [isActive, setIsActive] = useState(false);
     const { user, favoritos, logout } = useContext(AuthContext);
-    const btnRef = useRef(null);
-    const navRef = useRef(null);
+    const location = useLocation();
 
     const toggleMenu = (event) => {
-        if (event.type === 'touchstart') event.preventDefault();
-        setIsActive((prevState) => !prevState);
+        if (event.type === 'touchstart' && event.cancelable) {
+            event.preventDefault();
+        }
+        setIsActive(!isActive);
     };
 
     useEffect(() => {
-        const button = btnRef.current;
-
-        button.addEventListener('touchstart', toggleMenu, { passive: false });
-
-        return () => {
-            button.removeEventListener('touchstart', toggleMenu);
-        };
-    }, [isActive]);
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (navRef.current && !navRef.current.contains(event.target) && !btnRef.current.contains(event.target)) {
-                setIsActive(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
+        setIsActive(false);
+    }, [location]);
 
     const getFirstName = (fullName) => {
         return fullName ? fullName.split(' ')[0] : '';
     };
 
     return (
-        <nav ref={navRef} id="navMobile" className={isActive ? 'active' : ''}>
-            <button ref={btnRef} id="btn-mobile" onClick={toggleMenu}>
+        <nav id="navMobile" className={isActive ? 'active' : ''}>
+            <button id="btn-mobile" onClick={toggleMenu}>
                 <span id="hamburger"></span>
             </button>
             <ul id="menu">
@@ -80,42 +62,42 @@ const MenuMobile = () => {
                         )}
                     </div>
                     <li id='liHardware'>
-                        <a href="/">
+                        <Link to="/">
                             Hardware
-                        </a>
+                        </Link>
                     </li>
                     <li id='liPerife'>
-                        <a href="/">
+                        <Link to="/">
                             Periféricos
-                        </a>
+                        </Link>
                     </li>
                     <li id='liRedes'>
-                        <a href="/">
+                        <Link to="/">
                             Redes
-                        </a>
+                        </Link>
                     </li>
                     <li id='liComputadores'>
-                        <a href="/">
+                        <Link to="/">
                             Computadores
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="/guias">Guias Informativos</a>
+                        <Link to="/guias">Guias Informativos</Link>
                     </li>
                     <li>
-                        <a href="/monte-seu-pc">Monte seu PC</a>
+                        <Link to="/monte-seu-pc">Monte seu PC</Link>
                     </li>
                     <li>
-                        <a href="/cupons">Cupons</a>
+                        <Link to="/cupons">Cupons</Link>
                     </li>
                     <li>
-                        <a href="/kit-upgrade">Kit Upgrade</a>
+                        <Link to="/kit-upgrade">Kit Upgrade</Link>
                     </li>
                     <li>
-                        <a href="/notebooks">Notebooks</a>
+                        <Link to="/notebooks">Notebooks</Link>
                     </li>
                     <li>
-                        <a href="/monitores">Monitores</a>
+                        <Link to="/monitores">Monitores</Link>
                     </li>
                 </div>
             </ul>

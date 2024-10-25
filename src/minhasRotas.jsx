@@ -32,11 +32,13 @@ import { KitUpgrade } from "./pages/kitUpgrade";
 import { Notebooks } from "./pages/notebooks";
 import { Monitores } from "./pages/monitores";
 
-
 import ProductUpload from "./admin/pages/product";
 import AdminCuponPage from "./admin/pages/cupon";
 
+import { NotFound } from "./pages/notfound";
+
 import ProtectedRoute from './protectRoutes';
+
 import ScrollToTop from "./components/ScrollTop";
 
 
@@ -77,6 +79,8 @@ export default function MinhasRotas() {
 
                     <Route path="/admin/produtos" element={<ProductUpload />} />
                     <Route path="/admin/cupons" element={< AdminCuponPage />} />
+
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
 
                 <Footer />
