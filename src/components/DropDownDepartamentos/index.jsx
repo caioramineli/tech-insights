@@ -6,7 +6,7 @@ export default function DropDownDepartamentos() {
     return (
         <ul className='dropdownMenu'>
             <li id='liHardware'>
-                <Link to="#">
+                <Link to="/categoria/hardware">
                     Hardware
                     <FaAngleRight />
                 </Link>
@@ -23,7 +23,7 @@ export default function DropDownDepartamentos() {
             </li>
 
             <li id='liPerife'>
-                <Link to="#">
+                <Link to="/categoria/perifericos">
                     Periféricos
                     <FaAngleRight />
                 </Link>
@@ -35,7 +35,7 @@ export default function DropDownDepartamentos() {
             </li>
 
             <li id='liRedes'>
-                <Link to="#">
+                <Link to="/categoria/redes">
                     Redes
                     <FaAngleRight />
                 </Link>
@@ -46,7 +46,7 @@ export default function DropDownDepartamentos() {
             </li>
 
             <li id='liComputadores'>
-                <Link to="/categoria/Computadores">
+                <Link to="/categoria/computadores">
                     Computadores
                     <FaAngleRight />
                 </Link>

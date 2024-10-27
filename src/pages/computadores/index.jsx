@@ -1,31 +1,26 @@
+import { BuscaContainer } from "../../components/Busca";
 import React, { useCallback, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../../components/Loading';
-import { BuscaContainer } from '../../components/Busca';
 
-const Busca = () => {
-    const location = useLocation();
+const ComputadoresPage = () => {
     const [produtos, setProdutos] = useState([]);
     const [sortOption, setSortOption] = useState('');
     const [loading, setLoading] = useState(true);
     const api = process.env.REACT_APP_API_URL;
 
-    const query = new URLSearchParams(location.search).get('query');
-
     const fetchData = useCallback(async () => {
         setLoading(true);
         try {
-            if (query) {
-                const response = await axios.get(`${api}products/search?q=${query}&sort=${sortOption}`);
-                setProdutos(response.data);
-            }
+            const categorias = ["Escritorio", "profissional", "gamer"];
+            const response = await axios.post(`${api}listar-grupo-produtos?sort=${sortOption}`, { categorias });
+            setProdutos(response.data);
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
         } finally {
             setLoading(false);
         }
-    }, [query, sortOption, api]);
+    }, [sortOption, api]);
 
     useEffect(() => {
         fetchData();
@@ -36,8 +31,8 @@ const Busca = () => {
     }
 
     return (
-        <BuscaContainer produtos={produtos} titulo='Você pesquisou por' subtitulo={query} sortOption setSortOption={setSortOption} />
+        <BuscaContainer produtos={produtos} subtitulo="Computadores" sortOption setSortOption={setSortOption} />
     );
 };
 
-export default Busca;
+export { ComputadoresPage };

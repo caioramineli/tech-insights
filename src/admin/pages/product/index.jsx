@@ -152,11 +152,11 @@ const ProductUpload = () => {
                             <option value="Cabo de rede">Redes</option>
                             <option value="Roteador">Redes</option>
                             <option value="Escritorio">Escritório</option>
-                            <option value="profissional">Profissional</option>
-                            <option value="gamer">Gamer</option>
-                            <option value="kit-upgrade">Kit Upgrade</option>
-                            <option value="notebook">Notebook</option>
-                            <option value="monitor">Monitor</option>
+                            <option value="Profissional">Profissional</option>
+                            <option value="Gamer">Gamer</option>
+                            <option value="Kit-upgrade">Kit Upgrade</option>
+                            <option value="Notebook">Notebook</option>
+                            <option value="Monitor">Monitor</option>
                         </select>
                     </div>
                 </div>

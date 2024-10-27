@@ -25,6 +25,11 @@ import { PaginaMarca } from "./pages/marcas";
 import Busca from "./pages/busca";
 import { BuscaPorCategoria } from "./pages/buscaPorCategoria";
 
+import { HardwarePage } from "./pages/hardware";
+import { PerifericosPage } from "./pages/perifericos";
+import { RedesPage } from "./pages/redes";
+import { ComputadoresPage } from "./pages/computadores";
+
 import GuiasInformativos from "./pages/guiasInformativos";
 import MontePC from "./pages/montePC";
 import PaginaCupons from "./pages/cupons";
@@ -72,6 +77,10 @@ export default function MinhasRotas() {
                     <Route path="/cupons" element={<PaginaCupons />} />
 
                     <Route path="/categoria/:categoria" element={<BuscaPorCategoria />} />
+                    <Route path="/categoria/hardware" element={<HardwarePage />} />
+                    <Route path="/categoria/perifericos" element={<PerifericosPage />} />
+                    <Route path="/categoria/redes" element={<RedesPage />} />
+                    <Route path="/categoria/computadores" element={<ComputadoresPage />} />
 
                     <Route path="/admin/produtos" element={<ProductUpload />} />
                     <Route path="/admin/cupons" element={< AdminCuponPage />} />

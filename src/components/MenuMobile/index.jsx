@@ -62,22 +62,22 @@ const MenuMobile = () => {
                         )}
                     </div>
                     <li id='liHardware'>
-                        <Link to="/">
+                        <Link to="/categoria/hardware">
                             Hardware
                         </Link>
                     </li>
                     <li id='liPerife'>
-                        <Link to="/">
+                        <Link to="/categoria/perifericos">
                             Periféricos
                         </Link>
                     </li>
                     <li id='liRedes'>
-                        <Link to="/">
+                        <Link to="/categoria/redes">
                             Redes
                         </Link>
                     </li>
                     <li id='liComputadores'>
-                        <Link to="/">
+                        <Link to="/categoria/computadores">
                             Computadores
                         </Link>
                     </li>
