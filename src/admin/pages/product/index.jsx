@@ -132,6 +132,7 @@ const ProductUpload = () => {
                         <option value="intel"></option>
                         <option value="samsung"></option>
                         <option value="deepcool"></option>
+                        <option value="tplink"></option>
                     </datalist>
 
                     <div className="custom-select-container">
@@ -149,8 +150,8 @@ const ProductUpload = () => {
                             <option value="Mouse">Mouse</option>
                             <option value="Teclado">Teclado</option>
                             <option value="Fone">HeadSet</option>
-                            <option value="Cabo de rede">Redes</option>
-                            <option value="Roteador">Redes</option>
+                            <option value="Cabo de rede">Cabo de rede</option>
+                            <option value="Roteador">Roteador</option>
                             <option value="Escritorio">Escritório</option>
                             <option value="Profissional">Profissional</option>
                             <option value="Gamer">Gamer</option>
