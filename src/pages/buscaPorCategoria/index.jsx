@@ -50,7 +50,7 @@ const BuscaPorCategoria = () => {
                             <div className='flex gap-1 items-center'>
                                 <label htmlFor="ordenacao">Ordenar por:</label>
                                 <select
-                                    className='p-1 rounded-md bsPadrao'
+                                    className='p-1 rounded-md bsPadrao !bg-white'
                                     value={sortOption}
                                     onChange={(e) => setSortOption(e.target.value)}
                                 >
