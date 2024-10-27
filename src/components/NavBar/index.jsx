@@ -1,11 +1,11 @@
 import { FaChevronDown } from "react-icons/fa";
 import DropDownDepartamentos from "../DropDownDepartamentos";
-
 import "./style.css"
-import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from 'react-router-dom';
 
 export default function NavBar() {
+    const location = useLocation();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleMouseEnter = () => {
@@ -16,6 +16,9 @@ export default function NavBar() {
         setIsDropdownOpen(false);
     };
 
+    useEffect(() => {
+        setIsDropdownOpen(false);
+    }, [location]);
 
     return (
         <>
@@ -26,7 +29,7 @@ export default function NavBar() {
                     <li id='liDPT' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                         DEPARTAMENTOS
                         <FaChevronDown id='setaParaBaixo' />
-                        <DropDownDepartamentos className={`dropdownMenu ${isDropdownOpen ? 'show' : ''}`} />
+                        {isDropdownOpen && <DropDownDepartamentos />}
                     </li>
                     <Link to="/guias" className='bordaPadrao'>
                         <li>GUIAS INFORMATIVOS</li>
@@ -37,13 +40,13 @@ export default function NavBar() {
                     <Link to="/cupons" className='bordaPadrao'>
                         <li>CUPONS</li>
                     </Link>
-                    <Link to="/kit-upgrade" className='bordaPadrao'>
+                    <Link to="/categoria/Kit-Upgrade" className='bordaPadrao'>
                         <li>KIT UPGRADE</li>
                     </Link>
-                    <Link to="notebooks" className='bordaPadrao'>
+                    <Link to="/categoria/Notebook" className='bordaPadrao'>
                         <li>NOTEBOOKS</li>
                     </Link>
-                    <Link to="/monitores" className='bordaPadrao'>
+                    <Link to="/categoria/Monitor" className='bordaPadrao'>
                         <li >MONITORES</li>
                     </Link>
                 </ul>

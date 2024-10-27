@@ -24,18 +24,18 @@ function FormaPagamento({ valorPrazo, valor }) {
             <h3 className='font-bold text-lg md:text-2xl flex justify-center mb-6'>FORMAS DE PAGAMENTO</h3>
 
             <div className='flex w-[95%] sm:w-11/12 m-auto justify-between mb-6'>
-                <button className='flex flex-col items-center gap-1' onClick={() => updateToglle(1)}>
-                    <FaRegCreditCard className={toggle === 1 ? 'text-teal-600 text-4xl' : 'text-zinc-400 text-4xl'} />
+                <button className='flex flex-col items-center gap-1 text-sm sm:text-base' onClick={() => updateToglle(1)}>
+                    <FaRegCreditCard className={toggle === 1 ? 'text-teal-600 text-2xl sm:text-4xl' : 'text-zinc-400 text-2xl sm:text-4xl'} />
                     Cartão de Crédito
                 </button>
 
-                <button className='flex flex-col items-center gap-1' onClick={() => updateToglle(2)}>
-                    <SiPix className={toggle === 2 ? 'text-teal-600 text-4xl' : 'text-zinc-400 text-4xl'} />
+                <button className='flex flex-col items-center gap-1 text-sm sm:text-base' onClick={() => updateToglle(2)}>
+                    <SiPix className={toggle === 2 ? 'text-teal-600 text-2xl sm:text-4xl' : 'text-zinc-400 text-2xl sm:text-4xl'} />
                     PIX
                 </button>
 
-                <button className='flex flex-col items-center gap-1' onClick={() => updateToglle(3)}>
-                    <FaBarcode className={toggle === 3 ? 'text-teal-600 text-4xl' : 'text-zinc-400 text-4xl'} />
+                <button className='flex flex-col items-center gap-1 text-sm sm:text-base' onClick={() => updateToglle(3)}>
+                    <FaBarcode className={toggle === 3 ? 'text-teal-600 text-2xl sm:text-4xl' : 'text-zinc-400 text-2xl sm:text-4xl'} />
                     Boleto Bancário
                 </button>
             </div>

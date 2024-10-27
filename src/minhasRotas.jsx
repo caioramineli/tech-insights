@@ -22,15 +22,12 @@ import PedidoRealizado from "./pages/pedidoRealizado";
 
 import PaginaProduto from "./pages/productpage";
 import { PaginaMarca } from "./pages/marcas";
-
 import Busca from "./pages/busca";
+import { BuscaPorCategoria } from "./pages/buscaPorCategoria";
 
 import GuiasInformativos from "./pages/guiasInformativos";
 import MontePC from "./pages/montePC";
 import PaginaCupons from "./pages/cupons";
-import { KitUpgrade } from "./pages/kitUpgrade";
-import { Notebooks } from "./pages/notebooks";
-import { Monitores } from "./pages/monitores";
 
 import ProductUpload from "./admin/pages/product";
 import AdminCuponPage from "./admin/pages/cupon";
@@ -73,9 +70,8 @@ export default function MinhasRotas() {
                     <Route path="/guias" element={<GuiasInformativos />} />
                     <Route path="/monte-seu-pc" element={<MontePC />} />
                     <Route path="/cupons" element={<PaginaCupons />} />
-                    <Route path="/kit-upgrade" element={<KitUpgrade />} />
-                    <Route path="/notebooks" element={<Notebooks />} />
-                    <Route path="/monitores" element={<Monitores />} />
+
+                    <Route path="/categoria/:categoria" element={<BuscaPorCategoria />} />
 
                     <Route path="/admin/produtos" element={<ProductUpload />} />
                     <Route path="/admin/cupons" element={< AdminCuponPage />} />

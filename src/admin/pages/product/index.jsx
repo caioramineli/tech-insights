@@ -131,25 +131,27 @@ const ProductUpload = () => {
                         <option value="amd"></option>
                         <option value="intel"></option>
                         <option value="samsung"></option>
+                        <option value="deepcool"></option>
                     </datalist>
 
                     <div className="custom-select-container">
                         <label htmlFor="categoria">Selecione uma categoria</label>
                         <select name="categoria" value={formData.categoria} onChange={handleChange}>
                             <option value=""></option>
-                            <option value="gpu">Placa de Vídeo</option>
-                            <option value="placa-mae">Placa mãe</option>
-                            <option value="processador">Processador</option>
-                            <option value="memoria-ram">Memoria RAM</option>
-                            <option value="fonte">Fonte</option>
-                            <option value="gabinete">Gabinete</option>
-                            <option value="armazenamento">Armazenamento</option>
-                            <option value="cooler">Cooler</option>
-                            <option value="mouse">Mouse</option>
-                            <option value="teclado">Teclado</option>
-                            <option value="fone">HeadSet</option>
-                            <option value="redes">Redes</option>
-                            <option value="escritorio">Escritório</option>
+                            <option value="Placa de vídeo">Placa de Vídeo</option>
+                            <option value="Placa-mãe">Placa mãe</option>
+                            <option value="Processador">Processador</option>
+                            <option value="Memória RAM">Memoria RAM</option>
+                            <option value="Fonte">Fonte</option>
+                            <option value="Gabinete">Gabinete</option>
+                            <option value="Armazenamento">Armazenamento</option>
+                            <option value="Cooler">Cooler</option>
+                            <option value="Mouse">Mouse</option>
+                            <option value="Teclado">Teclado</option>
+                            <option value="Fone">HeadSet</option>
+                            <option value="Cabo de rede">Redes</option>
+                            <option value="Roteador">Redes</option>
+                            <option value="Escritorio">Escritório</option>
                             <option value="profissional">Profissional</option>
                             <option value="gamer">Gamer</option>
                             <option value="kit-upgrade">Kit Upgrade</option>

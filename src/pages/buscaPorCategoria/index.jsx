@@ -1,23 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Produto from '../home/Produto';
 import axios from 'axios';
 import Loading from '../../components/Loading';
 
-const Busca = () => {
-    const location = useLocation();
+const BuscaPorCategoria = () => {
     const [produtos, setProdutos] = useState([]);
     const [sortOption, setSortOption] = useState('');
     const [loading, setLoading] = useState(true);
     const api = process.env.REACT_APP_API_URL;
 
-    const query = new URLSearchParams(location.search).get('query');
+    const { categoria } = useParams();
 
     const fetchData = useCallback(async () => {
         setLoading(true);
         try {
-            if (query) {
-                const response = await axios.get(`${api}products/search?q=${query}&sort=${sortOption}`);
+            if (categoria) {
+                const response = await axios.get(`${api}produtos/categoria/${categoria}?sort=${sortOption}`);
                 setProdutos(response.data);
             }
         } catch (error) {
@@ -25,7 +24,7 @@ const Busca = () => {
         } finally {
             setLoading(false);
         }
-    }, [query, sortOption, api]);
+    }, [categoria, sortOption, api]);
 
     useEffect(() => {
         fetchData();
@@ -41,7 +40,7 @@ const Busca = () => {
                 <>
                     <div className='flex flex-col md:flex-row md:justify-between md:items-center gap-2'>
                         <p className='text-base text-zinc-800'>
-                            <span className='font-bold'>Você pesquisou por:</span> {query}
+                            <span className='font-bold'>Categoria:</span> {categoria}
                         </p>
 
                         <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-6'>
@@ -73,7 +72,7 @@ const Busca = () => {
             ) : (
                 <div className='flex flex-col h-[50vh]'>
                     <p className='text-base text-zinc-800'>
-                        <span className='font-bold'>Você pesquisou por:</span> {query}
+                        <span className='font-bold'>Categoria:</span> {categoria}
                     </p>
                     <p className='text-base sm:text-lg md:text-xl font-semibold text-zinc-800 mt-8'>Nenhum produto encontrado!</p>
                     <p className='text-base sm:text-lg md:text-xl text-zinc-800'>Tente novamente com outro termo para busca.</p>
@@ -83,4 +82,4 @@ const Busca = () => {
     );
 };
 
-export default Busca;
+export { BuscaPorCategoria };

@@ -1,5 +1,5 @@
 .dropdownMenu {
-    display: none;
+    display: block;
     position: absolute;
     background-color: var(--slate-50);
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
@@ -30,10 +30,6 @@
 
 .dropdownMenu li a:hover {
     background-color: var(--slate-300);
-}
-
-#liDPT:hover .dropdownMenu {
-    display: block;
 }
 
 .overlay {

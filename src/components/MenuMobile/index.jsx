@@ -91,13 +91,13 @@ const MenuMobile = () => {
                         <Link to="/cupons">Cupons</Link>
                     </li>
                     <li>
-                        <Link to="/kit-upgrade">Kit Upgrade</Link>
+                        <Link to="/categoria/Kit-upgrade">Kit Upgrade</Link>
                     </li>
                     <li>
-                        <Link to="/notebooks">Notebooks</Link>
+                        <Link to="/categoria/Notebook">Notebooks</Link>
                     </li>
                     <li>
-                        <Link to="/monitores">Monitores</Link>
+                        <Link to="/categoria/Monitor">Monitores</Link>
                     </li>
                 </div>
             </ul>
