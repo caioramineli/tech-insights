@@ -68,6 +68,9 @@ export default function Pagamento() {
         navigate('/confirmacao');
     };
 
+    function getUltimos4Digitos(numeroCartao) {
+        return numeroCartao.slice(-4);
+    }
 
     return (
         <>
@@ -134,7 +137,7 @@ export default function Pagamento() {
                                             <hr className="my-2" />
                                             {cartao !== null && cartao.status ? (
                                                 <div className="flex items-center justify-between">
-                                                    <h3 className="text-green-600 text-lg font-semibold p-1">Cartão Salvo!</h3>
+                                                    <h3 className="text-emerald-600 text-lg font-semibold p-1">Cartão final {getUltimos4Digitos(cartao.numero)} salvo!</h3>
                                                     <button onClick={removerCartao} className="flex items-center gap-1 p-1 duration-200 hover:bg-zinc-300 rounded-md text-red-700">
                                                         <IoIosRemoveCircleOutline className="text-lg" />
                                                         Remover Cartão

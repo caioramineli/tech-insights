@@ -18,6 +18,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import FormaPagamento from '../../components/FormaPagamento';
 import Favoritar from '../../components/Favoritar';
+import InputModerno from '../../components/InputModerno';
 
 export default function Produto({ product, rating, setOpenAccordion }) {
     const api = process.env.REACT_APP_API_URL;
@@ -124,7 +125,7 @@ export default function Produto({ product, rating, setOpenAccordion }) {
                 <section className="containerDireitaProduto">
                     <div className='flex items-center w-full justify-between'>
                         <div className="marcaProduto">
-                            <h2 className='text-xl font-bold'>Marca:</h2>
+                            <h2 className='text-lg sm:text-xl font-bold'>Marca:</h2>
                             <img src={`${api}imgs/${product.marca}.jpg`} alt="marca" />
                         </div>
                         <a href="#avalicao">
@@ -170,7 +171,8 @@ export default function Produto({ product, rating, setOpenAccordion }) {
 
                     <div className='btnsComprarAddCart'>
                         <button id="btnComprar" onClick={handleComprar}>
-                            <MdShoppingCart />Comprar
+                            <MdShoppingCart />
+                            Comprar
                         </button>
                         <button id='btnAddCart' onClick={handleAddCart}>
                             {iconAdd ? <BsFillCartCheckFill /> : <BsCartPlusFill />}
@@ -178,22 +180,17 @@ export default function Produto({ product, rating, setOpenAccordion }) {
                     </div>
 
                     <div>
-                        <h3 className='text-lg font-bold'>Consultar frete e prazo de entrega</h3>
-                        <div className="flex gap-2 mt-2">
-                            <InputMask
-                                mask="99999-999"
+                        <h3 className='text-base sm:text-lg font-bold'>Consultar frete e prazo de entrega</h3>
+                        <div className="flex gap-2 mt-3">
+                            <InputModerno
+                                name="cep"
+                                type="text"
+                                placeholder="CEP"
                                 value={cep}
                                 onChange={(e) => setCep(e.target.value)}
-                            >
-                                {() => (
-                                    <input
-                                        className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700"
-                                        name="cep"
-                                        type="text"
-                                        placeholder="12345-678"
-                                    />
-                                )}
-                            </InputMask>
+                                label="CEP"
+                                mask="99999-999"
+                            />
                             <button className="flex items-center gap-2 bg-emerald-600 rounded-md p-2 text-cyan-50 hover:bg-emerald-700" onClick={openFreteModal}>
                                 Calcular
                                 <FaTruck />
@@ -202,7 +199,7 @@ export default function Produto({ product, rating, setOpenAccordion }) {
                     </div>
 
                     {isFreteModalOpen && (
-                        <div className='fixed inset-0 bg-black/60 flex items-center justify-center'>
+                        <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-10'>
                             <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-xl p-5 relative">
 
                                 <IoClose onClick={closeFreteModal} className="absolute top-2 right-2 text-slate-600 w-8 h-8 cursor-pointer z-10" />
@@ -219,12 +216,12 @@ export default function Produto({ product, rating, setOpenAccordion }) {
                                         <h3 className='font-bold'>CEP {cep}</h3>
                                     </div>
 
-                                    <div className='flex justify-between'>
+                                    <div className='flex justify-between text-sm sm:text-base'>
                                         <h3 className='font-bold'>Entrega Normal</h3>
                                         <p>R$ 15,00 - até 8 dias úteis</p>
                                     </div>
 
-                                    <div className='flex justify-between'>
+                                    <div className='flex justify-between text-sm sm:text-base'>
                                         <h3 className='font-bold'>Entrega Expressa</h3>
                                         <p>R$ 30,00 - até 5 dias úteis</p>
                                     </div>
@@ -232,8 +229,6 @@ export default function Produto({ product, rating, setOpenAccordion }) {
                             </div>
                         </div>
                     )}
-
-
                 </section>
             </section>
         </>

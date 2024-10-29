@@ -41,7 +41,9 @@ export default function PedidoRealizado() {
                 <FaCheckCircle className="text-3xl sm:text-4xl text-emerald-600" />
                 <div className="flex flex-col gap-1">
                     <h1 className="text-emerald-600 font-bold text-base sm:text-xl md:text-3xl uppercase">Pedido Realizado com sucesso!</h1>
-                    <h2 className="text-zinc-600 font-bold text-sm sm:text-lg md:text-2xl uppercase">{location.state?.formaPagamento !== 'Cartão' ?  "Agora é só realizar o pagamento" : "Estamos processando seu pagemento"}</h2>
+                    <h2 className="text-zinc-600 font-bold text-sm sm:text-lg md:text-2xl uppercase">
+                        {location.state?.formaPagamento !== 'Cartão' ? "Agora é só realizar o pagamento" : "Estamos processando seu pagamento"}
+                    </h2>
                 </div>
             </div>
             {renderizarComponente()}

@@ -73,7 +73,7 @@ export default function Pedido() {
                 <VoltarMinhaConta caminho='/minha-conta/pedidos' />
             </div>
             <hr />
-            <div className='flex items-center justify-between'>
+            <div className='flex flex-col sm:flex-row sm:items-center justify-between'>
                 <p className='text-zinc-900 text-base'><span className="font-semibold">Data do pedido:</span> {format(new Date(pedido.data), "dd/MM/yyyy HH:mm")}</p>
                 <p className='font-bold text-zinc-900 text-base'>Status: <span className='text-emerald-600 uppercase'>Pedido realizado</span></p>
             </div>
@@ -88,9 +88,9 @@ export default function Pedido() {
                 </p>
             </div>
 
-            <div className="flex items-start gap-3 w-full">
+            <div className="flex flex-col md:flex-row items-start gap-3 w-full">
 
-                <div className='flex flex-col p-1 bsPadrao rounded-md bg-white w-[72%]'>
+                <div className='flex flex-col p-1 bsPadrao rounded-md bg-white w-full md:w-[72%] order-2 md:order-1'>
                     {pedido.produtos.map((produto, index) => (
                         <div
                             key={produto.dadosProduto._id}
@@ -112,7 +112,7 @@ export default function Pedido() {
                     ))}
                 </div>
 
-                <div className="flex flex-col min-w-[260px] px-4 py-2 bg-white bsPadrao rounded-md gap-2 text-sm w-[28%]">
+                <div className="flex flex-col min-w-[260px] px-4 py-2 bg-white bsPadrao rounded-md gap-2 text-sm w-full md:w-[28%] order-1 md:order-2">
                     <div className='flex flex-col'>
                         <span className="font-semibold">{user.nome}</span>
                         <p>{pedido.endereco.rua}, {pedido.endereco.numero}, {pedido.endereco.cidade}, {pedido.endereco.estado}</p>
