@@ -40,8 +40,8 @@ export default function DropDownDepartamentos() {
                     <FaAngleRight />
                 </Link>
                 <ul className='listaRedes'>
-                    <li><Link to="/categoria/Roteadores">Roteadores</Link></li>
-                    <li><Link to="/categoria/Cabo-de-Rede">Cabo de Rede</Link></li>
+                    <li><Link to="/categoria/Roteador">Roteadores</Link></li>
+                    <li><Link to="/categoria/Cabo de Rede">Cabo de Rede</Link></li>
                 </ul>
             </li>
 
@@ -51,7 +51,7 @@ export default function DropDownDepartamentos() {
                     <FaAngleRight />
                 </Link>
                 <ul className='listaComputadores'>
-                    <li><Link to="/categoria/Escritório">Escritório</Link></li>
+                    <li><Link to="/categoria/Escritorio">Escritório</Link></li>
                     <li><Link to="/categoria/Profissional">Profissional</Link></li>
                     <li><Link to="/categoria/Gamer">Gamer</Link></li>
                 </ul>

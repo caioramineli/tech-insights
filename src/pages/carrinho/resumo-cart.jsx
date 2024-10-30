@@ -14,17 +14,19 @@ export default function ResumoCart() {
     }, [calcularValorTotal, desconto, frete]);
 
     return (
-        <section className="containerResumo">
-            <h2 className="font-bold text-xl">Resumo</h2>
-            <div className="resumoCarrinho">
-                <div>
+        <section className="flex flex-col items-center min-w-[250px] xl:min-w-[290px] bsPadrao bg-white rounded-md max-lg:mt-6">
+            <h2 className="font-bold text-lg lg:text-xl mx-auto border-b border-black/30 w-full flex justify-center p-2 lg:p-[10px]">
+                Resumo
+            </h2>
+            <div className="flex flex-col gap-2 lg:gap-[14px] w-full lg:w-[90%] max-lg:p-3 lg:py-4">
+                <div className="flex justify-between !text-sm xl:!text-base">
                     <p>Valor do carrinho:</p>
                     <p className="font-semibold">{formatarPreco(calcularValorTotal)}</p>
                 </div>
 
                 <Separador />
 
-                <div>
+                <div className="flex justify-between !text-sm xl:!text-base">
                     <p>Descontos:</p>
                     <p className={desconto > 0 ? 'text-emerald-600 font-semibold' : 'text-zinc-900 font-semibold'}>
                         {desconto > 0 ? `- ${formatarPreco(desconto)}` : formatarPreco(desconto)}
@@ -33,7 +35,7 @@ export default function ResumoCart() {
 
                 <Separador />
 
-                <div>
+                <div className="flex justify-between !text-sm xl:!text-base">
                     <p>Frete:</p>
                     <p className="font-semibold text-zinc-900">{frete?.valor ? formatarPreco(frete.valor) : formatarPreco(0)}</p>
                 </div>
@@ -41,7 +43,7 @@ export default function ResumoCart() {
                 {(formaPagamento === 'Cartão' || formaPagamento === 'Mercado Pago' || formaPagamento === '') && (
                     <>
                         <Separador />
-                        <div>
+                        <div className="flex justify-between !text-sm xl:!text-base">
                             <p>Valor Total à prazo:</p>
                             <p className="font-semibold text-zinc-900">{formatarPreco(calcularValorFinal)}</p>
                         </div>
@@ -51,7 +53,7 @@ export default function ResumoCart() {
                 {(formaPagamento === 'PIX' || formaPagamento === 'Boleto' || formaPagamento === '') && (
                     <>
                         <Separador />
-                        <div>
+                        <div className="flex justify-between !text-sm xl:!text-base">
                             <p>Valor Total à vista:</p>
                             <p className={formaPagamento ? 'text-emerald-600 font-semibold' : 'text-zinc-900 font-semibold'}>
                                 {formatarPreco(

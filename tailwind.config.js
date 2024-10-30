@@ -9,6 +9,7 @@ module.exports = {
         'lg': '1001px',
         'xl': '1201px',
         '2xl': '1501px',
+        'max-lg': {'max': '1000px'},
       },
     },
   },

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Boleto({ numeroPedido }) {
 
     return (
-        <div className="w-[90%] md:w-[80%] lg:w-[70%] flex flex-col gap-8 m-auto max-w-[600px]">
+        <div className="w-[100%] md:w-[80%] lg:w-[70%] flex flex-col gap-8 m-auto max-w-[600px]">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
 
                 <div className="flex flex-col px-4 py-6 gap-1 items-center bg-white bsPadrao rounded-md">

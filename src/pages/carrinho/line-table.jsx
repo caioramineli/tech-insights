@@ -40,8 +40,8 @@ export default function LineTableCart({ produto, removerProduto, esconder = 'fle
             <td className='p-3 border-b border-b-gray-300'>
                 <Link to={`/produto/${produto._id}`}>
                     <div className="flex items-center gap-2">
-                        <img className="w-28" src={api + produto.images[0]} alt={produto.nome} />
-                        <p>{produto.nome}</p>
+                        <img className="w-20 lg:w-24 xl:w-28" src={api + produto.images[0]} alt={produto.nome} />
+                        <p className="text-sm xl:text-base">{produto.nome}</p>
                     </div>
                 </Link>
             </td>
@@ -59,7 +59,9 @@ export default function LineTableCart({ produto, removerProduto, esconder = 'fle
                     </div>
                 </div>
             </td>
-            <td className="p-3 border-b border-b-gray-300 min-w-[132px] text-center font-semibold text-emerald-600">{formatarValor(subtotal)}</td>
+            <td className="p-3 border-b border-b-gray-300 min-w-[132px] text-center font-semibold text-emerald-600">
+                {formatarValor(subtotal)}
+            </td>
         </tr >
     );
 }

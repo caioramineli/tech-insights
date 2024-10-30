@@ -41,8 +41,8 @@ export default function Carrinho() {
                 ) : (
                     <>
                         <StepBar />
-                        <div className="flex gap-8 w-[90%] xl:w-4/5 m-auto min-h-[42vh] max-w-[1300px]">
-                            <section className="containerPrincipal">
+                        <div className="flex flex-col lg:flex-row gap-4 xl:gap-8 w-[90%] xl:w-4/5 m-auto min-h-[42vh] max-w-[1300px]">
+                            <section className="!order-2 lg:!order-1 containerPrincipal">
                                 <TableCart />
 
                                 <div className="limparCarrinho" onClick={() => zerarCarrinho()}>
@@ -50,14 +50,14 @@ export default function Carrinho() {
                                     <h3>Limpar carrinho</h3>
                                 </div>
 
-                                <div className="flex items-start justify-between gap-2">
+                                <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 md:gap-2">
                                     <Cupom />
                                     <Frete />
                                 </div>
                             </section>
-                            <section className="containerResumoFinalizar">
+                            <section className="!order-1 lg:!order-2 containerResumoFinalizar">
                                 <ResumoCart />
-                                <button type="button" onClick={irParaEntrega}>Continuar</button>
+                                <button className="btnPadrao !bg-emerald-700 !text-lg !font-bold" onClick={irParaEntrega}>Continuar</button>
                             </section>
                         </div>
                         <ToastContainer />
