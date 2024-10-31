@@ -57,7 +57,7 @@ export default function ResumoCart() {
                             <p>Valor Total à vista:</p>
                             <p className={formaPagamento ? 'text-emerald-600 font-semibold' : 'text-zinc-900 font-semibold'}>
                                 {formatarPreco(
-                                    ((calcularValorFinal - (frete?.valor || 0)) * 0.9) + (frete?.valor || 0)
+                                    ((calcularValorTotal * 0.9) - desconto + (frete?.valor || 0)
                                 )}
                             </p>
                         </div>
