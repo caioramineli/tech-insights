@@ -44,10 +44,10 @@ const Cupom = () => {
 
     return (
         <div className="flex flex-col bg-white rounded-md bsPadrao p-4 gap-2">
-            <h3 className="text-lg font-bold">Aplicar desconto</h3>
+            <h3 className="text-base sm:text-lg font-bold">Aplicar desconto</h3>
             <form onSubmit={verifyCupom} className="flex gap-2">
                 <input
-                    className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700"
+                    className="border text-sm sm:text-base border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700"
                     type="text"
                     value={cupomCode}
                     onChange={handleCupomChange}
@@ -61,7 +61,7 @@ const Cupom = () => {
                 ) : (
                     <button
                         type='submit'
-                        className="flex items-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50"
+                        className="flex items-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50 text-sm sm:text-base"
                         onClick={verifyCupom}
                     >
                         Aplicar <BiSolidCoupon />

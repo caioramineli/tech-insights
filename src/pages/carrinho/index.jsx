@@ -12,9 +12,10 @@ import Cupom from "./cupom";
 import StepBar from "./step-bar";
 import Frete from "./frete";
 import CarrinhoVazio from "./carrinhoVazio";
+import ContainerCarrinhoMobile from "../../components/ContainerCarrinhoMobile";
 
 export default function Carrinho() {
-    const { carrinho, zerarCarrinho, frete, escolhaFrete } = useCarrinho();
+    const { carrinho, zerarCarrinho, frete, escolhaFrete, removerProduto } = useCarrinho();
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -41,9 +42,20 @@ export default function Carrinho() {
                 ) : (
                     <>
                         <StepBar />
-                        <div className="flex flex-col lg:flex-row gap-4 xl:gap-8 w-[90%] xl:w-4/5 m-auto min-h-[42vh] max-w-[1300px]">
-                            <section className="!order-2 lg:!order-1 containerPrincipal">
+                        <div className="flex flex-col lg:flex-row lg:gap-4 xl:gap-8 w-[90%] xl:w-4/5 m-auto min-h-[42vh] max-w-[1300px]">
+                            <section className="containerPrincipal">
                                 <TableCart />
+
+                                <div className="flex sm:hidden flex-col bg-white bsPadrao rounded-md">
+                                    {carrinho.map((produto, index) => (
+                                        <ContainerCarrinhoMobile
+                                            produto={produto}
+                                            index={index}
+                                            removerProduto={removerProduto}
+                                            esconder="flex"
+                                        />
+                                    ))}
+                                </div>
 
                                 <div className="limparCarrinho" onClick={() => zerarCarrinho()}>
                                     <FaTrash />
@@ -55,7 +67,7 @@ export default function Carrinho() {
                                     <Frete />
                                 </div>
                             </section>
-                            <section className="!order-1 lg:!order-2 containerResumoFinalizar">
+                            <section className="containerResumoFinalizar">
                                 <ResumoCart />
                                 <button className="btnPadrao !bg-emerald-700 !text-lg !font-bold" onClick={irParaEntrega}>Continuar</button>
                             </section>

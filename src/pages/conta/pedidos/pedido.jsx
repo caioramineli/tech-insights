@@ -9,7 +9,6 @@ import VoltarMinhaConta from '../../../components/VoltarMinhaConta';
 import { FaPix } from 'react-icons/fa6';
 import { SiMercadopago } from 'react-icons/si';
 
-
 export default function Pedido() {
     const { user } = useContext(AuthContext);
     const { idPedido } = useParams();
@@ -64,7 +63,7 @@ export default function Pedido() {
     }
 
     return (
-        <div className="containerPadrao my-6 sm:my-8 gap-4">
+        <div className="containerPadrao !my-6 sm:!my-8 gap-4">
             <div className="flex items-center justify-between">
                 <div className='flex items-center gap-2'>
                     <FaReceipt className='text-emerald-600 text-2xl sm:text-3xl' />
@@ -81,7 +80,7 @@ export default function Pedido() {
             <hr />
 
             <div className='flex items-center justify-between'>
-                <p className='font-bold text-zinc-900'>Pedidos(s)</p>
+                <p className='font-bold text-zinc-900'>Pedido</p>
                 <p>
                     <span className='font-bold text-zinc-900'>Frete: </span>
                     <span className='uppercase text-sm'>{pedido.frete.tipo}</span>
@@ -105,7 +104,7 @@ export default function Pedido() {
                                 <h1 className='text-sm font-semibold uppercase'>{produto.dadosProduto.nome}</h1>
                                 <div className="flex flex-row justify-between">
                                     <p>Quantidade: {produto.quantidade}</p>
-                                    <p>{formatarPreco(pedido.valorTotal + pedido.desconto - pedido.frete.valor)}</p>
+                                    <p>{formatarPreco(produto.dadosProduto.precoPrazo)}</p>
                                 </div>
                             </div>
                         </div>

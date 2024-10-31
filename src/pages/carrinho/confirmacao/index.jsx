@@ -165,7 +165,7 @@ export default function Confirmacao() {
                                         <Loading color="#047857" />
                                     </div>
                                 ) : (
-                                    <button type="button" onClick={finalizarPedido} disabled={isSubmitting}>
+                                    <button className="btnPadrao !bg-emerald-700 !text-lg !font-bold" type="button" onClick={finalizarPedido} disabled={isSubmitting}>
                                         Finalizar Pedido
                                     </button>
                                 )}

@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { useCarrinho } from '../../contexts/contex-Cart';
 import { Link } from "react-router-dom";
 
-export default function LineTableCart({ produto, removerProduto, esconder = 'flex' }) {
+const ContainerCarrinhoMobile = ({ produto, removerProduto, esconder = 'flex', index }) => {
+    const api = process.env.REACT_APP_API_URL;
     const { atualizarQuantidade } = useCarrinho();
     const [qtd, setQtd] = useState(produto.quantidade || 1);
     const precoUnitario = produto.precoPrazo;
@@ -33,35 +34,36 @@ export default function LineTableCart({ produto, removerProduto, esconder = 'fle
         return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     };
 
-    const api = process.env.REACT_APP_API_URL;
-
     return (
-        <tr>
-            <td className='p-3 border-b border-b-gray-300'>
-                <Link to={`/produto/${produto._id}`}>
-                    <div className="flex items-center gap-2">
-                        <img className="w-20 lg:w-24 xl:w-28" src={api + produto.images[0]} alt={produto.nome} />
-                        <p className="text-sm xl:text-base">{produto.nome}</p>
+        <div className={`flex flex-col md:hidden gap-2 py-2 px-3 ${index > 0 ? 'border-t border-gray-300' : ''}`} key={produto._id}>
+            <Link to={`/produto/${produto._id}`}>
+                <div className="flex gap-2">
+                    <div className="flex items-center w-16 min-w-16">
+                        <img
+                            className='w-full'
+                            src={api + produto.images[0]}
+                            alt="img-principal"
+                        />
                     </div>
-                </Link>
-            </td>
-            <td className="p-3 border-b border-b-gray-300 w-[145px]">
-                <div className="flex flex-col gap-4 min-w-[112px] md:min-w-[120px] text-sm md:text-base">
+                    <p className='text-xs uppercase'>{produto.nome}</p>
+                </div>
+            </Link>
+            <div className="flex flex-row justify-between px-1">
+                <div className="flex gap-5 text-sm">
                     <div className="flex items-center justify-center">
                         <FaChevronLeft className={`${esconder} cursor-pointer`} onClick={diminuirQtd} />
-                        <span className="w-6 flex justify-center font-semibold">{qtd}</span>
+                        <span className="w-6 flex justify-center font-semibold mx-1">{qtd}</span>
                         <FaChevronRight className={`${esconder} cursor-pointer`} onClick={aumentarQtd} />
                     </div>
 
                     <div className={`${esconder} items-center justify-center gap-2 text-red-700 cursor-pointer`} onClick={() => removerProduto(produto._id)}>
                         <FaTrash />
-                        <span>Remover</span>
                     </div>
                 </div>
-            </td>
-            <td className="p-3 border-b border-b-gray-300 min-w-[132px] text-center font-semibold text-emerald-600">
-                {formatarValor(subtotal)}
-            </td>
-        </tr >
+                <p className="font-semibold text-emerald-600 text-sm">{formatarValor(subtotal)}</p>
+            </div>
+        </div>
     );
 }
+
+export default ContainerCarrinhoMobile;

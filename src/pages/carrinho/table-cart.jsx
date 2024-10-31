@@ -7,7 +7,7 @@ export default function TableCart({ esconderBtns = "flex"}) {
     const { carrinho, removerProduto } = useCarrinho();
 
     return (
-        <table className="border-spacing-0 bg-white rounded-md bsPadrao tablecart">
+        <table className="hidden sm:block border-spacing-0 bg-white rounded-md bsPadrao tablecart">
             <thead>
                 <tr>
                     <th className='p-3 border-b border-b-gray-300'>Produto</th>

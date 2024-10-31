@@ -35,7 +35,7 @@ const Frete = () => {
 
     return (
         <div className="flex flex-col bg-white rounded-md bsPadrao p-4 gap-2">
-            <h3 className="text-lg font-bold">Calcular Frete e Prazos</h3>
+            <h3 className="text-base sm:text-lg font-bold">Calcular Frete e Prazos</h3>
             <div className="flex gap-2">
                 <InputMask
                     mask="99999-999"
@@ -44,7 +44,7 @@ const Frete = () => {
                 >
                     {() => (
                         <input
-                            className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700"
+                            className="border border-zinc-400 rounded-md px-2 w-full outline-none focus:border-cyan-700 text-sm sm:text-base"
                             name="cep"
                             type="text"
                             placeholder="12345-678"
@@ -57,7 +57,7 @@ const Frete = () => {
                     </div>
                 ) : (
                     <button
-                        className="flex items-center justify-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50"
+                        className="flex items-center justify-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50 text-sm sm:text-base"
                         onClick={handleCalcularFrete}
                         disabled={isCalculatingFrete}
                     >

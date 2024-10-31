@@ -43,7 +43,7 @@ const Dados = () => {
     }
 
     return (
-        <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] min-h-[50vh] my-6 sm:my-8 gap-3'>
+        <div className='flex flex-col w-[90%] xl:w-[80%] max-w-[1300px] min-h-[50vh] !my-6 sm:!my-8 gap-3'>
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <FaRegAddressCard className='text-emerald-600 text-3xl sm:text-4xl' />

@@ -42,7 +42,7 @@ const PaginaFavoritos = () => {
     }
 
     return (
-        <main className="containerMainPaginaProdutos">
+        <main className="containerMainPaginaProdutos !my-6 sm:!my-8">
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <FaHeart className='text-emerald-600 text-2xl sm:text-3xl' />
