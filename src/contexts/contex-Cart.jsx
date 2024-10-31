@@ -57,6 +57,13 @@ export function CarrinhoProvider({ children }) {
         setCarrinho((prevCarrinho) => prevCarrinho.filter(produto => produto._id !== id));
     };
 
+    useEffect(() => {
+        if (carrinho.length === 0) {
+            setCupom([]);
+            setDesconto(0);
+        }
+    }, [carrinho]);
+
     const zerarCarrinho = () => {
         setCarrinho([]);
         setCupom([]);

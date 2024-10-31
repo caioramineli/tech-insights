@@ -30,7 +30,7 @@ const PedidoContainer = ({ pedido }) => {
                     <div key={produto.dadosProduto._id}>
                         <hr />
                         <div className='flex gap-4 items-center py-2 px-3'>
-                            <img className='w-20' src={api + produto.dadosProduto.images[0]} alt="img-principal" />
+                            <Link to={`/produto/${produto.dadosProduto._id}`}><img className='w-20' src={api + produto.dadosProduto.images[0]} alt="img-principal" /></Link>
                             <div className='grid grid-cols-1 gap-1'>
                                 <h3 className='font-bold uppercase text-sm sm:text-base'> {produto.dadosProduto.nome}</h3>
                                 <p>Quantidade: {produto.quantidade}</p>

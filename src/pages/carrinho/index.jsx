@@ -57,7 +57,7 @@ export default function Carrinho() {
                                     ))}
                                 </div>
 
-                                <div className="limparCarrinho" onClick={() => zerarCarrinho()}>
+                                <div className="limparCarrinho text-sm sm:text-base" onClick={() => zerarCarrinho()}>
                                     <FaTrash />
                                     <h3>Limpar carrinho</h3>
                                 </div>

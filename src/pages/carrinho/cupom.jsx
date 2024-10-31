@@ -43,7 +43,7 @@ const Cupom = () => {
     };
 
     return (
-        <div className="flex flex-col bg-white rounded-md bsPadrao p-4 gap-2">
+        <div className="flex flex-col bg-white rounded-md bsPadrao p-3 sm:p-4 gap-2">
             <h3 className="text-base sm:text-lg font-bold">Aplicar desconto</h3>
             <form onSubmit={verifyCupom} className="flex gap-2">
                 <input

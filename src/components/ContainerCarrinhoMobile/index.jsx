@@ -37,8 +37,8 @@ const ContainerCarrinhoMobile = ({ produto, removerProduto, esconder = 'flex', i
     return (
         <div className={`flex flex-col md:hidden gap-2 py-2 px-3 ${index > 0 ? 'border-t border-gray-300' : ''}`} key={produto._id}>
             <Link to={`/produto/${produto._id}`}>
-                <div className="flex gap-2">
-                    <div className="flex items-center w-16 min-w-16">
+                <div className="flex gap-2 items-center">
+                    <div className="flex items-center w-20 min-w-20">
                         <img
                             className='w-full'
                             src={api + produto.images[0]}

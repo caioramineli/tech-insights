@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Confirmacao() {
     const api = process.env.REACT_APP_API_URL;
-    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento, setPedido, cupom, cartao } = useCarrinho();
+    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento, setPedido, cupom, cartao, calcularValorTotal } = useCarrinho();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { user } = useContext(AuthContext);
 
@@ -37,7 +37,7 @@ export default function Confirmacao() {
 
         let valorFinalCarrinho = calcularValorFinal;
         if (formaPagamento === 'PIX' || formaPagamento === 'Boleto') {
-            valorFinalCarrinho = ((calcularValorFinal - frete.valor) * 0.9) + frete.valor
+            valorFinalCarrinho = (calcularValorTotal * 0.9) - desconto + frete.valor
         }
 
         const pedido = {
@@ -51,7 +51,8 @@ export default function Confirmacao() {
                 valor: frete.valor
             },
             valorTotal: valorFinalCarrinho,
-            codigoCupom: cupom.codigo
+            codigoCupom: cupom.codigo,
+            status: "Pedido realizado"
         };
 
         try {
@@ -87,7 +88,7 @@ export default function Confirmacao() {
             default:
                 return null;
         }
-    };    
+    };
 
     return (
         <>

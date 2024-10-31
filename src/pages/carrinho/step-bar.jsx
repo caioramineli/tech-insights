@@ -2,7 +2,7 @@ import React from 'react';
 import { MdShoppingCart } from 'react-icons/md';
 import { FaUser } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import { MdAttachMoney } from "react-icons/md";
+import { TbCoin } from "react-icons/tb";
 import { FaCheckCircle } from "react-icons/fa";
 
 
@@ -30,7 +30,7 @@ export default function StepBar({ step = 1 }) {
                 <hr className={`border-emerald-600 border w-full ${step <= 3 ? 'border-zinc-300' : ''}`} />
 
                 <div className='flex items-center gap-2'>
-                    <MdAttachMoney className={`text-emerald-600 gap-2 text-2xl ${step <= 3 ? 'text-zinc-300' : ''}`} />
+                    <TbCoin className={`text-emerald-600 gap-2 text-2xl ${step <= 3 ? 'text-zinc-300' : ''}`} />
                     <span className='hidden md:block'>Pagamento</span>
                 </div>
                 <hr className={`border-emerald-600 border w-full ${step <= 4 ? 'border-zinc-300' : ''}`} />

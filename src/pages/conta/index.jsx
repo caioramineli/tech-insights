@@ -119,7 +119,7 @@ export default function Conta() {
                     {pedidos.length === 0 ? (
                         <p>Nenhum pedido encontrado.</p>
                     ) : (
-                        <PedidoContainer pedido={pedidos[pedidos.length - 1]} />
+                        <PedidoContainer pedido={pedidos[0]} />
                     )}
                 </>
             )}

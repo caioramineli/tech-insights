@@ -56,9 +56,7 @@ export default function ResumoCart() {
                         <div className="flex justify-between !text-sm xl:!text-base">
                             <p>Valor Total à vista:</p>
                             <p className={formaPagamento ? 'text-emerald-600 font-semibold' : 'text-zinc-900 font-semibold'}>
-                                {formatarPreco(
-                                    ((calcularValorTotal * 0.9) - desconto + (frete?.valor || 0)
-                                )}
+                                {formatarPreco((calcularValorTotal * 0.9) - desconto + (frete?.valor || 0))}
                             </p>
                         </div>
                     </>
