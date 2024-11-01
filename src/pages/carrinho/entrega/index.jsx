@@ -1,13 +1,10 @@
 import ResumoCart from "../resumo-cart";
 import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { useCarrinho } from '../../../contexts/contex-Cart';
-import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import StepBar from "../step-bar";
 import { FaPlus } from "react-icons/fa6";
 import CarrinhoVazio from "../carrinhoVazio";
-import { FaArrowLeft } from "react-icons/fa6";
-import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 import { FormCadastrarEndereco } from "../../../components/FormsEndereco/cadastrar";
 import { ToastContainer } from "react-toastify";
 import Enderecos from "./enderecos";
@@ -17,6 +14,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { FormAtualizarEndereco } from "../../../components/FormsEndereco/atualizar";
+import OpcaoFrete from "../../../components/OpcaoFrete";
+import NavegacaoCarrinho from "../../../components/NavegacaoCarrinho";
 
 export default function Entrega() {
     const { carrinho, frete, escolhaFrete, endereco } = useCarrinho();
@@ -83,7 +82,10 @@ export default function Entrega() {
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
                                     <div className="flex justify-between items-center">
                                         <h2 className="text-base sm:text-lg font-bold text-emerald-600">Endereço de Entrega</h2>
-                                        <button className="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 duration-200 text-teal-50 p-2 rounded-md font-bold text-xs sm:text-base" onClick={openFormEnderecoModal}><FaPlus /> Novo endereço</button>
+                                        <button className="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 duration-200 text-teal-50 p-2 rounded-md font-bold text-xs sm:text-base" onClick={openFormEnderecoModal}>
+                                            <FaPlus />
+                                            Novo endereço
+                                        </button>
                                     </div>
                                     <hr />
                                     {formEndereco && (
@@ -122,63 +124,59 @@ export default function Entrega() {
                                 </div>
 
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
-                                    <h2 className="text-lg font-bold">Opções de Envio</h2>
+                                    <h2 className="text-base sm:text-lg font-bold">Opções de Envio</h2>
 
                                     <hr />
 
-                                    <div
-                                        onClick={() => freteEscolhido('normal')}
-                                        className={`border-emerald-600 text-sm md:text-base hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'normal' ? 'border-zinc-300' : ''}`}
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={frete.tipo === 'normal' ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={frete.tipo !== 'normal' ? 'text-3xl' : 'hidden'} />
-                                            <span>Normal - R$ 15,00</span>
-                                        </div>
-                                        <span>Entrega em: até 8 dias úteis</span>
-                                    </div>
+                                    <OpcaoFrete
+                                        tipo="normal"
+                                        descricao="Normal"
+                                        preco="15,00"
+                                        prazo="até 8 dias úteis"
+                                        freteAtual={frete.tipo}
+                                        onSelecionar={freteEscolhido}
+                                    />
 
-                                    <div onClick={() => freteEscolhido('agendado')}
-                                        className={`border-emerald-600 hover:border-emerald-600 text-sm md:text-base duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'agendado' ? 'border-zinc-300' : ''}`}
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={frete.tipo === 'agendado' ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={frete.tipo !== 'agendado' ? 'text-3xl' : 'hidden'} />
-                                            <span>Agendado - R$ 20,00</span>
-                                        </div>
-                                        <span>Entrega em: a partir 8 dias úteis</span>
-                                    </div>
 
-                                    <div
-                                        onClick={() => freteEscolhido('expresso')}
-                                        className={`border-emerald-600 text-sm md:text-base hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'expresso' ? 'border-zinc-300' : ''}`}
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={frete.tipo === 'expresso' ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={frete.tipo !== 'expresso' ? 'text-3xl' : 'hidden'} />
-                                            <span>Expresso - R$ 30,00</span>
-                                        </div>
-                                        <span>Entrega em: até 5 dias úteis</span>
-                                    </div>
+                                    <OpcaoFrete
+                                        tipo="agendado"
+                                        descricao="Agendado"
+                                        preco="20,00"
+                                        prazo="a partir de 8 dias úteis"
+                                        freteAtual={frete.tipo}
+                                        onSelecionar={freteEscolhido}
+                                    />
+
+                                    <OpcaoFrete
+                                        tipo="expresso"
+                                        descricao="Expresso"
+                                        preco="30,00"
+                                        prazo="até 5 dias úteis"
+                                        freteAtual={frete.tipo}
+                                        onSelecionar={freteEscolhido}
+                                    />
                                 </div>
 
-                                <div className="flex justify-between">
-                                    <Link to="/carrinho">
-                                        <button className="flex items-center gap-2 p-2 hover:bg-zinc-300 duration-200 rounded-md">
-                                            <FaArrowLeft />
-                                            <span className="uppercase text-sm">Voltar para o carrinho</span>
-                                        </button>
-                                    </Link>
-
-                                    <button onClick={verificarEndereco} className="btnPadrao !p-2 !font-bold !text-sm sm:!text-base" type="button">
-                                        Continuar para pagamento
-                                    </button>
-                                </div>
+                                <NavegacaoCarrinho
+                                    onClick={verificarEndereco}
+                                    linkVoltar="/carrinho"
+                                    textoVoltar="Voltar para o carrinho"
+                                    textoContinuar="Continuar para pagamento"
+                                    responsivo="hidden lg:flex"
+                                />
                             </section>
 
-                            <section className="containerResumoFinalizar">
+                            <section className="flex flex-col gap-4 max-lg:mt-1">
                                 <ResumoCart />
+                                <NavegacaoCarrinho
+                                    onClick={verificarEndereco}
+                                    linkVoltar="/carrinho"
+                                    textoVoltar="Voltar"
+                                    textoContinuar="Continuar para pagamento"
+                                    responsivo="flex lg:hidden"
+                                />
                             </section>
+
                         </div>
                         <ToastContainer />
                     </>

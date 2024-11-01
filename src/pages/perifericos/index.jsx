@@ -31,7 +31,7 @@ const PerifericosPage = () => {
     }
 
     return (
-        <BuscaContainer produtos={produtos} subtitulo="Periféricos" sortOption setSortOption={setSortOption} />
+        <BuscaContainer produtos={produtos} subtitulo="Periféricos" sortOption={sortOption} setSortOption={setSortOption} />
     );
 };
 

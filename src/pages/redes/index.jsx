@@ -31,7 +31,7 @@ const RedesPage = () => {
     }
 
     return (
-        <BuscaContainer produtos={produtos} subtitulo="Redes" sortOption setSortOption={setSortOption} />
+        <BuscaContainer produtos={produtos} subtitulo="Redes" sortOption={sortOption} setSortOption={setSortOption} />
     );
 };
 

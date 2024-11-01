@@ -1,4 +1,3 @@
-import "./resumo-cart-style.css";
 import { useEffect } from "react";
 import { useCarrinho } from "../../contexts/contex-Cart";
 import Separador from "../../components/Separador";
@@ -14,8 +13,8 @@ export default function ResumoCart() {
     }, [calcularValorTotal, desconto, frete]);
 
     return (
-        <section className="flex flex-col items-center min-w-[250px] xl:min-w-[290px] bsPadrao bg-white rounded-md max-lg:mt-6">
-            <h2 className="font-bold text-lg lg:text-xl mx-auto border-b border-black/30 w-full flex justify-center p-1 lg:p-[10px]">
+        <section className="flex flex-col items-center min-w-[250px] xl:min-w-[290px] bsPadrao bg-white rounded-md max-lg:mt-1">
+            <h2 className="font-bold text-lg lg:text-xl mx-auto border-b border-black/20 w-full flex justify-center p-1 lg:p-[10px]">
                 Resumo
             </h2>
             <div className="flex flex-col gap-2 lg:gap-[14px] w-full lg:w-[90%] max-lg:p-3 lg:py-4">

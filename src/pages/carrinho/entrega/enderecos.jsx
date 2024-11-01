@@ -58,23 +58,26 @@ const Enderecos = ({ enderecos = [], userId, atualizarEnderecos, isLoading, setF
     return (
         <>
             {enderecos.map((endereco, index) => (
-                <div key={index} onClick={() => { updateToggle(index); escolhaEndereco(endereco); }} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${toggle === index ? 'border-emerald-600' : 'border-zinc-300'}`}>
+                <div
+                    key={index}
+                    onClick={() => { updateToggle(index); escolhaEndereco(endereco); }}
+                    className={`border-emerald-600 hover:border-emerald-600 duration-200 flex flex-col sm:flex-row justify-between sm:items-center border gap-2 px-4 py-2 rounded-md cursor-pointer ${toggle === index ? 'border-emerald-600' : 'border-zinc-300'}`}>
                     <div className="flex items-center gap-4">
                         <IoMdRadioButtonOn className={toggle === index ? 'text-3xl text-emerald-600' : 'hidden'} />
                         <IoMdRadioButtonOff className={toggle !== index ? 'text-3xl' : 'hidden'} />
 
                         <div className="flex flex-col">
-                            <h3 className="font-bold text-base">{endereco.nome}</h3>
-                            <p className="text-base">{endereco.rua} {endereco.numero}</p>
-                            <p className="text-sm">{endereco.bairro} - {endereco.cidade} - {endereco.estado}, {endereco.cep}</p>
+                            <h3 className="font-bold text-sm sm:text-base">{endereco.nome}</h3>
+                            <p className="text-sm sm:text-base">{endereco.rua} {endereco.numero}</p>
+                            <p className="text-xs sm:text-sm">{endereco.bairro} - {endereco.cidade} - {endereco.estado}, {endereco.cep}</p>
                         </div>
                     </div>
-                    <div className="flex gap-4">
-                        <button onClick={() => openFormAtualizarEndereco(endereco)} className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm hover:border-cyan-600">
+                    <div className="flex gap-4 justify-between sm:justify-normal">
+                        <button onClick={() => openFormAtualizarEndereco(endereco)} className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-xs sm:text-sm hover:border-cyan-600">
                             <FaPencilAlt />
                             Editar
                         </button>
-                        <button className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-sm hover:border-red-700" onClick={() => openModalExcluirEndereco(endereco)}>
+                        <button className="flex items-center border border-zinc-300 px-3 py-2 rounded-md gap-2 text-xs sm:text-sm hover:border-red-700" onClick={() => openModalExcluirEndereco(endereco)}>
                             <FaTrash />
                             Excluir
                         </button>

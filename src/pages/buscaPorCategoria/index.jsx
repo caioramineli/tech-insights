@@ -35,7 +35,7 @@ const BuscaPorCategoria = () => {
     }
 
     return (
-        <BuscaContainer produtos={produtos} subtitulo={categoria} sortOption setSortOption={setSortOption} />
+        <BuscaContainer produtos={produtos} subtitulo={categoria} sortOption={sortOption} setSortOption={setSortOption} />
     );
 };
 

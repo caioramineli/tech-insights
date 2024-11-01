@@ -36,7 +36,7 @@ const Busca = () => {
     }
 
     return (
-        <BuscaContainer produtos={produtos} titulo='Você pesquisou por' subtitulo={query} sortOption setSortOption={setSortOption} />
+        <BuscaContainer produtos={produtos} titulo='Você pesquisou por' subtitulo={query} sortOption={sortOption} setSortOption={setSortOption} />
     );
 };
 
