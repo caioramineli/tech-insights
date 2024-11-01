@@ -78,12 +78,12 @@ export default function Entrega() {
                 ) : (
                     <>
                         <StepBar step={3} />
-                        <div className="flex gap-8 w-[90%] xl:w-4/5 m-auto min-h-[42vh] max-w-[1300px] justify-between">
+                        <div className="flex flex-col lg:flex-row lg:gap-4 xl:gap-8 w-[90%] xl:w-4/5 m-auto min-h-[42vh] max-w-[1300px] justify-between">
                             <section className="flex flex-col gap-5 w-full mb-4">
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
                                     <div className="flex justify-between items-center">
-                                        <h2 className="text-lg font-bold text-emerald-600">Endereço de Entrega</h2>
-                                        <button className="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 duration-200 text-teal-50 p-2 rounded-md font-bold" onClick={openFormEnderecoModal}><FaPlus /> Novo endereço</button>
+                                        <h2 className="text-base sm:text-lg font-bold text-emerald-600">Endereço de Entrega</h2>
+                                        <button className="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 duration-200 text-teal-50 p-2 rounded-md font-bold text-xs sm:text-base" onClick={openFormEnderecoModal}><FaPlus /> Novo endereço</button>
                                     </div>
                                     <hr />
                                     {formEndereco && (
@@ -126,7 +126,10 @@ export default function Entrega() {
 
                                     <hr />
 
-                                    <div onClick={() => freteEscolhido('normal')} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'normal' ? 'border-zinc-300' : ''}`}>
+                                    <div
+                                        onClick={() => freteEscolhido('normal')}
+                                        className={`border-emerald-600 text-sm md:text-base hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'normal' ? 'border-zinc-300' : ''}`}
+                                    >
                                         <div className="flex items-center gap-4">
                                             <IoMdRadioButtonOn className={frete.tipo === 'normal' ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={frete.tipo !== 'normal' ? 'text-3xl' : 'hidden'} />
@@ -135,7 +138,9 @@ export default function Entrega() {
                                         <span>Entrega em: até 8 dias úteis</span>
                                     </div>
 
-                                    <div onClick={() => freteEscolhido('agendado')} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'agendado' ? 'border-zinc-300' : ''}`}>
+                                    <div onClick={() => freteEscolhido('agendado')}
+                                        className={`border-emerald-600 hover:border-emerald-600 text-sm md:text-base duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'agendado' ? 'border-zinc-300' : ''}`}
+                                    >
                                         <div className="flex items-center gap-4">
                                             <IoMdRadioButtonOn className={frete.tipo === 'agendado' ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={frete.tipo !== 'agendado' ? 'text-3xl' : 'hidden'} />
@@ -144,7 +149,10 @@ export default function Entrega() {
                                         <span>Entrega em: a partir 8 dias úteis</span>
                                     </div>
 
-                                    <div onClick={() => freteEscolhido('expresso')} className={`border-emerald-600 hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'expresso' ? 'border-zinc-300' : ''}`}>
+                                    <div
+                                        onClick={() => freteEscolhido('expresso')}
+                                        className={`border-emerald-600 text-sm md:text-base hover:border-emerald-600 duration-200 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${frete.tipo !== 'expresso' ? 'border-zinc-300' : ''}`}
+                                    >
                                         <div className="flex items-center gap-4">
                                             <IoMdRadioButtonOn className={frete.tipo === 'expresso' ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={frete.tipo !== 'expresso' ? 'text-3xl' : 'hidden'} />
@@ -162,8 +170,9 @@ export default function Entrega() {
                                         </button>
                                     </Link>
 
-                                    <button onClick={verificarEndereco} className="bg-emerald-600 hover:bg-emerald-700 duration-200 p-2 rounded-md text-emerald-50 font-bold" type="button">Continuar para pagamento</button>
-
+                                    <button onClick={verificarEndereco} className="btnPadrao !p-2 !font-bold !text-sm sm:!text-base" type="button">
+                                        Continuar para pagamento
+                                    </button>
                                 </div>
                             </section>
 
