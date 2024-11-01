@@ -61,8 +61,8 @@ const Enderecos = ({ enderecos = [], userId, atualizarEnderecos, isLoading, setF
                 <div
                     key={index}
                     onClick={() => { updateToggle(index); escolhaEndereco(endereco); }}
-                    className={`border-emerald-600 hover:border-emerald-600 duration-200 flex flex-col sm:flex-row justify-between sm:items-center border gap-2 px-4 py-2 rounded-md cursor-pointer ${toggle === index ? 'border-emerald-600' : 'border-zinc-300'}`}>
-                    <div className="flex items-center gap-4">
+                    className={`border-emerald-600 hover:border-emerald-600 duration-200 flex flex-col sm:flex-row justify-between sm:items-center border gap-2 px-3 sm:px-4 py-2 rounded-md cursor-pointer ${toggle === index ? 'border-emerald-600' : 'border-zinc-300'}`}>
+                    <div className="flex items-center gap-3 sm:gap-4">
                         <IoMdRadioButtonOn className={toggle === index ? 'text-3xl text-emerald-600' : 'hidden'} />
                         <IoMdRadioButtonOff className={toggle !== index ? 'text-3xl' : 'hidden'} />
 

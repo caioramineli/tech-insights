@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { FormCartao } from "./formCartao";
 import { useState } from "react";
+import NavegacaoCarrinho from "../../../components/NavegacaoCarrinho";
 
 export default function Pagamento() {
     const { carrinho, frete, calcularValorFinal, formaPagamento, setFormaPagamento, cartao, setCartao } = useCarrinho();
@@ -81,10 +82,10 @@ export default function Pagamento() {
                 ) : (
                     <>
                         <StepBar step={4} />
-                        <div className="flex gap-8 w-[90%] xl:w-4/5 m-auto min-h-[52vh] max-w-[1300px] justify-between">
+                        <div className="flex flex-col lg:flex-row lg:gap-4 xl:gap-8 w-[90%] xl:w-4/5 m-auto min-h-[52vh] max-w-[1300px] justify-between mb-6">
                             <section className="flex flex-col gap-5 mb-4 w-full">
                                 <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
-                                    <h2 className="text-lg font-bold text-emerald-600 uppercase">Escolha a forma de pagamento</h2>
+                                    <h2 className="text-base sm:text-lg font-bold text-emerald-600 uppercase">Escolha a forma de pagamento</h2>
 
                                     <hr />
 
@@ -93,8 +94,8 @@ export default function Pagamento() {
                                             <IoMdRadioButtonOn className={formaPagamento === 'PIX' ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={formaPagamento !== 'PIX' ? 'text-3xl' : 'hidden'} />
                                             <div className="flex flex-col">
-                                                <p className="text-base">Pague com PIX</p>
-                                                <p className="text-sm">
+                                                <p className="text-sm sm:text-base">Pague com PIX</p>
+                                                <p className="text-xs sm:text-sm">
                                                     {formatarPreco((((calcularValorFinal - frete.valor) * 0.9) + frete.valor))} com desconto à vista no boleto ou pix
                                                 </p>
                                             </div>
@@ -108,8 +109,8 @@ export default function Pagamento() {
                                             <IoMdRadioButtonOn className={formaPagamento === 'Boleto' ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={formaPagamento !== 'Boleto' ? 'text-3xl' : 'hidden'} />
                                             <div className="flex flex-col">
-                                                <p className="text-base">Pague com Boleto</p>
-                                                <p className="text-sm">
+                                                <p className="text-sm sm:text-base">Pague com Boleto</p>
+                                                <p className="text-xs sm:text-sm">
                                                     {formatarPreco((((calcularValorFinal - frete.valor) * 0.9) + frete.valor))} com desconto à vista no boleto ou pix
                                                 </p>
                                             </div>
@@ -124,8 +125,8 @@ export default function Pagamento() {
                                                 <IoMdRadioButtonOn className={formaPagamento === 'Cartão' ? 'text-3xl text-emerald-600' : 'hidden'} />
                                                 <IoMdRadioButtonOff className={formaPagamento !== 'Cartão' ? 'text-3xl' : 'hidden'} />
                                                 <div className="flex flex-col">
-                                                    <p className="text-base">Pague com Cartão</p>
-                                                    <p className="text-sm">
+                                                    <p className="text-sm sm:text-base">Pague com Cartão</p>
+                                                    <p className="text-xs sm:text-sm">
                                                         10x de {formatarPreco(calcularValorFinal / 10)} sem juros
                                                     </p>
                                                 </div>
@@ -158,8 +159,8 @@ export default function Pagamento() {
                                             <IoMdRadioButtonOn className={formaPagamento === 'Mercado Pago' ? 'text-3xl text-emerald-600' : 'hidden'} />
                                             <IoMdRadioButtonOff className={formaPagamento !== 'Mercado Pago' ? 'text-3xl' : 'hidden'} />
                                             <div className="flex flex-col">
-                                                <p className="text-base">Pague com Mercado pago</p>
-                                                <p className="text-sm">
+                                                <p className="text-sm sm:text-base">Pague com Mercado pago</p>
+                                                <p className="text-xs sm:text-sm">
                                                     {formatarPreco(calcularValorFinal)} - pague via Mercado Pago
                                                 </p>
                                             </div>
@@ -169,19 +170,24 @@ export default function Pagamento() {
                                     </div>
                                 </div>
 
-                                <div className="flex justify-between">
-                                    <Link to="/entrega">
-                                        <button className="flex items-center gap-2 p-2 hover:bg-zinc-300 duration-200 rounded-md">
-                                            <FaArrowLeft />
-                                            <span className="uppercase text-sm">Voltar para a entrega</span>
-                                        </button>
-                                    </Link>
-                                    <button onClick={verificarFromaPagamento} className="bg-emerald-600 hover:bg-emerald-700 duration-200 p-2 rounded-md text-emerald-50 font-bold" type="button">Continuar para confirmação</button>
-                                </div>
+                                <NavegacaoCarrinho
+                                    onClick={verificarFromaPagamento}
+                                    linkVoltar="/entrega"
+                                    textoVoltar="Voltar para a entrega"
+                                    textoContinuar="Continuar para confirmação"
+                                    responsivo="hidden lg:flex"
+                                />
                             </section>
 
-                            <section className="containerResumoFinalizar">
+                            <section className="flex flex-col gap-4 max-lg:mt-1">
                                 <ResumoCart />
+                                <NavegacaoCarrinho
+                                    onClick={verificarFromaPagamento}
+                                    linkVoltar="/entrega"
+                                    textoVoltar="Voltar"
+                                    textoContinuar="Continuar para confirmação"
+                                    responsivo="flex lg:hidden"
+                                />
                             </section>
                         </div>
                     </>
