@@ -76,7 +76,7 @@ export default function Pagamento() {
     return (
         <>
             <ToastContainer />
-            <main className="flex flex-col w-full gap-4">
+            <main className="flex flex-col w-full gap-6">
                 {carrinho.length === 0 ? (
                     <CarrinhoVazio />
                 ) : (
@@ -127,9 +127,9 @@ export default function Pagamento() {
                                             <div className="flex flex-col">
                                                 <hr className="my-2" />
                                                 {cartao !== null && cartao.status ? (
-                                                    <div className="flex items-center justify-between">
-                                                        <h3 className="text-emerald-600 text-lg font-semibold p-1">Cartão final {getUltimos4Digitos(cartao.numero)} salvo!</h3>
-                                                        <button onClick={removerCartao} className="flex items-center gap-1 p-1 duration-200 hover:bg-zinc-300 rounded-md text-red-700">
+                                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+                                                        <h3 className="text-emerald-600 text-sm sm:text-lg font-semibold p-1">Cartão final {getUltimos4Digitos(cartao.numero)} salvo!</h3>
+                                                        <button onClick={removerCartao} className="text-sm sm:text-base cursor-pointer flex items-center gap-1 p-1 duration-200 hover:bg-zinc-300 rounded-md text-red-700">
                                                             <IoIosRemoveCircleOutline className="text-lg" />
                                                             Remover Cartão
                                                         </button>
@@ -163,7 +163,7 @@ export default function Pagamento() {
                                 />
                             </section>
 
-                            <section className="flex flex-col gap-4 max-lg:mt-1">
+                            <section className="flex flex-col gap-4 max-lg:mt-1 mb-2">
                                 <ResumoCart />
                                 <NavegacaoCarrinho
                                     onClick={verificarFromaPagamento}

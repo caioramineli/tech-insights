@@ -6,8 +6,6 @@ import { FaBarcode, FaRegCreditCard, FaTruck } from "react-icons/fa";
 import StarRating from "../../components/StarRating";
 import { useCarrinho } from '../../contexts/contex-Cart';
 import './produtoCompra.css';
-import InputMask from 'react-input-mask';
-import { FaLocationDot } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,6 +17,10 @@ import 'swiper/css/pagination';
 import FormaPagamento from '../../components/FormaPagamento';
 import Favoritar from '../../components/Favoritar';
 import InputModerno from '../../components/InputModerno';
+import axios from 'axios';
+import Loading from '../../components/Loading';
+import { Modal } from '../../components/Modal';
+import ModalFrete from '../../components/ModalFretes';
 
 export default function Produto({ product, rating, setOpenAccordion }) {
     const api = process.env.REACT_APP_API_URL;
@@ -34,14 +36,19 @@ export default function Produto({ product, rating, setOpenAccordion }) {
     const notifyWarning = (text) => toast.warning(text);
     const [isFreteModalOpen, setIsFreteModalOpen] = useState(false);
     const [isFormaPagamentoModalOpen, setIsFormaPagamentoModalOpen] = useState(false);
+    const [calculoCep, setCalculoCep] = useState(false)
 
-    function openFreteModal() {
-        const cepPuro = cep.replace(/\D/g, '');
-        if (cepPuro.length === 8) {
+    async function openFreteModal() {
+        setCalculoCep(true)
+        try {
+            const cepPuro = cep.replace(/\D/g, '');
+            await axios.get(`https://brasilapi.com.br/api/cep/v1/${cepPuro}`);
             setIsFreteModalOpen(true);
             document.body.style.overflow = 'hidden';
-        } else {
-            notifyError("Informe um CEP válido");
+        } catch (error) {
+            notifyError("CEP Incorreto!");
+        } finally {
+            setCalculoCep(false)
         }
     }
 
@@ -94,7 +101,7 @@ export default function Produto({ product, rating, setOpenAccordion }) {
 
     return (
         <>
-            <ToastContainer />
+            <ToastContainer autoClose={3000}/>
             <Favoritar produto={product._id} tamanho='text-2xl' />
             <h2 className='text-zinc-900 text-base md:text-lg lg:text-xl 2xl:text-2xl font-bold'>{product.nome}</h2>
             <section className="containerProdutoInfo">
@@ -158,7 +165,6 @@ export default function Produto({ product, rating, setOpenAccordion }) {
                     </button>
 
                     {isFormaPagamentoModalOpen && (
-
                         <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-10'>
                             <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-xl p-2 sm:p-4 relative h-[440px] sm:h-[500px] overflow-y-auto">
 
@@ -191,43 +197,22 @@ export default function Produto({ product, rating, setOpenAccordion }) {
                                 label="CEP"
                                 mask="99999-999"
                             />
-                            <button className="flex items-center gap-2 bg-emerald-600 rounded-md p-2 text-cyan-50 hover:bg-emerald-700" onClick={openFreteModal}>
-                                Calcular
-                                <FaTruck />
-                            </button>
+                            {calculoCep ? (
+                                <Loading size='38' stroke='5' color='#059669' />
+                            ) : (
+
+                                <button className="flex items-center gap-2 bg-emerald-600 rounded-md p-2 text-cyan-50 hover:bg-emerald-700" onClick={openFreteModal}>
+                                    Calcular
+                                    <FaTruck />
+                                </button>
+                            )}
                         </div>
                     </div>
 
                     {isFreteModalOpen && (
-                        <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-10'>
-                            <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-xl p-5 relative">
-
-                                <IoClose onClick={closeFreteModal} className="absolute top-2 right-2 text-slate-600 w-8 h-8 cursor-pointer z-10" />
-
-                                <div className='flex flex-col gap-4'>
-                                    <div className='flex gap-1 items-center text-xl'>
-                                        <FaTruck className='text-emerald-600' />
-                                        <h3 className='font-bold'>Frete e Prazo</h3>
-
-                                    </div>
-
-                                    <div className='flex gap-1 items-center text-lg'>
-                                        <FaLocationDot className='text-emerald-600' />
-                                        <h3 className='font-bold'>CEP {cep}</h3>
-                                    </div>
-
-                                    <div className='flex justify-between text-sm sm:text-base'>
-                                        <h3 className='font-bold'>Entrega Normal</h3>
-                                        <p>R$ 15,00 - até 8 dias úteis</p>
-                                    </div>
-
-                                    <div className='flex justify-between text-sm sm:text-base'>
-                                        <h3 className='font-bold'>Entrega Expressa</h3>
-                                        <p>R$ 30,00 - até 5 dias úteis</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <Modal setEstado={closeFreteModal} titulo="" largura="max-w-xl">
+                            <ModalFrete cep={cep} />
+                        </Modal>
                     )}
                 </section>
             </section>

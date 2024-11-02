@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { useCarrinho } from "../../contexts/contex-Cart";
 import Loading from "../../components/Loading";
+import axios from "axios";
 
 const Frete = () => {
     const [valorCep, setValorCep] = useState('');
@@ -14,19 +15,20 @@ const Frete = () => {
 
     const notifyError = (text) => toast.error(text);
 
-    const handleCalcularFrete = async () => {
+    const handleCalcularFrete = async (e) => {
+        e.preventDefault();
         setIsCalculatingFrete(true);
 
-        setTimeout(() => {
+        try {
             const cep = valorCep.replace(/\D/g, '');
-            if (cep.length === 8) {
-                setCalculoFrete(true);
-                escolhaFrete('normal');
-            } else {
-                notifyError("Digite um cep válido!");
-            }
+            await axios.get(`https://brasilapi.com.br/api/cep/v1/${cep}`);
+            setCalculoFrete(true);
+            escolhaFrete('normal');
+        } catch (error) {
+            notifyError("CEP Incorreto!");
+        } finally {
             setIsCalculatingFrete(false);
-        }, 1000);
+        }
     };
 
     const handleFreteChange = (e) => {
@@ -36,7 +38,7 @@ const Frete = () => {
     return (
         <div className="flex flex-col bg-white rounded-md bsPadrao p-3 sm:p-4 gap-2">
             <h3 className="text-base sm:text-lg font-bold">Calcular Frete e Prazos</h3>
-            <div className="flex gap-2">
+            <form onSubmit={handleCalcularFrete} className="flex gap-2">
                 <InputMask
                     mask="99999-999"
                     value={valorCep}
@@ -58,16 +60,13 @@ const Frete = () => {
                 ) : (
                     <button
                         className="flex items-center justify-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50 text-sm sm:text-base"
-                        onClick={handleCalcularFrete}
                         disabled={isCalculatingFrete}
                     >
-                        <>
-                            Calcular
-                            <FaTruck />
-                        </>
+                        Calcular
+                        <FaTruck />
                     </button>
                 )}
-            </div>
+            </form>
 
             {calculoFrete && (
                 <div className="flex flex-col gap-1">

@@ -93,7 +93,7 @@ export default function Confirmacao() {
     return (
         <>
             <ToastContainer />
-            <main className="flex flex-col w-full gap-4">
+            <main className="flex flex-col w-full gap-6">
                 {carrinho.length === 0 ? (
                     <CarrinhoVazio />
                 ) : (
@@ -169,7 +169,7 @@ export default function Confirmacao() {
                                     </Link>
                                 </div>
                             </section>
-                            <section className="flex flex-col gap-4 max-lg:mt-1 mb-6">
+                            <section className="flex flex-col gap-4 max-lg:mt-1 mb-8">
                                 <ResumoCart />
                                 {isSubmitting ? (
                                     <div className='flex justify-center h-[3.42rem] items-center'>

@@ -130,14 +130,13 @@
     }
 
     .mainCarrinho {
-        margin-bottom: 1rem;
+        margin-bottom: 0rem;
     }
 
     .mainCarrinho .containerPrincipal {
         row-gap: 1rem;
     }
 }
-
 
 @media (max-width:600px) {
 

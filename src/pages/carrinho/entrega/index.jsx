@@ -71,7 +71,7 @@ export default function Entrega() {
 
     return (
         <>
-            <main className="flex flex-col w-full gap-4">
+            <main className="flex flex-col w-full gap-6">
                 {carrinho.length === 0 ? (
                     <CarrinhoVazio />
                 ) : (
@@ -166,7 +166,7 @@ export default function Entrega() {
                                 />
                             </section>
 
-                            <section className="flex flex-col gap-4 max-lg:mt-1">
+                            <section className="flex flex-col gap-4 max-lg:mt-1 mb-4">
                                 <ResumoCart />
                                 <NavegacaoCarrinho
                                     onClick={verificarEndereco}
