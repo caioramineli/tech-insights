@@ -1,18 +1,18 @@
 import ResumoCart from "../resumo-cart";
 import { useCarrinho } from '../../../contexts/contex-Cart';
-import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import CarrinhoVazio from "../carrinhoVazio";
 import StepBar from "../step-bar";
 import { FaPix } from "react-icons/fa6";
 import { IoIosRemoveCircleOutline, IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 import { SiMercadopago } from "react-icons/si";
-import { FaArrowLeft, FaBarcode, FaRegCreditCard } from "react-icons/fa";
+import { FaBarcode, FaRegCreditCard } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { FormCartao } from "./formCartao";
 import { useState } from "react";
 import NavegacaoCarrinho from "../../../components/NavegacaoCarrinho";
+import FormaPagamento from "../../../components/FormaPagamentoOption";
 
 export default function Pagamento() {
     const { carrinho, frete, calcularValorFinal, formaPagamento, setFormaPagamento, cartao, setCartao } = useCarrinho();
@@ -89,85 +89,69 @@ export default function Pagamento() {
 
                                     <hr />
 
-                                    <div onClick={() => { alterarFormaPagamento('PIX'); limparDadosCartao(); }} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${formaPagamento !== 'PIX' ? 'border-zinc-300' : ''}`}>
-                                        <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={formaPagamento === 'PIX' ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={formaPagamento !== 'PIX' ? 'text-3xl' : 'hidden'} />
-                                            <div className="flex flex-col">
-                                                <p className="text-sm sm:text-base">Pague com PIX</p>
-                                                <p className="text-xs sm:text-sm">
-                                                    {formatarPreco((((calcularValorFinal - frete.valor) * 0.9) + frete.valor))} com desconto à vista no boleto ou pix
-                                                </p>
-                                            </div>
-                                        </div>
+                                    <FormaPagamento
+                                        formaPagamento={formaPagamento}
+                                        tipo="PIX"
+                                        onClick={() => { alterarFormaPagamento('PIX'); limparDadosCartao(); }}
+                                        icone={<FaPix className={formaPagamento === 'PIX' ? 'text-2xl sm:text-3xl text-teal-600' : 'text-2xl sm:text-3xl text-zinc-500'} />}
+                                        descricao="Pague com PIX"
+                                        desconto={formatarPreco(((calcularValorFinal - frete.valor) * 0.9) + frete.valor) + " com desconto à vista no pix"}
+                                    />
 
-                                        <FaPix className={formaPagamento === 'PIX' ? 'text-3xl text-teal-600' : 'text-3xl text-zinc-500'} />
-                                    </div>
+                                    <FormaPagamento
+                                        formaPagamento={formaPagamento}
+                                        tipo="Boleto"
+                                        onClick={() => { alterarFormaPagamento('Boleto'); limparDadosCartao(); }}
+                                        icone={<FaBarcode className={formaPagamento === 'Boleto' ? 'text-2xl sm:text-3xl text-zinc-900' : 'text-2xl sm:text-3xl text-zinc-500'} />}
+                                        descricao="Pague com Boleto"
+                                        desconto={formatarPreco(((calcularValorFinal - frete.valor) * 0.9) + frete.valor) + " com desconto à vista no boleto"}
+                                    />
 
-                                    <div onClick={() => { alterarFormaPagamento('Boleto'); limparDadosCartao(); }} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${formaPagamento !== 'Boleto' ? 'border-zinc-300' : ''}`}>
-                                        <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={formaPagamento === 'Boleto' ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={formaPagamento !== 'Boleto' ? 'text-3xl' : 'hidden'} />
-                                            <div className="flex flex-col">
-                                                <p className="text-sm sm:text-base">Pague com Boleto</p>
-                                                <p className="text-xs sm:text-sm">
-                                                    {formatarPreco((((calcularValorFinal - frete.valor) * 0.9) + frete.valor))} com desconto à vista no boleto ou pix
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <FaBarcode className={formaPagamento === 'Boleto' ? 'text-3xl text-zinc-900' : 'text-3xl text-zinc-500'} />
-                                    </div>
-
-                                    <div onClick={() => alterarFormaPagamento('Cartão')} className={`border-emerald-600 flex flex-col border px-4 py-2 rounded-md cursor-pointer ${formaPagamento !== 'Cartão' ? 'border-zinc-300' : ''}`}>
+                                    <div
+                                        onClick={() => alterarFormaPagamento('Cartão')}
+                                        className={`border-emerald-600 flex flex-col border px-3 sm:px-4 py-2 rounded-md cursor-pointer ${formaPagamento !== 'Cartão' ? 'border-zinc-300' : ''}`}
+                                    >
                                         <div className="flex justify-between items-center">
-                                            <div className="flex items-center gap-4">
-                                                <IoMdRadioButtonOn className={formaPagamento === 'Cartão' ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                                <IoMdRadioButtonOff className={formaPagamento !== 'Cartão' ? 'text-3xl' : 'hidden'} />
+                                            <div className="flex items-center gap-2 sm:gap-4">
+                                                <IoMdRadioButtonOn className={formaPagamento === 'Cartão' ? 'text-2xl sm:text-3xl text-emerald-600' : 'hidden'} />
+                                                <IoMdRadioButtonOff className={formaPagamento !== 'Cartão' ? 'text-2xl sm:text-3xl' : 'hidden'} />
                                                 <div className="flex flex-col">
-                                                    <p className="text-sm sm:text-base">Pague com Cartão</p>
-                                                    <p className="text-xs sm:text-sm">
-                                                        10x de {formatarPreco(calcularValorFinal / 10)} sem juros
-                                                    </p>
+                                                    <p className="text-sm sm:text-base font-semibold">Pague com Cartão</p>
+                                                    <p className="text-xs sm:text-sm">10x de {formatarPreco(calcularValorFinal / 10)} sem juros</p>
                                                 </div>
                                             </div>
-                                            <FaRegCreditCard className={formaPagamento === 'Cartão' ? 'text-3xl text-cyan-700' : 'text-3xl text-zinc-500'} />
+                                            <FaRegCreditCard className={formaPagamento === 'Cartão' ? 'text-2xl sm:text-3xl text-cyan-700' : 'text-2xl sm:text-3xl text-zinc-500'} />
                                         </div>
 
-                                        <div className={`flex flex-col ${formaPagamento !== 'Cartão' ? 'hidden' : ''}`}>
-                                            <hr className="my-2" />
-                                            {cartao !== null && cartao.status ? (
-                                                <div className="flex items-center justify-between">
-                                                    <h3 className="text-emerald-600 text-lg font-semibold p-1">Cartão final {getUltimos4Digitos(cartao.numero)} salvo!</h3>
-                                                    <button onClick={removerCartao} className="flex items-center gap-1 p-1 duration-200 hover:bg-zinc-300 rounded-md text-red-700">
-                                                        <IoIosRemoveCircleOutline className="text-lg" />
-                                                        Remover Cartão
-                                                    </button>
-                                                </div>
-                                            ) : (
-                                                <>
-                                                    <h3 className="text-base font-semibold mb-1 p-1">Dados do Cartão</h3>
-                                                    <FormCartao dadosCartao={dadosCartao} setDadosCartao={setDadosCartao} />
-                                                </>
-                                            )
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div onClick={() => { alterarFormaPagamento('Mercado Pago'); limparDadosCartao(); }} className={`border-emerald-600 flex justify-between items-center border px-4 py-2 rounded-md cursor-pointer ${formaPagamento !== 'Mercado Pago' ? 'border-zinc-300' : ''}`}>
-                                        <div className="flex items-center gap-4">
-                                            <IoMdRadioButtonOn className={formaPagamento === 'Mercado Pago' ? 'text-3xl text-emerald-600' : 'hidden'} />
-                                            <IoMdRadioButtonOff className={formaPagamento !== 'Mercado Pago' ? 'text-3xl' : 'hidden'} />
+                                        {formaPagamento === 'Cartão' && (
                                             <div className="flex flex-col">
-                                                <p className="text-sm sm:text-base">Pague com Mercado pago</p>
-                                                <p className="text-xs sm:text-sm">
-                                                    {formatarPreco(calcularValorFinal)} - pague via Mercado Pago
-                                                </p>
+                                                <hr className="my-2" />
+                                                {cartao !== null && cartao.status ? (
+                                                    <div className="flex items-center justify-between">
+                                                        <h3 className="text-emerald-600 text-lg font-semibold p-1">Cartão final {getUltimos4Digitos(cartao.numero)} salvo!</h3>
+                                                        <button onClick={removerCartao} className="flex items-center gap-1 p-1 duration-200 hover:bg-zinc-300 rounded-md text-red-700">
+                                                            <IoIosRemoveCircleOutline className="text-lg" />
+                                                            Remover Cartão
+                                                        </button>
+                                                    </div>
+                                                ) : (
+                                                    <>
+                                                        <h3 className="text-base font-semibold mb-1 p-1">Dados do Cartão</h3>
+                                                        <FormCartao dadosCartao={dadosCartao} setDadosCartao={setDadosCartao} />
+                                                    </>
+                                                )}
                                             </div>
-                                        </div>
-
-                                        <SiMercadopago className={formaPagamento === 'Mercado Pago' ? 'text-3xl text-sky-700' : 'text-3xl text-zinc-500'} />
+                                        )}
                                     </div>
+
+                                    <FormaPagamento
+                                        formaPagamento={formaPagamento}
+                                        tipo="Mercado Pago"
+                                        onClick={() => { alterarFormaPagamento('Mercado Pago'); limparDadosCartao(); }}
+                                        icone={<SiMercadopago className={formaPagamento === 'Mercado Pago' ? 'text-2xl sm:text-3xl text-sky-700' : 'text-2xl sm:text-3xl text-zinc-500'} />}
+                                        descricao="Pague com Mercado pago"
+                                        desconto={formatarPreco(calcularValorFinal) + " - pague via Mercado Pago"}
+                                    />
                                 </div>
 
                                 <NavegacaoCarrinho

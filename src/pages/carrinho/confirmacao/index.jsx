@@ -15,7 +15,7 @@ import { MdShoppingCart } from "react-icons/md";
 import { FaPix } from "react-icons/fa6";
 import { SiMercadopago } from "react-icons/si";
 import { useNavigate } from 'react-router-dom';
-
+import ContainerCarrinhoMobile from "../../../components/ContainerCarrinhoMobile";
 
 export default function Confirmacao() {
     const api = process.env.REACT_APP_API_URL;
@@ -99,41 +99,42 @@ export default function Confirmacao() {
                 ) : (
                     <>
                         <StepBar step={5} />
-                        <div className="flex gap-8 w-[90%] xl:w-4/5 m-auto min-h-[52vh] max-w-[1300px] justify-between">
+                        <div className="flex flex-col md:flex-row md:gap-4 xl:gap-8 w-[90%] xl:w-4/5 m-auto min-h-[52vh] max-w-[1300px] justify-between">
                             <section className="flex flex-col gap-5 mb-4 w-full">
-                                <div className="flex flex-col bg-white bsPadrao rounded-lg p-4 gap-3">
-                                    <div className="grid grid-cols-2">
+                                <div className="flex flex-col bg-white bsPadrao rounded-lg p-3 sm:p-4 gap-3">
+                                    <div className="grid sm:grid-cols-2 gap-3">
                                         <div className="flex flex-col gap-2">
                                             <div className="flex gap-2 items-center">
                                                 <FaUser className="text-emerald-700 text-xl" />
-                                                <h2 className="text-xl">Dados pessoais</h2>
+                                                <h2 className="text-lg md:text-xl font-medium">Dados pessoais</h2>
                                             </div>
                                             <div className="flex flex-col gap-1">
-                                                <span>{user.nome}</span>
-                                                <span>{user.email}</span>
-                                                <span>CPF: {user.cpf}</span>
+                                                <span className="text-sm sm:text-base">{user.nome}</span>
+                                                <span className="text-sm sm:text-base">{user.email}</span>
+                                                <span className="text-base">CPF: {user.cpf}</span>
                                             </div>
                                         </div>
+                                        <hr className="block sm:hidden"/>
                                         <div className="flex flex-col gap-2">
                                             <div className="flex gap-2 items-center ">
                                                 <FaTruck className="text-emerald-700 text-xl" />
-                                                <h2 className="text-xl">Entrega</h2>
+                                                <h2 className="text-lg md:text-xl font-medium">Entrega</h2>
                                             </div>
                                             <div className="flex flex-col">
-                                                <span>{endereco.rua}, {endereco.numero}, {endereco.complemento}</span>
-                                                <span>{endereco.cep} - {endereco.cidade} - {endereco.estado}</span>
+                                                <span className="text-sm sm:text-base">{endereco.rua}, {endereco.numero}, {endereco.complemento}</span>
+                                                <span className="text-sm sm:text-base">{endereco.cep} - {endereco.cidade} - {endereco.estado}</span>
                                             </div>
-                                            <span>Envio {frete.tipo} - R$ {frete.valor},00</span>
+                                            <span className="font-medium">Envio {frete.tipo} - R$ {frete.valor},00</span>
                                         </div>
                                     </div>
                                     <hr />
                                     <div className="flex flex-col gap-2">
                                         <div className="flex gap-2 items-center ">
                                             <FaRegCreditCard className="text-emerald-700 text-xl" />
-                                            <h2 className="text-xl">Pagamento</h2>
+                                            <h2 className="text-lg md:text-xl font-medium">Pagamento</h2>
                                         </div>
                                         <div className="flex gap-2 items-center">
-                                            <span>
+                                            <span className="text-sm sm:text-base">
                                                 Pague com {formaPagamento}
                                                 {formaPagamento === 'Cartão' ? ` em ${cartao.parcelas}` : ''}
                                             </span>
@@ -145,12 +146,21 @@ export default function Confirmacao() {
                                 <div className="flex flex-col gap-1">
                                     <div className="flex items-center gap-2">
                                         <MdShoppingCart className="text-emerald-700 text-xl" />
-                                        <h1 className="text-xl">Lista de produtos</h1>
+                                        <h1 className="text-lg md:text-xl">Lista de produtos</h1>
                                     </div>
                                     <TableCart esconderBtns="hidden" />
+                                    <div className="flex sm:hidden flex-col bg-white bsPadrao rounded-md">
+                                        {carrinho.map((produto, index) => (
+                                            <ContainerCarrinhoMobile
+                                                produto={produto}
+                                                index={index}
+                                                esconder="hidden"
+                                            />
+                                        ))}
+                                    </div>
                                 </div>
 
-                                <div className="flex justify-between">
+                                <div className="hidden md:flex justify-between">
                                     <Link to="/pagamento">
                                         <button className="flex items-center gap-2 p-2 hover:bg-zinc-300 duration-200 rounded-md">
                                             <FaArrowLeft />
@@ -159,17 +169,24 @@ export default function Confirmacao() {
                                     </Link>
                                 </div>
                             </section>
-                            <section className="containerResumoFinalizar">
+                            <section className="flex flex-col gap-4 max-lg:mt-1 mb-6">
                                 <ResumoCart />
                                 {isSubmitting ? (
                                     <div className='flex justify-center h-[3.42rem] items-center'>
                                         <Loading color="#047857" />
                                     </div>
                                 ) : (
-                                    <button className="btnPadrao !bg-emerald-700 !text-lg !font-bold" type="button" onClick={finalizarPedido} disabled={isSubmitting}>
+                                    <button className="btnPadrao !text-base sm:!text-lg !font-bold" type="button" onClick={finalizarPedido} disabled={isSubmitting}>
                                         Finalizar Pedido
                                     </button>
                                 )}
+
+                                <Link to="/pagamento">
+                                    <button className="btnPadrao !bg-gray-300 !text-zinc-900 !w-full !text-base sm:!text-lg !font-semibold !gap-2 mt-1">
+                                        <FaArrowLeft />
+                                        <span>Voltar para o pagamento</span>
+                                    </button>
+                                </Link>
                             </section>
                         </div>
                     </>

@@ -70,7 +70,7 @@ export default function Carrinho() {
 
                             <section className="flex flex-col gap-4 max-lg:mt-4">
                                 <ResumoCart />
-                                <button className="btnPadrao !bg-emerald-700 !text-lg !font-bold" onClick={irParaEntrega}>Continuar</button>
+                                <button className="btnPadrao !text-lg !font-bold" onClick={irParaEntrega}>Continuar</button>
                             </section>
 
                         </div>

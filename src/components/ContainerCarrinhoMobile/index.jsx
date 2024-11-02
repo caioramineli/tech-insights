@@ -49,10 +49,13 @@ const ContainerCarrinhoMobile = ({ produto, removerProduto, esconder = 'flex', i
                 </div>
             </Link>
             <div className="flex flex-row justify-between px-1">
-                <div className="flex gap-5 text-sm">
-                    <div className="flex items-center justify-center">
+                <div className="flex gap-6 text-sm">
+                    <div className="flex items-center justify-center gap-3">
                         <FaChevronLeft className={`${esconder} cursor-pointer`} onClick={diminuirQtd} />
-                        <span className="w-6 flex justify-center font-semibold mx-1">{qtd}</span>
+                        <div className="flex">
+                            {esconder === 'hidden' && <span>Quantidade:</span>}
+                            <span className="w-6 flex justify-center font-semibold">{qtd}</span>
+                        </div>
                         <FaChevronRight className={`${esconder} cursor-pointer`} onClick={aumentarQtd} />
                     </div>
 

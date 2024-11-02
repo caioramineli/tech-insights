@@ -99,7 +99,7 @@ const RedefinirSenha = ({ user }) => {
                 </div>
             ) : (
                 <div className="flex justify-end items-center gap-4 mt-1">
-                    <button type="reset" onClick={resertForm} className="w-40 !bg-slate-500 shadow-md btnPadrao">
+                    <button type="reset" onClick={resertForm} className="w-40 !bg-gray-300 shadow-md btnPadrao !text-zinc-900">
                         Cancelar
                     </button>
                     <button type="submit" className="w-40 shadow-md btnPadrao">
