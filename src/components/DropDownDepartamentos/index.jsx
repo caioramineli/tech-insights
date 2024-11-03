@@ -28,7 +28,7 @@ export default function DropDownDepartamentos() {
                     <FaAngleRight />
                 </Link>
                 <ul className='listaPerife'>
-                    <li><Link to="/categoria/Headset">Headset</Link></li>
+                    <li><Link to="/categoria/Fone">Headset</Link></li>
                     <li><Link to="/categoria/Mouse">Mouse</Link></li>
                     <li><Link to="/categoria/Teclado">Teclado</Link></li>
                 </ul>

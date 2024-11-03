@@ -133,6 +133,11 @@ const ProductUpload = () => {
                         <option value="samsung"></option>
                         <option value="deepcool"></option>
                         <option value="tplink"></option>
+                        <option value="corsair"></option>
+                        <option value="logitech"></option>
+                        <option value="razer"></option>
+                        <option value="risemode"></option>
+                        <option value="wd green"></option>
                     </datalist>
 
                     <div className="custom-select-container">
@@ -142,7 +147,7 @@ const ProductUpload = () => {
                             <option value="Placa de vídeo">Placa de Vídeo</option>
                             <option value="Placa-mãe">Placa mãe</option>
                             <option value="Processador">Processador</option>
-                            <option value="Memória RAM">Memoria RAM</option>
+                            <option value="Memória RAM">Memória RAM</option>
                             <option value="Fonte">Fonte</option>
                             <option value="Gabinete">Gabinete</option>
                             <option value="Armazenamento">Armazenamento</option>
