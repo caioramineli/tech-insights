@@ -8,14 +8,14 @@ import Loading from '../../../components/Loading';
 
 const Pedidos = () => {
     const [pedidos, setPedidos] = useState([]);
-    const { user } = useContext(AuthContext)
+    const { user, token } = useContext(AuthContext)
     const [loading, setLoading] = useState(true);
     const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const fetchPedidos = async () => {
             try {
-                const response = await axios.get(`${api}user/${user.id}/orders`);
+                const response = await axios.get(`${api}user/${user.id}/orders`, { headers: { 'Authorization': `Bearer ${token}` } });
                 setPedidos(response.data);
             } catch (err) {
                 console.log(err);
@@ -27,7 +27,7 @@ const Pedidos = () => {
         if (user) {
             fetchPedidos();
         }
-    }, [user, api]);
+    }, [user, api, token]);
 
     if (loading) {
         return <Loading />;

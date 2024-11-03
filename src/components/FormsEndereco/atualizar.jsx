@@ -1,14 +1,16 @@
 import axios from 'axios';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import Loading from '../../components/Loading';
 import InputModerno from '../../components/InputModerno';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, endereco, setEndereco }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [cepAlterado, setCepAlterado] = useState(false);
     const [cepIncorreto, setCepIncorreto] = useState(false)
+    const { token } = useContext(AuthContext);
     const api = process.env.REACT_APP_API_URL;
 
     const notifySuccess = () => toast.success("Endereço atualizado com sucesso!");
@@ -32,7 +34,8 @@ const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, ende
 
     const buscarCEP = useCallback(async () => {
         try {
-            const response = await axios.get(`https://brasilapi.com.br/api/cep/v1/${endereco.cep.replace(/\D/g, '')}`);
+            const response = await axios.get(`https://brasilapi.com.br/api/cep/v1/${endereco.cep.replace(/\D/g, '')}`,
+                { headers: { 'Authorization': `Bearer ${token}` } });
             const { street, neighborhood, city, state } = response.data;
             setCepIncorreto(false);
 
@@ -56,7 +59,7 @@ const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, ende
             setCepIncorreto(true);
             notifyError("Erro ao buscar o CEP. Verifique e tente novamente.");
         }
-    }, [endereco.cep, setEndereco]);
+    }, [endereco.cep, setEndereco, token]);
 
     useEffect(() => {
         if (cepAlterado && endereco.cep?.replace(/\D/g, '').length === 8) {
@@ -83,7 +86,7 @@ const FormAtualizarEndereco = ({ setEstadoForm, userId, atualizarEnderecos, ende
         }
 
         try {
-            await axios.put(`${api}user/${userId}/endereco/${endereco._id}`, endereco);
+            await axios.put(`${api}user/${userId}/endereco/${endereco._id}`, endereco, { headers: { 'Authorization': `Bearer ${token}` } });
             notifySuccess();
             atualizarEnderecos();
             closeModal();

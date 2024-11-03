@@ -35,7 +35,7 @@
     border: 1px solid var(--slate-600);
     border-radius: 6px;
     transition: .2s;
-    gap: 5px; 
+    gap: 5px;
 }
 
 #container-login input {
@@ -43,12 +43,12 @@
     font-size: 1.1rem;
 }
 
-#container-login .divInputModerno label{
+#container-login .divInputModerno label {
     font-size: 1.1rem;
 }
 
 #container-login .divInputModerno:focus-within label {
-    color:  #0891b2 !important;
+    color: #0891b2 !important;
 }
 
 #container-login div:focus-within {
@@ -64,12 +64,6 @@
     color: var(--slate-600);
 }
 
-#container-login #esqueceuSenha {
-    margin-left: auto;
-    color: var(--cyan-600);
-    position: relative;
-    bottom: 10px;
-}
 
 #container-login button {
     margin: 0 auto;

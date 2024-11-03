@@ -1,14 +1,16 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import Loading from '../../../components/Loading';
 import InputModerno from '../../../components/InputModerno';
 import { validateName, validateEmail, validateDate, validatePhone } from '../../../components/Validations';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 const FormDados = ({ reqUserData, user }) => {
     const api = process.env.REACT_APP_API_URL;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [userData, setUserData] = useState(reqUserData);
+    const { token } = useContext(AuthContext);
 
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
@@ -47,7 +49,7 @@ const FormDados = ({ reqUserData, user }) => {
         }
 
         try {
-            await axios.put(api + 'user/' + user.id, userData);
+            await axios.put(api + 'user/' + user.id, userData, { headers: { 'Authorization': `Bearer ${token}` } });
             notifySuccess("Cadastro atualizado com sucesso!");
         } catch (error) {
             const erro = error.response?.data?.msg || "Erro ao atualizar o cadastro.";

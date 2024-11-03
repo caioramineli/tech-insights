@@ -19,7 +19,7 @@ import NavegacaoCarrinho from "../../../components/NavegacaoCarrinho";
 
 export default function Entrega() {
     const { carrinho, frete, escolhaFrete, endereco } = useCarrinho();
-    const { user } = useContext(AuthContext);
+    const { user, token } = useContext(AuthContext);
     const [formEndereco, setFormEndereco] = useState(false);
     const [formEditarEndereco, setFormEditarEndereco] = useState(false);
     const [selectedEndereco, setSelectedEndereco] = useState(null);
@@ -54,14 +54,14 @@ export default function Entrega() {
 
         setIsLoading(true);
         try {
-            const response = await axios.get(`${api}user/${user.id}/endereco`);
+            const response = await axios.get(`${api}user/${user.id}/endereco`, { headers: { 'Authorization': `Bearer ${token}` } });
             setEnderecos(response.data.enderecos);
         } catch (error) {
             console.log(error);
         } finally {
             setIsLoading(false);
         }
-    }, [user, api]);
+    }, [user, api, token]);
 
     useEffect(() => {
         if (user && user.id) {
@@ -136,8 +136,7 @@ export default function Entrega() {
                                         freteAtual={frete.tipo}
                                         onSelecionar={freteEscolhido}
                                     />
-
-
+                                    
                                     <OpcaoFrete
                                         tipo="agendado"
                                         descricao="Agendado"

@@ -13,17 +13,25 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import './style.css';
+import { Modal } from "../../components/Modal";
+import { FormEsqueciSenha } from "../../components/FormEsqueciSenha";
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [modalEsqueciSenha, setModalEsqueciSenha] = useState(false);
     const { login } = useContext(AuthContext);
     const { carrinho } = useCarrinho();
     const api = process.env.REACT_APP_API_URL;
 
     const navigate = useNavigate();
     const notifyError = (message) => toast.error(message);
+
+    function openModalEsqueciSenha() {
+        setModalEsqueciSenha(true);
+        document.body.style.overflow = 'hidden';
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,7 +85,9 @@ export default function Login() {
                         />
                     </div>
 
-                    <a id="esqueceuSenha" href='/'>Esqueceu a senha?</a>
+                    <span onClick={openModalEsqueciSenha} className="ml-auto text-cyan-600 relative bottom-[10px] cursor-pointer">
+                        Esqueceu a senha?
+                    </span>
 
                     {isSubmitting ? (
                         <Loading color='#0891b2' />
@@ -96,6 +106,17 @@ export default function Login() {
                     </Link>
                 </form>
             </div>
+
+            {modalEsqueciSenha && (
+                <Modal setEstado={setModalEsqueciSenha} titulo="Esqueceu a senha?" largura="max-w-2xl">
+                    <FormEsqueciSenha
+                        email={email}
+                        setEmail={(e) => setEmail(e.target.value)} 
+                        setModal={setModalEsqueciSenha}
+                        />
+                </Modal>
+            )}
+
             <ToastContainer autoClose={2500} />
         </>
     )

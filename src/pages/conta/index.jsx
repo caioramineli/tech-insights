@@ -10,7 +10,7 @@ import { HiShoppingBag } from "react-icons/hi2";
 import { PedidoContainer } from '../../components/Pedido';
 
 export default function Conta() {
-    const { user } = useContext(AuthContext);
+    const { user, token } = useContext(AuthContext);
     const [pedidos, setPedidos] = useState([]);
     const [loading, setLoading] = useState(true);
     const api = process.env.REACT_APP_API_URL;
@@ -18,7 +18,7 @@ export default function Conta() {
     useEffect(() => {
         const fetchPedidos = async () => {
             try {
-                const response = await axios.get(`${api}user/${user.id}/orders`);
+                const response = await axios.get(`${api}user/${user.id}/orders`, { headers: { 'Authorization': `Bearer ${token}` } });
                 setPedidos(response.data);
             } catch (err) {
                 console.log(err);
@@ -30,7 +30,7 @@ export default function Conta() {
         if (user) {
             fetchPedidos();
         }
-    }, [user, api]);
+    }, [user, api, token]);
 
     if (!pedidos) {
         return (

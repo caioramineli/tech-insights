@@ -25,7 +25,7 @@ export function ContainerMarcas() {
                 <BoxMarca marca={"gigabyte"} />
                 <BoxMarca marca={"asus"} />
                 <BoxMarca marca={"coolermaster"} />
-                <BoxMarca marca={"kingston"} />
+                <BoxMarca marca={"corsair"} />
                 <BoxMarca marca={"xpg"} />
                 <BoxMarca marca={"acer"} />
                 <BoxMarca marca={"lg"} />
@@ -33,7 +33,7 @@ export function ContainerMarcas() {
                 <BoxMarca marca={"hyperX"} />
                 <BoxMarca marca={"ASRock"} />
                 <BoxMarca marca={"galax"} />
-                <BoxMarca marca={"pny"} />
+                <BoxMarca marca={"logitech"} />
                 <BoxMarca marca={"amd"} />
                 <BoxMarca marca={"intel"} />
             </div>

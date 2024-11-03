@@ -2,11 +2,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from "../Loading";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const FormDeletarEndereco = ({ setEstadoForm, endereco, atualizarEnderecos, userId }) => {
     const api = process.env.REACT_APP_API_URL;
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const { token } = useContext(AuthContext);
 
     const notifySuccess = () => toast.success("Endereço excluido com sucesso!");
     const notifyError = (message) => toast.error(message);
@@ -21,7 +23,7 @@ const FormDeletarEndereco = ({ setEstadoForm, endereco, atualizarEnderecos, user
         setIsSubmitting(true);
 
         try {
-            await axios.delete(`${api}user/${userId}/endereco/${endereco._id}`);
+            await axios.delete(`${api}user/${userId}/endereco/${endereco._id}`, { headers: { 'Authorization': `Bearer ${token}` } });
             notifySuccess();
             atualizarEnderecos();
             closeModal();

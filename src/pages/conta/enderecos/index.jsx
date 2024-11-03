@@ -14,7 +14,7 @@ import { ToastContainer } from "react-toastify";
 
 
 const EnderecosUser = () => {
-    const { user } = useContext(AuthContext);
+    const { user, token } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
     const [enderecos, setEnderecos] = useState([]);
     const [modalCreate, setModalCreate] = useState(false);
@@ -46,14 +46,14 @@ const EnderecosUser = () => {
         }
         setIsLoading(true);
         try {
-            const response = await axios.get(`${api}user/${user.id}/endereco`);
+            const response = await axios.get(`${api}user/${user.id}/endereco`, { headers: { 'Authorization': `Bearer ${token}` } });
             setEnderecos(response.data.enderecos);
         } catch (error) {
             console.log(error);
         } finally {
             setIsLoading(false);
         }
-    }, [user, api]);
+    }, [user, api, token]);
 
     useEffect(() => {
         if (user && user.id) {

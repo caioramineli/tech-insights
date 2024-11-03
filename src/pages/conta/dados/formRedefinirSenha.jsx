@@ -2,10 +2,13 @@ import axios from "axios";
 import InputPassword from "../../../components/InputPassword";
 import Loading from "../../../components/Loading";
 import { toast } from 'react-toastify';
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { validatePassword } from '../../../components/Validations';
+import { AuthContext } from '../../../contexts/AuthContext';
+
 
 const RedefinirSenha = ({ user }) => {
+    const { token } = useContext(AuthContext);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [passwordData, setPasswordData] = useState({
         senha: "",
@@ -47,7 +50,7 @@ const RedefinirSenha = ({ user }) => {
         }
 
         try {
-            await axios.put(`${api}user/${user.id}/password`, passwordData);
+            await axios.put(`${api}user/${user.id}/password`, passwordData, { headers: { 'Authorization': `Bearer ${token}` } });
             resertForm()
             notifySuccess("Senha redefinida com sucesso!");
         } catch (error) {
@@ -99,10 +102,10 @@ const RedefinirSenha = ({ user }) => {
                 </div>
             ) : (
                 <div className="flex justify-end items-center gap-4 mt-1">
-                    <button type="reset" onClick={resertForm} className="w-40 !bg-gray-300 shadow-md btnPadrao !text-zinc-900">
+                    <button type="reset" onClick={resertForm} className="w-40 !bg-gray-300 btnPadrao !text-zinc-900">
                         Cancelar
                     </button>
-                    <button type="submit" className="w-40 shadow-md btnPadrao">
+                    <button type="submit" className="w-40 btnPadrao">
                         Redefinir Senha
                     </button>
                 </div>

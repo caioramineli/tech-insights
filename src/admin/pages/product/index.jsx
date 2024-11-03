@@ -1,14 +1,18 @@
 import "./style.css";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import axios from "axios";
 import InputAdmin from "../../components/Input";
 import TextAreaAdmin from "../../components/TextArea";
 import BtnCadastrar from "../../../components/BtnCadastrar";
+import { AuthContext } from '../../../contexts/AuthContext';
+
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ProductUpload = () => {
+    const { token } = useContext(AuthContext);
+
     const [formData, setFormData] = useState({
         nome: "",
         precoPrazo: "",
@@ -73,6 +77,7 @@ const ProductUpload = () => {
             await axios.post(api + "product/create", form, {
                 headers: {
                     "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`,
                 },
             });
             setFormData({

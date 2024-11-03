@@ -21,8 +21,8 @@ const OpcaoFrete = ({ tipo, descricao, preco, prazo, freteAtual, onSelecionar })
                  `}
         >
             <div>
-                <IoMdRadioButtonOn className={freteAtual === tipo ? 'text-3xl text-emerald-600' : 'hidden'} />
-                <IoMdRadioButtonOff className={freteAtual !== tipo ? 'text-3xl' : 'hidden'} />
+                <IoMdRadioButtonOn className={freteAtual === tipo ? 'text-2xl sm:text-3xl text-emerald-600' : 'hidden'} />
+                <IoMdRadioButtonOff className={freteAtual !== tipo ? 'text-2xl sm:text-3xl' : 'hidden'} />
             </div>
 
             <div className='flex w-full flex-col sm:flex-row justify-between'>

@@ -170,20 +170,44 @@
 
     /* Input Moderno */
     .divInputModerno input {
-        font-size: 0.95rem;
+        font-size: 0.925rem;
         padding: 9px 11px;
     }
 
     .divInputModerno label {
-        font-size: 0.95rem;
+        font-size: 0.925rem;
     }
 
     .divInputModerno:focus-within label {
-        font-size: 0.9rem !important;
+        font-size: 0.825rem !important;
     }
 
     .divInputModerno input:not(:placeholder-shown)+label {
-        font-size: 0.9rem !important;
+        font-size: 0.825rem !important;
+    }
+
+    .divSelectModerno select {
+        font-size: 0.925rem;
+        padding: 9px 12px;
+    }
+
+    .divSelectModerno select:focus {
+        border: 1px solid #059669;
+    }
+
+    .divSelectModerno label {
+        font-size: 0.925rem;
+    }
+
+    .divSelectModerno:focus-within label {
+        left: 8px;
+        font-size: 0.825rem;
+    }
+
+    .divSelectModerno select:not(:placeholder-shown)+label,
+    .divSelectModerno select:valid+label {
+        left: 8px;
+        font-size: 0.825rem;
     }
 
     :root {

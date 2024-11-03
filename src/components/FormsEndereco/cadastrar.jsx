@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useContext } from 'react';
 import Loading from '../../components/Loading';
 import InputModerno from '../../components/InputModerno';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const FormCadastrarEndereco = ({ setEstadoForm, userId, atualizarEnderecos }) => {
+    const { token } = useContext(AuthContext);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [cepIncorreto, setCepIncorreto] = useState(false)
     const [endereco, setEndereco] = useState({
@@ -47,7 +49,8 @@ const FormCadastrarEndereco = ({ setEstadoForm, userId, atualizarEnderecos }) =>
 
     const buscarCEP = useCallback(async () => {
         try {
-            const response = await axios.get(`https://brasilapi.com.br/api/cep/v1/${endereco.cep.replace(/\D/g, '')}`);
+            const response = await axios.get(`https://brasilapi.com.br/api/cep/v1/${endereco.cep.replace(/\D/g, '')}`,
+                { headers: { 'Authorization': `Bearer ${token}` } });
             const { street, neighborhood, city, state } = response.data;
             setCepIncorreto(false);
 
@@ -70,7 +73,7 @@ const FormCadastrarEndereco = ({ setEstadoForm, userId, atualizarEnderecos }) =>
             setCepIncorreto(true);
             notifyError("Erro ao buscar o CEP. Verifique e tente novamente.");
         }
-    }, [endereco.cep, setEndereco]);
+    }, [endereco.cep, setEndereco, token]);
 
     useEffect(() => {
         if (endereco.cep?.replace(/\D/g, '').length === 8) {
@@ -97,7 +100,7 @@ const FormCadastrarEndereco = ({ setEstadoForm, userId, atualizarEnderecos }) =>
         }
 
         try {
-            await axios.post(`${api}user/${userId}/endereco`, endereco);
+            await axios.post(`${api}user/${userId}/endereco`, endereco, { headers: { 'Authorization': `Bearer ${token}` } });
             notifySuccess();
             atualizarEnderecos();
             closeModal();

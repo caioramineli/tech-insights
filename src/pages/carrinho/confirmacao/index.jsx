@@ -21,7 +21,7 @@ export default function Confirmacao() {
     const api = process.env.REACT_APP_API_URL;
     const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento, setPedido, cupom, cartao, calcularValorTotal } = useCarrinho();
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const { user } = useContext(AuthContext);
+    const { user, token } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -57,7 +57,7 @@ export default function Confirmacao() {
 
         try {
             setIsSubmitting(true);
-            const response = await axios.post(api + "order", pedido);
+            const response = await axios.post(api + "order", pedido, { headers: { 'Authorization': `Bearer ${token}` } });
             if (response.status === 201) {
                 setPedido(response.data.order);
                 navigate('/pedido-realizado', {
@@ -114,7 +114,7 @@ export default function Confirmacao() {
                                                 <span className="text-base">CPF: {user.cpf}</span>
                                             </div>
                                         </div>
-                                        <hr className="block sm:hidden"/>
+                                        <hr className="block sm:hidden" />
                                         <div className="flex flex-col gap-2">
                                             <div className="flex gap-2 items-center ">
                                                 <FaTruck className="text-emerald-700 text-xl" />

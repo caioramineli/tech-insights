@@ -128,7 +128,7 @@ li {
 .divInputModerno:focus-within label {
     top: 0px !important;
     left: 8px;
-    font-size: 0.9rem;
+    font-size: 0.825rem;
     background-color: #fff;
     padding: 0 2px;
     color: #059669 !important;

@@ -10,7 +10,7 @@ import VoltarMinhaConta from "../../../components/VoltarMinhaConta";
 const PaginaFavoritos = () => {
     const [produtosFavoritos, setProdutosFavoritos] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { favoritos } = useContext(AuthContext);
+    const { favoritos, token } = useContext(AuthContext);
     const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const PaginaFavoritos = () => {
 
         async function getProdutos() {
             try {
-                const response = await axios.post(`${api}product/favoritos`, favoritos);
+                const response = await axios.post(`${api}product/favoritos`, favoritos, { headers: { 'Authorization': `Bearer ${token}` } });
                 setProdutosFavoritos(response.data.products);
             } catch (error) {
                 console.error("Erro ao buscar produtos:", error);
@@ -31,7 +31,7 @@ const PaginaFavoritos = () => {
         }
 
         getProdutos();
-    }, [api, favoritos]);
+    }, [api, favoritos, token]);
 
     if (loading) {
         return <Loading />;

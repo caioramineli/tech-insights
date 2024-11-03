@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Favoritar = ({ produto, tamanho = 'text-xl' }) => {
     const [fav, setFav] = useState(false);
     const api = process.env.REACT_APP_API_URL;
-    const { user, favoritos, updateFavoritos } = useContext(AuthContext);
+    const { user, token, favoritos, updateFavoritos } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,13 +20,21 @@ const Favoritar = ({ produto, tamanho = 'text-xl' }) => {
         if (user) {
             setFav((prev) => !prev);
             try {
-                await axios.post(`${api}user/${user.id}/favorito/${produto}`);
+                await axios.post(
+                    `${api}user/${user.id}/favorito/${produto}`,
+                    {},
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
                 updateFavoritos(user.id);
             } catch (error) {
                 console.log(error);
             }
         } else {
-            navigate('/login')
+            navigate('/login');
         }
     };
 

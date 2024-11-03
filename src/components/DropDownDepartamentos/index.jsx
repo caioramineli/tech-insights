@@ -58,7 +58,7 @@ export default function DropDownDepartamentos() {
             </li>
 
             <li>
-                <Link to="/categoria/Guias-Informativos">Guias Informativos</Link>
+                <Link to="/guias">Guias Informativos</Link>
             </li>
 
             <li>

@@ -10,7 +10,7 @@ import { FaPix } from 'react-icons/fa6';
 import { SiMercadopago } from 'react-icons/si';
 
 export default function Pedido() {
-    const { user } = useContext(AuthContext);
+    const { user, token } = useContext(AuthContext);
     const { idPedido } = useParams();
     const [pedido, setPedido] = useState(null)
     const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ export default function Pedido() {
     useEffect(() => {
         const fetchPedidos = async () => {
             try {
-                const response = await axios.get(`${api}user/${user.id}/orders/${idPedido}`);
+                const response = await axios.get(`${api}user/${user.id}/orders/${idPedido}`, { headers: { 'Authorization': `Bearer ${token}` } });
                 setPedido(response.data);
             } catch (err) {
                 console.log(err);
@@ -52,7 +52,7 @@ export default function Pedido() {
         if (user) {
             fetchPedidos();
         }
-    }, [user, api, idPedido]);
+    }, [user, api, idPedido, token]);
 
     if (loading) {
         return <Loading />;
