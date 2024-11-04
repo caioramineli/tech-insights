@@ -179,15 +179,15 @@
     }
 
     .divInputModerno:focus-within label {
-        font-size: 0.825rem !important;
+        font-size: 0.8rem !important;
     }
 
     .divInputModerno input:not(:placeholder-shown)+label {
-        font-size: 0.825rem !important;
+        font-size: 0.8rem !important;
     }
 
     .divSelectModerno select {
-        font-size: 0.925rem;
+        font-size: 0.9rem;
         padding: 9px 12px;
     }
 
@@ -201,13 +201,13 @@
 
     .divSelectModerno:focus-within label {
         left: 8px;
-        font-size: 0.825rem;
+        font-size: 0.8rem;
     }
 
     .divSelectModerno select:not(:placeholder-shown)+label,
     .divSelectModerno select:valid+label {
         left: 8px;
-        font-size: 0.825rem;
+        font-size: 0.8rem;
     }
 
     :root {
