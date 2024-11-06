@@ -44,7 +44,15 @@
 }
 
 #container-login .divInputModerno label {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+}
+
+#container-login .divInputModerno:focus-within label {
+    font-size: 0.9rem !important;
+}
+
+#container-login .divInputModerno input:not(:placeholder-shown)+label{
+    font-size: 0.9rem ;
 }
 
 #container-login .divInputModerno:focus-within label {
