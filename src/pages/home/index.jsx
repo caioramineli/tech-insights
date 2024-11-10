@@ -10,22 +10,42 @@ export default function Home() {
     const [primeirosProdutos, setPrimeirosProdutos] = useState([]);
     const [restanteProdutos, setRestanteProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [loadingRestante, setLoadingRestante] = useState(true);
     const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
-        async function getProdutos() {
-            try {
-                const response = await axios.get(api + "productHome?divisao=10");
-                setPrimeirosProdutos(response.data.primeirosProdutos);
-                setRestanteProdutos(response.data.restanteProdutos);
-            } catch (error) {
-                console.error("Erro ao buscar produtos:", error);
-            }
-            finally {
+        async function getPrimeirosProdutos() {
+            const cache = localStorage.getItem("primeirosProdutos");
+            if (cache) {
+                setPrimeirosProdutos(JSON.parse(cache));
                 setLoading(false);
+                getRestanteProdutos();
+            } else {
+                try {
+                    const response = await axios.get(api + "productHome?divisao=10");
+                    setPrimeirosProdutos(response.data.primeirosProdutos);
+                    localStorage.setItem("primeirosProdutos", JSON.stringify(response.data.primeirosProdutos));
+                } catch (error) {
+                    console.error("Erro ao buscar primeiros produtos:", error);
+                } finally {
+                    setLoading(false);
+                    getRestanteProdutos();
+                }
             }
         }
-        getProdutos();
+
+        async function getRestanteProdutos() {
+            try {
+                const response = await axios.get(api + "productHome?divisao=10&start=10");
+                setRestanteProdutos(response.data.restanteProdutos);
+            } catch (error) {
+                console.error("Erro ao buscar restante dos produtos:", error);
+            } finally {
+                setLoadingRestante(false);
+            }
+        }
+
+        getPrimeirosProdutos();
     }, [api]);
 
     if (loading) {
@@ -46,14 +66,21 @@ export default function Home() {
             <hr className='border border-emerald-600 w-full mt-8' />
             <ContainerMarcas />
             <hr className='border border-emerald-600 w-full mt-5' />
-            <section className="containerProdutos">
-                {restanteProdutos.map((product) => (
-                    <Produto
-                        key={product._id}
-                        product={product}
-                    />
-                ))}
-            </section>
+
+            {loadingRestante ? (
+                <div className="flex min-h-[50vh] justify-center items-center">
+                    <Loading />
+                </div>
+            ) : (
+                <section className="containerProdutos">
+                    {restanteProdutos.map((product) => (
+                        <Produto
+                            key={product._id}
+                            product={product}
+                        />
+                    ))}
+                </section>
+            )}
         </main>
     );
 }
