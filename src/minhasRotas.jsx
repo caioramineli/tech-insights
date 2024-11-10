@@ -34,12 +34,14 @@ import GuiasInformativos from "./pages/guiasInformativos";
 import MontePC from "./pages/montePC";
 import PaginaCupons from "./pages/cupons";
 
+import HomeAdmin from "./admin/pages/home";
 import ProductUpload from "./admin/pages/product";
 import AdminCuponPage from "./admin/pages/cupon";
 
 import { NotFound } from "./pages/notfound";
 
-import ProtectedRoute from './protectRoutes';
+import ProtectedRouteUser from './protectRoutes/user';
+import ProtectedRouteAdmin from './protectRoutes/admin';
 
 import ScrollToTop from "./components/ScrollTop";
 
@@ -56,18 +58,18 @@ export default function MinhasRotas() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/cadastrar" element={<Cadastrar />} />
 
-                    <Route path="/minha-conta" element={<ProtectedRoute element={<Conta />} />} />
-                    <Route path="/minha-conta/meus-dados" element={<ProtectedRoute element={<Dados />} />} />
-                    <Route path="/minha-conta/pedidos" element={<ProtectedRoute element={<Pedidos />} />} />
-                    <Route path="/minha-conta/pedidos/:idPedido" element={<ProtectedRoute element={<Pedido />} />} />
-                    <Route path="/minha-conta/favoritos" element={<ProtectedRoute element={<PaginaFavoritos />} />} />
-                    <Route path="/minha-conta/enderecos" element={<ProtectedRoute element={<EnderecosUser />} />} />
+                    <Route path="/minha-conta" element={<ProtectedRouteUser element={<Conta />} />} />
+                    <Route path="/minha-conta/meus-dados" element={<ProtectedRouteUser element={<Dados />} />} />
+                    <Route path="/minha-conta/pedidos" element={<ProtectedRouteUser element={<Pedidos />} />} />
+                    <Route path="/minha-conta/pedidos/:idPedido" element={<ProtectedRouteUser element={<Pedido />} />} />
+                    <Route path="/minha-conta/favoritos" element={<ProtectedRouteUser element={<PaginaFavoritos />} />} />
+                    <Route path="/minha-conta/enderecos" element={<ProtectedRouteUser element={<EnderecosUser />} />} />
 
                     <Route path="/carrinho" element={<Carrinho />} />
-                    <Route path="/entrega" element={<ProtectedRoute element={<Entrega />} />} />
-                    <Route path="/pagamento" element={<ProtectedRoute element={<Pagamento />} />} />
-                    <Route path="/confirmacao" element={<ProtectedRoute element={<Confirmacao />} />} />
-                    <Route path="/pedido-realizado" element={<ProtectedRoute element={<PedidoRealizado />} />} />
+                    <Route path="/entrega" element={<ProtectedRouteUser element={<Entrega />} />} />
+                    <Route path="/pagamento" element={<ProtectedRouteUser element={<Pagamento />} />} />
+                    <Route path="/confirmacao" element={<ProtectedRouteUser element={<Confirmacao />} />} />
+                    <Route path="/pedido-realizado" element={<ProtectedRouteUser element={<PedidoRealizado />} />} />
 
                     <Route path="/marcas/:marca" element={<PaginaMarca />} />
                     <Route path="/produto/:productId" element={<PaginaProduto />} />
@@ -82,8 +84,9 @@ export default function MinhasRotas() {
                     <Route path="/categoria/redes" element={<RedesPage />} />
                     <Route path="/categoria/computadores" element={<ComputadoresPage />} />
 
-                    <Route path="/admin/produtos" element={<ProductUpload />} />
-                    <Route path="/admin/cupons" element={< AdminCuponPage />} />
+                    <Route path="/admin" element={<ProtectedRouteAdmin element={<HomeAdmin />} />} />
+                    <Route path="/admin/produtos" element={<ProtectedRouteAdmin element={<ProductUpload />} />} />
+                    <Route path="/admin/cupons" element={<ProtectedRouteAdmin element={<AdminCuponPage />} />} />
 
                     <Route path="*" element={<NotFound />} />
                 </Routes>
