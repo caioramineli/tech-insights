@@ -18,7 +18,7 @@ export default function Conta() {
     useEffect(() => {
         const fetchPedidos = async () => {
             try {
-                const response = await axios.get(`${api}user/${user.id}/orders`, { headers: { 'Authorization': `Bearer ${token}` } });
+                const response = await axios.get(`${api}user/${user.id}/last-order`, { headers: { 'Authorization': `Bearer ${token}` } });
                 setPedidos(response.data);
             } catch (err) {
                 console.log(err);
@@ -119,7 +119,7 @@ export default function Conta() {
                     {pedidos.length === 0 ? (
                         <p>Nenhum pedido encontrado.</p>
                     ) : (
-                        <PedidoContainer pedido={pedidos[0]} />
+                        <PedidoContainer pedido={pedidos} />
                     )}
                 </>
             )}

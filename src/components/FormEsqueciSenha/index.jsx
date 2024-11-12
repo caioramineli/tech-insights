@@ -31,7 +31,7 @@ const FormEsqueciSenha = ({ email, setEmail, setModal }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-8 mt-2">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-2">
             <div className="bg-gray-200 p-4 flex items-center justify-center">
                 <p className="text-sm sm:text-base">As instruções para redefinir sua senha serão enviadas para o seu email.</p>
             </div>

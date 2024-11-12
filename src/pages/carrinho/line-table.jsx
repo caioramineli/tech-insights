@@ -1,31 +1,22 @@
 import { FaChevronLeft, FaChevronRight, FaTrash } from "react-icons/fa";
-import { useState, useEffect } from "react";
 import { useCarrinho } from '../../contexts/contex-Cart';
 import { Link } from "react-router-dom";
 
 export default function LineTableCart({ produto, removerProduto, esconder = 'flex' }) {
-    const { atualizarQuantidade } = useCarrinho();
-    const [qtd, setQtd] = useState(produto.quantidade || 1);
+    const { atualizarQuantidade, carrinho } = useCarrinho();
     const precoUnitario = produto.precoPrazo;
-    const [subtotal, setSubTotal] = useState(precoUnitario * qtd);
-
-    useEffect(() => {
-        setSubTotal(precoUnitario * qtd);
-    }, [qtd, precoUnitario]);
+    const qtd = carrinho.find(item => item._id === produto._id)?.quantidade || 1;
+    const subtotal = precoUnitario * qtd;
 
     function aumentarQtd() {
         if (qtd < 10) {
-            const novaQtd = qtd + 1;
-            setQtd(novaQtd);
-            atualizarQuantidade(produto._id, novaQtd);
+            atualizarQuantidade(produto._id, qtd + 1);
         }
     }
 
     function diminuirQtd() {
         if (qtd > 1) {
-            const novaQtd = qtd - 1;
-            setQtd(novaQtd);
-            atualizarQuantidade(produto._id, novaQtd);
+            atualizarQuantidade(produto._id, qtd - 1);
         }
     }
 
