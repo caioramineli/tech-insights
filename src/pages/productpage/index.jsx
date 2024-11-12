@@ -20,7 +20,7 @@ export default function PaginaProduto() {
     useEffect(() => {
         const getProductData = async () => {
             try {
-                const response = await axios.get(`${api}product/${productId}`);
+                const response = await axios.get(`${api}listar-produto/${productId}`);
                 setProductData(response.data.product);
             } catch (err) {
                 setError(err.message);

@@ -22,7 +22,7 @@ export default function Home() {
                 getRestanteProdutos();
             } else {
                 try {
-                    const response = await axios.get(api + "productHome?divisao=10");
+                    const response = await axios.get(api + "listar-produtos-home?divisao=10");
                     setPrimeirosProdutos(response.data.primeirosProdutos);
                     localStorage.setItem("primeirosProdutos", JSON.stringify(response.data.primeirosProdutos));
                 } catch (error) {
@@ -36,7 +36,7 @@ export default function Home() {
 
         async function getRestanteProdutos() {
             try {
-                const response = await axios.get(api + "productHome?divisao=10&start=10");
+                const response = await axios.get(api + "listar-produtos-home?divisao=10&start=10");
                 setRestanteProdutos(response.data.restanteProdutos);
             } catch (error) {
                 console.error("Erro ao buscar restante dos produtos:", error);

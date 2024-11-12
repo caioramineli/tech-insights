@@ -21,8 +21,8 @@ const PaginaFavoritos = () => {
 
         async function getProdutos() {
             try {
-                const response = await axios.post(`${api}product/favoritos`, favoritos, { headers: { 'Authorization': `Bearer ${token}` } });
-                setProdutosFavoritos(response.data.products);
+                const response = await axios.post(`${api}listar-favoritos`, favoritos, { headers: { 'Authorization': `Bearer ${token}` } });
+                setProdutosFavoritos(response.data.produtos);
             } catch (error) {
                 console.error("Erro ao buscar produtos:", error);
             } finally {

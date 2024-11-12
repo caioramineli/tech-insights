@@ -17,7 +17,7 @@ const Busca = () => {
         setLoading(true);
         try {
             if (query) {
-                const response = await axios.get(`${api}products/search?q=${query}&sort=${sortOption}`);
+                const response = await axios.get(`${api}buscar-produtos?q=${query}&sort=${sortOption}`);
                 setProdutos(response.data);
             }
         } catch (error) {

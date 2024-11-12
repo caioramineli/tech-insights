@@ -9,7 +9,7 @@ export default function Produto({ product }) {
         <Link to={`/produto/${product._id}`}>
             <div className="boxProduto gap-1">
                 <Favoritar produto={product._id} />
-                <img src={api + product.img} loading="lazy" alt="produto" />
+                <img src={api + product.images[0]} loading="lazy" alt="produto" />
                 <p className="text-sm md:text-base">{product.nome}</p>
                 <p className="text-base md:text-lg">{product.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 <p className="text-[0.65rem] sm:text-sm">10x de <span>{(product.precoPrazo / 10).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> sem juros</p>

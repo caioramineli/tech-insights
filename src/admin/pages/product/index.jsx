@@ -74,7 +74,7 @@ const ProductUpload = () => {
         }
 
         try {
-            await axios.post(api + "product/create", form, {
+            await axios.post(api + "criar-produto", form, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${token}`,

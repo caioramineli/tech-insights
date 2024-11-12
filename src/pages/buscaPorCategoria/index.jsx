@@ -16,7 +16,7 @@ const BuscaPorCategoria = () => {
         setLoading(true);
         try {
             if (categoria) {
-                const response = await axios.get(`${api}produtos/categoria/${categoria}?sort=${sortOption}`);
+                const response = await axios.get(`${api}listar-produtos-por-categoria/${categoria}?sort=${sortOption}`);
                 setProdutos(response.data);
             }
         } catch (error) {

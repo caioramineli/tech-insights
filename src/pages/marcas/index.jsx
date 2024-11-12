@@ -13,7 +13,7 @@ function PaginaMarca() {
     useEffect(() => {
         const fetchProdutos = async () => {
             try {
-                const response = await axios.get(`${api}produtos/${marca}`);
+                const response = await axios.get(`${api}listar-produtos-por-marca/${marca}`);
                 setProdutos(response.data);
             } catch (error) {
                 console.error('Erro ao buscar produtos:', error);
