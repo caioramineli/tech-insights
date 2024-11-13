@@ -1,14 +1,22 @@
 import { IoSearch } from "react-icons/io5";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function PesquisarHeader({ display = "hidden", responsivo = "md:flex", mb = "" }) {
     const [query, setQuery] = useState('');
+
+    const notifyError = (message) => toast.error(message);
 
     const navigate = useNavigate();
 
     const handleSearch = async (e) => {
         e.preventDefault();
+        if (query === '') {
+            notifyError('Informe pelo menos uma letra')
+            return
+        }
         navigate(`/busca?query=${query}`);
         setQuery('')
     };
@@ -22,6 +30,7 @@ export default function PesquisarHeader({ display = "hidden", responsivo = "md:f
                 onChange={(e) => setQuery(e.target.value)}
                 value={query}
             />
+
             <button className="p-1" type="submit">
                 <IoSearch className="text-cyan-100 text-2xl cursor-pointer" />
             </button>

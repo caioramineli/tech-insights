@@ -63,7 +63,7 @@ export default function Conta() {
                         </span>
                         <div className='grid grid-cols-1 '>
                             <h2 className='text-sm sm:text-base font-bold'>MEUS DADOS</h2>
-                            <p className='text-sm sm-1 hidden sm:block'>Altere seus dados cadastrados. </p>
+                            <p className='text-sm sm-1 hidden sm:block'>Altere seus dados cadastrados.</p>
                         </div>
                     </div>
                 </Link>
@@ -74,7 +74,7 @@ export default function Conta() {
                             <HiShoppingBag className='text-emerald-600 text-3xl sm:text-4xl' />
                         </span>
                         <div className='grid grid-cols-1 '>
-                            <h2 className='text-sm sm:text-base font-bold uppercase'>Meu pedidos</h2>
+                            <h2 className='text-sm sm:text-base font-bold uppercase'>Meus pedidos</h2>
                             <p className='text-sm sm-1 hidden sm:block'>Veja históricos e acompanhe suas compras.</p>
                         </div>
                     </div>
@@ -87,7 +87,7 @@ export default function Conta() {
                         </span>
                         <div className='grid grid-cols-1 '>
                             <h2 className='text-sm sm:text-base font-bold uppercase'>Favoritos</h2>
-                            <p className='text-sm sm-1 hidden sm:block'>Consulte sua lista de produtos favoritos</p>
+                            <p className='text-sm sm-1 hidden sm:block'>Consulte sua lista de produtos favoritos.</p>
                         </div>
                     </div>
                 </Link>

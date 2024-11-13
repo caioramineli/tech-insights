@@ -35,8 +35,9 @@ import MontePC from "./pages/montePC";
 import PaginaCupons from "./pages/cupons";
 
 import HomeAdmin from "./admin/pages/home";
-import ProductUpload from "./admin/pages/product";
-import AdminCuponPage from "./admin/pages/cupon";
+import ProductUpload from "./admin/pages/produtos";
+import AdminCuponPage from "./admin/pages/cupons";
+import AdminOrderPage from "./admin/pages/orders";
 
 import { NotFound } from "./pages/notfound";
 
@@ -50,8 +51,8 @@ export default function MinhasRotas() {
     return (
         <>
             <BR>
-                <ScrollToTop />
                 <Header />
+                <ScrollToTop />
 
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -87,6 +88,7 @@ export default function MinhasRotas() {
                     <Route path="/admin" element={<ProtectedRouteAdmin element={<HomeAdmin />} />} />
                     <Route path="/admin/produtos" element={<ProtectedRouteAdmin element={<ProductUpload />} />} />
                     <Route path="/admin/cupons" element={<ProtectedRouteAdmin element={<AdminCuponPage />} />} />
+                    <Route path="/admin/pedidos" element={<ProtectedRouteAdmin element={<AdminOrderPage />} />} />
 
                     <Route path="*" element={<NotFound />} />
                 </Routes>

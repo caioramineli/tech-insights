@@ -3,11 +3,10 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import axios from 'axios';
 import Loading from '../../../components/Loading';
 import { Link, useParams } from 'react-router-dom';
-import { FaBarcode, FaReceipt, FaRegCreditCard } from "react-icons/fa";
+import { FaReceipt } from "react-icons/fa";
 import { format } from 'date-fns';
 import VoltarMinhaConta from '../../../components/VoltarMinhaConta';
-import { FaPix } from 'react-icons/fa6';
-import { SiMercadopago } from 'react-icons/si';
+import { IconePagamento } from '../../../components/IconePagamento'
 
 export default function Pedido() {
     const { user, token } = useContext(AuthContext);
@@ -20,21 +19,6 @@ export default function Pedido() {
     function formatarPreco(preco) {
         return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
-
-    const exibirIconePagamento = () => {
-        switch (pedido.formaPagamento) {
-            case 'PIX':
-                return <FaPix className="text-xl text-teal-600" />;
-            case 'Boleto':
-                return <FaBarcode className="text-xl text-zinc-900" />;
-            case 'Cartão':
-                return <FaRegCreditCard className="text-xl text-cyan-700" />;
-            case 'Mercado Pago':
-                return <SiMercadopago className="text-xl text-sky-700" />;
-            default:
-                return null;
-        }
-    };
 
     useEffect(() => {
         const fetchPedidos = async () => {
@@ -121,7 +105,7 @@ export default function Pedido() {
                             <p>{pedido.endereco.rua}, {pedido.endereco.numero}, {pedido.endereco.cidade}, {pedido.endereco.estado}</p>
                         </div>
                         <hr />
-                        <h3 className='font-semibold flex items-center gap-2'>Pagamento via {pedido.formaPagamento} {exibirIconePagamento()}</h3>
+                        <h3 className='font-semibold flex items-center gap-2'>Pagamento via {pedido.formaPagamento} <IconePagamento pagamento={pedido.formaPagamento} /></h3>
                         <hr />
                         <div className="flex justify-between">
                             <p>Total produto(s): </p>

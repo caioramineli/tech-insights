@@ -10,6 +10,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useCarrinho } from '../../contexts/contex-Cart';
 import Logo from "../../assets/logo.png"
+import { ToastContainer } from 'react-toastify';
 
 const Header = () => {
     const { carrinho } = useCarrinho();
@@ -74,6 +75,7 @@ const Header = () => {
             </section>
             <NavBar />
             <PesquisarHeader display='flex' responsivo="md:hidden" mb="mb-4" />
+            <ToastContainer autoClose={1500}/>
         </header >
     );
 }
