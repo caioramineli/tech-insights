@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import InputModerno from '../../../components/InputModerno';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { validateCPF, validateCardNumber } from '../../../components/Validations';
 import { useCarrinho } from '../../../contexts/contex-Cart';
 import SelectModerno from '../../../components/SelectModerno';
@@ -72,7 +71,7 @@ const FormCartao = ({ dadosCartao, setDadosCartao }) => {
     };
 
     return (
-        <form method="POST" onSubmit={handleSubmit} className='flex flex-col gap-4 mt-2'>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-4 mt-2'>
             <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5'>
                 <InputModerno
                     name="numero"

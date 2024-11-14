@@ -4,7 +4,7 @@ import { IoMdRadioButtonOn, IoMdRadioButtonOff } from 'react-icons/io';
 const FormaPagamento = ({ formaPagamento, tipo, onClick, icone, descricao, desconto }) => {
     return (
         <div
-            onClick={onClick}
+            onClick={() => onClick()}
             className={`border-emerald-600 flex justify-between items-center border gap-2 px-3 sm:px-4 py-2 rounded-md cursor-pointer ${formaPagamento !== tipo ? 'border-zinc-300' : ''}`}
         >
             <div className="flex items-center gap-2 sm:gap-4">

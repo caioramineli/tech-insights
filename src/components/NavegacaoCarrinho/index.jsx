@@ -11,7 +11,7 @@ const NavegacaoCarrinho = ({ onClick, linkVoltar, textoVoltar, textoContinuar, r
                 </button>
             </Link>
 
-            <button onClick={onClick} className="btnPadrao !p-2 !font-bold !text-sm sm:!text-base" type="button">
+            <button onClick={() => onClick()} className="btnPadrao !p-2 !font-bold !text-sm sm:!text-base" type="button">
                 {textoContinuar}
             </button>
         </div>

@@ -1,6 +1,5 @@
 import ResumoCart from "../resumo-cart";
 import { useCarrinho } from '../../../contexts/contex-Cart';
-import 'react-toastify/dist/ReactToastify.css';
 import CarrinhoVazio from "../carrinhoVazio";
 import StepBar from "../step-bar";
 import { FaPix } from "react-icons/fa6";
@@ -8,6 +7,7 @@ import { IoIosRemoveCircleOutline, IoMdRadioButtonOff, IoMdRadioButtonOn } from 
 import { SiMercadopago } from "react-icons/si";
 import { FaBarcode, FaRegCreditCard } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { FormCartao } from "./formCartao";
 import { useState } from "react";
@@ -26,7 +26,7 @@ export default function Pagamento() {
         status: false
     });
 
-    const notifyError = (message) => toast.error(message);
+    const notifyError = (text) => toast.error(text);
     const navigate = useNavigate();
 
     function formatarPreco(preco) {
@@ -54,20 +54,19 @@ export default function Pagamento() {
         setCartao(null);
     }
 
-    const verificarFromaPagamento = () => {
-        if (formaPagamento === "") {
+    function verificarFormaPagamento() {
+        if (!formaPagamento) {
             notifyError('Escolha uma forma de pagamento!');
             return;
         }
 
-        if (formaPagamento === "Cartão") {
-            if (cartao.status === false) {
-                notifyError('Informe os dados do cartão!');
-                return;
-            }
+        if (formaPagamento === "Cartão" && (!cartao || !cartao.status)) {
+            notifyError('Informe os dados do cartão!');
+            return;
         }
+
         navigate('/confirmacao');
-    };
+    }
 
     function getUltimos4Digitos(numeroCartao) {
         return numeroCartao.slice(-4);
@@ -155,7 +154,7 @@ export default function Pagamento() {
                                 </div>
 
                                 <NavegacaoCarrinho
-                                    onClick={verificarFromaPagamento}
+                                    onClick={verificarFormaPagamento}
                                     linkVoltar="/entrega"
                                     textoVoltar="Voltar para a entrega"
                                     textoContinuar="Continuar para confirmação"
@@ -166,7 +165,7 @@ export default function Pagamento() {
                             <section className="flex flex-col gap-4 max-lg:mt-1 mb-2">
                                 <ResumoCart />
                                 <NavegacaoCarrinho
-                                    onClick={verificarFromaPagamento}
+                                    onClick={verificarFormaPagamento}
                                     linkVoltar="/entrega"
                                     textoVoltar="Voltar"
                                     textoContinuar="Continuar para confirmação"
