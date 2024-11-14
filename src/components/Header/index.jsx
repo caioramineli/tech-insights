@@ -35,9 +35,9 @@ const Header = () => {
                     <PiUserCircleLight className='w-9 h-9' />
                     {user ? (
                         <div>
-                            <span className='font-bold text-nowrap'>Olá, {getFirstName(user.nome)}</span>
+                            <span className='font-bold whitespace-nowrap'>Olá, {getFirstName(user.nome)}</span>
                             <div className='flex gap-1'>
-                                <Link to="/minha-conta" className='text-nowrap hover:text-cyan-500 duration-200'><button>Minha conta</button></Link>
+                                <Link to="/minha-conta" className='whitespace-nowrap hover:text-cyan-500 duration-200'><button>Minha conta</button></Link>
                                 <span>|</span>
                                 <button className='hover:text-cyan-500 duration-200'
                                     onClick={() => {
