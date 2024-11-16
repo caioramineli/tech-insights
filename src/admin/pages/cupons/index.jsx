@@ -1,10 +1,12 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../../components/Loading';
 import { ToastContainer, toast } from 'react-toastify';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 const AdminCuponPage = () => {
+    const { token } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         codigo: "",
         descricao: "",
@@ -31,9 +33,7 @@ const AdminCuponPage = () => {
         setIsSubmitting(true);
 
         try {
-            console.log(formData.validade);
-
-            await axios.post(`${api}cupon/create`, formData);
+            await axios.post(`${api}cupon/create`, formData, { headers: { 'Authorization': `Bearer ${token}` } });
 
             setFormData({
                 codigo: "",
