@@ -59,7 +59,7 @@ const Frete = () => {
                     </div>
                 ) : (
                     <button
-                        className="flex items-center justify-center gap-2 bg-cyan-600 rounded-md p-2 text-cyan-50 text-sm sm:text-base"
+                        className="flex items-center justify-center gap-2 bg-cyan-600 hover:bg-cyan-700 rounded-md p-2 text-cyan-50 text-sm sm:text-base"
                         disabled={isCalculatingFrete}
                     >
                         Calcular

@@ -16,7 +16,7 @@ export default function EspecificacaoProduto({ especificacoes }) {
                 className='text-xl text-zinc-900 font-bold cursor-pointer flex justify-between items-center'
                 onClick={toggleAccordion}
             >
-                Espeficações
+                Especificações
                 <span
                     className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
                 >

@@ -159,16 +159,8 @@ export default function Confirmacao() {
                                         ))}
                                     </div>
                                 </div>
-
-                                <div className="hidden md:flex justify-between">
-                                    <Link to="/pagamento">
-                                        <button className="flex items-center gap-2 p-2 hover:bg-zinc-300 duration-200 rounded-md">
-                                            <FaArrowLeft />
-                                            <span className="uppercase text-sm">Voltar para o pagamento</span>
-                                        </button>
-                                    </Link>
-                                </div>
                             </section>
+                            
                             <section className="flex flex-col gap-4 max-lg:mt-1 mb-8">
                                 <ResumoCart />
                                 {isSubmitting ? (
