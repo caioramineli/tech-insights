@@ -3,7 +3,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import b1 from '../../assets/b1.webp'
+import b1 from '../../assets/banner-1.png'
 import b2 from '../../assets/b2.webp'
 import b3 from '../../assets/b3.webp'
 import b4 from '../../assets/b4.webp'
@@ -13,7 +13,7 @@ export default function Slider() {
     const slides = [
         {
             id: 1,
-            src: b4,
+            src: b1,
             alt: 'Promoção 1'
         },
         {
@@ -28,7 +28,7 @@ export default function Slider() {
         },
         {
             id: 4,
-            src: b1,
+            src: b4,
             alt: 'Promoção 4'
         },
         {

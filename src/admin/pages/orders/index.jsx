@@ -71,7 +71,7 @@ const AdminPedidos = () => {
                     <div className='flex items-center bg-white border-2 border-emerald-600 rounded-md'>
                         <input
                             type="text"
-                            className='p-1 outline-none rounded-md'
+                            className='p-[6px] outline-none rounded-md'
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                         />

@@ -4,23 +4,31 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import Loading from '../../../components/Loading';
 import { IoSearch } from 'react-icons/io5';
 import { ToastContainer } from 'react-toastify';
-import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
-import { MdAdd } from 'react-icons/md';
+import { AiOutlineEdit } from 'react-icons/ai';
+import { TiCancel } from "react-icons/ti";
+import { MdAdd, MdOutlineCancel } from 'react-icons/md';
 import { Modal } from '../../../components/Modal';
 import AdicionarEstoque from './formAdicionarEstoque';
+import { Link } from 'react-router-dom';
+import { FcCancel } from 'react-icons/fc';
 
 const AdminProdutos = () => {
-    const [produtos, setProdutos] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
     const { token } = useContext(AuthContext);
-    const [sortOption, setSortOption] = useState('nome');
-    const [input, setInput] = useState('');
-    const [searchQuery, setSearchQuery] = useState('');
-    const [modalEstoque, setModalEstoque] = useState(false)
     const api = process.env.REACT_APP_API_URL;
 
+    const [produtos, setProdutos] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    const [sortOption, setSortOption] = useState('nome');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [input, setInput] = useState('');
+
+    const [modalEstoque, setModalEstoque] = useState(false)
+
+
     const fetchProdutos = useCallback(async () => {
+        setLoading(true);
         try {
             const response = await axios.get(`${api}admin-buscar-produtos`, {
                 headers: { 'Authorization': `Bearer ${token}` },
@@ -69,7 +77,7 @@ const AdminProdutos = () => {
     }
 
     const handleDelete = async (id) => {
-        if (window.confirm('Deseja realmente excluir este produto?')) {
+        if (window.confirm('Deseja realmente desabilitar este produto?')) {
             try {
                 await axios.delete(`${api}admin-deletar-produto/${id}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
@@ -85,19 +93,26 @@ const AdminProdutos = () => {
         <div className="containerPadrao mx-auto gap-2">
             <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center'>
                 <h1 className="text-lg sm:text-2xl font-bold text-zinc-900">Gerenciar Produtos</h1>
-                <form onSubmit={envioForm} className='flex items-center gap-2'>
-                    <div className='flex items-center bg-white border-2 border-emerald-600 rounded-md'>
-                        <input
-                            type="text"
-                            className='p-1 outline-none rounded-md'
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                        />
-                        <button className="p-1 " type="submit">
-                            <IoSearch className="text-emerald-700 text-2xl cursor-pointer" />
-                        </button>
-                    </div>
-                </form>
+
+                <div className='flex items-center gap-3'>
+                    <button className='btnPadrao !text-sm gap-1'>
+                        <MdAdd className='text-2xl text-emerald-50' />
+                        Novo Produto
+                    </button>
+                    <form onSubmit={envioForm} className='flex items-center gap-2'>
+                        <div className='flex items-center bg-white border-2 border-emerald-600 rounded-md'>
+                            <input
+                                type="text"
+                                className='p-[6px] outline-none rounded-md'
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                            />
+                            <button className="p-1 " type="submit">
+                                <IoSearch className="text-emerald-700 text-2xl cursor-pointer" />
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <div className='flex flex-col bg-white rounded'>
@@ -132,23 +147,30 @@ const AdminProdutos = () => {
                     <div className='flex flex-col bg-white mt-1'>
                         {produtos.map((produto) => (
                             <div className='grid sm:grid-cols-2 lg:grid-cols-4 text-zinc-900 text-sm border-b p-3 gap-3' key={produto._id}>
+
                                 <div className='flex flex-col justify-center'>
                                     <p><strong>Nome: </strong>{produto.nome}</p>
                                 </div>
-                                <div className='flex flex-col justify-center items-center'>
-                                    {produto.images[0] && (
-                                        <img
-                                            src={api + produto.images[0]}
-                                            alt={produto.nome}
-                                            className="w-20 h-20 object-cover"
-                                        />
-                                    )}
-                                    <p><strong>Preço: </strong>{formatarPreco(produto.preco)}</p>
-                                </div>
+
+                                <Link to={`/produto/${produto._id}`}>
+
+                                    <div className='flex flex-col justify-center items-center'>
+                                        {produto.images[0] && (
+                                            <img
+                                                src={api + produto.images[0]}
+                                                alt={produto.nome}
+                                                className="w-20 h-20 object-cover"
+                                            />
+                                        )}
+                                        <p><strong>Preço: </strong>{formatarPreco(produto.preco)}</p>
+                                    </div>
+                                </Link>
+
                                 <div className='flex flex-col justify-center'>
-                                    <p><strong>Estoque: </strong>{produto.estoque}</p>
                                     <p><strong>Categoria: </strong>{produto.categoria}</p>
                                     <p><strong>Marca: </strong>{produto.marca}</p>
+                                    <p><strong>Estoque: </strong>{produto.estoque}</p>
+                                    <p><strong>Status: </strong>{produto.status}</p>
                                 </div>
 
                                 <div className='flex items-center justify-center gap-4'>
@@ -157,16 +179,15 @@ const AdminProdutos = () => {
                                         Estoque
                                     </button>
 
-
-                                    <button className='p-2 bg-cyan-600 text-white rounded' title="Editar">
+                                    <button className='p-2 bg-cyan-600 hover:bg-cyan-700 duration-200 text-white rounded' title="Editar">
                                         <AiOutlineEdit size={20} />
                                     </button>
                                     <button
                                         onClick={() => handleDelete(produto._id)}
-                                        className='p-2 bg-red-600 text-white rounded'
+                                        className='p-2 bg-red-600 hover:bg-red-700 duration-200 text-white rounded'
                                         title="Excluir"
                                     >
-                                        <AiOutlineDelete size={20} />
+                                        <MdOutlineCancel size={20} />
                                     </button>
                                 </div>
                             </div>
