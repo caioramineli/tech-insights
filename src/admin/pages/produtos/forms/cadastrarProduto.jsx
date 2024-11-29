@@ -9,9 +9,11 @@ import SelectModerno from "../../../../components/SelectModerno";
 import categorias from "../categorias";
 import TextAreaModerno from "../../../../components/TextAreaModerno";
 import DataList from "../dataListMarcas";
+import Loading from "../../../../components/Loading";
 
-const ProductUpload = ({ atualizarProdutos }) => {
+const ProductUpload = ({ atualizarProdutos, setEstadoModal }) => {
     const { token } = useContext(AuthContext);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [formData, setFormData] = useState({
         nome: "",
@@ -21,7 +23,6 @@ const ProductUpload = ({ atualizarProdutos }) => {
         especificacoes: "",
         marca: "",
         categoria: "",
-        estoque: "",
         images: []
     });
 
@@ -31,6 +32,11 @@ const ProductUpload = ({ atualizarProdutos }) => {
 
     const notifySuccess = () => toast.success("Cadastro realizado com sucesso!");
     const notifyError = (message) => toast.error(message);
+
+    function closeModal() {
+        setEstadoModal(false);
+        document.body.style.overflow = 'auto';
+    }
 
     const handleChange = (e) => {
         setFormData({
@@ -61,6 +67,7 @@ const ProductUpload = ({ atualizarProdutos }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
         const form = new FormData();
 
         for (const key in formData) {
@@ -77,7 +84,7 @@ const ProductUpload = ({ atualizarProdutos }) => {
             await axios.post(api + "criar-produto", form, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    Authorization: `Bearer ${token}`,
+                    'Authorization': `Bearer ${token}`,
                 },
             });
             setFormData({
@@ -96,10 +103,13 @@ const ProductUpload = ({ atualizarProdutos }) => {
                 fileInputRef.current.value = null;
             }
             notifySuccess();
+            closeModal();
             atualizarProdutos();
         } catch (error) {
             const erro = error.response?.data?.msg || "Erro ao cadastrar o produto.";
             notifyError(erro);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -188,9 +198,15 @@ const ProductUpload = ({ atualizarProdutos }) => {
             </div>
 
             <div className="flex items-center -mt-3">
-                <button className="btnPadrao !py-[10px] w-full">
-                    Cadastrar
-                </button>
+                {isSubmitting ? (
+                    <div className='flex justify-center h-[2.5rem] items-center'>
+                        <Loading />
+                    </div>
+                ) : (
+                    <button className="btnPadrao !py-[10px] w-full">
+                        Cadastrar
+                    </button>
+                )}
             </div>
 
             {previews.length > 0 && (

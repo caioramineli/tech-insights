@@ -5,13 +5,14 @@ import Loading from '../../../components/Loading';
 import { IoSearch } from 'react-icons/io5';
 import { ToastContainer } from 'react-toastify';
 import { AiOutlineEdit } from 'react-icons/ai';
-import { MdAdd, MdOutlineCancel } from 'react-icons/md';
+import { MdAdd } from 'react-icons/md';
 import { Modal } from '../../../components/Modal';
 import AdicionarEstoque from './forms/formAdicionarEstoque';
 import ProductUpload from './forms/cadastrarProduto';
 import { Link } from 'react-router-dom';
 import AtualizarProduto from './forms/atualizarProduto';
-import DesativarProduto from './forms/desativarProduto';
+import TrocarStatusProduto from './forms/trocarStatusProduto';
+import { FaExchangeAlt } from 'react-icons/fa';
 
 const AdminProdutos = () => {
     const { token } = useContext(AuthContext);
@@ -175,7 +176,7 @@ const AdminProdutos = () => {
                                                 className="w-20 h-20 object-cover"
                                             />
                                         )}
-                                        <p><strong>Preço: </strong>{formatarPreco(produto.preco)}</p>
+                                        <p><strong>Preço: </strong>{formatarPreco(produto.precoPrazo)}</p>
                                     </div>
                                 </Link>
 
@@ -197,10 +198,10 @@ const AdminProdutos = () => {
                                     </button>
                                     <button
                                         onClick={() => openDesativarProdutoModal(produto)}
-                                        className='p-2 bg-red-600 hover:bg-red-700 duration-200 text-white rounded'
-                                        title="Excluir"
+                                        className='p-2 bg-yellow-500 hover:bg-yellow-600 duration-200 text-white rounded'
+
                                     >
-                                        <MdOutlineCancel size={20} />
+                                        <FaExchangeAlt size={20} />
                                     </button>
                                 </div>
                             </div>
@@ -211,25 +212,35 @@ const AdminProdutos = () => {
 
             {modalAddProduto && (
                 <Modal setEstado={setModalAddProduto} titulo='Cadastrar novo produto' largura='max-w-5xl' >
-                    <ProductUpload />
+                    <ProductUpload atualizarProdutos={fetchProdutos} setEstadoModal={setModalAddProduto} />
                 </Modal>
             )}
 
             {modalEstoque && (
-                <Modal setEstado={setModalEstoque} titulo='Adicionar no estoque' largura='max-w-xl' >
-                    <AdicionarEstoque produto={produtoSelecionado} atualizarProdutos={fetchProdutos} setEstadoModal={setModalEstoque} />
+                <Modal setEstado={setModalEstoque} titulo='Adicionar no estoque' largura='max-w-lg' >
+                    <AdicionarEstoque
+                        produto={produtoSelecionado}
+                        atualizarProdutos={fetchProdutos}
+                        setEstadoModal={setModalEstoque} />
                 </Modal>
             )}
 
             {modalEditarProduto && (
                 <Modal setEstado={setModalEditarProduto} titulo='Editar dados do produto' largura='max-w-5xl' >
-                    <AtualizarProduto formData={produtoSelecionado} setFormData={setProdutoSelecionado} atualizarProdutos={fetchProdutos} />
+                    <AtualizarProduto
+                        formData={produtoSelecionado}
+                        setFormData={setProdutoSelecionado}
+                        atualizarProdutos={fetchProdutos}
+                        setEstadoModal={setModalEditarProduto} />
                 </Modal>
             )}
 
             {modalDesativarProduto && (
-                <Modal setEstado={setModalDesativarProduto} titulo='Desativar produto?' largura='max-w-xl' >
-                    <DesativarProduto produto={produtoSelecionado} atualizarProdutos={fetchProdutos} setEstadoModal={setModalDesativarProduto} />
+                <Modal setEstado={setModalDesativarProduto} titulo='Trocar Status do produto?' largura='max-w-xl' >
+                    <TrocarStatusProduto
+                        produto={produtoSelecionado}
+                        atualizarProdutos={fetchProdutos}
+                        setEstadoModal={setModalDesativarProduto} />
                 </Modal>
             )}
 

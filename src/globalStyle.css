@@ -152,7 +152,7 @@ li {
     font-size: 0.85rem;
     background-color: #fff;
     padding: 0 2px;
-    line-height: 0.7;
+    /* line-height: 0.7; */
 }
 
 .btnPadrao {

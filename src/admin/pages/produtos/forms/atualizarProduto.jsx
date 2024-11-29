@@ -9,16 +9,23 @@ import SelectModerno from "../../../../components/SelectModerno";
 import categorias from "../categorias";
 import TextAreaModerno from "../../../../components/TextAreaModerno";
 import DataList from "../dataListMarcas";
+import Loading from "../../../../components/Loading";
 
-const AtualizarProduto = ({ formData, setFormData, atualizarProdutos }) => {
+const AtualizarProduto = ({ formData, setFormData, atualizarProdutos, setEstadoModal }) => {
     const { token } = useContext(AuthContext);
-
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [previews, setPreviews] = useState(formData.images);
+    const [localPreviews, setLocalPreviews] = useState([]);
     const fileInputRef = useRef(null);
     const api = process.env.REACT_APP_API_URL;
 
     const notifySuccess = () => toast.success("Cadastro realizado com sucesso!");
     const notifyError = (message) => toast.error(message);
+
+    function closeModal() {
+        setEstadoModal(false);
+        document.body.style.overflow = 'auto';
+    }
 
     const handleChange = (e) => {
         setFormData({
@@ -44,17 +51,22 @@ const AtualizarProduto = ({ formData, setFormData, atualizarProdutos }) => {
         for (let i = 0; i < files.length; i++) {
             tmp.push(URL.createObjectURL(files[i]));
         }
-        setPreviews(tmp);
+        setLocalPreviews(tmp);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
         const form = new FormData();
 
         for (const key in formData) {
             if (key === "images") {
-                for (let i = 0; i < formData.images.length; i++) {
-                    form.append("images", formData.images[i]);
+                if (formData.images.length === 0) {
+                    previews.forEach((image) => form.append("images", image));
+                } else {
+                    for (let i = 0; i < formData.images.length; i++) {
+                        form.append("images", formData.images[i]);
+                    }
                 }
             } else {
                 form.append(key, formData[key]);
@@ -62,34 +74,29 @@ const AtualizarProduto = ({ formData, setFormData, atualizarProdutos }) => {
         }
 
         try {
-            await axios.post(api + "criar-produto", form, {
+            await axios.put(`${api}atualizar-produto/${formData._id}`, form, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${token}`,
                 },
             });
-            setFormData({
-                nome: "",
-                precoPrazo: "",
-                preco: "",
-                descricao: "",
-                especificacoes: "",
-                marca: "",
-                categoria: "",
-                estoque: "",
-                images: []
-            });
+            notifySuccess();
+            closeModal()
             setPreviews([]);
+            setLocalPreviews([]);
             if (fileInputRef.current) {
                 fileInputRef.current.value = null;
             }
-            notifySuccess();
             atualizarProdutos();
+
         } catch (error) {
             const erro = error.response?.data?.msg || "Erro ao cadastrar o produto.";
             notifyError(erro);
+        } finally {
+            setIsSubmitting(false);
         }
     };
+
 
     return (
         <form className="p-1 grid sm:grid-cols-2 gap-3" onSubmit={handleSubmit}>
@@ -102,7 +109,7 @@ const AtualizarProduto = ({ formData, setFormData, atualizarProdutos }) => {
                 label="Nome do produto"
                 required
             />
-            
+
             <InputModerno
                 name="precoPrazo"
                 type="number"
@@ -171,26 +178,46 @@ const AtualizarProduto = ({ formData, setFormData, atualizarProdutos }) => {
                     accept="image/*"
                     onChange={handleFileChange}
                     ref={fileInputRef}
-                    required
                 />
             </div>
 
             <div className="flex items-center -mt-3">
-                <button className="btnPadrao !py-[10px] w-full">
-                    Atualizar
-                </button>
+                {isSubmitting ? (
+                    <div className='flex justify-center h-[2.5rem] items-center'>
+                        <Loading />
+                    </div>
+                ) : (
+                    <button className="btnPadrao !py-[10px] w-full">
+                        Atualizar
+                    </button>
+                )}
             </div>
 
-            {previews.length > 0 && (
+            {(previews.length > 0 || localPreviews.length > 0) && (
                 <div className="flex flex-col gap-2">
                     <h3>Pré-visualização das Imagens</h3>
                     <div className="flex gap-4">
-                        {previews.map((pic, index) => (
-                            <img key={index} src={api + pic} className="w-32" alt={`preview-${index}`} />
-                        ))}
+                        {localPreviews.length > 0
+                            ? localPreviews.map((pic, index) => (
+                                <img
+                                    key={`local-${index}`}
+                                    src={pic}
+                                    className="w-32"
+                                    alt={`preview-local-${index}`}
+                                />
+                            ))
+                            : previews.map((pic, index) => (
+                                <img
+                                    key={`remote-${index}`}
+                                    src={api + pic}
+                                    className="w-32"
+                                    alt={`preview-remote-${index}`}
+                                />
+                            ))}
                     </div>
                 </div>
             )}
+
         </form>
     );
 };

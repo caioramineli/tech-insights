@@ -6,15 +6,14 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from "../../../../components/Loading";
 import InputModerno from "../../../../components/InputModerno";
-import BtnCancelar from "../../../../components/BtnCancel";
 
 const AdicionarEstoque = ({ produto, atualizarProdutos, setEstadoModal }) => {
-    const { token } = useContext(AuthContext);
+    const { token, user } = useContext(AuthContext);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const api = process.env.REACT_APP_API_URL;
 
-    const notifySuccess = () => toast.success("Cadastro realizado com sucesso!");
+    const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
 
     function closeModal() {
@@ -25,20 +24,27 @@ const AdicionarEstoque = ({ produto, atualizarProdutos, setEstadoModal }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        const formData = {
+            produtoId: produto._id,
+            quantidade: parseInt(e.target.quantidade.value, 10),
+            usuario: user.id
+        }
+
+        console.log(formData);
 
         try {
-            await axios.patch(api + "desativar-produto", {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    Authorization: `Bearer ${token}`,
-                },
+            const response = await axios.post(api + "registra-movimentacao", formData, {
+                headers: { 'Authorization': `Bearer ${token}` },
             });
 
-            notifySuccess();
+            notifySuccess(response.data.msg);
+            closeModal()
             atualizarProdutos()
         } catch (error) {
             const erro = error.response?.data?.msg || "Erro ao desativar o produto.";
             notifyError(erro);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -67,8 +73,7 @@ const AdicionarEstoque = ({ produto, atualizarProdutos, setEstadoModal }) => {
                 </div>
             ) : (
                 <div className='flex justify-center gap-4'>
-                    <BtnCancelar onClick={closeModal} />
-                    <button className='btnPadrao' type='submit'>Adicionar no estoque</button>
+                    <button className='btnPadrao !w-full' type='submit'>Adicionar no estoque</button>
                 </div>
             )}
         </form>

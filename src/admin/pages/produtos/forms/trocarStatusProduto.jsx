@@ -6,15 +6,14 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from "../../../../components/Loading";
 import BtnCancelar from "../../../../components/BtnCancel";
-import BtnRed from "../../../../components/BtnRed";
 
-const DesativarProduto = ({ produto, atualizarProdutos, setEstadoModal }) => {
+const TrocarStatusProduto = ({ produto, atualizarProdutos, setEstadoModal }) => {
     const { token } = useContext(AuthContext);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const api = process.env.REACT_APP_API_URL;
 
-    const notifySuccess = () => toast.success("Cadastro realizado com sucesso!");
+    const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
 
     function closeModal() {
@@ -27,18 +26,18 @@ const DesativarProduto = ({ produto, atualizarProdutos, setEstadoModal }) => {
         setIsSubmitting(true);
 
         try {
-            await axios.patch(api + "desativar-produto", {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    Authorization: `Bearer ${token}`,
-                },
+            const response = await axios.patch(`${api}desativar-produto`, { id: produto._id }, {
+                headers: { 'Authorization': `Bearer ${token}` },
             });
 
-            notifySuccess();
-            atualizarProdutos()
+            notifySuccess(response.data.msg);
+            closeModal();
+            atualizarProdutos();
         } catch (error) {
             const erro = error.response?.data?.msg || "Erro ao desativar o produto.";
             notifyError(erro);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -48,6 +47,11 @@ const DesativarProduto = ({ produto, atualizarProdutos, setEstadoModal }) => {
                 <img className="w-20" src={api + produto.images[0]} alt="img-produto" />
                 <h3 className="text-sm sm:text-base font-semibold text-zinc-900">{produto.nome}</h3>
             </div>
+
+            <hr />
+
+            <p className="text-lg"><strong>Status atual: </strong>{produto.status}</p>
+
             {isSubmitting ? (
                 <div className='flex justify-center h-[2.5rem] items-center'>
                     <Loading />
@@ -55,11 +59,13 @@ const DesativarProduto = ({ produto, atualizarProdutos, setEstadoModal }) => {
             ) : (
                 <div className='flex justify-center gap-4'>
                     <BtnCancelar onClick={closeModal} />
-                    <BtnRed text='Desativar' />
+                    <button className="p-2 bg-yellow-500 hover:bg-yellow-600 duration-200 text-white rounded-md">
+                        Trocar Status
+                    </button>
                 </div>
             )}
         </form>
     );
 };
 
-export default DesativarProduto;
+export default TrocarStatusProduto;
