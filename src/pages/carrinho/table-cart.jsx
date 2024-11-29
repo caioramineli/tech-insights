@@ -9,8 +9,8 @@ export default function TableCart({ esconderBtns = "flex"}) {
     return (
         <table className="hidden sm:block border-spacing-0 bg-white rounded-md bsPadrao tablecart">
             <thead>
-                <tr>
-                    <th className='p-3 border-b border-b-gray-300'>Produto</th>
+                <tr >
+                    <th className='p-3 border-b border-b-gray-300 w-full'>Produto</th>
                     <th className='p-3 border-b border-b-gray-300'>Quantidade</th>
                     <th className='p-3 border-b border-b-gray-300'>Preço</th>
                 </tr>

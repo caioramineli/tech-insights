@@ -4,6 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from "../Loading";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import BtnCancelar from "../BtnCancel";
+import BtnRed from "../BtnRed";
 
 const FormDeletarEndereco = ({ setEstadoForm, endereco, atualizarEnderecos, userId }) => {
     const api = process.env.REACT_APP_API_URL;
@@ -48,8 +50,8 @@ const FormDeletarEndereco = ({ setEstadoForm, endereco, atualizarEnderecos, user
                     </div>
                 ) : (
                     <div className='flex justify-center gap-4'>
-                        <button className='bg-gray-300 rounded-md py-2 px-6' type='button' onClick={closeModal}>Cancelar</button>
-                        <button className='bg-red-700 rounded-md py-2 px-6 font-bold text-emerald-50' type='submit'>Excluir</button>
+                        <BtnCancelar onClick={closeModal} />
+                        <BtnRed text='Excluir' />
                     </div>
                 )}
             </div>

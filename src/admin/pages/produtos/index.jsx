@@ -5,12 +5,13 @@ import Loading from '../../../components/Loading';
 import { IoSearch } from 'react-icons/io5';
 import { ToastContainer } from 'react-toastify';
 import { AiOutlineEdit } from 'react-icons/ai';
-import { TiCancel } from "react-icons/ti";
 import { MdAdd, MdOutlineCancel } from 'react-icons/md';
 import { Modal } from '../../../components/Modal';
-import AdicionarEstoque from './formAdicionarEstoque';
+import AdicionarEstoque from './forms/formAdicionarEstoque';
+import ProductUpload from './forms/cadastrarProduto';
 import { Link } from 'react-router-dom';
-import { FcCancel } from 'react-icons/fc';
+import AtualizarProduto from './forms/atualizarProduto';
+import DesativarProduto from './forms/desativarProduto';
 
 const AdminProdutos = () => {
     const { token } = useContext(AuthContext);
@@ -25,6 +26,11 @@ const AdminProdutos = () => {
     const [input, setInput] = useState('');
 
     const [modalEstoque, setModalEstoque] = useState(false)
+    const [modalAddProduto, setModalAddProduto] = useState(false)
+    const [modalEditarProduto, setModalEditarProduto] = useState(false)
+    const [modalDesativarProduto, setModalDesativarProduto] = useState(false)
+
+    const [produtoSelecionado, setProdutoSelecionado] = useState(null);
 
 
     const fetchProdutos = useCallback(async () => {
@@ -72,22 +78,29 @@ const AdminProdutos = () => {
         return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-    function openEstoqueModal() {
-        setModalEstoque(true)
+
+    function openAddProdutoModal() {
+        setModalAddProduto(true)
+        document.body.style.overflow = 'hidden';
     }
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Deseja realmente desabilitar este produto?')) {
-            try {
-                await axios.delete(`${api}admin-deletar-produto/${id}`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                fetchProdutos();
-            } catch (error) {
-                alert('Erro ao excluir o produto.');
-            }
-        }
-    };
+    function openEstoqueModal(produto) {
+        setProdutoSelecionado(produto);
+        setModalEstoque(true)
+        document.body.style.overflow = 'hidden';
+    }
+
+    function openEditarProdutoModal(produto) {
+        setProdutoSelecionado(produto);
+        setModalEditarProduto(true)
+        document.body.style.overflow = 'hidden';
+    }
+
+    function openDesativarProdutoModal(produto) {
+        setProdutoSelecionado(produto);
+        setModalDesativarProduto(true)
+        document.body.style.overflow = 'hidden';
+    }
 
     return (
         <div className="containerPadrao mx-auto gap-2">
@@ -95,7 +108,7 @@ const AdminProdutos = () => {
                 <h1 className="text-lg sm:text-2xl font-bold text-zinc-900">Gerenciar Produtos</h1>
 
                 <div className='flex items-center gap-3'>
-                    <button className='btnPadrao !text-sm gap-1'>
+                    <button onClick={() => openAddProdutoModal()} className='btnPadrao !text-sm gap-1'>
                         <MdAdd className='text-2xl text-emerald-50' />
                         Novo Produto
                     </button>
@@ -174,16 +187,16 @@ const AdminProdutos = () => {
                                 </div>
 
                                 <div className='flex items-center justify-center gap-4'>
-                                    <button className='flex gap-1 btnPadrao !text-sm' onClick={() => openEstoqueModal()}>
+                                    <button className='flex gap-1 btnPadrao !text-sm' onClick={() => openEstoqueModal(produto)}>
                                         <MdAdd className='text-2xl text-emerald-50' />
                                         Estoque
                                     </button>
 
-                                    <button className='p-2 bg-cyan-600 hover:bg-cyan-700 duration-200 text-white rounded' title="Editar">
+                                    <button onClick={() => openEditarProdutoModal(produto)} className='p-2 bg-cyan-600 hover:bg-cyan-700 duration-200 text-white rounded'>
                                         <AiOutlineEdit size={20} />
                                     </button>
                                     <button
-                                        onClick={() => handleDelete(produto._id)}
+                                        onClick={() => openDesativarProdutoModal(produto)}
                                         className='p-2 bg-red-600 hover:bg-red-700 duration-200 text-white rounded'
                                         title="Excluir"
                                     >
@@ -196,9 +209,27 @@ const AdminProdutos = () => {
                 )}
             </div>
 
+            {modalAddProduto && (
+                <Modal setEstado={setModalAddProduto} titulo='Cadastrar novo produto' largura='max-w-5xl' >
+                    <ProductUpload />
+                </Modal>
+            )}
+
             {modalEstoque && (
                 <Modal setEstado={setModalEstoque} titulo='Adicionar no estoque' largura='max-w-xl' >
-                    <AdicionarEstoque />
+                    <AdicionarEstoque produto={produtoSelecionado} atualizarProdutos={fetchProdutos} setEstadoModal={setModalEstoque} />
+                </Modal>
+            )}
+
+            {modalEditarProduto && (
+                <Modal setEstado={setModalEditarProduto} titulo='Editar dados do produto' largura='max-w-5xl' >
+                    <AtualizarProduto formData={produtoSelecionado} setFormData={setProdutoSelecionado} atualizarProdutos={fetchProdutos} />
+                </Modal>
+            )}
+
+            {modalDesativarProduto && (
+                <Modal setEstado={setModalDesativarProduto} titulo='Desativar produto?' largura='max-w-xl' >
+                    <DesativarProduto produto={produtoSelecionado} atualizarProdutos={fetchProdutos} setEstadoModal={setModalDesativarProduto} />
                 </Modal>
             )}
 

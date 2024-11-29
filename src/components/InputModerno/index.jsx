@@ -1,6 +1,21 @@
 import InputMask from 'react-input-mask';
 
-const InputModerno = ({ name, type, placeholder, value, onChange, label, bgLabel, mask, required = false, max = false, className = "", readOnly = false }) => {
+const InputModerno = ({
+    name,
+    type,
+    placeholder,
+    value,
+    onChange,
+    label,
+    bgLabel,
+    mask,
+    required = false,
+    max = false,
+    className = "",
+    readOnly = false,
+    list,
+    min
+}) => {
     return (
         <div className="divInputModerno">
             {mask ? (
@@ -25,6 +40,8 @@ const InputModerno = ({ name, type, placeholder, value, onChange, label, bgLabel
                     maxLength={max}
                     className={className}
                     readOnly={readOnly}
+                    list={list}
+                    min={min}
                 />
             )}
             <label className={`!bg-${bgLabel}`}>
