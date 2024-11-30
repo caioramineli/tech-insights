@@ -74,7 +74,7 @@ export default function Pagamento() {
 
     return (
         <>
-            <ToastContainer />
+            <ToastContainer autoClose={3000} />
             <main className="flex flex-col w-full gap-6">
                 {carrinho.length === 0 ? (
                     <CarrinhoVazio />

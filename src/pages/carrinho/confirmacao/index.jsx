@@ -19,7 +19,18 @@ import ContainerCarrinhoMobile from "../../../components/ContainerCarrinhoMobile
 
 export default function Confirmacao() {
     const api = process.env.REACT_APP_API_URL;
-    const { carrinho, zerarCarrinho, calcularValorFinal, frete, desconto, endereco, formaPagamento, setPedido, cupom, cartao, calcularValorTotal } = useCarrinho();
+    const {
+        carrinho,
+        zerarCarrinho,
+        calcularValorFinal,
+        frete, desconto,
+        endereco,
+        formaPagamento,
+        setPedido,
+        cupom,
+        cartao,
+        calcularValorTotal
+    } = useCarrinho();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { user, token } = useContext(AuthContext);
 
@@ -92,8 +103,8 @@ export default function Confirmacao() {
 
     return (
         <>
-            <ToastContainer />
-            <main className="flex flex-col w-full gap-6">
+            <ToastContainer autoClose={3000} />
+            <main className="flex flex-col w-full gap-6 mb-4">
                 {carrinho.length === 0 ? (
                     <CarrinhoVazio />
                 ) : (
@@ -160,7 +171,7 @@ export default function Confirmacao() {
                                     </div>
                                 </div>
                             </section>
-                            
+
                             <section className="flex flex-col gap-4 max-lg:mt-1 mb-8">
                                 <ResumoCart />
                                 {isSubmitting ? (

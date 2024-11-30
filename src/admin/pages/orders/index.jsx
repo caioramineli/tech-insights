@@ -143,7 +143,10 @@ const AdminPedidos = () => {
                                                 )}
                                                 <div>
                                                     <div className="text-sm">
-                                                        {produto.quantidade}x {formatarPreco(produto.idProduto.preco)}
+                                                        {produto.quantidade}x{' '}
+                                                        {pedido.formaPagamento !== 'PIX' && pedido.formaPagamento !== 'Boleto'
+                                                            ? formatarPreco(produto.idProduto.precoPrazo)
+                                                            : formatarPreco(produto.idProduto.preco)}
                                                     </div>
                                                 </div>
                                             </div>

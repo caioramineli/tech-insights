@@ -40,7 +40,7 @@ export default function Cadastrar() {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
- 
+
     useEffect(() => {
         const sendChatBotData = async () => {
             if (chatBotData.phone !== "") {
@@ -53,7 +53,7 @@ export default function Cadastrar() {
         };
         sendChatBotData();
     }, [chatBotData, apiChatBot]);
-    
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -142,7 +142,7 @@ export default function Cadastrar() {
 
     return (
         <div id="containerCadastrar">
-            <ToastContainer />
+            <ToastContainer autoClose={3000} />
             <form method="POST" onSubmit={handleSubmit}>
                 <h1 className='flex justify-center text-emerald-600 font-bold text-2xl sm:text-3xl'>Cadastrar-se</h1>
                 <div id='containerInputs'>

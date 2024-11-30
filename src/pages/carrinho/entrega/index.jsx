@@ -136,7 +136,7 @@ export default function Entrega() {
                                         freteAtual={frete.tipo}
                                         onSelecionar={freteEscolhido}
                                     />
-                                    
+
                                     <OpcaoFrete
                                         tipo="agendado"
                                         descricao="Agendado"
@@ -177,7 +177,7 @@ export default function Entrega() {
                             </section>
 
                         </div>
-                        <ToastContainer />
+                        <ToastContainer autoClose={3000} />
                     </>
                 )}
             </main>

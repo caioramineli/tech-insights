@@ -33,7 +33,6 @@ const AdminProdutos = () => {
 
     const [produtoSelecionado, setProdutoSelecionado] = useState(null);
 
-
     const fetchProdutos = useCallback(async () => {
         setLoading(true);
         try {
@@ -79,7 +78,6 @@ const AdminProdutos = () => {
         return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-
     function openAddProdutoModal() {
         setModalAddProduto(true)
         document.body.style.overflow = 'hidden';
@@ -105,23 +103,23 @@ const AdminProdutos = () => {
 
     return (
         <div className="containerPadrao mx-auto gap-2">
-            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center'>
+            <div className='flex flex-col md:flex-row md:justify-between md:items-center gap-2'>
                 <h1 className="text-lg sm:text-2xl font-bold text-zinc-900">Gerenciar Produtos</h1>
 
-                <div className='flex items-center gap-3'>
+                <div className='flex flex-col md:flex-row md:items-center gap-3'>
                     <button onClick={() => openAddProdutoModal()} className='btnPadrao !text-sm gap-1'>
                         <MdAdd className='text-2xl text-emerald-50' />
                         Novo Produto
                     </button>
                     <form onSubmit={envioForm} className='flex items-center gap-2'>
-                        <div className='flex items-center bg-white border-2 border-emerald-600 rounded-md'>
+                        <div className='flex items-center bg-white border-2 border-emerald-600 rounded-md  w-full'>
                             <input
                                 type="text"
-                                className='p-[6px] outline-none rounded-md'
+                                className='p-[6px] outline-none rounded-md  w-full'
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                             />
-                            <button className="p-1 " type="submit">
+                            <button className="p-1" type="submit">
                                 <IoSearch className="text-emerald-700 text-2xl cursor-pointer" />
                             </button>
                         </div>
@@ -244,7 +242,7 @@ const AdminProdutos = () => {
                 </Modal>
             )}
 
-            <ToastContainer />
+            <ToastContainer autoClose={3000} />
         </div>
     );
 };

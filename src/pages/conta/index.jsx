@@ -41,11 +41,11 @@ export default function Conta() {
     }
 
     return (
-        <div className='containerPadrao my-8 sm:my-10 gap-1'>
+        <div className='containerPadrao !items-center my-8 sm:my-10 gap-1'>
             <h1 className='flex text-2xl justify-center font-bold pb-1 text-zinc-900'>MINHA CONTA</h1>
-            <hr className='border border-emerald-600 w-52 m-auto' />
+            <hr className='border border-emerald-600 w-52' />
 
-            <div className='flex items-center p-3 bsPadrao bg-white rounded-md gap-4 mt-4'>
+            <div className='flex items-center p-3 bsPadrao bg-white rounded-md gap-4 mt-4 w-full'>
                 <span className='min-w-10'>
                     <PiUserCircleLight className='text-5xl' />
                 </span>
@@ -55,7 +55,7 @@ export default function Conta() {
                 </div>
             </div>
 
-            <div className='grid grid-cols-2 lg:grid-cols-4 gap-3 mt-2'>
+            <div className='grid grid-cols-2 lg:grid-cols-4 gap-3 mt-2 w-full'>
                 <Link to={'meus-dados'}>
                     <div className='flex flex-col sm:flex-row items-center justify-center p-3 sm:p-5 bsPadrao bg-white rounded-md gap-2 sm:gap-4 h-36'>
                         <span>
@@ -107,22 +107,24 @@ export default function Conta() {
 
             <hr className='border border-emerald-600 w-full mt-5' />
 
-            <div className='flex flex-row justify-between mt-4 mb-1'>
+            <div className='flex flex-row justify-between mt-4 mb-1 w-full'>
                 <h1 className='font-bold uppercase '>Resumo do seu último pedido</h1>
                 <Link to={'pedidos'} className='hidden sm:block uppercase underline decoration-solid text-sm'> ir para meus pedidos</Link>
             </div>
 
-            {loading ? (
-                <p>Carregando...</p>
-            ) : (
-                <>
-                    {pedidos.length === 0 ? (
-                        <p>Nenhum pedido encontrado.</p>
-                    ) : (
-                        <PedidoContainer pedido={pedidos} />
-                    )}
-                </>
-            )}
+            <div className='w-full'>
+                {loading ? (
+                    <p>Carregando...</p>
+                ) : (
+                    <>
+                        {pedidos.length === 0 ? (
+                            <p>Nenhum pedido encontrado.</p>
+                        ) : (
+                            <PedidoContainer pedido={pedidos} />
+                        )}
+                    </>
+                )}
+            </div>
         </div>
     );
 }

@@ -20,7 +20,7 @@ export default function PaginaCupons() {
     useEffect(() => {
         const buscarCupons = async () => {
             try {
-                const response = await axios.get(`${api}cupon/listar`);
+                const response = await axios.get(`${api}listar-cupons`);
                 setCupons(response.data.cupons);
             } catch (err) {
                 console.log(err);

@@ -80,7 +80,7 @@ const EnderecosUser = () => {
                 <>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {enderecos.map((endereco) => (
-                            <div key={endereco._id} className="flex flex-col rounded-md bsPadrao bg-white">
+                            <div key={endereco._id} className="flex flex-col rounded-md shadow-md bg-white">
                                 <div className="flex justify-between items-center bg-cyan-800 py-2 px-3 rounded-t-md">
                                     <h2 className="text-base sm:text-lg font-semibold uppercase text-white">{endereco.nome}</h2>
                                     <div className="flex gap-3 items-center">

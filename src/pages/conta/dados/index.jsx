@@ -55,7 +55,7 @@ const Dados = () => {
             {userData && (
                 <FormDados reqUserData={userData} user={user} />
             )}
-            <ToastContainer />
+            <ToastContainer autoClose={3000} />
             <RedefinirSenha user={user} />
         </div>
     );
