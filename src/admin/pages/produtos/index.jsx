@@ -178,11 +178,21 @@ const AdminProdutos = () => {
                                     </div>
                                 </Link>
 
-                                <div className='flex flex-col justify-center'>
+                                <div className='flex flex-col gap-1 justify-center'>
                                     <p><strong>Categoria: </strong>{produto.categoria}</p>
                                     <p><strong>Marca: </strong>{produto.marca}</p>
-                                    <p><strong>Estoque: </strong>{produto.estoque}</p>
-                                    <p><strong>Status: </strong>{produto.status}</p>
+                                    <p>
+                                        <strong>Estoque: </strong>
+                                        <span className={`${produto.estoque >= 10 ? 'text-emerald-600' : 'text-red-600'}`}>
+                                            {produto.estoque}
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <strong>Status:     </strong>
+                                        <span className={`${produto.status === 'ativo' ? 'text-emerald-600' : 'text-yellow-600'}`}>
+                                            {produto.status}
+                                        </span>
+                                    </p>
                                 </div>
 
                                 <div className='flex items-center justify-center gap-4'>

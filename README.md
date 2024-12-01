@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Tech Insights
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Tech Insights** é uma plataforma de e-commerce especializada na venda de hardware e equipamentos de informática, projetada para oferecer uma experiência de compra **eficiente**, **informada** e **satisfatória**. O objetivo é ajudar consumidores a fazer escolhas conscientes, evitando compras equivocadas e desperdícios.
 
-## Available Scripts
+## 🚀 Funcionalidades Principais
 
-In the project directory, you can run:
+- **🛒 Catálogo Inteligente**  
+  Pesquisa avançada, comparação de especificações e informações detalhadas sobre compatibilidade e desempenho dos produtos.
 
-### `npm start`
+- **📚 Conteúdo Educativo**  
+  Guias de compra, tutoriais passo a passo e análises detalhadas para ajudar os clientes a entenderem e escolherem os componentes ideais.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **🤖 Chatbot com IA**  
+  Responde dúvidas em tempo real, oferece recomendações personalizadas e orientações sobre combinações de hardware.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **👤 Gerenciamento de Contas e Pedidos**  
+  Permite salvar favoritos, acompanhar pedidos e acessar o histórico de compras com facilidade.
 
-### `npm test`
+- **⭐ Avaliação de Produtos**  
+  Consulta de opiniões e experiências reais de outros consumidores, auxiliando na tomada de decisão.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 💡 Benefícios
 
-### `npm run build`
+- **Decisões de compra conscientes** e alinhadas às reais necessidades dos clientes.  
+- **Redução de compras equivocadas** e aumento da satisfação do consumidor.  
+- Diferencial competitivo com a integração do **chatbot de IA**.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🌐 **Acesse agora em:** [techinsights.store](https://techinsights.store)
