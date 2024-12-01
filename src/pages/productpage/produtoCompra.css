@@ -91,6 +91,24 @@
     transition: .3s;
 }
 
+.containerDireitaProduto .btnsComprarAddCart button:hover {
+    background-color: var(--cyan-700);
+}
+
+.btnsComprarDisable {
+    cursor: not-allowed;
+}
+
+.btnsComprarDisable button {
+    background-color: gray !important;
+    color: #fff !important;
+    pointer-events: none !important;
+}
+
+.btnComprarDisable button:hover {
+    background-color: rgb(104, 104, 104) !important;
+}
+
 .containerDireitaProduto #btnAddCart {
     font-size: 1.5rem;
     padding: 10px 20px;
@@ -105,8 +123,4 @@
     color: var(--cyan-50);
     cursor: pointer;
     transition: .3s;
-}
-
-.containerDireitaProduto .btnsComprarAddCart button:hover {
-    background-color: var(--cyan-700);
 }

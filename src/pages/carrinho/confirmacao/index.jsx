@@ -66,6 +66,11 @@ export default function Confirmacao() {
             status: "Pedido realizado"
         };
 
+        if (!formaPagamento) {
+            notifyError('Volte e escolha uma forma de pagamento!')
+            return
+        }
+
         try {
             setIsSubmitting(true);
             const response = await axios.post(api + "order", pedido, { headers: { 'Authorization': `Bearer ${token}` } });

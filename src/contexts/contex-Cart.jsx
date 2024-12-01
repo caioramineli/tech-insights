@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useMemo, useEffect, useCallback } from 'react';
+import { createContext, useContext, useState, useMemo, useEffect, useCallback } from 'react';
 
 const CarrinhoContext = createContext();
 
@@ -7,7 +7,11 @@ export function useCarrinho() {
 }
 
 export function CarrinhoProvider({ children }) {
-    const [carrinho, setCarrinho] = useState([]);
+    const [carrinho, setCarrinho] = useState(() => {
+        const carrinhoSalvo = localStorage.getItem('carrinho');
+        return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
+    });
+
     const [cupom, setCupom] = useState([]);
     const [desconto, setDesconto] = useState(0);
     const [frete, setFrete] = useState({ tipo: "", valor: 0 });
@@ -15,6 +19,10 @@ export function CarrinhoProvider({ children }) {
     const [cartao, setCartao] = useState(null);
     const [formaPagamento, setFormaPagamento] = useState('');
     const [pedido, setPedido] = useState(null);
+
+    useEffect(() => {
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    }, [carrinho]);
 
     const calcularValorTotal = useMemo(() => {
         return carrinho.reduce((total, produto) => {
@@ -71,7 +79,7 @@ export function CarrinhoProvider({ children }) {
         setFrete({ tipo: "", valor: 0 });
         setEndereco({ dadosEndereco: {} });
         setFormaPagamento('');
-        setCartao(null)
+        setCartao(null);
     };
 
     const escolhaFrete = (tipo) => {

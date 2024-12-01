@@ -183,12 +183,12 @@ const AdminProdutos = () => {
                                     <p><strong>Marca: </strong>{produto.marca}</p>
                                     <p>
                                         <strong>Estoque: </strong>
-                                        <span className={`${produto.estoque >= 10 ? 'text-emerald-600' : 'text-red-600'}`}>
+                                        <span className={`${produto.estoque >= 11 ? 'text-emerald-600' : 'text-red-600'}`}>
                                             {produto.estoque}
                                         </span>
                                     </p>
                                     <p>
-                                        <strong>Status:     </strong>
+                                        <strong>Status: </strong>
                                         <span className={`${produto.status === 'ativo' ? 'text-emerald-600' : 'text-yellow-600'}`}>
                                             {produto.status}
                                         </span>

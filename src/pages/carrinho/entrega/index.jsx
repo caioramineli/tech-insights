@@ -31,9 +31,12 @@ export default function Entrega() {
     const navigate = useNavigate();
 
     const verificarEndereco = () => {
-        if (endereco._id === undefined) {
+        if (!endereco._id) {
             notifyError('Escolha um endereço de entrega');
-        } else {
+        } else if (frete.tipo === '' || frete.valor === 0) {
+            notifyError('Escolha uma opção de envio!');
+        }
+        else {
             navigate('/pagamento');
         }
     }

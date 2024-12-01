@@ -76,6 +76,11 @@ export default function Produto({ product, rating, setOpenAccordion }) {
             const produtoExistente = carrinho.find((item) => item._id === product._id);
             const quantidadeAtual = produtoExistente ? produtoExistente.quantidade : 0;
 
+            if (quantidadeAtual >= product.estoque) {
+                notifyWarning("Estoque insuficiente para este produto.");
+                return;
+            }
+
             if (quantidadeAtual >= 10) {
                 notifyWarning("Quantidade máxima atingida para este produto.");
                 return;
@@ -91,9 +96,18 @@ export default function Produto({ product, rating, setOpenAccordion }) {
     };
 
     const handleComprar = () => {
+        const produtoExistente = carrinho.find((item) => item._id === product._id);
+        const quantidadeAtual = produtoExistente ? produtoExistente.quantidade : 0;
+
+        if (quantidadeAtual >= product.estoque) {
+            notifyWarning("Estoque insuficiente para este produto.");
+            return;
+        }
+
         adicionarAoCarrinho({ ...product, quantidade: 1 });
         navigate('/carrinho');
     };
+
 
     function formatarValor(valor) {
         return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -101,7 +115,7 @@ export default function Produto({ product, rating, setOpenAccordion }) {
 
     return (
         <>
-            <ToastContainer autoClose={3000}/>
+            <ToastContainer autoClose={3000} />
             <Favoritar produto={product._id} tamanho='text-2xl' />
             <h2 className='text-zinc-900 text-base md:text-lg lg:text-xl 2xl:text-2xl font-bold'>{product.nome}</h2>
             <section className="containerProdutoInfo">
@@ -142,7 +156,16 @@ export default function Produto({ product, rating, setOpenAccordion }) {
                         </a>
                     </div>
 
-                    <p id="disponi">Produto Disponível</p>
+                    <p
+                        className={`font-semibold ${product.estoque > 0 && product.status === "ativo"
+                            ? "text-green-600"
+                            : "text-red-600"
+                            }`}
+                    >
+                        {product.estoque > 0 && product.status === "ativo"
+                            ? "Produto Disponível"
+                            : "Produto Indisponível"}
+                    </p>
 
                     <div className="containerPagVista">
                         <FaBarcode />
@@ -175,12 +198,17 @@ export default function Produto({ product, rating, setOpenAccordion }) {
                         </div>
                     )}
 
-                    <div className='btnsComprarAddCart'>
-                        <button id="btnComprar" onClick={handleComprar}>
+                    <div
+                        className={`btnsComprarAddCart ${product.estoque > 0 && product.status === "ativo"
+                            ? ""
+                            : "btnsComprarDisable"
+                            }`}
+                    >
+                        <button onClick={handleComprar}>
                             <MdShoppingCart />
                             Comprar
                         </button>
-                        <button id='btnAddCart' onClick={handleAddCart}>
+                        <button id="btnAddCart" onClick={handleAddCart}>
                             {iconAdd ? <BsFillCartCheckFill /> : <BsCartPlusFill />}
                         </button>
                     </div>

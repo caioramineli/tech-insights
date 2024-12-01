@@ -38,6 +38,7 @@ import HomeAdmin from "./admin/pages/home";
 import ProductUpload from "./admin/pages/produtos";
 import AdminCupomPage from "./admin/pages/cupons";
 import AdminOrderPage from "./admin/pages/orders";
+import Relatorios from "./admin/pages/relatorios";
 
 import { NotFound } from "./pages/notfound";
 
@@ -89,6 +90,7 @@ export default function MinhasRotas() {
                     <Route path="/admin/produtos" element={<ProtectedRouteAdmin element={<ProductUpload />} />} />
                     <Route path="/admin/cupons" element={<ProtectedRouteAdmin element={<AdminCupomPage />} />} />
                     <Route path="/admin/pedidos" element={<ProtectedRouteAdmin element={<AdminOrderPage />} />} />
+                    <Route path="/admin/relatorios" element={<ProtectedRouteAdmin element={<Relatorios />} />} />
 
                     <Route path="*" element={<NotFound />} />
                 </Routes>

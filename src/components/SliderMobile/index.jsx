@@ -3,12 +3,12 @@ import { Navigation, Pagination } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import b1 from '../../assets/b1.png'
-import b2 from '../../assets/b2.png'
-import b3 from '../../assets/b3.png'
-import b4 from '../../assets/b4.png'
+import b1 from '../../assets/b1-mobile.png'
+import b2 from '../../assets/b2-mobile.png'
+import b3 from '../../assets/b3-mobile.png'
+import b4 from '../../assets/b4-mobile.png'
 
-export default function Slider() {
+export default function SliderMobile() {
     const slides = [
         {
             id: 1,
@@ -33,7 +33,7 @@ export default function Slider() {
     ];
 
     return (
-        <div className="hidden sm:block slider">
+        <div className="block sm:hidden slider">
             <Swiper modules={[Navigation, Pagination]} navigation pagination loopAdditionalSlides loop={true}>
                 {slides.map(slide => (
                     <SwiperSlide key={slide.id}>

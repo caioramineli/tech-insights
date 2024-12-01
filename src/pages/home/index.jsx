@@ -5,13 +5,14 @@ import Slider from "./slider";
 import "./style.css";
 import Loading from "../../components/Loading";
 import { ContainerMarcas } from "../../components/ContainerMarcas/index";
+import SliderMobile from "../../components/SliderMobile";
 
 export default function Home() {
     const [primeirosProdutos, setPrimeirosProdutos] = useState([]);
     const [restanteProdutos, setRestanteProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loadingRestante, setLoadingRestante] = useState(true);
-    const api = "https://backend-tech-insights-production.up.railway.app/";
+    const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         async function getPrimeirosProdutos() {
@@ -51,6 +52,7 @@ export default function Home() {
     return (
         <main className="containerMainPaginaProdutos">
             <Slider />
+            <SliderMobile />
 
             {loading ? (
                 <div className="flex min-h-[50vh] justify-center items-center">

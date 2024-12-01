@@ -1,6 +1,7 @@
 import { FaChevronLeft, FaChevronRight, FaTrash } from "react-icons/fa";
 import { useCarrinho } from '../../contexts/contex-Cart';
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function LineTableCart({ produto, removerProduto, esconder = 'flex' }) {
     const { atualizarQuantidade, carrinho } = useCarrinho();
@@ -8,9 +9,15 @@ export default function LineTableCart({ produto, removerProduto, esconder = 'fle
     const qtd = carrinho.find(item => item._id === produto._id)?.quantidade || 1;
     const subtotal = precoUnitario * qtd;
 
+    const notifyWarning = (text) => toast.warning(text);
+
     function aumentarQtd() {
-        if (qtd < 10) {
+        const estoqueDisponivel = produto.estoque;
+
+        if (qtd < estoqueDisponivel) {
             atualizarQuantidade(produto._id, qtd + 1);
+        } else {
+            notifyWarning("Estoque insuficiente para aumentar a quantidade.");
         }
     }
 
