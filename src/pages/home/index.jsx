@@ -11,7 +11,7 @@ export default function Home() {
     const [restanteProdutos, setRestanteProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loadingRestante, setLoadingRestante] = useState(true);
-    const api = process.env.REACT_APP_API_URL;
+    const api = "https://backend-tech-insights-production.up.railway.app/";
 
     useEffect(() => {
         async function getPrimeirosProdutos() {
@@ -48,22 +48,27 @@ export default function Home() {
         getPrimeirosProdutos();
     }, [api]);
 
-    if (loading) {
-        return <Loading />;
-    }
-
     return (
         <main className="containerMainPaginaProdutos">
             <Slider />
-            <section className="containerProdutos">
-                {primeirosProdutos.map((product) => (
-                    <Produto
-                        key={product._id}
-                        product={product}
-                    />
-                ))}
-            </section>
+
+            {loading ? (
+                <div className="flex min-h-[50vh] justify-center items-center">
+                    <Loading />
+                </div>
+            ) : (
+                <section className="containerProdutos">
+                    {primeirosProdutos.map((product) => (
+                        <Produto
+                            key={product._id}
+                            product={product}
+                        />
+                    ))}
+                </section>
+            )}
+
             <hr className='border border-emerald-600 w-full mt-8' />
+
             <ContainerMarcas />
             <hr className='border border-emerald-600 w-full mt-5' />
 
