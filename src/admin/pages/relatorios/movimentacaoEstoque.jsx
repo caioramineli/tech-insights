@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AuthContext } from '../../../contexts/AuthContext';
 import Loading from '../../../components/Loading';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 
 const MovimentacaoEstoque = () => {
     const { token } = useContext(AuthContext);
@@ -87,7 +88,7 @@ const MovimentacaoEstoque = () => {
 
                                 <div className="flex flex-col gap-1 justify-center text-base">
                                     <div className='m-auto'>
-                                        <p><strong>Data: </strong><span>{movimentacao.dataMovimento}</span></p>
+                                        <p><strong>Data: </strong><span>{format(new Date(movimentacao.dataMovimento), "dd/MM/yyyy HH:mm")}</span></p>
                                         <p><strong>Origem: </strong><span>{movimentacao.origem}</span></p>
                                         <p><strong>Usuário: </strong><span>{movimentacao.usuario.nome}</span></p>
                                         <p><strong>Email: </strong><span>{movimentacao.usuario.email}</span></p>

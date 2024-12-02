@@ -28,13 +28,13 @@ const Relatorios = () => {
                     className="flex-1 py-2 text-center text-zync-900 text-lg"
                     onClick={() => setActiveTab("tab1")}
                 >
-                    Valor total de vendas
+                    Vendas
                 </button>
                 <button
                     className="flex-1 py-2 text-center text-zync-900 text-lg"
                     onClick={() => setActiveTab("tab2")}
                 >
-                    Produtos com estoque mínimo
+                    Estoque mínimo
                 </button>
                 <button
                     className="flex-1 py-2 text-center text-zync-900 text-lg"

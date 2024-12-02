@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import AtualizarProduto from './forms/atualizarProduto';
 import TrocarStatusProduto from './forms/trocarStatusProduto';
 import { FaExchangeAlt } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const AdminProdutos = () => {
     const { token } = useContext(AuthContext);
@@ -21,6 +22,10 @@ const AdminProdutos = () => {
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage] = useState(10);
+    const [totalPages, setTotalPages] = useState(0)
+
 
     const [sortOption, setSortOption] = useState('nome');
     const [searchQuery, setSearchQuery] = useState('');
@@ -41,6 +46,8 @@ const AdminProdutos = () => {
                 params: {
                     query: searchQuery,
                     sort: sortOption,
+                    page: currentPage, // Página atual
+                    limit: productsPerPage, // Limite de produtos por página
                 }
             });
 
@@ -48,7 +55,8 @@ const AdminProdutos = () => {
                 setError('Nenhum produto encontrado.');
                 setProdutos([]);
             } else {
-                setProdutos(response.data);
+                setProdutos(response.data.produtos); // Certifique-se de que a API retorna uma lista de produtos
+                setTotalPages(response.data.totalPages); // Certifique-se de que a API retorna o total de páginas
                 setError('');
             }
         } catch (error) {
@@ -61,7 +69,8 @@ const AdminProdutos = () => {
         } finally {
             setLoading(false);
         }
-    }, [token, api, searchQuery, sortOption]);
+    }, [token, api, searchQuery, sortOption, currentPage, productsPerPage]);
+
 
     useEffect(() => {
         if (token) {
@@ -214,6 +223,24 @@ const AdminProdutos = () => {
                                 </div>
                             </div>
                         ))}
+
+                        <div className="flex p-3 items-center border-b gap-2 w-full justify-center">
+                            <button
+                                className='cursor-pointer'
+                                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                                disabled={currentPage === 1}
+                            >
+                                <FaChevronLeft size={18} />
+                            </button>
+                            <span>Página {currentPage} de {totalPages}</span>
+                            <button
+                                className='cursor-pointer'
+                                onClick={() => setCurrentPage((prev) => prev + 1)}
+                                disabled={currentPage === totalPages}
+                            >
+                                <FaChevronRight size={18} />
+                            </button>
+                        </div>
                     </div>
                 )}
             </div>

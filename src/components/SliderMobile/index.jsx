@@ -7,6 +7,7 @@ import b1 from '../../assets/b1-mobile.png'
 import b2 from '../../assets/b2-mobile.png'
 import b3 from '../../assets/b3-mobile.png'
 import b4 from '../../assets/b4-mobile.png'
+import b5 from '../../assets/b5-mobile.png'
 
 export default function SliderMobile() {
     const slides = [
@@ -29,6 +30,11 @@ export default function SliderMobile() {
             id: 4,
             src: b4,
             alt: 'Promoção 4'
+        },
+        {
+            id: 5,
+            src: b5,
+            alt: 'Promoção 5'
         }
     ];
 

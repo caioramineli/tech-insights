@@ -7,6 +7,7 @@ import b1 from '../../assets/b1.png'
 import b2 from '../../assets/b2.png'
 import b3 from '../../assets/b3.png'
 import b4 from '../../assets/b4.png'
+import b5 from '../../assets/b5.png'
 
 export default function Slider() {
     const slides = [
@@ -29,6 +30,11 @@ export default function Slider() {
             id: 4,
             src: b4,
             alt: 'Promoção 4'
+        },
+        {
+            id: 5,
+            src: b5,
+            alt: 'Promoção 5'
         }
     ];
 
